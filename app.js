@@ -1,7 +1,7 @@
 // app.js
 // WildsDump prototype UI
 
-const EN_SOURCE = "./data/en_dump.txt";
+const EN_SOURCE = "./en_dump.txt";
 const PAGE_SIZE = 80;
 const WORD_PAGE_SIZE = 150;
 
