@@ -10,9 +10,13 @@ function parseWildsDump(rawText, language = "en") {
     .replace(/\r/g, "\n");
 
   const sections = [];
-  const blocks = text.split(/\n={80}\n/g);
 
-  for (const block of blocks) {
+  const sectionRegex =
+    /(?:^|\n)={80}\nTITLE:[\s\S]*?(?=\n={80}\nTITLE:|$)/g;
+
+  const matches = text.match(sectionRegex) || [];
+
+  for (const block of matches) {
     const parsed = parseWildsSection(block, language);
 
     if (parsed) {
@@ -32,12 +36,18 @@ function parseWildsSection(block, language = "en") {
 
   if (!title && !sourcePath) return null;
 
-  const bodyStart = block.indexOf("HASH:");
   let body = "";
 
-  if (bodyStart !== -1) {
-    const afterHashLine = block.slice(bodyStart).split("\n").slice(1).join("\n");
-    body = afterHashLine.trim();
+  const hashMatch = block.match(/^HASH:.*$/mi);
+
+  if (hashMatch) {
+    const afterHash = block.slice(hashMatch.index + hashMatch[0].length);
+    const separatorIndex = afterHash.indexOf(WILDS_SECTION_SEPARATOR);
+
+    body =
+      separatorIndex !== -1
+        ? afterHash.slice(separatorIndex + WILDS_SECTION_SEPARATOR.length).trim()
+        : afterHash.trim();
   }
 
   const strings = parseWildsStrings(body);
