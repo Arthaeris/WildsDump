@@ -4,256 +4,241 @@
 <meta charset="UTF-8">
 <title>Game Text Condenser</title>
 
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#202124;
-    color:#EEE;
-    max-width:1000px;
-    margin:auto;
-    padding:30px;
-}
-
-h1{
-    color:#7ed6ff;
-}
-
-.section{
-    background:#2b2d31;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:8px;
-}
-
-button{
-    padding:10px 20px;
-    margin-top:15px;
-    cursor:pointer;
-    font-size:15px;
-}
-
-label{
-    display:block;
-    margin-top:10px;
-}
-
-textarea{
-    width:100%;
-    height:150px;
-    background:#111;
-    color:#0f0;
-}
-
-#status{
-    white-space:pre-wrap;
-    background:#111;
-    padding:15px;
-    margin-top:20px;
-    border-radius:6px;
-}
-
-.small{
-    color:#AAA;
-    font-size:13px;
-}
+body{font-family:Arial,sans-serif;background:#202124;color:#eee;max-width:1000px;margin:auto;padding:30px}
+h1{color:#7ed6ff}
+.section{background:#2b2d31;padding:20px;margin-bottom:20px;border-radius:8px}
+button{padding:10px 20px;margin:10px 10px 0 0;cursor:pointer;font-size:15px}
+button:disabled{opacity:.5;cursor:not-allowed}
+label{display:block;margin-top:10px}
+#status{white-space:pre-wrap;background:#111;padding:15px;margin-top:20px;border-radius:6px}
+.small{color:#aaa;font-size:13px}
 </style>
-
 </head>
+
 <body>
 
 <h1>Game Text Condenser</h1>
 
 <div class="section">
-
-<h3>Existing Dump (Optional)</h3>
-
+<h3>Existing Dump Optional</h3>
 <input id="existingDump" type="file" accept=".txt">
-
 </div>
 
 <div class="section">
-
-<h3>Source Files</h3>
-
-<input id="sourceFiles" type="file" multiple webkitdirectory>
-
+<h3>Upload ZIP</h3>
+<input id="zipFile" type="file" accept=".zip">
 <p class="small">
-You may select an entire folder containing hundreds or thousands of txt files.
+Recommended for iOS. Zip your folder in the Files app, then upload the ZIP here.
+Folder paths inside the ZIP will be preserved.
 </p>
-
 </div>
 
 <div class="section">
-
-<label>
-<input type="checkbox" id="skipDuplicates" checked>
-Skip duplicate hashes
-</label>
-
-<label>
-<input type="checkbox" id="preservePath" checked>
-Preserve relative folder path
-</label>
-
-<label>
-<input type="checkbox" id="sortFiles" checked>
-Sort alphabetically
-</label>
-
+<h3>Or Upload Loose TXT Files</h3>
+<input id="sourceFiles" type="file" multiple accept=".txt">
+<p class="small">
+Useful when you only have individual txt files. Folder structure may not be preserved on iOS.
+</p>
 </div>
 
-<button id="generate">
-Generate Dump
-</button>
+<div class="section">
+<label><input type="checkbox" id="skipDuplicates" checked> Skip duplicate hashes</label>
+<label><input type="checkbox" id="sortFiles" checked> Sort alphabetically</label>
+</div>
+
+<button id="generate">Generate Dump</button>
+<button id="downloadDump" disabled>Download Dump</button>
+<button id="downloadIndex" disabled>Download Index</button>
 
 <div id="status"></div>
 
 <script>
+const statusBox = document.getElementById("status");
 
-const status=document.getElementById("status");
+let generatedDump = "";
+let generatedIndex = "";
 
-function log(t){
-    status.textContent+=t+"\n";
+function log(text){
+    statusBox.textContent += text + "\n";
 }
 
 async function sha256(text){
-
-    const data=new TextEncoder().encode(text);
-
-    const hash=await crypto.subtle.digest("SHA-256",data);
-
+    const data = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest("SHA-256", data);
     return [...new Uint8Array(hash)]
-        .map(x=>x.toString(16).padStart(2,"0"))
+        .map(x => x.toString(16).padStart(2, "0"))
         .join("");
-
 }
 
-function download(filename,text){
-
-    const blob=new Blob([text],{type:"text/plain"});
-
-    const a=document.createElement("a");
-
-    a.href=URL.createObjectURL(blob);
-
-    a.download=filename;
-
+function download(filename, text){
+    const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
     a.click();
-
     URL.revokeObjectURL(a.href);
-
 }
 
-document.getElementById("generate").onclick=async()=>{
+document.getElementById("downloadDump").onclick = () => {
+    download("updated_dump.txt", generatedDump);
+};
 
-status.textContent="";
+document.getElementById("downloadIndex").onclick = () => {
+    download("dump_index.txt", generatedIndex);
+};
 
-let dump="";
-let index="";
+async function getTxtFilesFromZip(zipFile){
+    const zip = await JSZip.loadAsync(zipFile);
+    const entries = [];
 
-const seenHashes=new Set();
+    for(const path in zip.files){
+        const entry = zip.files[path];
 
-const existing=document.getElementById("existingDump").files[0];
+        if(entry.dir) continue;
+        if(!path.toLowerCase().endsWith(".txt")) continue;
 
-if(existing){
+        const text = await entry.async("string");
 
-    log("Loading existing dump...");
-
-    dump=await existing.text();
-
-    const regex=/HASH:\s([a-f0-9]{64})/g;
-
-    let match;
-
-    while((match=regex.exec(dump))!==null){
-
-        seenHashes.add(match[1]);
-
+        entries.push({
+            name: path.split("/").pop(),
+            path: path,
+            size: text.length,
+            modified: entry.date || new Date(),
+            text: text
+        });
     }
 
-    log("Existing hashes: "+seenHashes.size);
-
+    return entries;
 }
 
-let files=[...document.getElementById("sourceFiles").files];
+async function getLooseTxtFiles(files){
+    const entries = [];
 
-if(files.length===0){
+    for(const file of files){
+        if(!file.name.toLowerCase().endsWith(".txt")) continue;
 
-    alert("Select some txt files.");
+        entries.push({
+            name: file.name,
+            path: file.name,
+            size: file.size,
+            modified: new Date(file.lastModified),
+            text: await file.text()
+        });
+    }
 
-    return;
-
+    return entries;
 }
 
-files=files.filter(f=>f.name.toLowerCase().endsWith(".txt"));
+document.getElementById("generate").onclick = async () => {
+    statusBox.textContent = "";
+    generatedDump = "";
+    generatedIndex = "";
 
-if(document.getElementById("sortFiles").checked){
+    document.getElementById("downloadDump").disabled = true;
+    document.getElementById("downloadIndex").disabled = true;
 
-    files.sort((a,b)=>
-        a.webkitRelativePath.localeCompare(b.webkitRelativePath)
-    );
+    let dump = "";
+    let index = "GAME TEXT DUMP INDEX\n====================\n\n";
+    const seenHashes = new Set();
 
-}
+    const existing = document.getElementById("existingDump").files[0];
 
-log("Processing "+files.length+" files...");
+    if(existing){
+        log("Loading existing dump...");
+        dump = await existing.text();
 
-let added=0;
-let skipped=0;
+        const regex = /HASH:\s*([a-f0-9]{64})/gi;
+        let match;
 
-for(const file of files){
-
-    const text=await file.text();
-
-    const hash=await sha256(text);
-
-    if(document.getElementById("skipDuplicates").checked){
-
-        if(seenHashes.has(hash)){
-
-            skipped++;
-
-            continue;
-
+        while((match = regex.exec(dump)) !== null){
+            seenHashes.add(match[1].toLowerCase());
         }
 
+        log("Existing hashes found: " + seenHashes.size);
     }
 
-    seenHashes.add(hash);
+    let entries = [];
 
-    const path=document.getElementById("preservePath").checked
-        ? (file.webkitRelativePath||file.name)
-        : file.name;
+    const zipFile = document.getElementById("zipFile").files[0];
+    const looseFiles = [...document.getElementById("sourceFiles").files];
 
-    dump+=
-`\n
+    if(zipFile){
+        log("Reading ZIP...");
+        entries = entries.concat(await getTxtFilesFromZip(zipFile));
+    }
+
+    if(looseFiles.length > 0){
+        log("Reading loose txt files...");
+        entries = entries.concat(await getLooseTxtFiles(looseFiles));
+    }
+
+    if(entries.length === 0){
+        alert("Upload a ZIP containing .txt files or select loose .txt files.");
+        return;
+    }
+
+    if(document.getElementById("sortFiles").checked){
+        entries.sort((a,b) => a.path.localeCompare(b.path));
+    }
+
+    log("Processing " + entries.length + " txt files...");
+
+    let added = 0;
+    let skipped = 0;
+
+    for(const entry of entries){
+        const hash = await sha256(entry.text);
+
+        if(document.getElementById("skipDuplicates").checked && seenHashes.has(hash)){
+            skipped++;
+            continue;
+        }
+
+        seenHashes.add(hash);
+
+        const modified = entry.modified.toLocaleString();
+
+        dump += `
+
 ================================================================================
-TITLE: ${file.name}
-SOURCE PATH: ${path}
-SIZE: ${file.size} bytes
-MODIFIED: ${new Date(file.lastModified).toLocaleString()}
+TITLE: ${entry.name}
+SOURCE PATH: ${entry.path}
+SIZE: ${entry.size} bytes
+MODIFIED: ${modified}
 HASH: ${hash}
 ================================================================================
 
-${text}
+${entry.text}
 
 `;
 
-    index+=`${path}\n`;
+        index += `TITLE: ${entry.name}
+SOURCE PATH: ${entry.path}
+SIZE: ${entry.size} bytes
+MODIFIED: ${modified}
+HASH: ${hash}
 
-    added++;
+`;
 
-}
+        added++;
+    }
 
-log("");
-log("Finished.");
-log("Added: "+added);
-log("Skipped duplicates: "+skipped);
+    generatedDump = dump;
+    generatedIndex = index;
 
-download("updated_dump.txt",dump);
-download("dump_index.txt",index);
+    log("");
+    log("Finished.");
+    log("Added: " + added);
+    log("Skipped duplicates: " + skipped);
+    log("");
+    log("Ready. Use the separate buttons to download the dump and index.");
 
+    document.getElementById("downloadDump").disabled = false;
+    document.getElementById("downloadIndex").disabled = false;
 };
-
 </script>
 
 </body>
