@@ -73,21 +73,72 @@ async function sha256(text){
         .join("");
 }
 
-function download(filename, text){
-    const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(a.href);
+async function download(filename, text) {
+
+    const blob = new Blob([text], {
+        type: "text/plain;charset=utf-8"
+    });
+
+    // iOS / iPadOS
+    const isiOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+if (isiOS && navigator.canShare) {
+
+    try {
+
+        const file = new File(
+            [blob],
+            filename,
+            {
+                type: "text/plain"
+            }
+        );
+
+        if (navigator.canShare({ files: [file] })) {
+
+            await navigator.share({
+                title: filename,
+                text: "Game Text Dump",
+                files: [file]
+            });
+
+            return;
+
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
+
 }
 
-document.getElementById("downloadDump").onclick = () => {
-    download("updated_dump.txt", generatedDump);
+    // Desktop fallback
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = filename;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    setTimeout(() => {
+        URL.revokeObjectURL(url);
+        a.remove();
+    }, 1000);
+
+}
+
+document.getElementById("downloadDump").onclick = async () => {
+    await download("updated_dump.txt", generatedDump);
 };
 
-document.getElementById("downloadIndex").onclick = () => {
-    download("dump_index.txt", generatedIndex);
+document.getElementById("downloadIndex").onclick = async () => {
+    await download("dump_index.txt", generatedIndex);
 };
 
 async function getTxtFilesFromZip(zipFile){
