@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#111111" />
+
+  <title>WildsDump</title>
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+  <button id="menuBtn" class="menu-toggle" aria-label="Open navigation">
+    ☰
+  </button>
+
+  <aside id="menu" class="menu">
+    <div class="menu-header">
+      <h2>Navigation</h2>
+      <button id="closeMenuBtn" class="secondary">✕</button>
+    </div>
+
+    <div class="menu-section">
+      <button id="homeBtn" class="menu-item">🏠 Home</button>
+    </div>
+
+    <div class="menu-section">
+      <h3>Dialogues</h3>
+      <button id="npcIndexBtn" class="menu-item">NPC Index</button>
+    </div>
+
+    <div class="menu-section">
+      <h3>Categories</h3>
+      <div id="categoryList"></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Tools</h3>
+      <button id="wordIndexBtn" class="menu-item">Word Index</button>
+      <button id="themeToggleBtn" class="menu-item">Theme: System</button>
+    </div>
+  </aside>
+
+  <div id="menuOverlay" class="menu-overlay"></div>
+
+  <header>
+    <div class="header-row">
+      <h1>WildsDump</h1>
+    </div>
+
+    <p>
+      Search Monster Hunter Wilds text, dialogue, items, weapons, quests,
+      tutorials, UI text, and NPC-related files.
+    </p>
+  </header>
+
+  <main>
+
+    <section id="searchView">
+
+      <section id="cardControls" class="card-controls">
+        <div class="filter-group">
+          <span class="filter-label">Format</span>
+
+          <div class="filter-row">
+            <button class="filter-chip active" type="button" data-card-mode="ids">
+              IDs
+            </button>
+
+            <button class="filter-chip" type="button" data-card-mode="clean">
+              Clean
+            </button>
+
+            <button class="filter-chip" type="button" data-card-mode="code">
+              Code
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="searchFilters" class="search-filters">
+        <div class="filter-group filter-group-all">
+          <button class="filter-chip active" type="button" data-clear-filters>
+            All
+          </button>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label">Type</span>
+
+          <div class="filter-row">
+            <button class="filter-chip" type="button" data-type-filter="Dialogues">Dialogues</button>
+            <button class="filter-chip" type="button" data-type-filter="NPCs">NPCs</button>
+            <button class="filter-chip" type="button" data-type-filter="Monsters">Monsters</button>
+            <button class="filter-chip" type="button" data-type-filter="Quests">Quests</button>
+            <button class="filter-chip" type="button" data-type-filter="Items">Items</button>
+            <button class="filter-chip" type="button" data-type-filter="Equipment">Equipment</button>
+            <button class="filter-chip" type="button" data-type-filter="Weapons">Weapons</button>
+            <button class="filter-chip" type="button" data-type-filter="Skills">Skills</button>
+            <button class="filter-chip" type="button" data-type-filter="Tutorials">Tutorials</button>
+            <button class="filter-chip" type="button" data-type-filter="UI">UI</button>
+            <button class="filter-chip" type="button" data-type-filter="References">References</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbar">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search text, files, IDs, speakers, categories..."
+        />
+
+        <span id="count">0 entries</span>
+      </section>
+
+      <button
+        id="copySearchResultsBtn"
+        class="secondary copy-search-btn"
+        type="button">
+        Copy all Search Results
+      </button>
+
+      <section id="results" class="results" aria-live="polite"></section>
+
+    </section>
+
+    <section id="categoryView" hidden>
+      <div class="view-header">
+        <button id="backFromCategoryBtn" class="secondary">← Back</button>
+        <h2 id="categoryTitle"></h2>
+      </div>
+
+      <section id="categoryResults" class="results"></section>
+    </section>
+
+    <section id="npcView" hidden>
+      <div class="view-header">
+        <button id="backFromNpcBtn" class="secondary">← Back</button>
+        <h2>NPC Index</h2>
+      </div>
+
+      <section id="npcList" class="results"></section>
+    </section>
+
+    <section id="dialogueView" hidden>
+      <div class="view-header dialogue-view-header">
+        <button id="backFromDialogueBtn" class="secondary">← Back</button>
+
+        <div class="dialogue-header">
+          <h2 id="dialogueTitle"></h2>
+
+          <button id="dialogueModeBtn" class="secondary dialogue-mode-btn">
+            Full Dialogue
+          </button>
+        </div>
+      </div>
+
+      <section id="dialogueResults" class="results"></section>
+    </section>
+
+    <section id="wordIndexView" hidden>
+      <div class="view-header">
+        <button id="backFromWordIndexBtn" class="secondary">← Back</button>
+        <h2>Word Index</h2>
+      </div>
+
+      <section id="wordIndexResults" class="results"></section>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>WildsDump prototype.</span>
+  </footer>
+
+  <script src="./categories.js"></script>
+  <script src="./npc-map.js"></script>
+  <script src="./parser.js"></script>
+  <script src="./app.js"></script>
+
+</body>
+</html>
