@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Game Text Condenser</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#202124;
+    color:#EEE;
+    max-width:1000px;
+    margin:auto;
+    padding:30px;
+}
+
+h1{
+    color:#7ed6ff;
+}
+
+.section{
+    background:#2b2d31;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+}
+
+button{
+    padding:10px 20px;
+    margin-top:15px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+}
+
+textarea{
+    width:100%;
+    height:150px;
+    background:#111;
+    color:#0f0;
+}
+
+#status{
+    white-space:pre-wrap;
+    background:#111;
+    padding:15px;
+    margin-top:20px;
+    border-radius:6px;
+}
+
+.small{
+    color:#AAA;
+    font-size:13px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Game Text Condenser</h1>
+
+<div class="section">
+
+<h3>Existing Dump (Optional)</h3>
+
+<input id="existingDump" type="file" accept=".txt">
+
+</div>
+
+<div class="section">
+
+<h3>Source Files</h3>
+
+<input id="sourceFiles" type="file" multiple webkitdirectory>
+
+<p class="small">
+You may select an entire folder containing hundreds or thousands of txt files.
+</p>
+
+</div>
+
+<div class="section">
+
+<label>
+<input type="checkbox" id="skipDuplicates" checked>
+Skip duplicate hashes
+</label>
+
+<label>
+<input type="checkbox" id="preservePath" checked>
+Preserve relative folder path
+</label>
+
+<label>
+<input type="checkbox" id="sortFiles" checked>
+Sort alphabetically
+</label>
+
+</div>
+
+<button id="generate">
+Generate Dump
+</button>
+
+<div id="status"></div>
+
+<script>
+
+const status=document.getElementById("status");
+
+function log(t){
+    status.textContent+=t+"\n";
+}
+
+async function sha256(text){
+
+    const data=new TextEncoder().encode(text);
+
+    const hash=await crypto.subtle.digest("SHA-256",data);
+
+    return [...new Uint8Array(hash)]
+        .map(x=>x.toString(16).padStart(2,"0"))
+        .join("");
+
+}
+
+function download(filename,text){
+
+    const blob=new Blob([text],{type:"text/plain"});
+
+    const a=document.createElement("a");
+
+    a.href=URL.createObjectURL(blob);
+
+    a.download=filename;
+
+    a.click();
+
+    URL.revokeObjectURL(a.href);
+
+}
+
+document.getElementById("generate").onclick=async()=>{
+
+status.textContent="";
+
+let dump="";
+let index="";
+
+const seenHashes=new Set();
+
+const existing=document.getElementById("existingDump").files[0];
+
+if(existing){
+
+    log("Loading existing dump...");
+
+    dump=await existing.text();
+
+    const regex=/HASH:\s([a-f0-9]{64})/g;
+
+    let match;
+
+    while((match=regex.exec(dump))!==null){
+
+        seenHashes.add(match[1]);
+
+    }
+
+    log("Existing hashes: "+seenHashes.size);
+
+}
+
+let files=[...document.getElementById("sourceFiles").files];
+
+if(files.length===0){
+
+    alert("Select some txt files.");
+
+    return;
+
+}
+
+files=files.filter(f=>f.name.toLowerCase().endsWith(".txt"));
+
+if(document.getElementById("sortFiles").checked){
+
+    files.sort((a,b)=>
+        a.webkitRelativePath.localeCompare(b.webkitRelativePath)
+    );
+
+}
+
+log("Processing "+files.length+" files...");
+
+let added=0;
+let skipped=0;
+
+for(const file of files){
+
+    const text=await file.text();
+
+    const hash=await sha256(text);
+
+    if(document.getElementById("skipDuplicates").checked){
+
+        if(seenHashes.has(hash)){
+
+            skipped++;
+
+            continue;
+
+        }
+
+    }
+
+    seenHashes.add(hash);
+
+    const path=document.getElementById("preservePath").checked
+        ? (file.webkitRelativePath||file.name)
+        : file.name;
+
+    dump+=
+`\n
+================================================================================
+TITLE: ${file.name}
+SOURCE PATH: ${path}
+SIZE: ${file.size} bytes
+MODIFIED: ${new Date(file.lastModified).toLocaleString()}
+HASH: ${hash}
+================================================================================
+
+${text}
+
+`;
+
+    index+=`${path}\n`;
+
+    added++;
+
+}
+
+log("");
+log("Finished.");
+log("Added: "+added);
+log("Skipped duplicates: "+skipped);
+
+download("updated_dump.txt",dump);
+download("dump_index.txt",index);
+
+};
+
+</script>
+
+</body>
+</html>
