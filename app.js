@@ -554,7 +554,7 @@ function renderEntry(entry) {
 
       <div class="entry-text entry-text-ids">${formatEntryText(textIds)}</div>
       <div class="entry-text entry-text-clean">${formatEntryText(textClean)}</div>
-      <div class="entry-text entry-text-code">${formatEntryText(copyCode)}</div>
+      <div class="entry-text entry-text-code">${formatEntryText("```\n" + textClean + "\n```")}</div>
     </article>
   `;
 }
