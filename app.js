@@ -211,15 +211,47 @@ function showMonsterIndex(addToHistory = true) {
     if (!wordIndexView.hidden) pushViewHistory({ type: "wordIndex" });
   }
 
-  const groups = [...monsterGroups.entries()]
-    .sort((a, b) => a[0].localeCompare(b[0]));
+  const orderedSections = [
+    "Large Monsters",
+    "Small Monsters",
+    "Endemic Life",
+    "Aquatic Life"
+  ];
 
-  monsterList.innerHTML = groups.map(([name, group]) => `
-    <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
-      <span>${escapeHtml(name)}</span>
-      <small>${group[0]?.id || ""} · ${group.length} entry</small>
-    </button>
-  `).join("");
+  const grouped = new Map(
+    orderedSections.map(name => [name, []])
+  );
+
+  for (const [name, group] of monsterGroups.entries()) {
+    let section = "Endemic Life";
+
+    for (const [groupName, names] of Object.entries(MONSTER_INDEX_GROUPS || {})) {
+      if (names.has(name)) {
+        section = groupName;
+        break;
+      }
+    }
+
+    grouped.get(section).push([name, group]);
+  }
+
+  monsterList.innerHTML = orderedSections.map(sectionName => {
+    const items = grouped.get(sectionName)
+      .sort((a, b) => a[0].localeCompare(b[0]));
+
+    if (!items.length) return "";
+
+    return `
+      <h3 class="index-section-title">${escapeHtml(sectionName)}</h3>
+
+      ${items.map(([name, group]) => `
+        <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
+          <span>${escapeHtml(name)}</span>
+          <small>${group[0]?.id || ""} · ${group.length} entry</small>
+        </button>
+      `).join("")}
+    `;
+  }).join("");
 
   showOnly(monsterView);
   closeMenu();
