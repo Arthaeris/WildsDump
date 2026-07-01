@@ -212,15 +212,30 @@ function showWordIndex(addToHistory = true) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function getMappedDialogueName(entry, fallbackKey = "") {
+  if (!entry) return fallbackKey || "Unknown Dialogue";
+
+  if (entry.dialogueId && typeof NPC_MAP !== "undefined" && NPC_MAP[entry.dialogueId]) {
+    return NPC_MAP[entry.dialogueId];
+  }
+
+  const gossipKey = String(entry.fileKey || "").replace(/\.msg\.23$/i, "");
+
+  if (gossipKey && typeof GOSSIP_MAP !== "undefined" && GOSSIP_MAP[gossipKey]) {
+    return GOSSIP_MAP[gossipKey];
+  }
+
+  const dialogueKey = String(entry.fileKey || "").replace(/\.txt$/i, "");
+
+  if (dialogueKey && typeof DIALOGUE_MAP !== "undefined" && DIALOGUE_MAP[dialogueKey]) {
+    return DIALOGUE_MAP[dialogueKey];
+  }
+
+  return entry.speaker || entry.dialogueId || fallbackKey || "Unknown Dialogue";
+}
+
 function getDialogueGroupName(key, group) {
-  const first = group?.[0];
-
-  const mappedName =
-    first?.dialogueId && NPC_MAP[first.dialogueId]
-      ? NPC_MAP[first.dialogueId]
-      : "";
-
-  return mappedName || first?.speaker || key || "Unknown Dialogue";
+  return getMappedDialogueName(group?.[0], key);
 }
 
 function buildIndexes() {
@@ -415,10 +430,7 @@ function renderEntry(entry) {
     entry.sourceFile
   ].filter(Boolean);
 
-  const name =
-  entry.dialogueId && NPC_MAP[entry.dialogueId]
-    ? NPC_MAP[entry.dialogueId]
-    : entry.speaker || entry.dialogueId || "";
+  const name = getMappedDialogueName(entry, "");
   const textIds = `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
