@@ -375,18 +375,25 @@ function getSearchBlob(entry) {
     entry.fileKey,
     entry.sourceFile,
     entry.sourcePath,
+
     entry.dialogueId,
     entry.dialogueType,
     entry.dialogueFamily,
     entry.speaker,
+
+    entry.name,      // ← add
+    entry.nameJp,    // ← add
+
     entry.rejectedId,
     entry.id,
+
     entry.raw,
     entry.text,
-    entry.nameJp,
     entry.rawJp,
     entry.textJp
-  ].filter(Boolean).join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
 }
 
 function entryMatchesSearchToken(entry, token) {
@@ -422,11 +429,25 @@ function getSearchRelevance(entry, tokens) {
 
     if (!q) continue;
 
+    // Exact NPC/dialogue matches
     if (String(entry.speaker || "").toLowerCase() === q) score += 1000;
     if (String(entry.dialogueId || "").toLowerCase() === q) score += 900;
+
+    // Item names (highest priority after NPCs)
+    if (String(entry.name || "").toLowerCase().includes(q)) score += 800;
+
+    // Japanese names
+    if (String(entry.nameJp || "").includes(token.value)) score += 800;
+
+    // File/category
     if (String(entry.fileKey || "").toLowerCase().includes(q)) score += 350;
     if (String(entry.category || "").toLowerCase().includes(q)) score += 250;
+
+    // Description/text
     if (String(entry.text || "").toLowerCase().includes(q)) score += 50;
+
+    // Japanese description
+    if (String(entry.textJp || "").includes(token.value)) score += 50;
   }
 
   return score;
