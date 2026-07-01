@@ -359,32 +359,28 @@ function tokenizeSearchQuery(query) {
 }
 
 function searchIncludes(value, needle, exact = false) {
-  const haystack = String(value || "").toLowerCase();
+  const haystack = String(value || "");
   const q = String(needle || "").toLowerCase();
 
   if (!q) return true;
-  if (exact) return haystack.includes(q);
 
-  return q.split(/\s+/).filter(Boolean).every(part => haystack.includes(part));
+  if (exact) {
+    return haystack.includes(q);
+  }
+
+  const parts = q.split(/\s+/).filter(Boolean);
+
+  for (const part of parts) {
+    if (!haystack.includes(part)) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function getSearchBlob(entry) {
-  return entry.searchText || [
-    entry.searchNameEn,
-    entry.searchNameJp,
-    entry.name,
-    entry.nameJp,
-    entry.text,
-    entry.textJp,
-    entry.raw,
-    entry.rawJp,
-    entry.category,
-    entry.family,
-    entry.fileKey,
-    entry.sourceFile,
-    entry.id,
-    entry.rejectedId
-  ].filter(Boolean).join("\n");
+  return entry.searchText || "";
 }
 
 function entryMatchesSearchToken(entry, token) {
@@ -392,8 +388,11 @@ function entryMatchesSearchToken(entry, token) {
   const value = token.value;
 
   if (op === "text") {
-    return searchIncludes(getSearchBlob(entry), value, token.exact);
-  }
+  return (
+    searchIncludes(searchableName, value, token.exact) ||
+    searchIncludes(entry.searchTextLower, value, token.exact)
+  );
+}
 
   if (op === "name") {
     return searchIncludes(
@@ -483,26 +482,37 @@ function render() {
   const tokens = tokenizeSearchQuery(search.value.trim());
   currentSearchTokens = tokens;
 
-  const visible = entries
-    .filter(entry => matchesActiveFilter(entry))
-    .filter(entry => entryMatchesSearch(entry, tokens))
-    .sort((a, b) => {
-      const scoreA = getSearchRelevance(a, tokens);
-      const scoreB = getSearchRelevance(b, tokens);
+  const visible = [];
 
-      if (scoreA !== scoreB) return scoreB - scoreA;
+  for (const entry of entries) {
+    if (!matchesActiveFilter(entry)) continue;
+    if (!entryMatchesSearch(entry, tokens)) continue;
 
-      return String(a.sourceFile).localeCompare(String(b.sourceFile)) ||
-        Number(a.id) - Number(b.id);
+    visible.push({
+      entry,
+      score: getSearchRelevance(entry, tokens)
     });
+  }
 
-  currentSearchResults = visible;
+  visible.sort((a, b) => {
+    if (a.score !== b.score) {
+      return b.score - a.score;
+    }
 
-  count.textContent = `${visible.length} ${visible.length === 1 ? "entry" : "entries"}`;
+    return (
+      String(a.entry.sourceFile).localeCompare(String(b.entry.sourceFile)) ||
+      Number(a.entry.id) - Number(b.entry.id)
+    );
+  });
+
+  currentSearchResults = visible.map(item => item.entry);
+
+  count.textContent =
+    `${currentSearchResults.length} ${currentSearchResults.length === 1 ? "entry" : "entries"}`;
 
   renderEntryList({
     target: results,
-    items: visible,
+    items: currentSearchResults,
     emptyText: "No entries found."
   });
 }
@@ -921,26 +931,41 @@ function addSearchFields(entry) {
   const en = getEntryPresentation(entry, "en");
   const jp = getEntryPresentation(entry, "jp");
 
+  const searchText = [
+    en.name,
+    jp.name,
+    entry.name,
+    entry.nameJp,
+    entry.text,
+    entry.textJp,
+    entry.raw,
+    entry.rawJp,
+    entry.category,
+    entry.family,
+    entry.fileKey,
+    entry.sourceFile,
+    entry.id,
+    entry.rejectedId
+  ].filter(Boolean).join("\n");
+
   return {
     ...entry,
+
     searchNameEn: en.name || entry.name || "",
     searchNameJp: jp.name || entry.nameJp || "",
-    searchText: [
+
+    searchText,
+    searchTextLower: searchText.toLowerCase(),
+
+    searchNameLower: [
       en.name,
       jp.name,
       entry.name,
-      entry.nameJp,
-      entry.text,
-      entry.textJp,
-      entry.raw,
-      entry.rawJp,
-      entry.category,
-      entry.family,
-      entry.fileKey,
-      entry.sourceFile,
-      entry.id,
-      entry.rejectedId
-    ].filter(Boolean).join("\n")
+      entry.nameJp
+    ]
+      .filter(Boolean)
+      .join("\n")
+      .toLowerCase()
   };
 }
 
