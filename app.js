@@ -214,7 +214,13 @@ function showWordIndex(addToHistory = true) {
 
 function getDialogueGroupName(key, group) {
   const first = group?.[0];
-  return first?.speaker || key || "Unknown Dialogue";
+
+  const mappedName =
+    first?.dialogueId && NPC_MAP[first.dialogueId]
+      ? NPC_MAP[first.dialogueId]
+      : "";
+
+  return mappedName || first?.speaker || key || "Unknown Dialogue";
 }
 
 function buildIndexes() {
@@ -409,7 +415,10 @@ function renderEntry(entry) {
     entry.sourceFile
   ].filter(Boolean);
 
-  const name = entry.speaker || entry.dialogueId || "";
+  const name =
+  entry.dialogueId && NPC_MAP[entry.dialogueId]
+    ? NPC_MAP[entry.dialogueId]
+    : entry.speaker || entry.dialogueId || "";
   const textIds = `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
