@@ -110,6 +110,7 @@ function showHome(addToHistory = true) {
   if (addToHistory) {
     if (!categoryView.hidden) pushViewHistory({ type: "category", category: categoryTitle.textContent });
     if (!npcView.hidden) pushViewHistory({ type: "npcIndex" });
+    if (!monsterView.hidden) pushViewHistory({ type: "monsterIndex" });
     if (!dialogueView.hidden) pushViewHistory({ type: "dialogue", key: currentDialogueKey });
     if (!wordIndexView.hidden) pushViewHistory({ type: "wordIndex" });
   }
@@ -277,10 +278,12 @@ function showDialogue(key, addToHistory = true) {
 
   let group = npcGroups.get(key);
 
+if (!group && monsterGroups.has(key)) {
+  group = monsterGroups.get(key);
+}
+
 if (!group) {
-  group = entries.filter(entry =>
-    getEnemyTextMonsterName(entry) === key
-  );
+  group = [];
 }
   dialogueTitle.textContent = getDialogueGroupName(key, group);
 
@@ -1192,7 +1195,7 @@ if (langButton) {
 
 const monsterButton = event.target.closest("[data-monster-key]");
 if (monsterButton) {
-  showDialogueByDisplayName(monsterButton.dataset.monsterKey);
+  showDialogue(monsterButton.dataset.monsterKey);
   return;
 }
 
@@ -1249,13 +1252,11 @@ dialogueModeBtn.addEventListener("click", () => {
       ? "full"
       : "cards";
 
-  if (npcGroups.has(currentDialogueKey)) {
-    // Opened from a single dialogue file
-    showDialogue(currentDialogueKey, false);
-  } else {
-    // Opened from the merged NPC Index
-    showDialogueByDisplayName(currentDialogueKey);
-  }
+  if (npcGroups.has(currentDialogueKey) || monsterGroups.has(currentDialogueKey)) {
+  showDialogue(currentDialogueKey, false);
+} else {
+  showDialogueByDisplayName(currentDialogueKey);
+}
 });
 
 window.addEventListener("scroll", handleScroll, { passive: true });
