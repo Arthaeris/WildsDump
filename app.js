@@ -484,7 +484,12 @@ function renderEntry(entry) {
   const name = entry.isDialogue
   ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
   : "";
-  const textIds = `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
+  const alreadyHasId =
+  /^\[[^\]]+\]/.test(entry.text || "");
+
+const textIds = alreadyHasId
+  ? (entry.text || entry.raw || "")
+  : `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
 
