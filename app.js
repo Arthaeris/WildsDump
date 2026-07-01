@@ -285,6 +285,12 @@ function showWordIndex(addToHistory = true) {
 function getMappedDialogueName(entry, fallbackKey = "") {
   if (!entry) return fallbackKey || "";
 
+  // enemytext.msg
+  const enemyMonster = getEnemyTextMonsterName(entry);
+  if (enemyMonster) {
+    return enemyMonster;
+  }
+
   if (entry.dialogueId && NPC_MAP?.[entry.dialogueId]) {
     return NPC_MAP[entry.dialogueId];
   }
@@ -303,6 +309,22 @@ function getMappedDialogueName(entry, fallbackKey = "") {
   if (entry.dialogueId) return entry.dialogueId;
 
   return fallbackKey || "";
+}
+
+function getEnemyTextMonsterName(entry) {
+  if (entry.fileKey !== "enemytext") {
+    return null;
+  }
+
+  const id = String(entry.id).padStart(4, "0");
+
+  for (const [monster, ids] of Object.entries(ENEMY_TEXT_GROUP_MAP)) {
+    if (ids.includes(id)) {
+      return monster;
+    }
+  }
+
+  return null;
 }
 
 function getDialogueGroupName(key, group) {
