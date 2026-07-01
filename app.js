@@ -364,6 +364,9 @@ function getSearchBlob(entry) {
     entry.id,
     entry.raw,
     entry.text
+    entry.nameJp,
+    entry.rawJp,
+    entry.textJp
   ].filter(Boolean).join("\n");
 }
 
@@ -482,46 +485,45 @@ function renderEntry(entry) {
     entry.sourceFile
   ].filter(Boolean);
 
-  const name = entry.name || (
-    entry.isDialogue
-      ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
-      : ""
-  );
+  const en = getEntryPresentation(entry, "en");
+  const jp = getEntryPresentation(entry, "jp");
 
-  const baseText = entry.text || entry.raw || "";
-  const alreadyHasId = /^\[[^\]]+\]/.test(baseText);
-
-  const headerId = `[${entry.id}]`;
-
-  const textIds = entry.name
-    ? baseText
-    : alreadyHasId
-      ? baseText
-      : `[${entry.rejectedId || entry.id}] ${baseText}`.trim();
-
-  const textClean = getCleanText(baseText);
-
-  const copyIds = entry.name
-    ? `${entry.name} ${headerId}\n\n${textClean}`.trim()
-    : textIds;
-
-  const copyClean = entry.name
-    ? `${entry.name}\n\n${textClean}`.trim()
-    : textClean;
-
-  const copyCode = "```\n" + copyClean + "\n```";
+  const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
 
   return `
     <article
       class="entry"
       data-mode="${escapeAttribute(defaultCardMode)}"
-      data-copy-ids="${escapeAttribute(copyIds)}"
-      data-copy-clean="${escapeAttribute(copyClean)}"
-      data-copy-code="${escapeAttribute(copyCode)}"
+      data-lang="en"
+
+      data-name-en="${escapeAttribute(en.name)}"
+      data-name-jp="${escapeAttribute(jp.name)}"
+
+      data-text-ids-en="${escapeAttribute(en.textIds)}"
+      data-text-ids-jp="${escapeAttribute(jp.textIds)}"
+
+      data-text-clean-en="${escapeAttribute(en.textClean)}"
+      data-text-clean-jp="${escapeAttribute(jp.textClean)}"
+
+      data-text-code-en="${escapeAttribute(en.visualCode)}"
+      data-text-code-jp="${escapeAttribute(jp.visualCode)}"
+
+      data-copy-ids="${escapeAttribute(en.copyIds)}"
+      data-copy-clean="${escapeAttribute(en.copyClean)}"
+      data-copy-code="${escapeAttribute(en.copyCode)}"
+
+      data-copy-ids-en="${escapeAttribute(en.copyIds)}"
+      data-copy-clean-en="${escapeAttribute(en.copyClean)}"
+      data-copy-code-en="${escapeAttribute(en.copyCode)}"
+
+      data-copy-ids-jp="${escapeAttribute(jp.copyIds)}"
+      data-copy-clean-jp="${escapeAttribute(jp.copyClean)}"
+      data-copy-code-jp="${escapeAttribute(jp.copyCode)}"
     >
       <div class="entry-actions">
         ${entry.isRejected ? '<span class="tag-badge">Rejected ID</span>' : ""}
         ${entry.isDialogue ? '<span class="tag-badge">Dialogue</span>' : ""}
+        ${hasJp ? '<button class="lang-btn" type="button" data-lang-toggle>JP</button>' : ""}
         <button class="copy-btn" type="button">Copy</button>
       </div>
 
@@ -529,22 +531,22 @@ function renderEntry(entry) {
 
       <div class="entry-header">
         ${
-          entry.isDialogue && name
+          entry.isDialogue && en.name
             ? `
               <button
                 class="entry-name entry-name-link"
                 type="button"
                 data-dialogue-key="${escapeAttribute(entry.dialogueId || entry.rejectedId || entry.fileKey)}"
               >
-                ${escapeHtml(name)}
+                <span class="entry-name-content">${escapeHtml(en.name)}</span>
               </button>
             `
-            : name
-              ? `<div class="entry-name">${escapeHtml(name)}</div>`
+            : en.name
+              ? `<div class="entry-name entry-name-content">${escapeHtml(en.name)}</div>`
               : ""
         }
 
-        <div class="entry-id">${escapeHtml(headerId)}</div>
+        <div class="entry-id">${escapeHtml(en.headerId)}</div>
       </div>
 
       ${
@@ -553,11 +555,42 @@ function renderEntry(entry) {
           : ""
       }
 
-      <div class="entry-text entry-text-ids">${formatEntryText(textIds)}</div>
-      <div class="entry-text entry-text-clean">${formatEntryText(textClean)}</div>
-      <div class="entry-text entry-text-code">${formatEntryText("```\n" + textClean + "\n```")}</div>
+      <div class="entry-text entry-text-ids">${formatEntryText(en.textIds)}</div>
+      <div class="entry-text entry-text-clean">${formatEntryText(en.textClean)}</div>
+      <div class="entry-text entry-text-code">${formatEntryText(en.visualCode)}</div>
     </article>
   `;
+}
+
+function updateEntryLanguage(card, lang) {
+  card.dataset.lang = lang;
+
+  const suffix = lang === "jp" ? "Jp" : "En";
+  const dataSuffix = lang === "jp" ? "jp" : "en";
+
+  const name = card.dataset[`name${suffix}`] || "";
+  const textIds = card.dataset[`textIds${suffix}`] || "";
+  const textClean = card.dataset[`textClean${suffix}`] || "";
+  const textCode = card.dataset[`textCode${suffix}`] || "";
+
+  const nameEl = card.querySelector(".entry-name-content");
+  const idsEl = card.querySelector(".entry-text-ids");
+  const cleanEl = card.querySelector(".entry-text-clean");
+  const codeEl = card.querySelector(".entry-text-code");
+  const langBtn = card.querySelector("[data-lang-toggle]");
+
+  if (nameEl) nameEl.textContent = name;
+  if (idsEl) idsEl.innerHTML = formatEntryText(textIds);
+  if (cleanEl) cleanEl.innerHTML = formatEntryText(textClean);
+  if (codeEl) codeEl.innerHTML = formatEntryText(textCode);
+
+  card.dataset.copyIds = card.dataset[`copyIds${suffix}`] || "";
+  card.dataset.copyClean = card.dataset[`copyClean${suffix}`] || "";
+  card.dataset.copyCode = card.dataset[`copyCode${suffix}`] || "";
+
+  if (langBtn) {
+    langBtn.textContent = lang === "jp" ? "EN" : "JP";
+  }
 }
 
 function renderFullDialogue(group) {
@@ -728,6 +761,96 @@ function getCardCopyText(card) {
   return decodeHtml(card.dataset.copyIds || "");
 }
 
+function mergeLocalizedEntries(enEntries, jpEntries) {
+  const jpByUid = new Map(jpEntries.map(entry => [entry.uid, entry]));
+  const usedJp = new Set();
+
+  const merged = enEntries.map(enEntry => {
+    const jpEntry = jpByUid.get(enEntry.uid);
+
+    if (jpEntry) {
+      usedJp.add(jpEntry.uid);
+    }
+
+    return {
+      ...enEntry,
+      nameJp: jpEntry?.name || "",
+      rawJp: jpEntry?.raw || "",
+      textJp: jpEntry?.text || ""
+    };
+  });
+
+  for (const jpEntry of jpEntries) {
+    if (usedJp.has(jpEntry.uid)) continue;
+
+    merged.push({
+      ...jpEntry,
+      name: "",
+      raw: "",
+      text: "",
+      nameJp: jpEntry.name || "",
+      rawJp: jpEntry.raw || "",
+      textJp: jpEntry.text || ""
+    });
+  }
+
+  return merged;
+}
+
+function getEntryPresentation(entry, lang = "en") {
+  const isJp = lang === "jp";
+
+  const name = isJp && entry.nameJp
+    ? entry.nameJp
+    : entry.name || (
+      entry.isDialogue
+        ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
+        : ""
+    );
+
+  const baseText = isJp
+    ? (entry.textJp || entry.rawJp || entry.text || entry.raw || "")
+    : (entry.text || entry.raw || entry.textJp || entry.rawJp || "");
+
+  const hasName = Boolean(name && (entry.name || entry.nameJp));
+  const headerId = `[${entry.id}]`;
+  const alreadyHasId = /^\[[^\]]+\]/.test(baseText);
+
+  const textIds = hasName
+    ? baseText
+    : alreadyHasId
+      ? baseText
+      : `[${entry.rejectedId || entry.id}] ${baseText}`.trim();
+
+  const textClean = getCleanText(baseText);
+
+  const copyClean = hasName
+    ? `${name}\n\n${textClean}`.trim()
+    : textClean;
+
+  const copyIds = hasName
+    ? `${name} ${headerId}\n\n${textClean}`.trim()
+    : textIds;
+
+  const copyCode = "```\n" + copyClean + "\n```";
+
+  const visualCode = hasName
+    ? "```\n" + textClean + "\n```"
+    : copyCode;
+
+  return {
+    lang,
+    name,
+    headerId,
+    textIds,
+    textClean,
+    visualCode,
+    copyIds,
+    copyClean,
+    copyCode
+  };
+}
+
 async function loadDump() {
   results.innerHTML = '<div class="empty">Loading Wilds text dumps…</div>';
 
@@ -894,6 +1017,16 @@ if (npcButton) {
     showDialogue(dialogueButton.dataset.dialogueKey);
     return;
   }
+  
+  const langButton = event.target.closest("[data-lang-toggle]");
+if (langButton) {
+  const card = langButton.closest(".entry");
+  if (!card) return;
+
+  const nextLang = card.dataset.lang === "jp" ? "en" : "jp";
+  updateEntryLanguage(card, nextLang);
+  return;
+}
 
   const copyButton = event.target.closest(".copy-btn");
   if (copyButton) {
