@@ -352,6 +352,8 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "gunlance",
   "chargeaxe",
   "bow"
+  
+  "item"
 ]);
 
 function buildWildsEntries(sections, npcMap = {}) {
