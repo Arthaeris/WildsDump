@@ -369,34 +369,21 @@ function searchIncludes(value, needle, exact = false) {
 }
 
 function getSearchBlob(entry) {
-  const en = getEntryPresentation(entry, "en");
-  const jp = getEntryPresentation(entry, "jp");
-
-  return [
+  return entry.searchText || [
+    entry.searchNameEn,
+    entry.searchNameJp,
+    entry.name,
+    entry.nameJp,
+    entry.text,
+    entry.textJp,
+    entry.raw,
+    entry.rawJp,
     entry.category,
     entry.family,
     entry.fileKey,
     entry.sourceFile,
-    entry.sourcePath,
-
-    entry.dialogueId,
-    entry.dialogueType,
-    entry.dialogueFamily,
-    entry.speaker,
-
-    entry.name,
-    entry.nameJp,
-
-    en.name,
-    jp.name,
-
-    entry.rejectedId,
     entry.id,
-
-    entry.raw,
-    entry.text,
-    entry.rawJp,
-    entry.textJp
+    entry.rejectedId
   ].filter(Boolean).join("\n");
 }
 
@@ -404,25 +391,39 @@ function entryMatchesSearchToken(entry, token) {
   const op = token.operator;
   const value = token.value;
 
-  const searchableName = [
-    entry.name,
-    entry.nameJp
-  ].filter(Boolean).join("\n");
-
   if (op === "text") {
-    return (
-      searchIncludes(searchableName, value, token.exact) ||
-      searchIncludes(getSearchBlob(entry), value, token.exact)
+    return searchIncludes(getSearchBlob(entry), value, token.exact);
+  }
+
+  if (op === "name") {
+    return searchIncludes(
+      [
+        entry.searchNameEn,
+        entry.searchNameJp,
+        entry.name,
+        entry.nameJp
+      ].filter(Boolean).join("\n"),
+      value,
+      token.exact
     );
   }
 
-  if (op === "id") return searchIncludes(entry.id, value, token.exact) || searchIncludes(entry.rejectedId, value, token.exact);
-  if (op === "file") return searchIncludes(entry.sourceFile, value, token.exact) || searchIncludes(entry.fileKey, value, token.exact);
-  if (op === "category") return searchIncludes(entry.category, value, token.exact);
-  if (op === "family") return searchIncludes(entry.family, value, token.exact);
+  if (op === "id") {
+    return searchIncludes(entry.id, value, token.exact) ||
+      searchIncludes(entry.rejectedId, value, token.exact);
+  }
 
-  if (op === "name") {
-    return searchIncludes(searchableName, value, token.exact);
+  if (op === "file") {
+    return searchIncludes(entry.sourceFile, value, token.exact) ||
+      searchIncludes(entry.fileKey, value, token.exact);
+  }
+
+  if (op === "category") {
+    return searchIncludes(entry.category, value, token.exact);
+  }
+
+  if (op === "family") {
+    return searchIncludes(entry.family, value, token.exact);
   }
 
   if (op === "npc" || op === "speaker") {
@@ -916,6 +917,33 @@ function getEntryPresentation(entry, lang = "en") {
   };
 }
 
+function addSearchFields(entry) {
+  const en = getEntryPresentation(entry, "en");
+  const jp = getEntryPresentation(entry, "jp");
+
+  return {
+    ...entry,
+    searchNameEn: en.name || entry.name || "",
+    searchNameJp: jp.name || entry.nameJp || "",
+    searchText: [
+      en.name,
+      jp.name,
+      entry.name,
+      entry.nameJp,
+      entry.text,
+      entry.textJp,
+      entry.raw,
+      entry.rawJp,
+      entry.category,
+      entry.family,
+      entry.fileKey,
+      entry.sourceFile,
+      entry.id,
+      entry.rejectedId
+    ].filter(Boolean).join("\n")
+  };
+}
+
 async function loadDump() {
   results.innerHTML = '<div class="empty">Loading Wilds text dumps…</div>';
 
@@ -940,7 +968,7 @@ async function loadDump() {
     const jpEntries = buildWildsEntries(jpSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
 
     sections = enSections;
-    entries = mergeLocalizedEntries(enEntries, jpEntries);
+    entries = mergeLocalizedEntries(enEntries, jpEntries).map(addSearchFields);
 
     buildIndexes();
     buildWordFrequencyIndex();
