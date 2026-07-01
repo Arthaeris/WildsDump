@@ -335,6 +335,20 @@ function buildIndexes() {
   categories = new Map();
   npcGroups = groupWildsDialogues(entries);
 
+// Merge enemytext entries by monster
+for (const entry of entries) {
+  if (entry.fileKey !== "enemytext") continue;
+
+  const monster = getEnemyTextMonsterName(entry);
+  if (!monster) continue;
+
+  if (!npcGroups.has(monster)) {
+    npcGroups.set(monster, []);
+  }
+
+  npcGroups.get(monster).push(entry);
+}
+
   for (const entry of entries) {
     if (!categories.has(entry.category)) {
       categories.set(entry.category, []);
