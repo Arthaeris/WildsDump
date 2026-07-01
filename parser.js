@@ -436,8 +436,8 @@ function makeMergedAccessoryEntry(section, id, nameItem, descItem) {
     isRejected: false,
 
     name,
-    raw: [name, desc].filter(Boolean).join("\n"),
-    text: [name, desc].filter(Boolean).join("\n")
+    raw: desc,
+    text: desc
   };
 }
 
