@@ -490,23 +490,25 @@ function renderEntry(entry) {
   const baseText = entry.text || entry.raw || "";
   const alreadyHasId = /^\[[^\]]+\]/.test(baseText);
 
+  const headerId = `[${entry.id}]`;
+
   const textIds = entry.name
-    ? `[${entry.id}] ${baseText}`.trim()
+    ? baseText
     : alreadyHasId
       ? baseText
       : `[${entry.rejectedId || entry.id}] ${baseText}`.trim();
 
   const textClean = getCleanText(baseText);
 
+  const copyIds = entry.name
+    ? `${entry.name} ${headerId}\n\n${textClean}`.trim()
+    : textIds;
+
   const copyClean = entry.name
     ? `${entry.name}\n\n${textClean}`.trim()
     : textClean;
 
-  const copyIds = entry.name
-    ? `${entry.name}\n\n${textIds}`.trim()
-    : textIds;
-
-  const textCode = "```\n" + copyClean + "\n```";
+  const copyCode = "```\n" + copyClean + "\n```";
 
   return `
     <article
@@ -514,7 +516,7 @@ function renderEntry(entry) {
       data-mode="${escapeAttribute(defaultCardMode)}"
       data-copy-ids="${escapeAttribute(copyIds)}"
       data-copy-clean="${escapeAttribute(copyClean)}"
-      data-copy-code="${escapeAttribute(textCode)}"
+      data-copy-code="${escapeAttribute(copyCode)}"
     >
       <div class="entry-actions">
         ${entry.isRejected ? '<span class="tag-badge">Rejected ID</span>' : ""}
@@ -541,7 +543,7 @@ function renderEntry(entry) {
               : ""
         }
 
-        <div class="entry-id">[${escapeHtml(entry.id)}]</div>
+        <div class="entry-id">${escapeHtml(headerId)}</div>
       </div>
 
       ${
@@ -552,7 +554,7 @@ function renderEntry(entry) {
 
       <div class="entry-text entry-text-ids">${formatEntryText(textIds)}</div>
       <div class="entry-text entry-text-clean">${formatEntryText(textClean)}</div>
-      <div class="entry-text entry-text-code">${formatEntryText(textCode)}</div>
+      <div class="entry-text entry-text-code">${formatEntryText(copyCode)}</div>
     </article>
   `;
 }
