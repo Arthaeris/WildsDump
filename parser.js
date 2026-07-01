@@ -412,60 +412,33 @@ if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
 }
 
 function buildEnemyTextEntries(section) {
-  if (typeof ENEMY_TEXT_NAME_MAP === "undefined") {
+  if (typeof ENEMY_TEXT_ID_MAP === "undefined") {
     return section.strings.map(item => makeNormalWildsEntry(section, item, ""));
   }
 
-  const anchors = [...section.strings]
-    .filter(item => ENEMY_TEXT_NAME_MAP[item.id])
-    .map(item => ({
-      id: item.id,
-      number: Number(item.id),
-      label: ENEMY_TEXT_NAME_MAP[item.id],
-      group: getEnemyTextGroupName(ENEMY_TEXT_NAME_MAP[item.id])
-    }))
-    .sort((a, b) => a.number - b.number);
+  const byMonster = new Map();
 
-  if (!anchors.length) {
-    return section.strings.map(item => makeNormalWildsEntry(section, item, ""));
+  for (const item of section.strings) {
+    const id = String(item.id).padStart(4, "0");
+    const monster = ENEMY_TEXT_ID_MAP[id];
+
+    if (!monster) continue;
+
+    if (!byMonster.has(monster)) {
+      byMonster.set(monster, []);
+    }
+
+    byMonster.get(monster).push(item);
   }
 
   const entries = [];
-  let cursor = 0;
 
-  while (cursor < anchors.length) {
-    const startAnchor = anchors[cursor];
-    const groupName = startAnchor.group;
-
-    let nextCursor = cursor + 1;
-
-    while (
-      nextCursor < anchors.length &&
-      anchors[nextCursor].group === groupName
-    ) {
-      nextCursor++;
-    }
-
-    const nextDifferentAnchor = anchors[nextCursor];
-    const startId = startAnchor.number;
-    const endId = nextDifferentAnchor
-      ? nextDifferentAnchor.number - 1
-      : Number(section.strings[section.strings.length - 1]?.id || startId);
-
-    const blockItems = section.strings.filter(item => {
-      const id = Number(item.id);
-      return id >= startId && id <= endId;
-    });
-
+  for (const [monster, items] of byMonster.entries()) {
     entries.push(makeMergedEnemyTextEntry({
       section,
-      groupName,
-      startId,
-      endId,
-      blockItems
+      monster,
+      items
     }));
-
-    cursor = nextCursor;
   }
 
   return entries;
