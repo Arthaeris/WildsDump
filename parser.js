@@ -360,6 +360,11 @@ function buildWildsEntries(sections, npcMap = {}) {
   const entries = [];
 
   for (const section of sections) {
+    if (section.fileKey === "enemytext") {
+  entries.push(...buildEnemyTextEntries(section));
+  continue;
+}
+    
     if (section.fileKey === "accessory") {
   entries.push(...buildAccessoryEntries(section));
   continue;
@@ -404,6 +409,156 @@ if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
   }
 
   return entries;
+}
+
+function buildEnemyTextEntries(section) {
+  if (typeof ENEMY_TEXT_NAME_MAP === "undefined") {
+    return section.strings.map(item => makeNormalWildsEntry(section, item, ""));
+  }
+
+  const anchors = [...section.strings]
+    .filter(item => ENEMY_TEXT_NAME_MAP[item.id])
+    .map(item => ({
+      id: item.id,
+      number: Number(item.id),
+      label: ENEMY_TEXT_NAME_MAP[item.id],
+      group: getEnemyTextGroupName(ENEMY_TEXT_NAME_MAP[item.id])
+    }))
+    .sort((a, b) => a.number - b.number);
+
+  if (!anchors.length) {
+    return section.strings.map(item => makeNormalWildsEntry(section, item, ""));
+  }
+
+  const entries = [];
+  let cursor = 0;
+
+  while (cursor < anchors.length) {
+    const startAnchor = anchors[cursor];
+    const groupName = startAnchor.group;
+
+    let nextCursor = cursor + 1;
+
+    while (
+      nextCursor < anchors.length &&
+      anchors[nextCursor].group === groupName
+    ) {
+      nextCursor++;
+    }
+
+    const nextDifferentAnchor = anchors[nextCursor];
+    const startId = startAnchor.number;
+    const endId = nextDifferentAnchor
+      ? nextDifferentAnchor.number - 1
+      : Number(section.strings[section.strings.length - 1]?.id || startId);
+
+    const blockItems = section.strings.filter(item => {
+      const id = Number(item.id);
+      return id >= startId && id <= endId;
+    });
+
+    entries.push(makeMergedEnemyTextEntry({
+      section,
+      groupName,
+      startId,
+      endId,
+      blockItems
+    }));
+
+    cursor = nextCursor;
+  }
+
+  return entries;
+}
+
+function getEnemyTextGroupName(label) {
+  return String(label || "")
+    .replace(/^Arch-tempered\s+/i, "")
+    .replace(/^Tempered\s+/i, "")
+    .replace(/^Frenzied\s+/i, "")
+    .trim();
+}
+
+function makeMergedEnemyTextEntry({ section, groupName, startId, endId, blockItems }) {
+  const variants = [];
+  const bodyLines = [];
+
+  for (const item of blockItems) {
+    const mappedName = ENEMY_TEXT_NAME_MAP[item.id];
+
+    if (mappedName) {
+      if (mappedName !== groupName && !variants.includes(mappedName)) {
+        variants.push(mappedName);
+      }
+
+      continue;
+    }
+
+    const text = item.text || item.raw || "";
+
+    if (text.trim()) {
+      bodyLines.push(`[${item.id}] ${text}`);
+    }
+  }
+
+  const textParts = [];
+
+  if (variants.length) {
+    textParts.push(`Variants:\n${variants.join("\n")}`);
+  }
+
+  if (bodyLines.length) {
+    textParts.push(bodyLines.join("\n\n"));
+  }
+
+  return {
+    uid: `${section.fileKey}:${String(startId).padStart(4, "0")}`,
+    language: section.language,
+    id: `${String(startId).padStart(4, "0")}–${String(endId).padStart(4, "0")}`,
+    sourceFile: section.title,
+    sourcePath: section.sourcePath,
+    fileKey: section.fileKey,
+    family: section.family,
+    category: "Monsters",
+
+    dialogueId: "",
+    dialogueType: "",
+    dialogueFamily: "",
+    speaker: "",
+    isDialogue: false,
+
+    rejectedId: "",
+    isRejected: false,
+
+    name: groupName,
+    raw: textParts.join("\n\n"),
+    text: textParts.join("\n\n")
+  };
+}
+
+function makeNormalWildsEntry(section, item, name = "") {
+  return {
+    uid: `${section.fileKey}:${item.id}`,
+    language: section.language,
+    id: item.id,
+    sourceFile: section.title,
+    sourcePath: section.sourcePath,
+    fileKey: section.fileKey,
+    family: section.family,
+    category: section.category,
+
+    dialogueId: section.dialogueId,
+    dialogueType: section.dialogueType,
+    dialogueFamily: section.dialogueFamily,
+    speaker: name,
+    isDialogue: section.isDialogue,
+
+    rejectedId: item.rejectedId,
+    isRejected: item.isRejected,
+
+    raw: item.raw,
+    text: item.text
+  };
 }
 
 function buildAccessoryEntries(section) {
