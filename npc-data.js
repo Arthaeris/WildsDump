@@ -3,12 +3,12 @@
 const NPC_MAP = {
   "NPC101_00_002": "Erik",
   "NPC101_00_004": "Nata",
-  "NPC101_00_005": "",
+  "NPC101_00_005": "Tasheen",
   "NPC101_00_006": "Fabius",
-  "NPC101_00_009": "",
-  "NPC101_00_030": "",
-  "NPC101_11_066": "",
-  "NPC101_11_069": "",
+  "NPC101_00_009": "Werner",
+  "NPC101_00_030": "Rosso",
+  "NPC101_11_066": "Y'sai",
+  "NPC101_11_069": "Zatoh",
   "NPC101_13_011": "Yabran",
   "NPC101_13_012": "",
   "NPC101_21_001": "Jack",
@@ -19,7 +19,7 @@ const NPC_MAP = {
   "NPC102_00_010": "Gemma",
   "NPC102_00_031": "Kanya",
   "NPC102_11_016": "",
-  "NPC102_11_067": "",
+  "NPC102_11_067": "Nona",
   "NPC102_13_013": "Aida",
   "NPC102_13_014": "Maki",
 
@@ -30,35 +30,35 @@ const NPC_MAP = {
   "NPC111_01_039": "Georg(?)",
   "NPC111_01_041": "Georg(?)",
   "NPC111_11_010": "",
-  "NPC111_11_011": "",
+  "NPC111_11_011": "Murtabak",
   "NPC111_13_015": "Roqul",
   "NPC111_13_031": "",
   "NPC111_13_034": "Sabar",
   "NPC111_13_057": "",
-  "NPC111_15_003": "",
-  "NPC111_15_004": "",
-  "NPC111_15_005": "",
-  "NPC111_15_006": "",
+  "NPC111_15_003": "Ren",
+  "NPC111_15_004": "Lauruel",
+  "NPC111_15_005": "Kalamon",
+  "NPC111_15_006": "Rysher",
   "NPC111_21_058": "",
   "NPC111_22_001": "Ralph",
   "NPC111_23_001": "",
   "NPC111_24_001": "Robin",
   "NPC111_25_001": "Lemuel",
-  "NPC111_50_008": "",
+  "NPC111_50_008": "Werner",
 
   "NPC112_00_021": "",
   "NPC112_00_040": "Felicita",
   "NPC112_01_002": "Lotta",
   "NPC112_01_004": "Catherine",
-  "NPC112_11_029": "",
-  "NPC112_11_033": "",
-  "NPC112_11_036": "",
-  "NPC112_11_044": "",
+  "NPC112_11_029": "Vete",
+  "NPC112_11_033": "Leba",
+  "NPC112_11_036": "Yurelee",
+  "NPC112_11_044": "Kilama",
   "NPC112_13_023": "",
   "NPC112_13_042": "",
   "NPC112_13_066": "",
   "NPC112_13_067": "",
-  "NPC112_15_013": "",
+  "NPC112_15_013": "Saris",
   "NPC112_15_015": "",
   "NPC112_50_009": "Gemma",
   "NPC112_50_021": "Alma",
@@ -70,23 +70,23 @@ const NPC_MAP = {
 
   "NPC201_00_035": "Tetsuzan",
 
-  "NPC202_14_002": "",
+  "NPC202_14_002": "Allhearken",
 
   "NPC211_14_009": "",
   "NPC211_14_011": "",
-  "NPC211_21_036": "",
+  "NPC211_21_036": "Samin",
   "NPC211_21_053": "Dareel",
 
   "NPC212_01_016": "",
-  "NPC212_14_015": "",
+  "NPC212_14_015": "Sekka",
   "NPC212_14_020": "",
-  "NPC212_14_021": "",
+  "NPC212_14_021": "Apar",
 
   "NPC221_01_008": "Legend Weaponsmith",
   "NPC221_14_022": "",
   "NPC221_21_035": "Ferdinand",
 
-  "NPC222_14_025": "",
+  "NPC222_14_025": "Vio",
 
   "NPC300_00_017": "Athos",
   "NPC300_12_001": "",
@@ -117,7 +117,7 @@ const NPC_MAP = {
   "NPC320_12_023": "",
   "NPC320_50_013": "",
 
-  "NPC420_00_036": ""
+  "NPC420_00_036": "Poogie"
 };
 
 const NPC_ALIASES = {};
@@ -167,7 +167,7 @@ const GOSSIP_MAP = {
   "dia_npcgossip_forest_008": "",
 
   "dia_npcgossip_grave_001": "",
-  "dia_npcgossip_grave_002": "",
+  "dia_npcgossip_grave_002": "Ardeni",
   "dia_npcgossip_grave_003": "",
   "dia_npcgossip_grave_004": "",
 
