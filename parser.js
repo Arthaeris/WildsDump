@@ -419,7 +419,7 @@ function makeMergedAccessoryEntry(section, id, nameItem, descItem) {
   return {
     uid: `${section.fileKey}:${String(id).padStart(4, "0")}`,
     language: section.language,
-    id: String(id).padStart(4, "0"),
+    id: `${String(id).padStart(4, "0")} + ${String(id + 1).padStart(4, "0")}`,
     sourceFile: section.title,
     sourcePath: section.sourcePath,
     fileKey: section.fileKey,
