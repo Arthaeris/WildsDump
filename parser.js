@@ -336,6 +336,24 @@ function titleCaseFamily(value) {
     .replace(/\b\w/g, char => char.toUpperCase());
 }
 
+const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
+  "amulet",
+  "armor",
+
+  "twinsword",
+  "tachi",
+  "slashaxe",
+  "shortsword",
+  "rod",
+  "lightbowgun",
+  "lance",
+  "heavybowgun",
+  "hammer",
+  "gunlance",
+  "chargeaxe",
+  "bow"
+]);
+
 function buildWildsEntries(sections, npcMap = {}) {
   const entries = [];
 
@@ -345,7 +363,7 @@ function buildWildsEntries(sections, npcMap = {}) {
   continue;
 }
 
-if (section.fileKey === "amulet" || section.fileKey === "armor") {
+if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
   entries.push(...buildSimpleNameTextPairEntries(section));
   continue;
 }
