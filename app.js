@@ -494,14 +494,22 @@ const textIds = entry.name
   : alreadyHasId
     ? (entry.text || entry.raw || "")
     : `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
-  const textClean = getCleanText(entry.text);
-  const textCode = "```\n" + textClean + "\n```";
+  const copySource = entry.name
+  ? `${entry.name}\n\n${entry.text || entry.raw || ""}`.trim()
+  : (entry.text || entry.raw || "");
+
+const textClean = getCleanText(copySource);
+const textCode = "```\n" + textClean + "\n```";
 
   return `
     <article
       class="entry"
       data-mode="${escapeAttribute(defaultCardMode)}"
-      data-copy-ids="${escapeAttribute(textIds)}"
+      data-copy-ids="${escapeAttribute(
+  entry.name
+    ? `${entry.name}\n\n${textIds}`
+    : textIds
+)}"
       data-copy-clean="${escapeAttribute(textClean)}"
       data-copy-code="${escapeAttribute(textCode)}"
     >
