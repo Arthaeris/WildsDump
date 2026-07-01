@@ -611,11 +611,12 @@ function getCopyTextWithIds(entry) {
 
 function getCleanText(value) {
   return String(value || "")
-    .replace(/\[[^\]]+\]\s*/g, "")
+    .replace(/\[(?!\d{4}(?:\s*\+\s*\d{4})?)[^\]]+\]\s*/g, "")
     .split("\n")
-    .map(line => line.trim())
-    .filter(Boolean)
-    .join("\n");
+    .map(line => line.trimEnd())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 function formatEntryText(value) {
