@@ -93,24 +93,41 @@ function getHeaderValue(block, label) {
 function parseWildsStrings(body) {
   const lines = String(body || "").split("\n");
   const entries = [];
+  let visibleIndex = 0;
 
-  lines.forEach((line, index) => {
+  lines.forEach((line, sourceIndex) => {
     if (!line.startsWith("<string>")) return;
 
     const raw = line.replace(/^<string>/, "");
     const rejectedId = extractRejectedId(raw);
+    const text = cleanWildsText(raw);
+
+    if (isInternalDialogueLabel(text, rejectedId)) {
+      return;
+    }
 
     entries.push({
-      index,
-      id: String(index).padStart(4, "0"),
+      index: sourceIndex,
+      id: String(visibleIndex).padStart(4, "0"),
       raw,
-      text: cleanWildsText(raw),
+      text,
       rejectedId,
       isRejected: Boolean(rejectedId)
     });
+
+    visibleIndex++;
   });
 
   return entries;
+}
+
+function isInternalDialogueLabel(text, rejectedId) {
+  const cleanText = String(text || "").trim();
+  const cleanId = String(rejectedId || "").trim();
+
+  if (!cleanText || !cleanId) return false;
+
+  return cleanText === cleanId;
 }
 
 function cleanWildsText(value) {
