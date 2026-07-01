@@ -489,9 +489,11 @@ function renderEntry(entry) {
   const alreadyHasId =
   /^\[[^\]]+\]/.test(entry.text || "");
 
-const textIds = alreadyHasId
+const textIds = entry.name
   ? (entry.text || entry.raw || "")
-  : `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
+  : alreadyHasId
+    ? (entry.text || entry.raw || "")
+    : `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
 
