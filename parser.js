@@ -340,6 +340,11 @@ function buildWildsEntries(sections, npcMap = {}) {
   const entries = [];
 
   for (const section of sections) {
+    if (section.fileKey === "accessory") {
+      entries.push(...buildAccessoryEntries(section));
+      continue;
+    }
+
     for (const item of section.strings) {
       if (!item.raw && !item.text) continue;
 
@@ -374,6 +379,66 @@ function buildWildsEntries(sections, npcMap = {}) {
   }
 
   return entries;
+}
+
+function buildAccessoryEntries(section) {
+  const entries = [];
+  const byNumber = new Map();
+
+  for (const item of section.strings) {
+    byNumber.set(Number(item.id), item);
+  }
+
+  for (let id = 0; id <= 525; id += 2) {
+    const desc = byNumber.get(id);
+    const name = byNumber.get(id + 1);
+
+    if (!desc && !name) continue;
+
+    entries.push(makeMergedAccessoryEntry(section, id, name, desc));
+  }
+
+  const maxId = Math.max(...[...byNumber.keys()]);
+
+  for (let id = 526; id <= maxId; id += 2) {
+    const name = byNumber.get(id);
+    const desc = byNumber.get(id + 1);
+
+    if (!desc && !name) continue;
+
+    entries.push(makeMergedAccessoryEntry(section, id, name, desc));
+  }
+
+  return entries;
+}
+
+function makeMergedAccessoryEntry(section, id, nameItem, descItem) {
+  const name = nameItem?.text || "";
+  const desc = descItem?.text || "";
+
+  return {
+    uid: `${section.fileKey}:${String(id).padStart(4, "0")}`,
+    language: section.language,
+    id: String(id).padStart(4, "0"),
+    sourceFile: section.title,
+    sourcePath: section.sourcePath,
+    fileKey: section.fileKey,
+    family: section.family,
+    category: section.category,
+
+    dialogueId: "",
+    dialogueType: "",
+    dialogueFamily: "",
+    speaker: "",
+    isDialogue: false,
+
+    rejectedId: "",
+    isRejected: false,
+
+    name,
+    raw: [name, desc].filter(Boolean).join("\n"),
+    text: [name, desc].filter(Boolean).join("\n")
+  };
 }
 
 function groupWildsDialogues(entries) {
