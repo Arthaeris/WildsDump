@@ -215,20 +215,18 @@ function showWordIndex(addToHistory = true) {
 function getMappedDialogueName(entry, fallbackKey = "") {
   if (!entry) return fallbackKey || "Unknown Dialogue";
 
-  if (entry.dialogueId && typeof NPC_MAP !== "undefined" && NPC_MAP[entry.dialogueId]) {
+  if (entry.dialogueId && NPC_MAP?.[entry.dialogueId]) {
     return NPC_MAP[entry.dialogueId];
   }
 
-  const gossipKey = String(entry.fileKey || "").replace(/\.msg\.23$/i, "");
+  const mapKey = String(entry.fileKey || "").replace(/\.txt$/i, "");
 
-  if (gossipKey && typeof GOSSIP_MAP !== "undefined" && GOSSIP_MAP[gossipKey]) {
-    return GOSSIP_MAP[gossipKey];
+  if (GOSSIP_MAP?.[mapKey]) {
+    return GOSSIP_MAP[mapKey];
   }
 
-  const dialogueKey = String(entry.fileKey || "").replace(/\.txt$/i, "");
-
-  if (dialogueKey && typeof DIALOGUE_MAP !== "undefined" && DIALOGUE_MAP[dialogueKey]) {
-    return DIALOGUE_MAP[dialogueKey];
+  if (DIALOGUE_MAP?.[mapKey]) {
+    return DIALOGUE_MAP[mapKey];
   }
 
   return entry.speaker || entry.dialogueId || fallbackKey || "Unknown Dialogue";
