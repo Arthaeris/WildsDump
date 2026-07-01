@@ -363,7 +363,7 @@ function getSearchBlob(entry) {
     entry.rejectedId,
     entry.id,
     entry.raw,
-    entry.text
+    entry.text,
     entry.nameJp,
     entry.rawJp,
     entry.textJp
