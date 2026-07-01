@@ -398,19 +398,35 @@ function entryMatchesSearchToken(entry, token) {
   const op = token.operator;
   const value = token.value;
 
+  const searchableName = [
+    entry.name,
+    entry.nameJp
+  ].filter(Boolean).join("\n");
+
   if (op === "text") {
-  return (
-    searchIncludes(entry.name, value, token.exact) ||
-    searchIncludes(entry.nameJp, value, token.exact) ||
-    searchIncludes(getSearchBlob(entry), value, token.exact)
-  );
-}
+    return (
+      searchIncludes(searchableName, value, token.exact) ||
+      searchIncludes(getSearchBlob(entry), value, token.exact)
+    );
+  }
+
   if (op === "id") return searchIncludes(entry.id, value, token.exact) || searchIncludes(entry.rejectedId, value, token.exact);
   if (op === "file") return searchIncludes(entry.sourceFile, value, token.exact) || searchIncludes(entry.fileKey, value, token.exact);
   if (op === "category") return searchIncludes(entry.category, value, token.exact);
   if (op === "family") return searchIncludes(entry.family, value, token.exact);
-  if (op === "npc" || op === "speaker") return searchIncludes(entry.speaker, value, token.exact) || searchIncludes(entry.dialogueId, value, token.exact);
-  if (op === "dialogue") return entry.isDialogue && searchIncludes(getSearchBlob(entry), value, token.exact);
+
+  if (op === "name") {
+    return searchIncludes(searchableName, value, token.exact);
+  }
+
+  if (op === "npc" || op === "speaker") {
+    return searchIncludes(entry.speaker, value, token.exact) ||
+      searchIncludes(entry.dialogueId, value, token.exact);
+  }
+
+  if (op === "dialogue") {
+    return entry.isDialogue && searchIncludes(getSearchBlob(entry), value, token.exact);
+  }
 
   return searchIncludes(getSearchBlob(entry), value, token.exact);
 }
