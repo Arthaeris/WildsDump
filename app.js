@@ -482,35 +482,38 @@ function renderEntry(entry) {
   ].filter(Boolean);
 
   const name = entry.name || (
-  entry.isDialogue
-    ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
-    : ""
-);
-  const alreadyHasId =
-  /^\[[^\]]+\]/.test(entry.text || "");
+    entry.isDialogue
+      ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
+      : ""
+  );
 
-const textIds = entry.name
-  ? (entry.text || entry.raw || "")
-  : alreadyHasId
-    ? (entry.text || entry.raw || "")
-    : `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
-  const copySource = entry.name
-  ? `${entry.name}\n\n${entry.text || entry.raw || ""}`.trim()
-  : (entry.text || entry.raw || "");
+  const baseText = entry.text || entry.raw || "";
+  const alreadyHasId = /^\[[^\]]+\]/.test(baseText);
 
-const textClean = getCleanText(copySource);
-const textCode = "```\n" + textClean + "\n```";
+  const textIds = entry.name
+    ? `[${entry.id}] ${baseText}`.trim()
+    : alreadyHasId
+      ? baseText
+      : `[${entry.rejectedId || entry.id}] ${baseText}`.trim();
+
+  const textClean = getCleanText(baseText);
+
+  const copyClean = entry.name
+    ? `${entry.name}\n\n${textClean}`.trim()
+    : textClean;
+
+  const copyIds = entry.name
+    ? `${entry.name}\n\n${textIds}`.trim()
+    : textIds;
+
+  const textCode = "```\n" + copyClean + "\n```";
 
   return `
     <article
       class="entry"
       data-mode="${escapeAttribute(defaultCardMode)}"
-      data-copy-ids="${escapeAttribute(
-  entry.name
-    ? copySource
-    : textIds
-)}"
-      data-copy-clean="${escapeAttribute(textClean)}"
+      data-copy-ids="${escapeAttribute(copyIds)}"
+      data-copy-clean="${escapeAttribute(copyClean)}"
       data-copy-code="${escapeAttribute(textCode)}"
     >
       <div class="entry-actions">
