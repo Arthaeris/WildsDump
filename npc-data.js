@@ -585,6 +585,99 @@ const ENEMY_TEXT_GROUP_MAP = {
 
 
 
+const MONSTER_INDEX_GROUPS = {
+  "Large Monsters": new Set([
+    "Rathian",
+    "Rathalos",
+    "Guardian Rathalos",
+    "Gravios",
+    "Yian Kut-Ku",
+    "Gypceros",
+    "Congalala",
+    "Blangonga",
+    "Lagiacrus",
+    "Nerscylla Clone",
+    "Nerscylla",
+    "Gore Magala",
+    "Gogmazios",
+    "Mizutsune",
+    "Seregios",
+    "Guardian Fulgur Anjanath",
+    "Guardian Ebony Odogaron",
+    "Alpha Doshaguma",
+    "Doshaguma",
+    "Guardian Doshaguma",
+    "Balahara",
+    "Chatacabra",
+    "Quematrice",
+    "Lala Barina",
+    "Rompopolo",
+    "Rey Dau",
+    "Uth Duna",
+    "Nu Udra",
+    "Ajarakan",
+    "Arkveld",
+    "Guardian Arkveld",
+    "Hirabami",
+    "Jin Dahaad",
+    "Xu Wu",
+    "Zoh Shia",
+    "Omega Planetes"
+  ]),
+
+  "Small Monsters": new Set([
+    "Vespoid",
+    "Conga",
+    "Blango",
+    "Ceratonoth",
+    "Ceratonoth (Male)",
+    "Ceratonoth (Female)",
+    "Dalthydon",
+    "Dalthydon (Livestock)",
+    "Bulaqchi",
+    "Talioth",
+    "Baunos",
+    "Gajios",
+    "Piragill",
+    "Harpios",
+    "Kranodath",
+    "Comaqchi",
+    "Gelidron",
+    "Alpha Rafma",
+    "Rafma",
+    "Porkeplume",
+    "Nerscylla Hatchling",
+    "Guardian Seikret",
+    "Omega Micros"
+  ]),
+
+  "Aquatic Life": new Set([
+    "Virid Bowfin",
+    "Whetfish",
+    "Sushifish",
+    "Gastronome Tuna",
+    "Gajau",
+    "Goldenfry",
+    "Goldenfish",
+    "Platinumfish",
+    "Burst Arowana",
+    "Bomb Arowana",
+    "Gunpowderfish",
+    "Speartuna",
+    "Petricanths",
+    "Glass Parexus",
+    "Goliath Squid",
+    "Great Trevally",
+    "Escunite",
+    "Grand Escunite",
+    "Gravid Bowfin",
+    "Blind Perch"
+  ])
+};
+
+
+
+
 const ENEMY_TEXT_ID_MAP = {};
 
 for (const [monster, ids] of Object.entries(ENEMY_TEXT_GROUP_MAP)) {
