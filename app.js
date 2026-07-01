@@ -2,6 +2,7 @@
 // WildsDump prototype UI
 
 const EN_SOURCE = "./en_dump.txt";
+const JP_SOURCE = "./jp_dump.txt";
 const PAGE_SIZE = 80;
 const WORD_PAGE_SIZE = 150;
 
@@ -728,19 +729,30 @@ function getCardCopyText(card) {
 }
 
 async function loadDump() {
-  results.innerHTML = '<div class="empty">Loading Wilds text dump…</div>';
+  results.innerHTML = '<div class="empty">Loading Wilds text dumps…</div>';
 
   try {
-    const response = await fetch(EN_SOURCE);
+    const [enResponse, jpResponse] = await Promise.all([
+      fetch(EN_SOURCE),
+      fetch(JP_SOURCE)
+    ]);
 
-    if (!response.ok) {
-      throw new Error(`Could not load ${EN_SOURCE}`);
-    }
+    if (!enResponse.ok) throw new Error(`Could not load ${EN_SOURCE}`);
+    if (!jpResponse.ok) throw new Error(`Could not load ${JP_SOURCE}`);
 
-    const raw = await response.text();
+    const [enRaw, jpRaw] = await Promise.all([
+      enResponse.text(),
+      jpResponse.text()
+    ]);
 
-    sections = parseWildsDump(raw, "en");
-    entries = buildWildsEntries(sections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
+    const enSections = parseWildsDump(enRaw, "en");
+    const jpSections = parseWildsDump(jpRaw, "jp");
+
+    const enEntries = buildWildsEntries(enSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
+    const jpEntries = buildWildsEntries(jpSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
+
+    sections = enSections;
+    entries = mergeLocalizedEntries(enEntries, jpEntries);
 
     buildIndexes();
     buildWordFrequencyIndex();
@@ -752,9 +764,10 @@ async function loadDump() {
     count.textContent = "0 entries";
     results.innerHTML = `
       <div class="empty">
-        Could not load the Wilds text dump.<br>
-        Make sure this file exists:<br>
-        <code>data/en_dump.txt</code>
+        Could not load the Wilds text dumps.<br>
+        Make sure these files exist:<br>
+        <code>en_dump.txt</code><br>
+        <code>jp_dump.txt</code>
       </div>
     `;
   }
