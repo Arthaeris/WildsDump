@@ -388,53 +388,50 @@ function entryMatchesSearchToken(entry, token) {
   const value = token.value;
 
   if (op === "text") {
-  return (
-    searchIncludes(searchableName, value, token.exact) ||
-    searchIncludes(entry.searchTextLower, value, token.exact)
-  );
-}
+    return searchIncludes(entry.searchTextLower, value, token.exact);
+  }
 
   if (op === "name") {
+    return searchIncludes(entry.searchNameLower, value, token.exact);
+  }
+
+  if (op === "id") {
     return searchIncludes(
-      [
-        entry.searchNameEn,
-        entry.searchNameJp,
-        entry.name,
-        entry.nameJp
-      ].filter(Boolean).join("\n"),
+      [entry.id, entry.rejectedId].filter(Boolean).join("\n").toLowerCase(),
       value,
       token.exact
     );
   }
 
-  if (op === "id") {
-    return searchIncludes(entry.id, value, token.exact) ||
-      searchIncludes(entry.rejectedId, value, token.exact);
-  }
-
   if (op === "file") {
-    return searchIncludes(entry.sourceFile, value, token.exact) ||
-      searchIncludes(entry.fileKey, value, token.exact);
+    return searchIncludes(
+      [entry.sourceFile, entry.fileKey].filter(Boolean).join("\n").toLowerCase(),
+      value,
+      token.exact
+    );
   }
 
   if (op === "category") {
-    return searchIncludes(entry.category, value, token.exact);
+    return searchIncludes(String(entry.category || "").toLowerCase(), value, token.exact);
   }
 
   if (op === "family") {
-    return searchIncludes(entry.family, value, token.exact);
+    return searchIncludes(String(entry.family || "").toLowerCase(), value, token.exact);
   }
 
   if (op === "npc" || op === "speaker") {
-    return searchIncludes(entry.speaker, value, token.exact) ||
-      searchIncludes(entry.dialogueId, value, token.exact);
+    return searchIncludes(
+      [entry.speaker, entry.dialogueId].filter(Boolean).join("\n").toLowerCase(),
+      value,
+      token.exact
+    );
   }
 
   if (op === "dialogue") {
-    return entry.isDialogue && searchIncludes(getSearchBlob(entry), value, token.exact);
+    return entry.isDialogue && searchIncludes(entry.searchTextLower, value, token.exact);
   }
 
-  return searchIncludes(getSearchBlob(entry), value, token.exact);
+  return searchIncludes(entry.searchTextLower, value, token.exact);
 }
 
 function entryMatchesSearch(entry, tokens) {
@@ -448,31 +445,22 @@ function matchesActiveFilter(entry) {
 function getSearchRelevance(entry, tokens) {
   if (!tokens.length) return 0;
 
-  const en = getEntryPresentation(entry, "en");
-  const jp = getEntryPresentation(entry, "jp");
-
   let score = 0;
 
   for (const token of tokens) {
-    const rawQ = String(token.value || "");
-    const q = rawQ.toLowerCase();
-
+    const q = String(token.value || "").toLowerCase();
     if (!q) continue;
 
     if (String(entry.speaker || "").toLowerCase() === q) score += 1000;
     if (String(entry.dialogueId || "").toLowerCase() === q) score += 900;
 
-    if (String(en.name || "").toLowerCase().includes(q)) score += 850;
-    if (String(jp.name || "").includes(rawQ)) score += 850;
-
-    if (String(entry.name || "").toLowerCase().includes(q)) score += 800;
-    if (String(entry.nameJp || "").includes(rawQ)) score += 800;
+    if (entry.searchNameLower?.startsWith(q)) score += 850;
+    else if (entry.searchNameLower?.includes(q)) score += 750;
 
     if (String(entry.fileKey || "").toLowerCase().includes(q)) score += 350;
     if (String(entry.category || "").toLowerCase().includes(q)) score += 250;
 
-    if (String(entry.text || "").toLowerCase().includes(q)) score += 50;
-    if (String(entry.textJp || "").includes(rawQ)) score += 50;
+    if (entry.searchTextLower?.includes(q)) score += 50;
   }
 
   return score;
