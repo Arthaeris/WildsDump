@@ -243,7 +243,13 @@ function showDialogue(key, addToHistory = true) {
 
   currentDialogueKey = key;
 
-  const group = npcGroups.get(key) || [];
+  let group = npcGroups.get(key);
+
+if (!group) {
+  group = entries.filter(entry =>
+    getEnemyTextMonsterName(entry) === key
+  );
+}
   dialogueTitle.textContent = getDialogueGroupName(key, group);
 
   dialogueModeBtn.textContent = dialogueDisplayMode === "cards"
