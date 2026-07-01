@@ -351,7 +351,7 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "hammer",
   "gunlance",
   "chargeaxe",
-  "bow"
+  "bow",
   
   "item"
 ]);
