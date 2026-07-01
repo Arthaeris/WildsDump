@@ -571,3 +571,10 @@ footer {
     justify-self: stretch;
   }
 }
+
+
+
+.index-section-title {
+  margin: 1.2rem 0 0.5rem;
+  opacity: 0.85;
+}
