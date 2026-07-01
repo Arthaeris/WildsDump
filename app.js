@@ -381,8 +381,8 @@ function getSearchBlob(entry) {
     entry.dialogueFamily,
     entry.speaker,
 
-    entry.name,      // ← add
-    entry.nameJp,    // ← add
+    entry.name,
+    entry.nameJp,
 
     entry.rejectedId,
     entry.id,
@@ -391,9 +391,7 @@ function getSearchBlob(entry) {
     entry.text,
     entry.rawJp,
     entry.textJp
-  ]
-    .filter(Boolean)
-    .join("\n");
+  ].filter(Boolean).join("\n");
 }
 
 function entryMatchesSearchToken(entry, token) {
