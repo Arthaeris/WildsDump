@@ -318,19 +318,10 @@ function getMappedDialogueName(entry, fallbackKey = "") {
 }
 
 function getEnemyTextMonsterName(entry) {
-  if (entry.fileKey !== "enemytext") {
-    return null;
-  }
+  if (entry.fileKey !== "enemytext") return null;
+  if (typeof ENEMY_TEXT_ID_MAP === "undefined") return null;
 
-  const id = String(entry.id).padStart(4, "0");
-
-  for (const [monster, ids] of Object.entries(ENEMY_TEXT_GROUP_MAP)) {
-    if (ids.includes(id)) {
-      return monster;
-    }
-  }
-
-  return null;
+  return ENEMY_TEXT_ID_MAP[String(entry.id).padStart(4, "0")] || null;
 }
 
 function getDialogueGroupName(key, group) {
