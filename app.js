@@ -398,7 +398,13 @@ function entryMatchesSearchToken(entry, token) {
   const op = token.operator;
   const value = token.value;
 
-  if (op === "text") return searchIncludes(getSearchBlob(entry), value, token.exact);
+  if (op === "text") {
+  return (
+    searchIncludes(entry.name, value, token.exact) ||
+    searchIncludes(entry.nameJp, value, token.exact) ||
+    searchIncludes(getSearchBlob(entry), value, token.exact)
+  );
+}
   if (op === "id") return searchIncludes(entry.id, value, token.exact) || searchIncludes(entry.rejectedId, value, token.exact);
   if (op === "file") return searchIncludes(entry.sourceFile, value, token.exact) || searchIncludes(entry.fileKey, value, token.exact);
   if (op === "category") return searchIncludes(entry.category, value, token.exact);
