@@ -507,7 +507,7 @@ const textCode = "```\n" + textClean + "\n```";
       data-mode="${escapeAttribute(defaultCardMode)}"
       data-copy-ids="${escapeAttribute(
   entry.name
-    ? `${entry.name}\n\n${textIds}`
+    ? copySource
     : textIds
 )}"
       data-copy-clean="${escapeAttribute(textClean)}"
@@ -611,7 +611,7 @@ function getCopyTextWithIds(entry) {
 
 function getCleanText(value) {
   return String(value || "")
-    .replace(/\[(?!\d{4}(?:\s*\+\s*\d{4})?)[^\]]+\]\s*/g, "")
+    .replace(/\[(\d{4}(?:\s*\+\s*\d{4})?)\]\s*/g, "")
     .split("\n")
     .map(line => line.trimEnd())
     .join("\n")
