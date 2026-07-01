@@ -369,6 +369,9 @@ function searchIncludes(value, needle, exact = false) {
 }
 
 function getSearchBlob(entry) {
+  const en = getEntryPresentation(entry, "en");
+  const jp = getEntryPresentation(entry, "jp");
+
   return [
     entry.category,
     entry.family,
@@ -383,6 +386,9 @@ function getSearchBlob(entry) {
 
     entry.name,
     entry.nameJp,
+
+    en.name,
+    jp.name,
 
     entry.rejectedId,
     entry.id,
@@ -442,32 +448,31 @@ function matchesActiveFilter(entry) {
 function getSearchRelevance(entry, tokens) {
   if (!tokens.length) return 0;
 
+  const en = getEntryPresentation(entry, "en");
+  const jp = getEntryPresentation(entry, "jp");
+
   let score = 0;
 
   for (const token of tokens) {
-    const q = String(token.value || "").toLowerCase();
+    const rawQ = String(token.value || "");
+    const q = rawQ.toLowerCase();
 
     if (!q) continue;
 
-    // Exact NPC/dialogue matches
     if (String(entry.speaker || "").toLowerCase() === q) score += 1000;
     if (String(entry.dialogueId || "").toLowerCase() === q) score += 900;
 
-    // Item names (highest priority after NPCs)
+    if (String(en.name || "").toLowerCase().includes(q)) score += 850;
+    if (String(jp.name || "").includes(rawQ)) score += 850;
+
     if (String(entry.name || "").toLowerCase().includes(q)) score += 800;
+    if (String(entry.nameJp || "").includes(rawQ)) score += 800;
 
-    // Japanese names
-    if (String(entry.nameJp || "").includes(token.value)) score += 800;
-
-    // File/category
     if (String(entry.fileKey || "").toLowerCase().includes(q)) score += 350;
     if (String(entry.category || "").toLowerCase().includes(q)) score += 250;
 
-    // Description/text
     if (String(entry.text || "").toLowerCase().includes(q)) score += 50;
-
-    // Japanese description
-    if (String(entry.textJp || "").includes(token.value)) score += 50;
+    if (String(entry.textJp || "").includes(rawQ)) score += 50;
   }
 
   return score;
