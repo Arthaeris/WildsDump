@@ -89,8 +89,8 @@ const NPC_MAP = {
   "NPC222_14_025": "Vio",
 
   "NPC300_00_017": "Athos",
-  "NPC300_12_001": "",
-  "NPC300_14_001": "",
+  "NPC300_12_001": "Plumpeach",
+  "NPC300_14_001": "Rove",
 
   "NPC310_01_001": "Waffle",
   "NPC310_01_006": "Rolie",
@@ -107,15 +107,15 @@ const NPC_MAP = {
   "NPC310_50_010": "",
   "NPC310_50_011": "",
 
-  "NPC320_12_002": "",
-  "NPC320_12_003": "",
-  "NPC320_12_004": "",
-  "NPC320_12_005": "",
-  "NPC320_12_006": "",
-  "NPC320_12_016": "",
-  "NPC320_12_018": "",
+  "NPC320_12_002": "Sassafrill",
+  "NPC320_12_003": "Shrumpet",
+  "NPC320_12_004": "Chomber",
+  "NPC320_12_005": "Gawdygog",
+  "NPC320_12_006": "Mastangler",
+  "NPC320_12_016": "Bangard",
+  "NPC320_12_018": "Musharpeye",
   "NPC320_12_023": "",
-  "NPC320_50_013": "",
+  "NPC320_50_013": "Rove",
 
   "NPC420_00_036": "Poogie"
 };
@@ -160,11 +160,11 @@ const GOSSIP_MAP = {
   "dia_npcgossip_forest_001": "",
   "dia_npcgossip_forest_002": "",
   "dia_npcgossip_forest_003": "",
-  "dia_npcgossip_forest_004": "",
+  "dia_npcgossip_forest_004": "Danzamuffin",
   "dia_npcgossip_forest_005": "",
   "dia_npcgossip_forest_006": "",
   "dia_npcgossip_forest_007": "",
-  "dia_npcgossip_forest_008": "",
+  "dia_npcgossip_forest_008": "Greenhorn",
 
   "dia_npcgossip_grave_001": "",
   "dia_npcgossip_grave_002": "Ardeni",
