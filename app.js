@@ -29,6 +29,11 @@ const npcView = document.querySelector("#npcView");
 const dialogueView = document.querySelector("#dialogueView");
 const wordIndexView = document.querySelector("#wordIndexView");
 
+const monsterIndexBtn = document.querySelector("#monsterIndexBtn");
+const monsterView = document.querySelector("#monsterView");
+const monsterList = document.querySelector("#monsterList");
+const backFromMonsterBtn = document.querySelector("#backFromMonsterBtn");
+
 const categoryTitle = document.querySelector("#categoryTitle");
 const categoryResults = document.querySelector("#categoryResults");
 const npcList = document.querySelector("#npcList");
@@ -76,6 +81,7 @@ function showOnly(view) {
   searchView.hidden = view !== searchView;
   categoryView.hidden = view !== categoryView;
   npcView.hidden = view !== npcView;
+  monsterView.hidden = view !== monsterView;
   dialogueView.hidden = view !== dialogueView;
   wordIndexView.hidden = view !== wordIndexView;
 }
@@ -190,6 +196,30 @@ function showNpcIndex(addToHistory = true) {
   });
 
   showOnly(npcView);
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showMonsterIndex(addToHistory = true) {
+  if (addToHistory) {
+    if (!searchView.hidden) pushViewHistory({ type: "home" });
+    if (!categoryView.hidden) pushViewHistory({ type: "category", category: categoryTitle.textContent });
+    if (!npcView.hidden) pushViewHistory({ type: "npcIndex" });
+    if (!dialogueView.hidden) pushViewHistory({ type: "dialogue", key: currentDialogueKey });
+    if (!wordIndexView.hidden) pushViewHistory({ type: "wordIndex" });
+  }
+
+  const groups = [...monsterGroups.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0]));
+
+  monsterList.innerHTML = groups.map(([name, group]) => `
+    <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
+      <span>${escapeHtml(name)}</span>
+      <small>${group[0]?.id || ""} · ${group.length} entry</small>
+    </button>
+  `).join("");
+
+  showOnly(monsterView);
   closeMenu();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -332,20 +362,7 @@ function getDialogueGroupName(key, group) {
 function buildIndexes() {
   categories = new Map();
   npcGroups = groupWildsDialogues(entries);
-
-// Merge enemytext entries by monster
-for (const entry of entries) {
-  if (entry.fileKey !== "enemytext") continue;
-
-  const monster = getEnemyTextMonsterName(entry);
-  if (!monster) continue;
-
-  if (!npcGroups.has(monster)) {
-    npcGroups.set(monster, []);
-  }
-
-  npcGroups.get(monster).push(entry);
-}
+  monsterGroups = new Map();
 
   for (const entry of entries) {
     if (!categories.has(entry.category)) {
@@ -353,6 +370,10 @@ for (const entry of entries) {
     }
 
     categories.get(entry.category).push(entry);
+
+    if (entry.fileKey === "enemytext" && entry.name) {
+      monsterGroups.set(entry.name, [entry]);
+    }
   }
 }
 
@@ -1168,6 +1189,12 @@ if (langButton) {
   return;
 }
 
+const monsterButton = event.target.closest("[data-monster-key]");
+if (monsterButton) {
+  showDialogueByDisplayName(monsterButton.dataset.monsterKey);
+  return;
+}
+
   const copyButton = event.target.closest(".copy-btn");
   if (copyButton) {
     const card = copyButton.closest(".entry");
@@ -1205,11 +1232,13 @@ menuOverlay.addEventListener("click", closeMenu);
 
 homeBtn.addEventListener("click", () => showHome());
 npcIndexBtn.addEventListener("click", () => showNpcIndex());
+monsterIndexBtn.addEventListener("click", () => showMonsterIndex());
 wordIndexBtn.addEventListener("click", () => showWordIndex());
 themeToggleBtn.addEventListener("click", cycleTheme);
 
 backFromCategoryBtn.addEventListener("click", goBack);
 backFromNpcBtn.addEventListener("click", goBack);
+backFromMonsterBtn.addEventListener("click", goBack);
 backFromDialogueBtn.addEventListener("click", goBack);
 backFromWordIndexBtn.addEventListener("click", goBack);
 
