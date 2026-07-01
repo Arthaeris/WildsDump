@@ -140,25 +140,75 @@ function showNpcIndex(addToHistory = true) {
     if (!wordIndexView.hidden) pushViewHistory({ type: "wordIndex" });
   }
 
-  const groups = [...npcGroups.entries()].sort((a, b) => {
-    const an = getDialogueGroupName(a[0], a[1]);
-    const bn = getDialogueGroupName(b[0], b[1]);
-    return an.localeCompare(bn);
-  });
+  const displayGroups = new Map();
 
-  npcList.innerHTML = groups.map(([key, group]) => {
+  for (const [key, group] of npcGroups.entries()) {
     const name = getDialogueGroupName(key, group);
-    const types = new Set(group.map(entry => entry.dialogueType).filter(Boolean));
+
+    if (!displayGroups.has(name)) {
+      displayGroups.set(name, {
+        name,
+        keys: [],
+        entries: []
+      });
+    }
+
+    const displayGroup = displayGroups.get(name);
+    displayGroup.keys.push(key);
+    displayGroup.entries.push(...group);
+  }
+
+  const groups = [...displayGroups.values()]
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  npcList.innerHTML = groups.map(group => {
+    const types = new Set(group.entries.map(entry => entry.dialogueType).filter(Boolean));
 
     return `
-      <button class="npc-item" type="button" data-npc-key="${escapeAttribute(key)}">
-        <span>${escapeHtml(name)}</span>
-        <small>${escapeHtml(key)} · ${group.length} lines · ${types.size} types</small>
+      <button class="npc-item" type="button" data-npc-key="${escapeAttribute(group.name)}">
+        <span>${escapeHtml(group.name)}</span>
+        <small>${group.entries.length} lines · ${group.keys.length} files · ${types.size} types</small>
       </button>
     `;
   }).join("");
 
+  npcList.querySelectorAll("[data-npc-key]").forEach(button => {
+    button.addEventListener("click", () => {
+      showDialogueByDisplayName(button.dataset.npcKey);
+    });
+  });
+
   showOnly(npcView);
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showDialogueByDisplayName(name) {
+  const combined = [];
+
+  for (const [key, group] of npcGroups.entries()) {
+    if (getDialogueGroupName(key, group) === name) {
+      combined.push(...group);
+    }
+  }
+
+  currentDialogueKey = name;
+  dialogueTitle.textContent = name;
+
+  dialogueModeBtn.textContent =
+    dialogueDisplayMode === "cards" ? "Full Dialogue" : "Cards";
+
+  if (dialogueDisplayMode === "full") {
+    dialogueResults.innerHTML = renderFullDialogue(combined);
+  } else {
+    renderEntryList({
+      target: dialogueResults,
+      items: combined,
+      emptyText: "No dialogue found."
+    });
+  }
+
+  showOnly(dialogueView);
   closeMenu();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
