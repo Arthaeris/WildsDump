@@ -481,9 +481,11 @@ function renderEntry(entry) {
     entry.sourceFile
   ].filter(Boolean);
 
-  const name = entry.isDialogue
-  ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
-  : "";
+  const name = entry.name || (
+  entry.isDialogue
+    ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
+    : ""
+);
   const alreadyHasId =
   /^\[[^\]]+\]/.test(entry.text || "");
 
