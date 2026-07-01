@@ -46,6 +46,7 @@ let sections = [];
 let entries = [];
 let categories = new Map();
 let npcGroups = new Map();
+let monsterGroups = new Map();
 let wordFrequency = [];
 
 let activeTypeFilter = "All";
