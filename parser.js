@@ -452,27 +452,33 @@ function getEnemyTextGroupName(label) {
     .trim();
 }
 
-function makeMergedEnemyTextEntry({ section, groupName, startId, endId, blockItems }) {
-  const variants = [];
+function makeMergedEnemyTextEntry({ section, monster, items }) {
+  const sorted = [...items].sort((a, b) => Number(a.id) - Number(b.id));
+
+  const ids = sorted.map(item => String(item.id).padStart(4, "0"));
+  const startId = ids[0] || "0000";
+  const endId = ids[ids.length - 1] || startId;
+
+  const nameLines = [];
   const bodyLines = [];
 
-  for (const item of blockItems) {
-    const mappedName = ENEMY_TEXT_NAME_MAP[item.id];
+  for (const item of sorted) {
+    const id = String(item.id).padStart(4, "0");
+    const text = item.text || item.raw || "";
 
-    if (mappedName) {
-      if (mappedName !== groupName && !variants.includes(mappedName)) {
-        variants.push(mappedName);
+    if (!text.trim()) continue;
+
+    if (text.trim() === monster || /^Tempered\s+/i.test(text) || /^Frenzied\s+/i.test(text) || /^Arch-tempered\s+/i.test(text)) {
+      if (!nameLines.includes(text.trim())) {
+        nameLines.push(text.trim());
       }
-
       continue;
     }
 
-    const text = item.text || item.raw || "";
-
-    if (text.trim()) {
-      bodyLines.push(`[${item.id}] ${text}`);
-    }
+    bodyLines.push(`[${id}] ${text}`);
   }
+
+  const variants = nameLines.filter(name => name !== monster);
 
   const textParts = [];
 
@@ -485,9 +491,9 @@ function makeMergedEnemyTextEntry({ section, groupName, startId, endId, blockIte
   }
 
   return {
-    uid: `${section.fileKey}:${String(startId).padStart(4, "0")}`,
+    uid: `${section.fileKey}:${startId}`,
     language: section.language,
-    id: `${String(startId).padStart(4, "0")}–${String(endId).padStart(4, "0")}`,
+    id: ids.length > 1 ? `${startId}–${endId}` : startId,
     sourceFile: section.title,
     sourcePath: section.sourcePath,
     fileKey: section.fileKey,
@@ -503,7 +509,7 @@ function makeMergedEnemyTextEntry({ section, groupName, startId, endId, blockIte
     rejectedId: "",
     isRejected: false,
 
-    name: groupName,
+    name: monster,
     raw: textParts.join("\n\n"),
     text: textParts.join("\n\n")
   };
