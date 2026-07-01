@@ -9,10 +9,10 @@ const NPC_MAP = {
   "NPC101_00_030": "",
   "NPC101_11_066": "",
   "NPC101_11_069": "",
-  "NPC101_13_011": "",
+  "NPC101_13_011": "Yabran",
   "NPC101_13_012": "",
   "NPC101_21_001": "",
-  "NPC101_50_024": "",
+  "NPC101_50_024": "Akuma",
 
   "NPC102_00_001": "",
   "NPC102_00_007": "",
@@ -20,20 +20,20 @@ const NPC_MAP = {
   "NPC102_00_031": "",
   "NPC102_11_016": "",
   "NPC102_11_067": "",
-  "NPC102_13_013": "",
-  "NPC102_13_014": "",
+  "NPC102_13_013": "Aida",
+  "NPC102_13_014": "Maki",
 
   "NPC111_00_011": "",
   "NPC111_00_037": "",
-  "NPC111_00_038": "",
+  "NPC111_00_038": "Cobb",
   "NPC111_01_003": "",
   "NPC111_01_039": "",
   "NPC111_01_041": "",
   "NPC111_11_010": "",
   "NPC111_11_011": "",
-  "NPC111_13_015": "",
+  "NPC111_13_015": "Roqul",
   "NPC111_13_031": "",
-  "NPC111_13_034": "",
+  "NPC111_13_034": "Sabar",
   "NPC111_13_057": "",
   "NPC111_15_003": "",
   "NPC111_15_004": "",
@@ -64,7 +64,7 @@ const NPC_MAP = {
   "NPC112_50_021": "",
 
   "NPC121_11_059": "",
-  "NPC121_13_026": "",
+  "NPC121_13_026": "Dotoma",
 
   "NPC131_11_049": "",
 
@@ -88,7 +88,7 @@ const NPC_MAP = {
 
   "NPC222_14_025": "",
 
-  "NPC300_00_017": "",
+  "NPC300_00_017": "Athos",
   "NPC300_12_001": "",
   "NPC300_14_001": "",
 
@@ -131,7 +131,7 @@ const NPC_NOTES = {};
 
 const GOSSIP_MAP = {
   "dia_npcgossip_allstage_001": "",
-  "dia_npcgossip_allstage_002": "",
+  "dia_npcgossip_allstage_002": "Athos",
 
   "dia_npcgossip_bcdesert_001": "",
   "dia_npcgossip_bcdesert_002": "",
@@ -202,7 +202,7 @@ const GOSSIP_MAP = {
   "dia_npcgossip_oil_008": "",
   "dia_npcgossip_oil_009": "",
   "dia_npcgossip_oil_010": "",
-  "dia_npcgossip_oil_011": "",
+  "dia_npcgossip_oil_011": "Minya",
   "dia_npcgossip_oil_012": "",
 
   "dia_npcgossip_oil_101": "",
@@ -211,9 +211,9 @@ const GOSSIP_MAP = {
   "dia_npcgossip_oil_104": "",
   "dia_npcgossip_oil_105": "",
   "dia_npcgossip_oil_106": "",
-  "dia_npcgossip_oil_107": "",
+  "dia_npcgossip_oil_107": "Bikita",
   "dia_npcgossip_oil_108": "",
-  "dia_npcgossip_oil_109": "",
+  "dia_npcgossip_oil_109": "Marga",
 
   "dia_npcgossip_priestess_001": "",
   "dia_npcgossip_priestess_002": "",
