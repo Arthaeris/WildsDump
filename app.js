@@ -160,7 +160,16 @@ function showNpcIndex(addToHistory = true) {
   }
 
   const groups = [...displayGroups.values()]
-    .sort((a, b) => a.name.localeCompare(b.name));
+  .sort((a, b) => {
+    const aMapped = isManuallyNamedNpcGroup(a);
+    const bMapped = isManuallyNamedNpcGroup(b);
+
+    if (aMapped !== bMapped) {
+      return aMapped ? -1 : 1;
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 
   npcList.innerHTML = groups.map(group => {
     const types = new Set(group.entries.map(entry => entry.dialogueType).filter(Boolean));
@@ -182,6 +191,16 @@ function showNpcIndex(addToHistory = true) {
   showOnly(npcView);
   closeMenu();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function isManuallyNamedNpcGroup(group) {
+  return group.entries.some(entry => {
+    if (entry.dialogueId && NPC_MAP?.[entry.dialogueId]) return true;
+    if (entry.fileKey && GOSSIP_MAP?.[entry.fileKey]) return true;
+    if (entry.fileKey && DIALOGUE_MAP?.[entry.fileKey]) return true;
+
+    return false;
+  });
 }
 
 function showDialogueByDisplayName(name) {
