@@ -14,7 +14,7 @@ const NPC_MAP = {
   "NPC101_21_001": "",
   "NPC101_50_024": "Akuma",
 
-  "NPC102_00_001": "",
+  "NPC102_00_001": "Alma",
   "NPC102_00_007": "",
   "NPC102_00_010": "",
   "NPC102_00_031": "",
@@ -68,7 +68,7 @@ const NPC_MAP = {
 
   "NPC131_11_049": "",
 
-  "NPC201_00_035": "",
+  "NPC201_00_035": "Tetsuzan",
 
   "NPC202_14_002": "",
 
@@ -82,7 +82,7 @@ const NPC_MAP = {
   "NPC212_14_020": "",
   "NPC212_14_021": "",
 
-  "NPC221_01_008": "",
+  "NPC221_01_008": "Legend Weaponsmith",
   "NPC221_14_022": "",
   "NPC221_21_035": "",
 
@@ -252,10 +252,10 @@ const DIALOGUE_MAP = {
   "dia_pl_tactics.msg.23": "Player",
 
   "dia_showobt_general_001.msg.23": "",
-  "dia_showobt_general_002.msg.23": "",
-  "dia_showobt_stch_ms850010.msg.23": "",
-  "dia_showobt_stch_ms850020.msg.23": "",
-  "dia_showobt_stch_ms850030.msg.23": "",
+  "dia_showobt_general_002.msg.23": "Alma",
+  "dia_showobt_stch_ms850010.msg.23": "Alma",
+  "dia_showobt_stch_ms850020.msg.23": "Alma",
+  "dia_showobt_stch_ms850030.msg.23": "Alma",
 
   "dia_stch0101_ms001080.msg.23": "",
   "dia_stch0102_ms001090.msg.23": "",
