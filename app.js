@@ -101,6 +101,7 @@ function goBack() {
   if (previous.type === "home") showHome(false);
   if (previous.type === "category") showCategory(previous.category, false);
   if (previous.type === "npcIndex") showNpcIndex(false);
+  if (previous.type === "monsterIndex") showMonsterIndex(false);
   if (previous.type === "dialogue") showDialogue(previous.key, false);
   if (previous.type === "wordIndex") showWordIndex(false);
 }
