@@ -263,13 +263,13 @@ function showWordIndex(addToHistory = true) {
 }
 
 function getMappedDialogueName(entry, fallbackKey = "") {
-  if (!entry) return fallbackKey || "Unknown Dialogue";
+  if (!entry) return fallbackKey || "";
 
   if (entry.dialogueId && NPC_MAP?.[entry.dialogueId]) {
     return NPC_MAP[entry.dialogueId];
   }
 
-  const mapKey = String(entry.fileKey || "").replace(/\.txt$/i, "");
+  const mapKey = String(entry.fileKey || "");
 
   if (GOSSIP_MAP?.[mapKey]) {
     return GOSSIP_MAP[mapKey];
@@ -279,7 +279,10 @@ function getMappedDialogueName(entry, fallbackKey = "") {
     return DIALOGUE_MAP[mapKey];
   }
 
-  return entry.speaker || entry.dialogueId || fallbackKey || "Unknown Dialogue";
+  if (entry.speaker) return entry.speaker;
+  if (entry.dialogueId) return entry.dialogueId;
+
+  return fallbackKey || "";
 }
 
 function getDialogueGroupName(key, group) {
@@ -478,7 +481,9 @@ function renderEntry(entry) {
     entry.sourceFile
   ].filter(Boolean);
 
-  const name = getMappedDialogueName(entry, "");
+  const name = entry.isDialogue
+  ? getMappedDialogueName(entry, entry.dialogueId || entry.fileKey)
+  : "";
   const textIds = `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
@@ -843,10 +848,10 @@ document.addEventListener("click", event => {
   }
 
   const npcButton = event.target.closest("[data-npc-key]");
-  if (npcButton) {
-    showDialogue(npcButton.dataset.npcKey);
-    return;
-  }
+if (npcButton) {
+  showDialogueByDisplayName(npcButton.dataset.npcKey);
+  return;
+}
 
   const dialogueButton = event.target.closest("[data-dialogue-key]");
   if (dialogueButton) {
@@ -900,8 +905,18 @@ backFromDialogueBtn.addEventListener("click", goBack);
 backFromWordIndexBtn.addEventListener("click", goBack);
 
 dialogueModeBtn.addEventListener("click", () => {
-  dialogueDisplayMode = dialogueDisplayMode === "cards" ? "full" : "cards";
-  showDialogue(currentDialogueKey, false);
+  dialogueDisplayMode =
+    dialogueDisplayMode === "cards"
+      ? "full"
+      : "cards";
+
+  if (npcGroups.has(currentDialogueKey)) {
+    // Opened from a single dialogue file
+    showDialogue(currentDialogueKey, false);
+  } else {
+    // Opened from the merged NPC Index
+    showDialogueByDisplayName(currentDialogueKey);
+  }
 });
 
 window.addEventListener("scroll", handleScroll, { passive: true });
