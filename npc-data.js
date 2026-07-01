@@ -581,3 +581,14 @@ const ENEMY_TEXT_GROUP_MAP = {
   "Gravid Bowfin": ["1906", "1913", "1916"],
   "Blind Perch": ["1919", "1926", "1929"]
 };
+
+
+
+
+const ENEMY_TEXT_ID_MAP = {};
+
+for (const [monster, ids] of Object.entries(ENEMY_TEXT_GROUP_MAP)) {
+  for (const id of ids) {
+    ENEMY_TEXT_ID_MAP[id] = monster;
+  }
+}
