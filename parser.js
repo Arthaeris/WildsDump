@@ -27,6 +27,10 @@ function parseWildsDump(rawText, language = "en") {
   return sections;
 }
 
+function isOldVersionFile(filename) {
+  return /\s+\(\d+\)\.23\.txt$/i.test(String(filename || ""));
+}
+
 function parseWildsSection(block, language = "en") {
   const title = getHeaderValue(block, "TITLE");
   const sourcePath = getHeaderValue(block, "SOURCE PATH");
@@ -35,6 +39,8 @@ function parseWildsSection(block, language = "en") {
   const hash = getHeaderValue(block, "HASH");
 
   if (!title && !sourcePath) return null;
+
+  if (isOldVersionFile(title || sourcePath)) return null;
 
   let body = "";
 
