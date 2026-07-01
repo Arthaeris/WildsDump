@@ -410,7 +410,7 @@ function renderEntry(entry) {
   ].filter(Boolean);
 
   const name = entry.speaker || entry.dialogueId || "";
-  const textIds = getCopyTextWithIds(entry);
+  const textIds = `[${entry.rejectedId || entry.id}] ${entry.text || entry.raw || ""}`.trim();
   const textClean = getCleanText(entry.text);
   const textCode = "```\n" + textClean + "\n```";
 
@@ -514,8 +514,8 @@ function renderFullDialogue(group) {
 }
 
 function getCopyTextWithIds(entry) {
-  const id = entry.rejectedId || `${entry.sourceFile}:${entry.id}`;
-  return `[${id}] ${entry.text || entry.raw || ""}`.trim();
+  const label = entry.rejectedId || entry.id;
+  return `[${label}] ${entry.text || entry.raw || ""}`.trim();
 }
 
 function getCleanText(value) {
