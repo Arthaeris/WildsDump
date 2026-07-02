@@ -67,7 +67,12 @@ const JSON_INDEX = {
 
   weaponByName: new Map(),
   weaponByGameId: new Map(),
-  weaponSeriesByGameId: new Map()
+  weaponSeriesByGameId: new Map(),
+
+  hhMelodyByGameId: new Map(),
+  hhEchoWaveByGameId: new Map(),
+  hhEchoBubbleByGameId: new Map(),
+  hhSongByGameId: new Map()
 };
 
 function getJsonName(item, lang = "en") {
@@ -98,6 +103,11 @@ function buildJsonIndexes() {
   JSON_INDEX.weaponByName.clear();
   JSON_INDEX.weaponByGameId.clear();
   JSON_INDEX.weaponSeriesByGameId.clear();
+  
+  JSON_INDEX.hhMelodyByGameId.clear();
+  JSON_INDEX.hhEchoWaveByGameId.clear();
+  JSON_INDEX.hhEchoBubbleByGameId.clear();
+  JSON_INDEX.hhSongByGameId.clear();
 
   for (const item of JSON_DATA.item || []) {
     addJsonNameIndex(JSON_INDEX.itemByName, item);
@@ -150,4 +160,28 @@ function buildJsonIndexes() {
       JSON_INDEX.weaponSeriesByGameId.set(String(series.game_id), series);
     }
   }
+  
+  for (const item of JSON_DATA.huntinghornmelodies || []) {
+  if (item.game_id !== undefined) {
+    JSON_INDEX.hhMelodyByGameId.set(String(item.game_id), item);
+  }
+}
+
+for (const item of JSON_DATA.huntinghornechowaves || []) {
+  if (item.game_id !== undefined) {
+    JSON_INDEX.hhEchoWaveByGameId.set(String(item.game_id), item);
+  }
+}
+
+for (const item of JSON_DATA.huntinghornechobubbles || []) {
+  if (item.game_id !== undefined) {
+    JSON_INDEX.hhEchoBubbleByGameId.set(String(item.game_id), item);
+  }
+}
+
+for (const item of JSON_DATA.huntinghornsongs || []) {
+  if (item.game_id !== undefined) {
+    JSON_INDEX.hhSongByGameId.set(String(item.game_id), item);
+  }
+ }
 }
