@@ -757,17 +757,6 @@ function renderJsonItemMeta(entry) {
       </div>
 
       ${
-        item.descriptions?.ja
-          ? `
-            <div class="json-block">
-              <span>Japanese description</span>
-              <p>${formatEntryText(item.descriptions.ja.replace(/\r\n/g, "\n"))}</p>
-            </div>
-          `
-          : ""
-      }
-
-      ${
         recipeText
           ? `
             <div class="json-block">
