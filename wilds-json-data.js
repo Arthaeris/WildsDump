@@ -50,8 +50,11 @@ function addJsonNameIndex(map, item) {
 
 function buildJsonIndexes() {
   JSON_INDEX.itemByName.clear();
+  JSON_INDEX.itemByGameId.clear();
+
   JSON_INDEX.skillByName.clear();
   JSON_INDEX.skillByGameId.clear();
+
   JSON_INDEX.monsterByName.clear();
   JSON_INDEX.armorByName.clear();
   JSON_INDEX.accessoryByName.clear();
@@ -60,6 +63,10 @@ function buildJsonIndexes() {
 
   for (const item of JSON_DATA.item || []) {
     addJsonNameIndex(JSON_INDEX.itemByName, item);
+
+    if (item.game_id !== undefined) {
+      JSON_INDEX.itemByGameId.set(String(item.game_id), item);
+    }
   }
 
   for (const skill of JSON_DATA.skill || []) {
