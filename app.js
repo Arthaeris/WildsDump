@@ -928,27 +928,33 @@ function renderJsonWeaponMeta(entry) {
   const weapon = entry.jsonWeapon;
   if (!weapon) return "";
 
-  const series = JSON_INDEX.weaponSeriesByGameId.get(String(weapon.series_id));
-  const seriesName = getJsonName(series, "en");
+  const crafting = weapon.crafting || {};
+  const seriesName = getJsonWeaponSeriesNameById(weapon.series_id);
 
-  const skillText = Object.entries(weapon.skills || {})
-    .map(([id, level]) => {
-      const skill = JSON_INDEX.skillByGameId.get(String(id));
-      const name = getJsonName(skill, "en") || `Skill ${id}`;
-      return `${name} Lv ${level}`;
-    })
-    .join(" / ");
+  const skills = getLinkedWeaponSkills(weapon.skills);
+  const recipeItems = getLinkedCraftingItems(crafting.inputs);
 
-  const recipeText = Object.entries(weapon.recipe?.inputs || {})
-    .map(([id, amount]) => `${amount}x ${getJsonItemNameById(id)}`)
-    .join(" / ");
+  const previousName =
+    crafting.previous_id !== undefined && crafting.previous_id !== null
+      ? getJsonWeaponNameById(crafting.previous_id)
+      : "";
+
+  const branchNames = (crafting.branches || [])
+    .map(id => getJsonWeaponNameById(id))
+    .filter(Boolean);
+
+  const specialsText = renderWeaponSpecialsText(weapon);
+  const sharpnessText = renderWeaponSharpnessText(weapon);
+  const weaponSpecificText = renderWeaponSpecificText(weapon);
 
   const facts = [
     ["Type", weapon.weapon_file],
+    ["Kind", weapon.kind],
     ["Rarity", weapon.rarity],
-    ["Attack", weapon.attack],
+    ["Attack", weapon.attack_raw],
     ["Affinity", weapon.affinity !== undefined ? `${weapon.affinity}%` : ""],
     ["Defense", weapon.defense],
+    ["Slots", renderWeaponSlotsText(weapon.slots)],
     ["Tree", seriesName],
     ["Game ID", weapon.game_id]
   ].filter(([, value]) => value !== undefined && value !== "");
@@ -966,17 +972,56 @@ function renderJsonWeaponMeta(entry) {
         `).join("")}
       </div>
 
-      ${skillText ? `
+      ${specialsText ? `
         <div class="json-block">
-          <span>Skills</span>
-          <p>${escapeHtml(skillText)}</p>
+          <span>Element / Status</span>
+          <p>${escapeHtml(specialsText)}</p>
         </div>
       ` : ""}
 
-      ${recipeText ? `
+      ${sharpnessText ? `
         <div class="json-block">
-          <span>Recipe</span>
-          <p>${escapeHtml(recipeText)}</p>
+          <span>Sharpness</span>
+          <p>${escapeHtml(sharpnessText)}</p>
+        </div>
+      ` : ""}
+
+      ${weaponSpecificText ? `
+        <div class="json-block">
+          <span>Weapon-specific</span>
+          <p>${escapeHtml(weaponSpecificText)}</p>
+        </div>
+      ` : ""}
+
+      ${skills.length ? `
+        <div class="json-block">
+          <span>Skills</span>
+          <p>${escapeHtml(skills.map(skill => `${skill.name} Lv ${skill.level}`).join(" / "))}</p>
+        </div>
+      ` : ""}
+
+      ${recipeItems.length || crafting.zenny_cost ? `
+        <div class="json-block">
+          <span>Crafting</span>
+          <p>
+            ${crafting.zenny_cost ? `${escapeHtml(crafting.zenny_cost)}z<br>` : ""}
+            ${recipeItems.map(item => `${escapeHtml(item.amount)}x ${escapeHtml(item.name)}`).join("<br>")}
+          </p>
+        </div>
+      ` : ""}
+
+      ${previousName || branchNames.length ? `
+        <div class="json-block">
+          <span>Upgrade tree</span>
+          <p>
+            ${previousName ? `Previous: ${escapeHtml(previousName)}<br>` : ""}
+            ${branchNames.length ? `Branches: ${escapeHtml(branchNames.join(" / "))}<br>` : ""}
+            ${
+              crafting.column !== undefined || crafting.row !== undefined
+                ? `Position: column ${escapeHtml(crafting.column)}, row ${escapeHtml(crafting.row)}`
+                : ""
+            }
+          </p>
         </div>
       ` : ""}
     </details>
