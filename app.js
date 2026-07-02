@@ -1187,6 +1187,7 @@ function attachJsonMetadata(entry) {
   const numericId = Number(firstId);
 
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
+  const jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
 
   let jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
   if (!jsonAmulet && entry.fileKey === "amulet") {
@@ -1197,21 +1198,22 @@ function attachJsonMetadata(entry) {
 
   let jsonSkill = name ? JSON_INDEX.skillByName.get(name) : null;
 
-if (
-  !jsonSkill &&
-  Number.isFinite(numericId) &&
-  entry.fileKey === "skillcommon"
-) {
-  jsonSkill =
-    (JSON_DATA.skill || []).find(skill => Number(skill.game_id) === numericId) ||
-    null;
-}
+  if (
+    !jsonSkill &&
+    Number.isFinite(numericId) &&
+    entry.fileKey === "skillcommon"
+  ) {
+    jsonSkill =
+      (JSON_DATA.skill || []).find(skill => Number(skill.game_id) === numericId) ||
+      null;
+  }
 
   return {
     ...entry,
     jsonItem: jsonItem || null,
     jsonAmulet: jsonAmulet || null,
-    jsonSkill: jsonSkill || null
+    jsonSkill: jsonSkill || null,
+    jsonWeapon: jsonWeapon || null
   };
 }
 
