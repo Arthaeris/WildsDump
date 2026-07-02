@@ -23,3 +23,43 @@ async function loadJsonDatabase() {
     })
   );
 }
+
+const JSON_INDEX = {
+  itemByName: new Map(),
+  skillByName: new Map(),
+  monsterByName: new Map(),
+  armorByName: new Map(),
+  accessoryByName: new Map(),
+  charmByName: new Map(),
+  amuletByName: new Map()
+};
+
+function getJsonName(item, lang = "en") {
+  return item?.names?.[lang] || item?.name?.[lang] || item?.name || "";
+}
+
+function addJsonNameIndex(map, item) {
+  const en = getJsonName(item, "en");
+  const jp = getJsonName(item, "ja");
+
+  if (en) map.set(en.toLowerCase(), item);
+  if (jp) map.set(jp, item);
+}
+
+function buildJsonIndexes() {
+  JSON_INDEX.itemByName.clear();
+  JSON_INDEX.skillByName.clear();
+  JSON_INDEX.monsterByName.clear();
+  JSON_INDEX.armorByName.clear();
+  JSON_INDEX.accessoryByName.clear();
+  JSON_INDEX.charmByName.clear();
+  JSON_INDEX.amuletByName.clear();
+
+  for (const item of JSON_DATA.item || []) addJsonNameIndex(JSON_INDEX.itemByName, item);
+  for (const item of JSON_DATA.skill || []) addJsonNameIndex(JSON_INDEX.skillByName, item);
+  for (const item of JSON_DATA.largemonsters || []) addJsonNameIndex(JSON_INDEX.monsterByName, item);
+  for (const item of JSON_DATA.armor || []) addJsonNameIndex(JSON_INDEX.armorByName, item);
+  for (const item of JSON_DATA.accessory || []) addJsonNameIndex(JSON_INDEX.accessoryByName, item);
+  for (const item of JSON_DATA.charm || []) addJsonNameIndex(JSON_INDEX.charmByName, item);
+  for (const item of JSON_DATA.amulet || []) addJsonNameIndex(JSON_INDEX.amuletByName, item);
+}
