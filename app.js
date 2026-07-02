@@ -684,7 +684,6 @@ function renderEntry(entry) {
       </div>
 
       <div class="entry-section">${escapeHtml(meta.join(" · "))}</div>
-      ${jsonMeta}
 
       <div class="entry-header">
         ${
@@ -715,6 +714,9 @@ function renderEntry(entry) {
       <div class="entry-text entry-text-ids">${formatEntryText(en.textIds)}</div>
       <div class="entry-text entry-text-clean">${formatEntryText(en.textClean)}</div>
       <div class="entry-text entry-text-code">${formatEntryText(en.visualCode)}</div>
+      
+      ${jsonMeta}
+      
     </article>
   `;
 }
