@@ -776,12 +776,20 @@ function renderJsonAmuletMeta(entry) {
   const amulet = entry.jsonAmulet;
   if (!amulet) return "";
 
+  const recipeText = Object.entries(amulet.recipe?.inputs || {})
+    .map(([id, amount]) => `${amount}x item ${id}`)
+    .join(" / ");
+
+  const skillText = Object.entries(amulet.skills || {})
+    .map(([id, level]) => `Skill ${id} Lv ${level}`)
+    .join(" / ");
+
   const facts = [
-    amulet.rarity ? ["Rarity", amulet.rarity] : null,
-    amulet.game_id !== undefined ? ["Game ID", amulet.game_id] : null,
-    amulet.icon ? ["Icon", amulet.icon] : null,
-    amulet.icon_color ? ["Color", amulet.icon_color] : null
-  ].filter(Boolean);
+    ["Rarity", amulet.rarity],
+    ["Level", amulet.level],
+    ["Price", `${amulet.price}z`],
+    ["Random", amulet.is_random ? "Yes" : "No"]
+  ].filter(([, value]) => value !== undefined && value !== "");
 
   return `
     <details class="json-panel">
@@ -795,6 +803,20 @@ function renderJsonAmuletMeta(entry) {
           </div>
         `).join("")}
       </div>
+
+      ${skillText ? `
+        <div class="json-block">
+          <span>Skills</span>
+          <p>${escapeHtml(skillText)}</p>
+        </div>
+      ` : ""}
+
+      ${recipeText ? `
+        <div class="json-block">
+          <span>Recipe</span>
+          <p>${escapeHtml(recipeText)}</p>
+        </div>
+      ` : ""}
     </details>
   `;
 }
