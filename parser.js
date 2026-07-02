@@ -278,7 +278,7 @@ function getWildsCategory(fileKey, family) {
     "twinsword",
     "tachi",
     "hammer",
-    "horn",
+    "whistle",
     "lance",
     "gunlance",
     "slashaxe",
@@ -342,6 +342,7 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "skillcommon",
   "mealskill",
 
+  "whistle",
   "twinsword",
   "tachi",
   "slashaxe",
