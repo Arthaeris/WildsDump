@@ -1090,9 +1090,18 @@ function getEntryPresentation(entry, lang = "en") {
 
 function attachJsonMetadata(entry) {
   const name = String(entry.name || "").toLowerCase();
+  const firstId = String(entry.id || "").split("+")[0].trim();
+  const numericId = Number(firstId);
 
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
-  const jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
+
+  let jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
+
+  if (!jsonAmulet && entry.fileKey === "amulet") {
+    jsonAmulet = (JSON_DATA.amulet || []).find(item =>
+      Number(item.game_id) === numericId
+    ) || null;
+  }
 
   return {
     ...entry,
