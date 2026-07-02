@@ -1,5 +1,26 @@
 const JSON_DATA = {};
 
+const WEAPON_JSON_FILES = [
+  "bow",
+  "chargeblade",
+  "dualblades",
+  "greatsword",
+  "gunlance",
+  "hammer",
+  "heavybowgun",
+  "huntinghorn",
+  "huntinghornechobubbles",
+  "huntinghornechowaves",
+  "huntinghornmelodies",
+  "huntinghornsongs",
+  "insectglaive",
+  "lance",
+  "lightbowgun",
+  "longsword",
+  "switchaxe",
+  "swordshield"
+];
+
 async function loadJsonDatabase() {
   const files = [
     "accessory",
@@ -16,35 +37,16 @@ async function loadJsonDatabase() {
     "weaponseries"
   ];
 
-  const weaponFiles = [
-    "bow",
-    "chargeblade",
-    "dualblades",
-    "greatsword",
-    "gunlance",
-    "hammer",
-    "heavybowgun",
-    "huntinghorn",
-    "huntinghornechobubbles",
-    "huntinghornechowaves",
-    "huntinghornmelodies",
-    "huntinghornsongs",
-    "insectglaive",
-    "lance",
-    "lightbowgun",
-    "longsword",
-    "switchaxe",
-    "swordshield"
-  ];
-
   await Promise.all([
     ...files.map(async file => {
       const response = await fetch(`./json/${file}.json.txt`);
+      if (!response.ok) throw new Error(`Could not load ./json/${file}.json.txt`);
       JSON_DATA[file] = await response.json();
     }),
 
-    ...weaponFiles.map(async file => {
+    ...WEAPON_JSON_FILES.map(async file => {
       const response = await fetch(`./weapons/${file}.json.txt`);
+      if (!response.ok) throw new Error(`Could not load ./weapons/${file}.json.txt`);
       JSON_DATA[file] = await response.json();
     })
   ]);
@@ -128,24 +130,7 @@ function buildJsonIndexes() {
     }
   }
 
-  const weaponFiles = [
-    "bow",
-    "chargeblade",
-    "dualblades",
-    "greatsword",
-    "gunlance",
-    "hammer",
-    "heavybowgun",
-    "huntinghorn",
-    "insectglaive",
-    "lance",
-    "lightbowgun",
-    "longsword",
-    "switchaxe",
-    "swordshield"
-  ];
-
-  for (const file of weaponFiles) {
+  for (const file of WEAPON_JSON_FILES) {
     for (const weapon of JSON_DATA[file] || []) {
       const indexedWeapon = {
         ...weapon,
