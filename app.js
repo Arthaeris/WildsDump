@@ -893,6 +893,37 @@ function renderJsonSkillMeta(entry) {
   `;
 }
 
+function getJsonWeaponNameById(id) {
+  const weapon = JSON_INDEX.weaponByGameId.get(String(id));
+  return getJsonName(weapon, "en") || `weapon ${id}`;
+}
+
+function getJsonSkillNameById(id) {
+  const skill = JSON_INDEX.skillByGameId.get(String(id));
+  return getJsonName(skill, "en") || `Skill ${id}`;
+}
+
+function getJsonWeaponSeriesNameById(id) {
+  const series = JSON_INDEX.weaponSeriesByGameId.get(String(id));
+  return getJsonName(series, "en") || "";
+}
+
+function getLinkedCraftingItems(inputs = {}) {
+  return Object.entries(inputs).map(([id, amount]) => ({
+    id,
+    amount,
+    name: getJsonItemNameById(id)
+  }));
+}
+
+function getLinkedWeaponSkills(skills = {}) {
+  return Object.entries(skills).map(([id, level]) => ({
+    id,
+    level,
+    name: getJsonSkillNameById(id)
+  }));
+}
+
 function renderJsonWeaponMeta(entry) {
   const weapon = entry.jsonWeapon;
   if (!weapon) return "";
