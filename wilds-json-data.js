@@ -100,7 +100,7 @@ function buildJsonIndexes() {
   JSON_INDEX.accessoryByName.clear();
   JSON_INDEX.charmByName.clear();
   JSON_INDEX.amuletByName.clear();
-  
+
   JSON_INDEX.weaponByName.clear();
   JSON_INDEX.weaponByGameId.clear();
   JSON_INDEX.weaponSeriesByGameId.clear();
@@ -133,6 +133,44 @@ function buildJsonIndexes() {
         parent_game_id: amulet.game_id,
         is_random: amulet.is_random
       });
+    }
+  }
+
+  const weaponFiles = [
+    "bow",
+    "chargeblade",
+    "dualblades",
+    "greatsword",
+    "gunlance",
+    "hammer",
+    "heavybowgun",
+    "huntinghorn",
+    "insectglaive",
+    "lance",
+    "lightbowgun",
+    "longsword",
+    "switchaxe",
+    "swordshield"
+  ];
+
+  for (const file of weaponFiles) {
+    for (const weapon of JSON_DATA[file] || []) {
+      const indexedWeapon = {
+        ...weapon,
+        weapon_file: file
+      };
+
+      addJsonNameIndex(JSON_INDEX.weaponByName, indexedWeapon);
+
+      if (weapon.game_id !== undefined) {
+        JSON_INDEX.weaponByGameId.set(String(weapon.game_id), indexedWeapon);
+      }
+    }
+  }
+
+  for (const series of JSON_DATA.weaponseries || []) {
+    if (series.game_id !== undefined) {
+      JSON_INDEX.weaponSeriesByGameId.set(String(series.game_id), series);
     }
   }
 }
