@@ -371,6 +371,10 @@ function buildWildsEntries(sections, npcMap = {}) {
   continue;
 }
 
+if (section.fileKey === "skill") {
+  continue;
+}
+
 if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
   entries.push(...buildSimpleNameTextPairEntries(section));
   continue;
