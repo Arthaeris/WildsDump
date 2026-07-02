@@ -644,6 +644,7 @@ function renderEntry(entry) {
   const jp = getEntryPresentation(entry, "jp");
 
   const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
+  const jsonMeta = renderJsonItemMeta(entry);
 
   return `
     <article
@@ -683,6 +684,7 @@ function renderEntry(entry) {
       </div>
 
       <div class="entry-section">${escapeHtml(meta.join(" · "))}</div>
+      ${jsonMeta}
 
       <div class="entry-header">
         ${
@@ -714,6 +716,26 @@ function renderEntry(entry) {
       <div class="entry-text entry-text-clean">${formatEntryText(en.textClean)}</div>
       <div class="entry-text entry-text-code">${formatEntryText(en.visualCode)}</div>
     </article>
+  `;
+}
+
+function renderJsonItemMeta(entry) {
+  const item = entry.jsonItem;
+  if (!item) return "";
+
+  const parts = [];
+
+  if (item.kind) parts.push(item.kind);
+  if (item.rarity) parts.push(`Rarity ${item.rarity}`);
+  if (item.sellPrice) parts.push(`Sell ${item.sellPrice}z`);
+  if (item.buyPrice) parts.push(`Buy ${item.buyPrice}z`);
+
+  if (!parts.length) return "";
+
+  return `
+    <div class="entry-section json-meta">
+      ${escapeHtml(parts.join(" · "))}
+    </div>
   `;
 }
 
