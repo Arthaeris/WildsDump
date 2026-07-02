@@ -1293,5 +1293,9 @@ dialogueModeBtn.addEventListener("click", () => {
 
 window.addEventListener("scroll", handleScroll, { passive: true });
 
-applyTheme(getSavedTheme());
-loadDump();
+(async () => {
+    applyTheme(getSavedTheme());
+
+    await loadJsonDatabase();
+    await loadDump();
+})();
