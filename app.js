@@ -724,14 +724,22 @@ function renderEntry(entry) {
   `;
 }
 
+function getJsonItemNameById(id) {
+  const item = JSON_INDEX.itemByGameId.get(String(id));
+  return getJsonName(item, "en") || `item ${id}`;
+}
+
 function renderJsonItemMeta(entry) {
   const item = entry.jsonItem;
   if (!item) return "";
 
   const recipeText = (item.recipes || [])
     .map(recipe => {
-      const inputs = (recipe.inputs || []).join(" + ");
-      return `${recipe.amount || 1}x from ${inputs}`;
+      const inputs = (recipe.inputs || [])
+  .map(id => getJsonItemNameById(id))
+  .join(" + ");
+
+return `${recipe.amount || 1}x from ${inputs}`;
     })
     .join(" / ");
 
@@ -778,7 +786,7 @@ function renderJsonAmuletMeta(entry) {
   if (!amulet) return "";
 
   const recipeText = Object.entries(amulet.recipe?.inputs || {})
-    .map(([id, amount]) => `${amount}x item ${id}`)
+    .map(([id, amount]) => `${amount}x ${getJsonItemNameById(id)}`)
     .join(" / ");
 
   const skillText = Object.entries(amulet.skills || {})
