@@ -782,7 +782,12 @@ function renderJsonAmuletMeta(entry) {
     .join(" / ");
 
   const skillText = Object.entries(amulet.skills || {})
-    .map(([id, level]) => `Skill ${id} Lv ${level}`)
+    .map(([id, level]) => {
+      const skill = JSON_INDEX.skillByGameId.get(String(id));
+      const name = getJsonName(skill, "en") || `Skill ${id}`;
+
+      return `${name} Lv ${level}`;
+    })
     .join(" / ");
 
   const facts = [
