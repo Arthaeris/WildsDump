@@ -723,45 +723,59 @@ function renderJsonItemMeta(entry) {
   const item = entry.jsonItem;
   if (!item) return "";
 
-  const lines = [];
-
-  const main = [
-    item.kind,
-    item.rarity ? `Rarity ${item.rarity}` : "",
-    item.max_count ? `Max ${item.max_count}` : "",
-    item.buy_price ? `Buy ${item.buy_price}z` : "",
-    item.sell_price ? `Sell ${item.sell_price}z` : "",
-    item.icon ? `Icon ${item.icon}` : "",
-    item.icon_color ? item.icon_color : ""
-  ].filter(Boolean);
-
-  if (main.length) lines.push(main.join(" · "));
-
-  if (item.descriptions?.ja) {
-    lines.push(`JP: ${item.descriptions.ja.replace(/\r\n/g, "\n")}`);
-  }
-
-  if (item.recipes?.length) {
-    const recipes = item.recipes.map(recipe => {
+  const recipeText = (item.recipes || [])
+    .map(recipe => {
       const inputs = (recipe.inputs || []).join(" + ");
       return `${recipe.amount || 1}x from ${inputs}`;
-    });
+    })
+    .join(" / ");
 
-    lines.push(`Recipes: ${recipes.join(" / ")}`);
-  }
-
-  if (item.out_box !== undefined) {
-    lines.push(`Out box: ${item.out_box ? "Yes" : "No"}`);
-  }
-
-  if (item.foundry !== null && item.foundry !== undefined) {
-    lines.push(`Foundry: ${JSON.stringify(item.foundry)}`);
-  }
+  const facts = [
+    item.kind ? ["Type", item.kind] : null,
+    item.rarity ? ["Rarity", item.rarity] : null,
+    item.max_count ? ["Max", item.max_count] : null,
+    item.buy_price ? ["Buy", `${item.buy_price}z`] : null,
+    item.sell_price ? ["Sell", `${item.sell_price}z`] : null,
+    item.icon ? ["Icon", item.icon] : null,
+    item.icon_color ? ["Color", item.icon_color] : null,
+    item.out_box !== undefined ? ["Out box", item.out_box ? "Yes" : "No"] : null
+  ].filter(Boolean);
 
   return `
-    <div class="entry-section json-meta">
-      ${formatEntryText(lines.join("\n"))}
-    </div>
+    <details class="json-panel">
+      <summary>Item data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+
+      ${
+        item.descriptions?.ja
+          ? `
+            <div class="json-block">
+              <span>Japanese description</span>
+              <p>${formatEntryText(item.descriptions.ja.replace(/\r\n/g, "\n"))}</p>
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        recipeText
+          ? `
+            <div class="json-block">
+              <span>Recipes</span>
+              <p>${escapeHtml(recipeText)}</p>
+            </div>
+          `
+          : ""
+      }
+    </details>
   `;
 }
 
