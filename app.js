@@ -646,7 +646,8 @@ function renderEntry(entry) {
   const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
   const jsonMeta =
   renderJsonItemMeta(entry) ||
-  renderJsonAmuletMeta(entry);
+  renderJsonAmuletMeta(entry) ||
+  renderJsonSkillMeta(entry);
 
   return `
     <article
@@ -817,6 +818,63 @@ function renderJsonAmuletMeta(entry) {
           <p>${escapeHtml(recipeText)}</p>
         </div>
       ` : ""}
+    </details>
+  `;
+}
+
+function renderJsonSkillMeta(entry) {
+  const skill = entry.jsonSkill;
+  if (!skill) return "";
+
+  const ranks = skill.ranks || [];
+
+  const facts = [
+    skill.kind ? ["Type", skill.kind] : null,
+    ranks.length ? ["Levels", ranks.length] : null,
+    skill.icon ? ["Icon", skill.icon] : null,
+    skill.icon_id !== undefined ? ["Icon ID", skill.icon_id] : null,
+    skill.game_id !== undefined ? ["Game ID", skill.game_id] : null
+  ].filter(Boolean);
+
+  return `
+    <details class="json-panel">
+      <summary>Skill data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+
+      ${
+        ranks.length
+          ? `
+            <div class="json-block">
+              <span>Levels</span>
+              ${ranks.map(rank => `
+                <p>
+                  <strong>Lv ${escapeHtml(rank.level)}</strong>
+                  ${
+                    rank.names?.en
+                      ? ` · ${escapeHtml(rank.names.en)}`
+                      : ""
+                  }
+                  ${
+                    rank.set_pieces_required
+                      ? ` · ${escapeHtml(rank.set_pieces_required)} pieces`
+                      : ""
+                  }
+                  <br>
+                  ${formatEntryText(rank.descriptions?.en || "")}
+                </p>
+              `).join("")}
+            </div>
+          `
+          : ""
+      }
     </details>
   `;
 }
@@ -1118,17 +1176,24 @@ function attachJsonMetadata(entry) {
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
 
   let jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
-
   if (!jsonAmulet && entry.fileKey === "amulet") {
-    jsonAmulet = (JSON_DATA.amulet || []).find(item =>
-      Number(item.game_id) === numericId
-    ) || null;
+    jsonAmulet =
+      (JSON_DATA.amulet || []).find(item => Number(item.game_id) === numericId) ||
+      null;
+  }
+
+  let jsonSkill = name ? JSON_INDEX.skillByName.get(name) : null;
+  if (!jsonSkill && Number.isFinite(numericId)) {
+    jsonSkill =
+      (JSON_DATA.skill || []).find(skill => Number(skill.game_id) === numericId) ||
+      null;
   }
 
   return {
     ...entry,
     jsonItem: jsonItem || null,
-    jsonAmulet: jsonAmulet || null
+    jsonAmulet: jsonAmulet || null,
+    jsonSkill: jsonSkill || null
   };
 }
 
@@ -1150,8 +1215,24 @@ function addSearchFields(entry) {
     entry.fileKey,
     entry.sourceFile,
     entry.id,
-    entry.rejectedId
-  ].filter(Boolean).join("\n");
+    entry.rejectedId,
+
+    // Item JSON
+    entry.jsonItem?.descriptions?.en,
+    entry.jsonItem?.descriptions?.ja,
+    entry.jsonItem?.kind,
+
+    // Skill JSON
+    entry.jsonSkill?.descriptions?.en,
+    entry.jsonSkill?.descriptions?.ja,
+    entry.jsonSkill?.kind,
+
+    // Amulet JSON
+    entry.jsonAmulet?.descriptions?.en,
+    entry.jsonAmulet?.descriptions?.ja
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   return {
     ...entry,
