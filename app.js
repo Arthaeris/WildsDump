@@ -1294,8 +1294,10 @@ dialogueModeBtn.addEventListener("click", () => {
 window.addEventListener("scroll", handleScroll, { passive: true });
 
 (async () => {
-    applyTheme(getSavedTheme());
+  applyTheme(getSavedTheme());
 
-    await loadJsonDatabase();
-    await loadDump();
+  await loadJsonDatabase();
+  buildJsonIndexes();
+
+  await loadDump();
 })();
