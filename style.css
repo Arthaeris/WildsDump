@@ -586,3 +586,53 @@ footer {
   opacity: 0.8;
   margin-top: 0.35rem;
 }
+
+
+
+.json-panel {
+  margin-top: 1.4rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.json-panel summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.json-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.json-fact {
+  padding: 0.75rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.json-fact span,
+.json-block span {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.json-fact strong {
+  font-size: 1rem;
+}
+
+.json-block {
+  margin-top: 1rem;
+}
+
+.json-block p {
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+}
