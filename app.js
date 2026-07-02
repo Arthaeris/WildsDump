@@ -644,7 +644,9 @@ function renderEntry(entry) {
   const jp = getEntryPresentation(entry, "jp");
 
   const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
-  const jsonMeta = renderJsonItemMeta(entry);
+  const jsonMeta =
+  renderJsonItemMeta(entry) ||
+  renderJsonAmuletMeta(entry);
 
   return `
     <article
@@ -766,6 +768,33 @@ function renderJsonItemMeta(entry) {
           `
           : ""
       }
+    </details>
+  `;
+}
+
+function renderJsonAmuletMeta(entry) {
+  const amulet = entry.jsonAmulet;
+  if (!amulet) return "";
+
+  const facts = [
+    amulet.rarity ? ["Rarity", amulet.rarity] : null,
+    amulet.game_id !== undefined ? ["Game ID", amulet.game_id] : null,
+    amulet.icon ? ["Icon", amulet.icon] : null,
+    amulet.icon_color ? ["Color", amulet.icon_color] : null
+  ].filter(Boolean);
+
+  return `
+    <details class="json-panel">
+      <summary>Amulet data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
     </details>
   `;
 }
@@ -1061,11 +1090,14 @@ function getEntryPresentation(entry, lang = "en") {
 
 function attachJsonMetadata(entry) {
   const name = String(entry.name || "").toLowerCase();
+
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
+  const jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
 
   return {
     ...entry,
-    jsonItem: jsonItem || null
+    jsonItem: jsonItem || null,
+    jsonAmulet: jsonAmulet || null
   };
 }
 
