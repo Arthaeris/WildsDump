@@ -1397,7 +1397,14 @@ function attachJsonMetadata(entry) {
   const numericId = Number(firstId);
 
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
-  const jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
+
+  let jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
+
+  if (!jsonWeapon && name && entry.fileKey === "whistle") {
+    jsonWeapon = (JSON_DATA.huntinghorn || [])
+      .map(weapon => ({ ...weapon, weapon_file: "huntinghorn" }))
+      .find(weapon => getJsonName(weapon, "en").toLowerCase() === name) || null;
+  }
 
   let jsonAmulet = name ? JSON_INDEX.amuletByName.get(name) : null;
   if (!jsonAmulet && entry.fileKey === "amulet") {
@@ -1407,7 +1414,6 @@ function attachJsonMetadata(entry) {
   }
 
   let jsonSkill = name ? JSON_INDEX.skillByName.get(name) : null;
-
   if (
     !jsonSkill &&
     Number.isFinite(numericId) &&
