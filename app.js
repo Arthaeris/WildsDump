@@ -723,18 +723,44 @@ function renderJsonItemMeta(entry) {
   const item = entry.jsonItem;
   if (!item) return "";
 
-  const parts = [];
+  const lines = [];
 
-  if (item.kind) parts.push(item.kind);
-  if (item.rarity) parts.push(`Rarity ${item.rarity}`);
-  if (item.sellPrice) parts.push(`Sell ${item.sellPrice}z`);
-  if (item.buyPrice) parts.push(`Buy ${item.buyPrice}z`);
+  const main = [
+    item.kind,
+    item.rarity ? `Rarity ${item.rarity}` : "",
+    item.max_count ? `Max ${item.max_count}` : "",
+    item.buy_price ? `Buy ${item.buy_price}z` : "",
+    item.sell_price ? `Sell ${item.sell_price}z` : "",
+    item.icon ? `Icon ${item.icon}` : "",
+    item.icon_color ? item.icon_color : ""
+  ].filter(Boolean);
 
-  if (!parts.length) return "";
+  if (main.length) lines.push(main.join(" · "));
+
+  if (item.descriptions?.ja) {
+    lines.push(`JP: ${item.descriptions.ja.replace(/\r\n/g, "\n")}`);
+  }
+
+  if (item.recipes?.length) {
+    const recipes = item.recipes.map(recipe => {
+      const inputs = (recipe.inputs || []).join(" + ");
+      return `${recipe.amount || 1}x from ${inputs}`;
+    });
+
+    lines.push(`Recipes: ${recipes.join(" / ")}`);
+  }
+
+  if (item.out_box !== undefined) {
+    lines.push(`Out box: ${item.out_box ? "Yes" : "No"}`);
+  }
+
+  if (item.foundry !== null && item.foundry !== undefined) {
+    lines.push(`Foundry: ${JSON.stringify(item.foundry)}`);
+  }
 
   return `
     <div class="entry-section json-meta">
-      ${escapeHtml(parts.join(" · "))}
+      ${formatEntryText(lines.join("\n"))}
     </div>
   `;
 }
