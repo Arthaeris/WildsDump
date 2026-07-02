@@ -340,6 +340,7 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "amulet",
   "armor",
   "skillcommon",
+  "mealskill",
 
   "twinsword",
   "tachi",
