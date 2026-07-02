@@ -1028,6 +1028,80 @@ function renderJsonWeaponMeta(entry) {
   `;
 }
 
+function renderWeaponSlotsText(slots = []) {
+  if (!Array.isArray(slots) || !slots.length) return "";
+  return slots.filter(Boolean).map(slot => `Lv${slot}`).join(" / ");
+}
+
+function renderWeaponSpecialsText(weapon) {
+  const specials = weapon.specials || {};
+  return Object.entries(specials)
+    .filter(([, value]) => value !== undefined && value !== null && value !== "" && value !== 0)
+    .map(([key, value]) => `${titleCaseFamily(key)} ${value}`)
+    .join(" / ");
+}
+
+function renderWeaponSharpnessText(weapon) {
+  const sharpness = weapon.sharpness;
+  if (!sharpness) return "";
+
+  return Object.entries(sharpness)
+    .filter(([, value]) => Number(value) > 0)
+    .map(([key, value]) => `${titleCaseFamily(key)} ${value}`)
+    .join(" / ");
+}
+
+function renderWeaponSpecificText(weapon) {
+  const parts = [];
+
+  if (weapon.phial) {
+    parts.push(`Phial: ${weapon.phial}`);
+  }
+
+  if (weapon.shell) {
+    parts.push(`Shelling: ${weapon.shell}${weapon.shell_level ? ` Lv ${weapon.shell_level}` : ""}`);
+  }
+
+  if (weapon.coatings?.length) {
+    parts.push(`Coatings: ${weapon.coatings.join(" / ")}`);
+  }
+
+  if (weapon.special_ammo) {
+    parts.push(`Special Ammo: ${weapon.special_ammo}`);
+  }
+
+  if (weapon.ammo?.length) {
+    const ammo = weapon.ammo
+      .map(item => {
+        const rapid = item.rapid ? " rapid" : "";
+        return `${item.kind} Lv${item.level} x${item.capacity}${rapid}`;
+      })
+      .join(" / ");
+
+    parts.push(`Ammo: ${ammo}`);
+  }
+
+  if (weapon.melody_id !== undefined) {
+    const melody = JSON_INDEX.hhMelodyByGameId.get(String(weapon.melody_id));
+    const melodyName = getJsonName(melody, "en") || `Melody ${weapon.melody_id}`;
+    parts.push(`Melody: ${melodyName}`);
+  }
+
+  if (weapon.echo_wave_id !== undefined) {
+    const wave = JSON_INDEX.hhEchoWaveByGameId.get(String(weapon.echo_wave_id));
+    const waveName = getJsonName(wave, "en") || `Echo Wave ${weapon.echo_wave_id}`;
+    parts.push(`Echo Wave: ${waveName}`);
+  }
+
+  if (weapon.echo_bubble_id !== undefined) {
+    const bubble = JSON_INDEX.hhEchoBubbleByGameId.get(String(weapon.echo_bubble_id));
+    const bubbleName = getJsonName(bubble, "en") || `Echo Bubble ${weapon.echo_bubble_id}`;
+    parts.push(`Echo Bubble: ${bubbleName}`);
+  }
+
+  return parts.join(" / ");
+}
+
 function updateEntryLanguage(card, lang) {
   card.dataset.lang = lang;
 
