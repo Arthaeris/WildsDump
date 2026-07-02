@@ -58,7 +58,8 @@ function parseWildsSection(block, language = "en") {
 
   const strings = parseWildsStrings(body);
 
-  const fileKey = normalizeWildsFileKey(title || sourcePath);
+  const rawFileKey = normalizeWildsFileKey(title || sourcePath);
+const fileKey = FILEKEY_ALIAS[rawFileKey] || rawFileKey;
   const family = getWildsFileFamily(fileKey);
   const category = getWildsCategory(fileKey, family);
   const dialogueInfo = getWildsDialogueInfo(fileKey, strings);
@@ -158,6 +159,10 @@ function normalizeWildsFileKey(filename) {
     .toLowerCase()
     .trim();
 }
+
+const FILEKEY_ALIAS = {
+  "1494279108-915754543": "horn"
+};
 
 function getWildsFileFamily(fileKey) {
   const key = String(fileKey || "").toLowerCase();
