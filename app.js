@@ -1313,8 +1313,10 @@ if (monsterButton) {
     return;
   }
 
-  const card = event.target.closest(".entry");
-  if (card && window.matchMedia("(hover: none)").matches) {
+  if (event.target.closest(".json-panel")) return;
+
+const card = event.target.closest(".entry");
+if (card && window.matchMedia("(hover: none)").matches) {
     if (window.getSelection()?.toString()) return;
 
     const current = card.dataset.mode || "ids";
