@@ -16,6 +16,40 @@ async function loadJsonDatabase() {
     "weaponseries"
   ];
 
+  const weaponFiles = [
+    "bow",
+    "chargeblade",
+    "dualblades",
+    "greatsword",
+    "gunlance",
+    "hammer",
+    "heavybowgun",
+    "huntinghorn",
+    "huntinghornechobubbles",
+    "huntinghornechowaves",
+    "huntinghornmelodies",
+    "huntinghornsongs",
+    "insectglaive",
+    "lance",
+    "lightbowgun",
+    "longsword",
+    "switchaxe",
+    "swordshield"
+  ];
+
+  await Promise.all([
+    ...files.map(async file => {
+      const response = await fetch(`./json/${file}.json.txt`);
+      JSON_DATA[file] = await response.json();
+    }),
+
+    ...weaponFiles.map(async file => {
+      const response = await fetch(`./weapons/${file}.json.txt`);
+      JSON_DATA[file] = await response.json();
+    })
+  ]);
+}
+
   await Promise.all(
     files.map(async file => {
       const response = await fetch(`./json/${file}.json.txt`);
