@@ -1341,6 +1341,7 @@ return {
     .join("\n")
     .toLowerCase()
 };
+}
 
 async function loadDump() {
   results.innerHTML = '<div class="empty">Loading Wilds text dumps…</div>';
