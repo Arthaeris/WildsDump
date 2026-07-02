@@ -1282,58 +1282,65 @@ function addSearchFields(entry) {
   const jp = getEntryPresentation(entry, "jp");
 
   const searchText = [
+  en.name,
+  jp.name,
+  entry.name,
+  entry.nameJp,
+  entry.text,
+  entry.textJp,
+  entry.raw,
+  entry.rawJp,
+  entry.category,
+  entry.family,
+  entry.fileKey,
+  entry.sourceFile,
+  entry.id,
+  entry.rejectedId,
+
+  // Item JSON
+  entry.jsonItem?.descriptions?.en,
+  entry.jsonItem?.descriptions?.ja,
+  entry.jsonItem?.kind,
+
+  // Skill JSON
+  entry.jsonSkill?.descriptions?.en,
+  entry.jsonSkill?.descriptions?.ja,
+  entry.jsonSkill?.kind,
+
+  // Amulet JSON
+  entry.jsonAmulet?.descriptions?.en,
+  entry.jsonAmulet?.descriptions?.ja,
+
+  // Weapon JSON
+  entry.jsonWeapon?.weapon_file,
+  entry.jsonWeapon?.rarity,
+  entry.jsonWeapon?.attack,
+  entry.jsonWeapon?.affinity,
+  entry.jsonWeapon?.defense,
+  entry.jsonWeapon?.series_id
+]
+  .filter(Boolean)
+  .join("\n");
+
+return {
+  ...entry,
+
+  searchNameEn: en.name || entry.name || "",
+  searchNameJp: jp.name || entry.nameJp || "",
+
+  searchText,
+  searchTextLower: searchText.toLowerCase(),
+
+  searchNameLower: [
     en.name,
     jp.name,
     entry.name,
-    entry.nameJp,
-    entry.text,
-    entry.textJp,
-    entry.raw,
-    entry.rawJp,
-    entry.category,
-    entry.family,
-    entry.fileKey,
-    entry.sourceFile,
-    entry.id,
-    entry.rejectedId,
-
-    // Item JSON
-    entry.jsonItem?.descriptions?.en,
-    entry.jsonItem?.descriptions?.ja,
-    entry.jsonItem?.kind,
-
-    // Skill JSON
-    entry.jsonSkill?.descriptions?.en,
-    entry.jsonSkill?.descriptions?.ja,
-    entry.jsonSkill?.kind,
-
-    // Amulet JSON
-    entry.jsonAmulet?.descriptions?.en,
-    entry.jsonAmulet?.descriptions?.ja
+    entry.nameJp
   ]
     .filter(Boolean)
-    .join("\n");
-
-  return {
-    ...entry,
-
-    searchNameEn: en.name || entry.name || "",
-    searchNameJp: jp.name || entry.nameJp || "",
-
-    searchText,
-    searchTextLower: searchText.toLowerCase(),
-
-    searchNameLower: [
-      en.name,
-      jp.name,
-      entry.name,
-      entry.nameJp
-    ]
-      .filter(Boolean)
-      .join("\n")
-      .toLowerCase()
-  };
-}
+    .join("\n")
+    .toLowerCase()
+};
 
 async function loadDump() {
   results.innerHTML = '<div class="empty">Loading Wilds text dumps…</div>';
