@@ -27,7 +27,7 @@ async function loadJsonDatabase() {
 const JSON_INDEX = {
   itemByName: new Map(),
   skillByName: new Map(),
-  skillByGameId: new Map()
+  skillByGameId: new Map(),
   monsterByName: new Map(),
   armorByName: new Map(),
   accessoryByName: new Map(),
