@@ -50,14 +50,6 @@ async function loadJsonDatabase() {
   ]);
 }
 
-  await Promise.all(
-    files.map(async file => {
-      const response = await fetch(`./json/${file}.json.txt`);
-      JSON_DATA[file] = await response.json();
-    })
-  );
-}
-
 const JSON_INDEX = {
   itemByName: new Map(),
   itemByGameId: new Map(),
