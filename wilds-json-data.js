@@ -61,5 +61,13 @@ function buildJsonIndexes() {
   for (const item of JSON_DATA.armor || []) addJsonNameIndex(JSON_INDEX.armorByName, item);
   for (const item of JSON_DATA.accessory || []) addJsonNameIndex(JSON_INDEX.accessoryByName, item);
   for (const item of JSON_DATA.charm || []) addJsonNameIndex(JSON_INDEX.charmByName, item);
-  for (const item of JSON_DATA.amulet || []) addJsonNameIndex(JSON_INDEX.amuletByName, item);
+  for (const amulet of JSON_DATA.amulet || []) {
+  for (const rank of amulet.ranks || []) {
+    addJsonNameIndex(JSON_INDEX.amuletByName, {
+      ...rank,
+      parent_game_id: amulet.game_id,
+      is_random: amulet.is_random
+    });
+  }
+}
 }
