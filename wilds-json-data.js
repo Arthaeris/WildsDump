@@ -61,13 +61,19 @@ async function loadJsonDatabase() {
 const JSON_INDEX = {
   itemByName: new Map(),
   itemByGameId: new Map(),
+
   skillByName: new Map(),
   skillByGameId: new Map(),
+
   monsterByName: new Map(),
   armorByName: new Map(),
   accessoryByName: new Map(),
   charmByName: new Map(),
-  amuletByName: new Map()
+  amuletByName: new Map(),
+
+  weaponByName: new Map(),
+  weaponByGameId: new Map(),
+  weaponSeriesByGameId: new Map()
 };
 
 function getJsonName(item, lang = "en") {
