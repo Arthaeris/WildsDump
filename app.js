@@ -1196,11 +1196,16 @@ function attachJsonMetadata(entry) {
   }
 
   let jsonSkill = name ? JSON_INDEX.skillByName.get(name) : null;
-  if (!jsonSkill && Number.isFinite(numericId)) {
-    jsonSkill =
-      (JSON_DATA.skill || []).find(skill => Number(skill.game_id) === numericId) ||
-      null;
-  }
+
+if (
+  !jsonSkill &&
+  Number.isFinite(numericId) &&
+  entry.fileKey === "skillcommon"
+) {
+  jsonSkill =
+    (JSON_DATA.skill || []).find(skill => Number(skill.game_id) === numericId) ||
+    null;
+}
 
   return {
     ...entry,
