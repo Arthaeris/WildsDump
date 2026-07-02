@@ -893,6 +893,65 @@ function renderJsonSkillMeta(entry) {
   `;
 }
 
+function renderJsonWeaponMeta(entry) {
+  const weapon = entry.jsonWeapon;
+  if (!weapon) return "";
+
+  const series = JSON_INDEX.weaponSeriesByGameId.get(String(weapon.series_id));
+  const seriesName = getJsonName(series, "en");
+
+  const skillText = Object.entries(weapon.skills || {})
+    .map(([id, level]) => {
+      const skill = JSON_INDEX.skillByGameId.get(String(id));
+      const name = getJsonName(skill, "en") || `Skill ${id}`;
+      return `${name} Lv ${level}`;
+    })
+    .join(" / ");
+
+  const recipeText = Object.entries(weapon.recipe?.inputs || {})
+    .map(([id, amount]) => `${amount}x ${getJsonItemNameById(id)}`)
+    .join(" / ");
+
+  const facts = [
+    ["Type", weapon.weapon_file],
+    ["Rarity", weapon.rarity],
+    ["Attack", weapon.attack],
+    ["Affinity", weapon.affinity !== undefined ? `${weapon.affinity}%` : ""],
+    ["Defense", weapon.defense],
+    ["Tree", seriesName],
+    ["Game ID", weapon.game_id]
+  ].filter(([, value]) => value !== undefined && value !== "");
+
+  return `
+    <details class="json-panel">
+      <summary>Weapon data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+
+      ${skillText ? `
+        <div class="json-block">
+          <span>Skills</span>
+          <p>${escapeHtml(skillText)}</p>
+        </div>
+      ` : ""}
+
+      ${recipeText ? `
+        <div class="json-block">
+          <span>Recipe</span>
+          <p>${escapeHtml(recipeText)}</p>
+        </div>
+      ` : ""}
+    </details>
+  `;
+}
+
 function updateEntryLanguage(card, lang) {
   card.dataset.lang = lang;
 
