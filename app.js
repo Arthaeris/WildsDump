@@ -647,7 +647,8 @@ function renderEntry(entry) {
   const jsonMeta =
   renderJsonItemMeta(entry) ||
   renderJsonAmuletMeta(entry) ||
-  renderJsonSkillMeta(entry);
+  renderJsonSkillMeta(entry) ||
+  renderJsonWeaponMeta(entry);
 
   return `
     <article
