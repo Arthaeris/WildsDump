@@ -100,6 +100,10 @@ function buildJsonIndexes() {
   JSON_INDEX.accessoryByName.clear();
   JSON_INDEX.charmByName.clear();
   JSON_INDEX.amuletByName.clear();
+  
+  JSON_INDEX.weaponByName.clear();
+  JSON_INDEX.weaponByGameId.clear();
+  JSON_INDEX.weaponSeriesByGameId.clear();
 
   for (const item of JSON_DATA.item || []) {
     addJsonNameIndex(JSON_INDEX.itemByName, item);
