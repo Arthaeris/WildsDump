@@ -1006,6 +1006,16 @@ function getEntryPresentation(entry, lang = "en") {
   };
 }
 
+function attachJsonMetadata(entry) {
+  const name = String(entry.name || "").toLowerCase();
+  const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
+
+  return {
+    ...entry,
+    jsonItem: jsonItem || null
+  };
+}
+
 function addSearchFields(entry) {
   const en = getEntryPresentation(entry, "en");
   const jp = getEntryPresentation(entry, "jp");
@@ -1072,7 +1082,9 @@ async function loadDump() {
     const jpEntries = buildWildsEntries(jpSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
 
     sections = enSections;
-    entries = mergeLocalizedEntries(enEntries, jpEntries).map(addSearchFields);
+    entries = mergeLocalizedEntries(enEntries, jpEntries)
+  .map(attachJsonMetadata)
+  .map(addSearchFields);
 
     buildIndexes();
     buildWordFrequencyIndex();
