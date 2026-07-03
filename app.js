@@ -791,7 +791,7 @@ function renderJsonItemMeta(entry) {
   const recipeText = (item.recipes || [])
     .map(recipe => {
       const inputs = (recipe.inputs || [])
-  .map(id => getJsonWeaponNameById(id, weapon.weapon_file))
+  .map(id => getJsonItemNameById(id))
   .join(" + ");
 
 return `${recipe.amount || 1}x from ${inputs}`;
