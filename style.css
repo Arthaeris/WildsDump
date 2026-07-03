@@ -636,3 +636,32 @@ footer {
   margin: 0.25rem 0 0;
   line-height: 1.5;
 }
+
+
+
+
+
+
+
+.sharpness-bar {
+  display: flex;
+  height: 18px;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+}
+
+.sharpness-segment {
+  flex: var(--sharpness-width) 0 0;
+  min-width: 4px;
+}
+
+.sharpness-red { background: #c74735; }
+.sharpness-orange { background: #d9822b; }
+.sharpness-yellow { background: #d8c448; }
+.sharpness-green { background: #5aa35a; }
+.sharpness-blue { background: #4a83c4; }
+.sharpness-white { background: #e8e3d8; }
+.sharpness-purple { background: #9b6ad6; }
