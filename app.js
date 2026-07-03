@@ -1604,6 +1604,40 @@ function getEntryPresentation(entry, lang = "en") {
   };
 }
 
+function normalizeSkillCommonEntry(entry) {
+  if (entry.fileKey !== "skillcommon") return entry;
+  if (!entry.jsonSkill) return entry;
+
+  const skill = entry.jsonSkill;
+
+  const getSkillText = lang => {
+    const direct = skill.descriptions?.[lang];
+    if (direct) return direct;
+
+    const ranks = skill.ranks || [];
+    return ranks
+      .map(rank => {
+        const desc = rank.descriptions?.[lang] || "";
+        if (!desc) return "";
+
+        return `Lv ${rank.level}\n${desc}`;
+      })
+      .filter(Boolean)
+      .join("\n\n");
+  };
+
+  const enText = getSkillText("en");
+  const jpText = getSkillText("ja");
+
+  return {
+    ...entry,
+    raw: enText || entry.raw,
+    text: enText || entry.text,
+    rawJp: jpText || entry.rawJp,
+    textJp: jpText || entry.textJp
+  };
+}
+
 function attachJsonMetadata(entry) {
   const name = String(entry.name || "").toLowerCase();
   const firstId = String(entry.id || "").split("+")[0].trim();
@@ -1738,6 +1772,7 @@ async function loadDump() {
     sections = enSections;
     entries = mergeLocalizedEntries(enEntries, jpEntries)
   .map(attachJsonMetadata)
+  .map(normalizeSkillCommonEntry)
   .map(addSearchFields);
 
     buildIndexes();
