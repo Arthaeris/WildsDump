@@ -991,7 +991,7 @@ function renderJsonWeaponMeta(entry) {
         ${facts.map(([label, value]) => `
           <div class="json-fact">
             <span>${escapeHtml(label)}</span>
-            <strong>${escapeHtml(value)}</strong>
+            <strong>${label === "Rarity" ? value : escapeHtml(value)}</strong>
           </div>
         `).join("")}
       </div>
@@ -1042,9 +1042,10 @@ ${previousName || branchNames.length ? `
 }
 
 function renderRarityText(rarity) {
-  const amount = Number(rarity);
-  if (!amount) return "";
-  return `★ ${amount}`;
+  const value = Number(rarity);
+  if (!value) return "";
+
+  return `<span class="rarity-pill rarity-${value}">★ ${value}</span>`;
 }
 
 function renderSkillPills(skills) {
