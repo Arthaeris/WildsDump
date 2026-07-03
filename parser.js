@@ -380,6 +380,10 @@ if (section.fileKey === "skill") {
   continue;
 }
 
+if (section.fileKey === "armorseries") {
+  continue;
+}
+
 if (section.fileKey === "skillcommon") {
   entries.push(...buildSkillCommonEntries(section));
   continue;
