@@ -761,7 +761,8 @@ function renderEntry(entry) {
   renderJsonAmuletMeta(entry) ||
   renderJsonSkillMeta(entry) ||
   renderJsonArmorMeta(entry) ||
-  renderJsonWeaponMeta(entry);
+  renderJsonWeaponMeta(entry) ||
+  renderJsonMonsterMeta(entry);
 
   return `
     <article
@@ -836,6 +837,39 @@ function renderEntry(entry) {
       
     </article>
   `;
+}
+
+function getJsonSpeciesName(kind) {
+  const species = JSON_INDEX.speciesByKind.get(kind);
+  return getJsonName(species, "en") || titleCaseFamily(kind);
+}
+
+function getJsonPartName(partKey) {
+  const part = JSON_INDEX.partNameByKey.get(partKey);
+  return getJsonName(part, "en") || titleCaseFamily(partKey);
+}
+
+function formatHitzone(value) {
+  if (value === undefined || value === null) return "—";
+  return Math.round(Number(value) * 100);
+}
+
+function formatMonsterLevel(level) {
+  return level ? "★".repeat(Number(level)) : "—";
+}
+
+function formatMonsterTrait(trait) {
+  const name =
+    trait.element ||
+    trait.status ||
+    trait.effect ||
+    trait.kind ||
+    "";
+
+  const condition = trait.condition ? ` (${trait.condition})` : "";
+  const level = trait.level ? ` ${formatMonsterLevel(trait.level)}` : "";
+
+  return `${titleCaseFamily(name)}${level}${condition}`.trim();
 }
 
 function getJsonItemNameById(id) {
@@ -1274,6 +1308,132 @@ function renderJsonArmorMeta(entry) {
       ${setBonusText}
       ${groupBonusText}
     </details>
+  `;
+}
+
+function renderJsonMonsterMeta(entry) {
+  const monster = entry.jsonMonster;
+  if (!monster) return "";
+
+  const species = getJsonSpeciesName(monster.species);
+
+  const facts = [
+    ["Species", species],
+    ["Base Health", monster.base_health],
+    monster.size?.base ? ["Base Size", Math.round(monster.size.base)] : null,
+    monster.size?.mini ? ["Mini", Math.round(monster.size.mini)] : null,
+    monster.size?.silver ? ["Silver", Math.round(monster.size.silver)] : null,
+    monster.size?.gold ? ["Gold", Math.round(monster.size.gold)] : null,
+    ["Game ID", monster.game_id]
+  ].filter(Boolean).filter(([, value]) => value !== undefined && value !== "");
+
+  const weaknesses = monster.weaknesses || [];
+  const resistances = monster.resistances || [];
+  const parts = monster.parts || [];
+
+  return `
+    <details class="json-panel monster-json-panel" open>
+      <summary>Monster data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+
+      ${monster.features?.en ? `
+        <div class="json-block">
+          <span>Features</span>
+          <p>${formatEntryText(monster.features.en)}</p>
+        </div>
+      ` : ""}
+
+      ${monster.tips?.en ? `
+        <div class="json-block">
+          <span>Hunter Notes</span>
+          <p>${formatEntryText(monster.tips.en)}</p>
+        </div>
+      ` : ""}
+
+      ${weaknesses.length ? `
+        <div class="json-block">
+          <span>Weaknesses</span>
+          <div class="pill-row">
+            ${weaknesses.map(item => `
+              <span class="data-pill">${escapeHtml(formatMonsterTrait(item))}</span>
+            `).join("")}
+          </div>
+        </div>
+      ` : ""}
+
+      ${resistances.length ? `
+        <div class="json-block">
+          <span>Resistances / Immunities</span>
+          <div class="pill-row">
+            ${resistances.map(item => `
+              <span class="data-pill">${escapeHtml(formatMonsterTrait(item))}</span>
+            `).join("")}
+          </div>
+        </div>
+      ` : ""}
+
+      ${parts.length ? `
+        <div class="json-block">
+          <span>Parts / Hitzones</span>
+          ${renderMonsterPartsTable(parts)}
+        </div>
+      ` : ""}
+    </details>
+  `;
+}
+
+function renderMonsterPartsTable(parts) {
+  return `
+    <div class="monster-table-wrap">
+      <table class="monster-parts-table">
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>HP</th>
+            <th>Essence</th>
+            <th>Cut</th>
+            <th>Blunt</th>
+            <th>Ammo</th>
+            <th>Fire</th>
+            <th>Water</th>
+            <th>Thunder</th>
+            <th>Ice</th>
+            <th>Dragon</th>
+            <th>Stun</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${parts.map(part => {
+            const m = part.multipliers || {};
+
+            return `
+              <tr>
+                <td>${escapeHtml(getJsonPartName(part.part))}</td>
+                <td>${escapeHtml(part.base_health ?? "—")}</td>
+                <td>${escapeHtml(part.kinsect_essence || "—")}</td>
+                <td>${formatHitzone(m.slash)}</td>
+                <td>${formatHitzone(m.blunt)}</td>
+                <td>${formatHitzone(m.pierce)}</td>
+                <td>${formatHitzone(m.fire)}</td>
+                <td>${formatHitzone(m.water)}</td>
+                <td>${formatHitzone(m.thunder)}</td>
+                <td>${formatHitzone(m.ice)}</td>
+                <td>${formatHitzone(m.dragon)}</td>
+                <td>${formatHitzone(m.stun)}</td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>
   `;
 }
 
@@ -1849,6 +2009,8 @@ function attachJsonMetadata(entry) {
   const jsonArmorPiece = name ? JSON_INDEX.armorPieceByName.get(name) : null;
   const jsonArmorSet = name ? JSON_INDEX.armorSetByName.get(name) : null;
 
+  const jsonMonster = name ? JSON_INDEX.monsterByName.get(name) : null;
+
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
 
   let jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
@@ -1888,6 +2050,7 @@ let jsonSkill =
     jsonSkill: jsonSkill || null,
     jsonArmorPiece: jsonArmorPiece || null,
     jsonArmorSet: jsonArmorSet || null,
+    jsonMonster: jsonMonster || null,
     jsonWeapon: jsonWeapon || null
   };
 }
