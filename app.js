@@ -1153,6 +1153,7 @@ const WEAPON_TYPE_LABELS = {
 };
 
 const WEAPON_FILE_ALIASES = {
+  longsword: "greatsword",
   sword: "greatsword",
   greatsword: "greatsword",
 
