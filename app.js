@@ -1155,38 +1155,47 @@ function renderJsonArmorMeta(entry) {
   if (!armor) return "";
 
   const set = armor.armor_set || {};
-
-  const upgrade =
-    JSON_INDEX.armorUpgradeByRarity.get(String(set.rarity));
-
+  const upgrade = JSON_INDEX.armorUpgradeByRarity.get(String(set.rarity));
   const maxUpgrade = upgrade?.steps?.at(-1);
 
-  const setName =
+  const seriesName =
+    ARMOR_SERIES_BY_ID.get(String(set.game_id)) ||
+    ARMOR_SERIES_BY_ID.get(String(set.id)) ||
     armor.armor_set_name ||
-    getJsonName(set, "en") ||
     "";
 
-  const skillText = Object.entries(armor.skills || {})
-    .map(([id, level]) => `${getJsonSkillNameById(id)} Lv ${level}`)
-    .join(" / ");
+  const skills = Object.entries(armor.skills || {}).map(([id, level]) => ({
+    id,
+    level,
+    name: getJsonSkillNameById(id)
+  }));
 
-  const materialText = Object.entries(armor.crafting?.inputs || {})
-    .map(([id, amount]) => `${amount}x ${getJsonItemNameById(id)}`)
-    .join(" / ");
+  const recipeItems = Object.entries(armor.crafting?.inputs || {}).map(([id, amount]) => ({
+    id,
+    amount,
+    name: getJsonItemNameById(id)
+  }));
+
+  const pieceName = titleCaseFamily(armor.kind || "");
+
+  const resistances = armor.resistances || {};
+  const resistanceText = [
+    `🔥 ${formatSignedNumber(resistances.fire)}`,
+    `💧 ${formatSignedNumber(resistances.water)}`,
+    `⚡ ${formatSignedNumber(resistances.thunder)}`,
+    `❄️ ${formatSignedNumber(resistances.ice)}`,
+    `🐉 ${formatSignedNumber(resistances.dragon)}`
+  ].join("   ");
+
+  const setBonusText = renderArmorBonusText("Set Bonus", armor.armor_set_bonus);
+  const groupBonusText = renderArmorBonusText("Group Bonus", armor.armor_group_bonus);
 
   const facts = [
-    setName ? ["Set", setName] : null,
-    ["Piece", armor.kind],
-    ["Rarity", set.rarity],
+    seriesName ? ["Set", seriesName] : null,
+    ["Piece", pieceName],
+    ["Rarity", renderRarityText(set.rarity)],
     ["Defense", `${armor.defense?.base ?? "?"} → ${armor.defense?.max ?? "?"}`],
-    ["Slots", renderWeaponSlotsText(armor.slots)],
-    ["Fire", armor.resistances?.fire],
-    ["Water", armor.resistances?.water],
-    ["Thunder", armor.resistances?.thunder],
-    ["Ice", armor.resistances?.ice],
-    ["Dragon", armor.resistances?.dragon],
-    ["Craft", armor.crafting?.price ? `${armor.crafting.price}z` : ""],
-    ["Max upgrade", maxUpgrade ? `Lv ${maxUpgrade.level}` : ""]
+    ["Slots", renderWeaponSlotsText(armor.slots)]
   ].filter(Boolean).filter(([, value]) => value !== undefined && value !== "");
 
   return `
@@ -1197,25 +1206,91 @@ function renderJsonArmorMeta(entry) {
         ${facts.map(([label, value]) => `
           <div class="json-fact">
             <span>${escapeHtml(label)}</span>
-            <strong>${escapeHtml(value)}</strong>
+            <strong>${label === "Rarity" ? value : escapeHtml(value)}</strong>
           </div>
         `).join("")}
       </div>
 
-      ${skillText ? `
+      <div class="json-block">
+        <span>Resistances</span>
+        <p>${escapeHtml(resistanceText)}</p>
+      </div>
+
+      ${skills.length ? `
         <div class="json-block">
           <span>Skills</span>
-          <p>${escapeHtml(skillText)}</p>
+          ${renderSkillPills(skills)}
         </div>
       ` : ""}
 
-      ${materialText ? `
+      ${recipeItems.length || armor.crafting?.price ? `
         <div class="json-block">
-          <span>Materials</span>
-          <p>${escapeHtml(materialText)}</p>
+          <span>Crafting</span>
+          ${renderCraftingBlock(
+            { zenny_cost: armor.crafting?.price },
+            recipeItems
+          )}
         </div>
       ` : ""}
+
+      ${maxUpgrade ? `
+        <div class="json-block">
+          <span>Upgrade</span>
+          <p>Max Lv ${escapeHtml(maxUpgrade.level)}</p>
+        </div>
+      ` : ""}
+
+      ${setBonusText}
+      ${groupBonusText}
     </details>
+  `;
+}
+
+function formatSignedNumber(value) {
+  const number = Number(value || 0);
+  return number > 0 ? `+${number}` : String(number);
+}
+
+function renderArmorBonusText(label, bonus) {
+  if (!bonus) return "";
+
+  const name =
+    getJsonName(bonus, "en") ||
+    bonus.name ||
+    bonus.skill_name ||
+    "";
+
+  const pieces = bonus.pieces || bonus.ranks || bonus.levels || [];
+
+  const detailText = Array.isArray(pieces)
+    ? pieces.map(piece => {
+        const required =
+          piece.pieces ||
+          piece.required_pieces ||
+          piece.set_pieces_required ||
+          piece.level ||
+          "";
+
+        const skillId = piece.skill_id || piece.skill;
+        const skillName = skillId ? getJsonSkillNameById(skillId) : "";
+
+        const level = piece.skill_level || piece.level || "";
+
+        return [
+          required ? `${required} pieces` : "",
+          skillName ? `${skillName}${level ? ` Lv ${level}` : ""}` : ""
+        ].filter(Boolean).join(" · ");
+      }).filter(Boolean).join("<br>")
+    : "";
+
+  if (!name && !detailText) return "";
+
+  return `
+    <div class="json-block">
+      <span>${escapeHtml(label)}</span>
+      ${name ? `<p><strong>${escapeHtml(name)}</strong></p>` : ""}
+      ${detailText ? `<p>${detailText}</p>` : ""}
+    </div>
   `;
 }
 
