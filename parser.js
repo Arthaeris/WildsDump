@@ -339,7 +339,6 @@ function titleCaseFamily(value) {
 const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "amulet",
   "armor",
-  "skillcommon",
   "mealskill",
 
   "whistle",
@@ -578,6 +577,74 @@ function buildAccessoryEntries(section) {
     if (!desc && !name) continue;
 
     entries.push(makeMergedAccessoryEntry(section, id, name, desc));
+  }
+
+  return entries;
+}
+
+function buildSkillCommonEntries(section) {
+  const entries = [];
+
+  const isSkillName = text => {
+    const key = String(text || "").toLowerCase();
+    return Boolean(JSON_INDEX?.skillByName?.get(key));
+  };
+
+  const getJsonSkill = text => {
+    const key = String(text || "").toLowerCase();
+    return JSON_INDEX?.skillByName?.get(key) || null;
+  };
+
+  for (let i = 0; i < section.strings.length; i++) {
+    const nameItem = section.strings[i];
+    const name = nameItem?.text || "";
+
+    if (!isSkillName(name)) continue;
+
+    const jsonSkill = getJsonSkill(name);
+
+    const nextItem = section.strings[i + 1];
+    const nextText = nextItem?.text || "";
+
+    const hasDumpDescription =
+      nextText &&
+      !isSkillName(nextText);
+
+    const desc = hasDumpDescription
+      ? nextText
+      : jsonSkill?.descriptions?.en || "";
+
+    const descItem = hasDumpDescription ? nextItem : null;
+
+    entries.push({
+      uid: `${section.fileKey}:${nameItem.id}`,
+      language: section.language,
+      id: descItem
+        ? `${nameItem.id} + ${descItem.id}`
+        : nameItem.id,
+      sourceFile: section.title,
+      sourcePath: section.sourcePath,
+      fileKey: section.fileKey,
+      family: section.family,
+      category: section.category,
+
+      dialogueId: "",
+      dialogueType: "",
+      dialogueFamily: "",
+      speaker: "",
+      isDialogue: false,
+
+      rejectedId: "",
+      isRejected: false,
+
+      name,
+      raw: desc,
+      text: desc
+    });
+
+    if (hasDumpDescription) {
+      i++;
+    }
   }
 
   return entries;
