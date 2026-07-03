@@ -928,6 +928,27 @@ function getLinkedWeaponSkills(skills = {}) {
   }));
 }
 
+const WEAPON_TYPE_LABELS = {
+  greatsword: "Great Sword",
+  longsword: "Long Sword",
+  swordshield: "Sword & Shield",
+  dualblades: "Dual Blades",
+  hammer: "Hammer",
+  huntinghorn: "Hunting Horn",
+  lance: "Lance",
+  gunlance: "Gunlance",
+  switchaxe: "Switch Axe",
+  chargeblade: "Charge Blade",
+  insectglaive: "Insect Glaive",
+  bow: "Bow",
+  lightbowgun: "Light Bowgun",
+  heavybowgun: "Heavy Bowgun"
+};
+
+function getWeaponTypeLabel(file) {
+  return WEAPON_TYPE_LABELS[file] || titleCaseFamily(file);
+}
+
 function renderJsonWeaponMeta(entry) {
   const weapon = entry.jsonWeapon;
   if (!weapon) return "";
@@ -952,16 +973,15 @@ function renderJsonWeaponMeta(entry) {
   const weaponSpecificText = renderWeaponSpecificText(weapon);
 
   const facts = [
-    ["Type", weapon.weapon_file],
-    ["Kind", weapon.kind],
-    ["Rarity", weapon.rarity],
-    ["Raw Attack", weapon.attack_raw],
-    ["Affinity", weapon.affinity !== undefined ? `${weapon.affinity}%` : ""],
-    ["Defense", weapon.defense],
-    ["Slots", renderWeaponSlotsText(weapon.slots)],
-    ["Tree", seriesName],
-    ["Game ID", weapon.game_id]
-  ].filter(([, value]) => value !== undefined && value !== "");
+  ["Weapon Type", getWeaponTypeLabel(weapon.weapon_file)],
+  ["Rarity", renderRarityText(weapon.rarity)],
+  ["Raw Attack", weapon.attack_raw],
+  ["Affinity", weapon.affinity !== undefined ? `${weapon.affinity}%` : ""],
+  ["Defense", weapon.defense],
+  ["Slots", renderWeaponSlotsText(weapon.slots)],
+  ["Tree", seriesName],
+  ["Game ID", weapon.game_id]
+].filter(([, value]) => value !== undefined && value !== "");
 
   return `
     <details class="json-panel">
@@ -1032,32 +1052,88 @@ function renderJsonWeaponMeta(entry) {
   `;
 }
 
+function renderRarityText(rarity) {
+  const amount = Number(rarity);
+  if (!amount) return "";
+  return `★ ${amount}`;
+}
+
+function renderSkillPills(skills) {
+  if (!skills.length) return "";
+
+  return `
+    <div class="pill-row">
+      ${skills.map(skill => `
+        <span class="data-pill">${escapeHtml(skill.name)} Lv ${escapeHtml(skill.level)}</span>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderWeaponTreeFlow(previousName, currentName, branchNames, crafting) {
+  if (!previousName && !branchNames.length) return "";
+
+  return `
+    <div class="tree-flow">
+      ${previousName ? `<div class="tree-node muted-node">${escapeHtml(previousName)}</div><div class="tree-arrow">↓</div>` : ""}
+      <div class="tree-node current-node">${escapeHtml(currentName)}</div>
+      ${branchNames.length ? `<div class="tree-arrow">↓</div>` : ""}
+      ${branchNames.map(name => `<div class="tree-node branch-node">${escapeHtml(name)}</div>`).join("")}
+      ${
+        crafting.column !== undefined || crafting.row !== undefined
+          ? `<small>column ${escapeHtml(crafting.column)}, row ${escapeHtml(crafting.row)}</small>`
+          : ""
+      }
+    </div>
+  `;
+}
+
+function renderCraftingBlock(crafting, recipeItems) {
+  if (!recipeItems.length && !crafting.zenny_cost) return "";
+
+  return `
+    <div class="crafting-list">
+      ${crafting.zenny_cost ? `<div class="zenny">💰 ${escapeHtml(Number(crafting.zenny_cost).toLocaleString())}z</div>` : ""}
+      ${recipeItems.map(item => `
+        <div class="material-row">
+          <span>${escapeHtml(item.amount)}×</span>
+          <strong>${escapeHtml(item.name)}</strong>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
 function renderWeaponSharpnessBar(weapon) {
   const sharpness = weapon.sharpness;
   if (!sharpness) return "";
 
   const colors = ["red", "orange", "yellow", "green", "blue", "white", "purple"];
 
-  const segments = colors
-    .map(color => {
-      const value = Number(sharpness[color] || 0);
-      if (!value) return "";
+  const active = colors
+    .map(color => ({ color, value: Number(sharpness[color] || 0) }))
+    .filter(item => item.value > 0);
 
-      return `
-        <span
-          class="sharpness-segment sharpness-${color}"
-          style="--sharpness-width:${value}"
-          title="${escapeAttribute(titleCaseFamily(color))} ${escapeAttribute(value)}"
-        ></span>
-      `;
-    })
-    .join("");
-
-  if (!segments) return "";
+  if (!active.length) return "";
 
   return `
-    <div class="sharpness-bar">
-      ${segments}
+    <div class="sharpness-wrap">
+      <div class="sharpness-bar">
+        ${active.map(item => `
+          <span
+            class="sharpness-segment sharpness-${item.color}"
+            style="--sharpness-width:${item.value}"
+          ></span>
+        `).join("")}
+      </div>
+
+      <div class="sharpness-values">
+        ${active.map(item => `
+          <span style="--sharpness-width:${item.value}">
+            ${escapeHtml(item.value)}
+          </span>
+        `).join("")}
+      </div>
     </div>
   `;
 }
