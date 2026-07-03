@@ -790,11 +790,15 @@ function renderJsonItemMeta(entry) {
 
   const recipeText = (item.recipes || [])
     .map(recipe => {
-      const inputs = (recipe.inputs || [])
-  .map(id => getJsonItemNameById(id))
-  .join(" + ");
+      const rawInputs = recipe.inputs || [];
 
-return `${recipe.amount || 1}x from ${inputs}`;
+      const inputs = Array.isArray(rawInputs)
+        ? rawInputs.map(id => `1x ${getJsonItemNameById(id)}`)
+        : Object.entries(rawInputs).map(([id, amount]) =>
+            `${amount}x ${getJsonItemNameById(id)}`
+          );
+
+      return `${recipe.amount || 1}x from ${inputs.join(" + ")}`;
     })
     .join(" / ");
 
@@ -822,16 +826,12 @@ return `${recipe.amount || 1}x from ${inputs}`;
         `).join("")}
       </div>
 
-      ${
-        recipeText
-          ? `
-            <div class="json-block">
-              <span>Recipes</span>
-              <p>${escapeHtml(recipeText)}</p>
-            </div>
-          `
-          : ""
-      }
+      ${recipeText ? `
+        <div class="json-block">
+          <span>Recipes</span>
+          <p>${escapeHtml(recipeText)}</p>
+        </div>
+      ` : ""}
     </details>
   `;
 }
