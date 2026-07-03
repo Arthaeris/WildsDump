@@ -1161,10 +1161,9 @@ function renderJsonArmorMeta(entry) {
 
   const maxUpgrade = upgrade?.steps?.at(-1);
 
-  const seriesName =
-    ARMOR_SERIES_BY_ID.get(String(set.game_id)) ||
-    ARMOR_SERIES_BY_ID.get(String(set.id)) ||
+  const setName =
     armor.armor_set_name ||
+    getJsonName(set, "en") ||
     "";
 
   const skillText = Object.entries(armor.skills || {})
@@ -1176,8 +1175,7 @@ function renderJsonArmorMeta(entry) {
     .join(" / ");
 
   const facts = [
-    seriesName ? ["Series", seriesName] : null,
-    ["Set", armor.armor_set_name],
+    setName ? ["Set", setName] : null,
     ["Piece", armor.kind],
     ["Rarity", set.rarity],
     ["Defense", `${armor.defense?.base ?? "?"} → ${armor.defense?.max ?? "?"}`],
