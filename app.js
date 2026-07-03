@@ -817,8 +817,6 @@ function renderJsonItemMeta(entry) {
     .map(recipe => {
       const rawInputs = recipe.inputs || [];
 
-      const rawInputs = recipe.inputs || [];
-
 const inputs = Array.isArray(rawInputs)
   ? rawInputs.map(id => `1x ${getJsonItemNameById(id)}`)
   : typeof rawInputs === "object"
