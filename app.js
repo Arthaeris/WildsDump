@@ -1609,6 +1609,8 @@ function normalizeSkillCommonEntry(entry) {
   if (!entry.jsonSkill) return entry;
 
   const skill = entry.jsonSkill;
+  const skillNameEn = getJsonName(skill, "en") || entry.name;
+  const skillNameJp = getJsonName(skill, "ja") || entry.nameJp;
 
   const getSkillText = lang => {
     const direct = skill.descriptions?.[lang];
@@ -1631,8 +1633,13 @@ function normalizeSkillCommonEntry(entry) {
 
   return {
     ...entry,
+
+    name: skillNameEn,
+    nameJp: skillNameJp,
+
     raw: enText || entry.raw,
     text: enText || entry.text,
+
     rawJp: jpText || entry.rawJp,
     textJp: jpText || entry.textJp
   };
@@ -1660,7 +1667,11 @@ function attachJsonMetadata(entry) {
       null;
   }
 
-  let jsonSkill = name ? JSON_INDEX.skillByName.get(name) : null;
+  const textAsName = String(entry.text || "").trim().toLowerCase();
+
+let jsonSkill =
+  (name ? JSON_INDEX.skillByName.get(name) : null) ||
+  (textAsName ? JSON_INDEX.skillByName.get(textAsName) : null);
   if (
     !jsonSkill &&
     Number.isFinite(numericId) &&
