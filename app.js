@@ -1149,6 +1149,19 @@ const WEAPON_TYPE_LABELS = {
   heavybowgun: "Heavy Bowgun"
 };
 
+const WEAPON_FILE_ALIASES = {
+  sword: "greatsword",
+  greatsword: "greatsword",
+
+  tachi: "longsword",
+  shortsword: "swordshield",
+  twinsword: "dualblades",
+  whistle: "huntinghorn",
+  slashaxe: "switchaxe",
+  chargeaxe: "chargeblade",
+  rod: "insectglaive"
+};
+
 function getWeaponTypeLabel(file) {
   return WEAPON_TYPE_LABELS[file] || titleCaseFamily(file);
 }
