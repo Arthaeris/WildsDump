@@ -2101,7 +2101,15 @@ function addSearchFields(entry) {
   entry.jsonWeapon?.attack,
   entry.jsonWeapon?.affinity,
   entry.jsonWeapon?.defense,
-  entry.jsonWeapon?.series_id
+  entry.jsonWeapon?.series_id,
+  
+  entry.jsonMonster?.descriptions?.en,
+  entry.jsonMonster?.descriptions?.ja,
+  entry.jsonMonster?.features?.en,
+  entry.jsonMonster?.features?.ja,
+  entry.jsonMonster?.tips?.en,
+  entry.jsonMonster?.tips?.ja,
+  entry.jsonMonster?.species
 ]
   .filter(Boolean)
   .join("\n");
