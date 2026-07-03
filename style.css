@@ -742,3 +742,34 @@ footer {
 .tree-flow small {
   color: var(--muted);
 }
+
+
+
+
+
+
+.json-block .sharpness-values span {
+  display: block;
+  flex: var(--sharpness-width) 0 0;
+  min-width: 4px;
+  text-align: center;
+}
+
+.json-block .data-pill {
+  display: inline-flex;
+}
+
+.json-block .material-row span {
+  display: inline;
+  min-width: auto;
+}
+
+.material-row {
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+
+.material-row strong {
+  font-size: 1rem;
+}
