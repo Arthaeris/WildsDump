@@ -1127,9 +1127,12 @@ const WEAPON_TYPE_ORDER = [
 ];
 
 function getEntryWeaponFile(entry) {
-  if (entry.jsonWeapon?.weapon_file) return entry.jsonWeapon.weapon_file;
-  if (entry.fileKey === "whistle") return "huntinghorn";
-  return entry.fileKey || "";
+  const file =
+    entry.jsonWeapon?.weapon_file ||
+    entry.fileKey ||
+    "";
+
+  return WEAPON_FILE_ALIASES[file] || file;
 }
 
 const WEAPON_TYPE_LABELS = {
@@ -2049,6 +2052,14 @@ const name = String(displayName).toLowerCase();
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
 
   let jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
+
+if (!jsonWeapon && name) {
+  const weaponFile = WEAPON_FILE_ALIASES[entry.fileKey] || entry.fileKey;
+
+  jsonWeapon = (JSON_DATA[weaponFile] || [])
+    .map(weapon => ({ ...weapon, weapon_file: weaponFile }))
+    .find(weapon => getJsonName(weapon, "en").toLowerCase() === name) || null;
+}
 
   if (!jsonWeapon && name && entry.fileKey === "whistle") {
     jsonWeapon = (JSON_DATA.huntinghorn || [])
