@@ -817,11 +817,15 @@ function renderJsonItemMeta(entry) {
     .map(recipe => {
       const rawInputs = recipe.inputs || [];
 
-      const inputs = Array.isArray(rawInputs)
-        ? rawInputs.map(id => `1x ${getJsonItemNameById(id)}`)
-        : Object.entries(rawInputs).map(([id, amount]) =>
-            `${amount}x ${getJsonItemNameById(id)}`
-          );
+      const rawInputs = recipe.inputs || [];
+
+const inputs = Array.isArray(rawInputs)
+  ? rawInputs.map(id => `1x ${getJsonItemNameById(id)}`)
+  : typeof rawInputs === "object"
+    ? Object.entries(rawInputs).map(([id, amount]) =>
+        `${amount}x ${getJsonItemNameById(id)}`
+      )
+    : [];
 
       return `${recipe.amount || 1}x from ${inputs.join(" + ")}`;
     })
