@@ -377,6 +377,11 @@ if (section.fileKey === "skill") {
   continue;
 }
 
+if (section.fileKey === "skillcommon") {
+  entries.push(...buildSkillCommonEntries(section));
+  continue;
+}
+
 if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
   entries.push(...buildSimpleNameTextPairEntries(section));
   continue;
