@@ -665,16 +665,24 @@ footer {
 
 .sharpness-bar {
   display: flex;
+  align-items: stretch;
   height: 14px;
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid var(--border);
+  background: transparent;
 }
 
 .sharpness-segment {
   flex: var(--sharpness-width) 0 0;
   min-width: 4px;
-  border-right: 1px solid rgba(0,0,0,0.25);
+  height: 100%;
+  display: block;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.sharpness-segment:last-child {
+  border-right: none;
 }
 
 .sharpness-values {
