@@ -669,8 +669,8 @@ footer {
   height: 14px;
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: transparent;
+  background: var(--border);
+  padding: 1px;
 }
 
 .sharpness-segment {
@@ -678,7 +678,6 @@ footer {
   min-width: 4px;
   height: 100%;
   display: block;
-  border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .sharpness-segment:last-child {
