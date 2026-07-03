@@ -1970,10 +1970,22 @@ dialogueModeBtn.addEventListener("click", () => {
 window.addEventListener("scroll", handleScroll, { passive: true });
 
 (async () => {
-  applyTheme(getSavedTheme());
+  try {
+    applyTheme(getSavedTheme());
 
-  await loadJsonDatabase();
-  buildJsonIndexes();
+    await loadJsonDatabase();
+    buildJsonIndexes();
 
-  await loadDump();
+    await loadDump();
+  } catch (error) {
+    console.error(error);
+
+    count.textContent = "0 entries";
+    results.innerHTML = `
+      <div class="empty">
+        Startup failed:<br><br>
+        <code>${escapeHtml(error.message || String(error))}</code>
+      </div>
+    `;
+  }
 })();
