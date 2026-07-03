@@ -978,7 +978,7 @@ function renderJsonWeaponMeta(entry) {
 
       ${specialsText ? `
         <div class="json-block">
-          <span>Element / Status</span>
+          <span>Raw Element / Status</span>
           <p>${escapeHtml(specialsText)}</p>
         </div>
       ` : ""}
