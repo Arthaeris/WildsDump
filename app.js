@@ -334,7 +334,7 @@ function renderMonsterIndex() {
         ${
           activeGroup && items.some(([name]) => name === activeMonsterKey)
             ? `
-              <div class="monster-inline-card">
+              <div class="monster-inline-card results">
                 ${renderEntry(activeGroup[0])}
               </div>
             `
