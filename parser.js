@@ -585,14 +585,35 @@ function buildAccessoryEntries(section) {
 function buildSkillCommonEntries(section) {
   const entries = [];
 
+  const getSkillIndex = () => {
+    if (typeof JSON_INDEX === "undefined") return null;
+    return JSON_INDEX.skillByName || null;
+  };
+
   const isSkillName = text => {
-    const key = String(text || "").toLowerCase();
-    return Boolean(JSON_INDEX?.skillByName?.get(key));
+    const map = getSkillIndex();
+    if (!map) return false;
+
+    const value = String(text || "").trim();
+    if (!value) return false;
+
+    return Boolean(
+      map.get(value.toLowerCase()) ||
+      map.get(value)
+    );
   };
 
   const getJsonSkill = text => {
-    const key = String(text || "").toLowerCase();
-    return JSON_INDEX?.skillByName?.get(key) || null;
+    const map = getSkillIndex();
+    if (!map) return null;
+
+    const value = String(text || "").trim();
+
+    return (
+      map.get(value.toLowerCase()) ||
+      map.get(value) ||
+      null
+    );
   };
 
   for (let i = 0; i < section.strings.length; i++) {
@@ -608,7 +629,8 @@ function buildSkillCommonEntries(section) {
 
     const hasDumpDescription =
       nextText &&
-      !isSkillName(nextText);
+      !isSkillName(nextText) &&
+      !nextItem?.isRejected;
 
     const desc = hasDumpDescription
       ? nextText
