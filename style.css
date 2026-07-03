@@ -773,3 +773,22 @@ footer {
 .material-row strong {
   font-size: 1rem;
 }
+
+
+
+
+
+
+.rarity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.rarity-1, .rarity-2 { background: #7f8c8d; color: white; }
+.rarity-3, .rarity-4 { background: #4f9d69; color: white; }
+.rarity-5, .rarity-6 { background: #4a83c4; color: white; }
+.rarity-7, .rarity-8 { background: #b78a4f; color: #151009; }
