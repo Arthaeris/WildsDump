@@ -727,6 +727,7 @@ function renderEntry(entry) {
   renderJsonItemMeta(entry) ||
   renderJsonAmuletMeta(entry) ||
   renderJsonSkillMeta(entry) ||
+  renderJsonArmorMeta(entry) ||
   renderJsonWeaponMeta(entry);
 
   return `
@@ -1141,6 +1142,67 @@ ${previousName || branchNames.length ? `
     ${renderWeaponTreeFlow(previousName, entry.name, branchNames, crafting)}
   </div>
 ` : ""}
+    </details>
+  `;
+}
+
+function renderJsonArmorMeta(entry) {
+  const armor = entry.jsonArmorPiece;
+  if (!armor) return "";
+
+  const set = armor.armor_set || {};
+  const upgrade = JSON_INDEX.armorUpgradeByRarity.get(String(set.rarity));
+  const maxUpgrade = upgrade?.steps?.at(-1);
+
+  const skillText = Object.entries(armor.skills || {})
+    .map(([id, level]) => `${getJsonSkillNameById(id)} Lv ${level}`)
+    .join(" / ");
+
+  const materialText = Object.entries(armor.crafting?.inputs || {})
+    .map(([id, amount]) => `${amount}x ${getJsonItemNameById(id)}`)
+    .join(" / ");
+
+  const facts = [
+    ["Set", armor.armor_set_name],
+    ["Piece", armor.kind],
+    ["Rarity", set.rarity],
+    ["Defense", `${armor.defense?.base ?? "?"} → ${armor.defense?.max ?? "?"}`],
+    ["Slots", renderWeaponSlotsText(armor.slots)],
+    ["Fire", armor.resistances?.fire],
+    ["Water", armor.resistances?.water],
+    ["Thunder", armor.resistances?.thunder],
+    ["Ice", armor.resistances?.ice],
+    ["Dragon", armor.resistances?.dragon],
+    ["Craft", armor.crafting?.price ? `${armor.crafting.price}z` : ""],
+    ["Max upgrade", maxUpgrade ? `Lv ${maxUpgrade.level}` : ""]
+  ].filter(([, value]) => value !== undefined && value !== "");
+
+  return `
+    <details class="json-panel">
+      <summary>Armor data</summary>
+
+      <div class="json-grid">
+        ${facts.map(([label, value]) => `
+          <div class="json-fact">
+            <span>${escapeHtml(label)}</span>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("")}
+      </div>
+
+      ${skillText ? `
+        <div class="json-block">
+          <span>Skills</span>
+          <p>${escapeHtml(skillText)}</p>
+        </div>
+      ` : ""}
+
+      ${materialText ? `
+        <div class="json-block">
+          <span>Materials</span>
+          <p>${escapeHtml(materialText)}</p>
+        </div>
+      ` : ""}
     </details>
   `;
 }
