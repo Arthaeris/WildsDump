@@ -274,6 +274,7 @@ function getWildsCategory(fileKey, family) {
 
   if ([
     "greatsword",
+    "sword",
     "shortsword",
     "twinsword",
     "tachi",
@@ -346,6 +347,7 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "tachi",
   "slashaxe",
   "shortsword",
+  "sword",
   "rod",
   "lightbowgun",
   "lance",
