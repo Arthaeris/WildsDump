@@ -792,3 +792,13 @@ footer {
 .rarity-3, .rarity-4 { background: #4f9d69; color: white; }
 .rarity-5, .rarity-6 { background: #4a83c4; color: white; }
 .rarity-7, .rarity-8 { background: #b78a4f; color: #151009; }
+
+
+
+
+.weapon-type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
