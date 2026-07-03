@@ -676,10 +676,35 @@ function appendNextEntries() {
     renderedEntryCount + PAGE_SIZE
   );
 
-  currentRenderTarget.insertAdjacentHTML(
-    "beforeend",
-    nextItems.map(renderEntry).join("")
-  );
+  let html = "";
+
+  for (const entry of nextItems) {
+    try {
+      html += renderEntry(entry);
+    } catch (e) {
+      html += `
+        <article class="entry">
+          <div class="entry-header">
+            <div class="entry-name">
+              ❌ Render failed
+            </div>
+          </div>
+
+          <div class="entry-text">
+            ID: ${escapeHtml(entry.id || "")}<br>
+            Name: ${escapeHtml(entry.name || "")}<br>
+            File: ${escapeHtml(entry.fileKey || "")}<br>
+            Category: ${escapeHtml(entry.category || "")}<br><br>
+
+            Error:<br>
+            ${escapeHtml(e.message)}
+          </div>
+        </article>
+      `;
+    }
+  }
+
+  currentRenderTarget.insertAdjacentHTML("beforeend", html);
 
   renderedEntryCount += nextItems.length;
   isAppending = false;
