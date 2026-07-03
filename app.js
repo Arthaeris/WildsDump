@@ -54,6 +54,8 @@ let npcGroups = new Map();
 let monsterGroups = new Map();
 let wordFrequency = [];
 
+let activeWeaponTypeFilter = "All";
+
 let activeTypeFilter = "All";
 let defaultCardMode = "ids";
 let currentSearchResults = [];
@@ -131,6 +133,30 @@ function showCategory(category, addToHistory = true) {
 
   categoryTitle.textContent = category;
 
+if (category === "Weapons") {
+  activeWeaponTypeFilter = "All";
+
+  categoryResults.innerHTML = `
+    <section class="weapon-type-filter">
+      <button class="filter-chip active" type="button" data-weapon-type-filter="All">
+        All
+      </button>
+
+      ${WEAPON_TYPE_ORDER.map(type => `
+        <button class="filter-chip" type="button" data-weapon-type-filter="${escapeAttribute(type)}">
+          ${escapeHtml(getWeaponTypeLabel(type))}
+        </button>
+      `).join("")}
+    </section>
+  `;
+
+  renderWeaponCategoryResults();
+  showOnly(categoryView);
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  return;
+}
+
   renderEntryList({
     target: categoryResults,
     items: categories.get(category) || [],
@@ -140,6 +166,34 @@ function showCategory(category, addToHistory = true) {
   showOnly(categoryView);
   closeMenu();
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderWeaponCategoryResults() {
+  const weaponItems = (categories.get("Weapons") || [])
+    .filter(entry =>
+      activeWeaponTypeFilter === "All" ||
+      getEntryWeaponFile(entry) === activeWeaponTypeFilter
+    );
+
+  const existingFilter = categoryResults.querySelector(".weapon-type-filter");
+
+  categoryResults.innerHTML = `
+    ${existingFilter ? existingFilter.outerHTML : ""}
+    <section class="results weapon-filtered-results">
+      ${
+        weaponItems.length
+          ? weaponItems.map(renderEntry).join("")
+          : `<div class="empty">No weapons found.</div>`
+      }
+    </section>
+  `;
+
+  categoryResults.querySelectorAll("[data-weapon-type-filter]").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.weaponTypeFilter === activeWeaponTypeFilter
+    );
+  });
 }
 
 function showNpcIndex(addToHistory = true) {
@@ -926,6 +980,29 @@ function getLinkedWeaponSkills(skills = {}) {
     level,
     name: getJsonSkillNameById(id)
   }));
+}
+
+const WEAPON_TYPE_ORDER = [
+  "greatsword",
+  "longsword",
+  "swordshield",
+  "dualblades",
+  "hammer",
+  "huntinghorn",
+  "lance",
+  "gunlance",
+  "switchaxe",
+  "chargeblade",
+  "insectglaive",
+  "bow",
+  "lightbowgun",
+  "heavybowgun"
+];
+
+function getEntryWeaponFile(entry) {
+  if (entry.jsonWeapon?.weapon_file) return entry.jsonWeapon.weapon_file;
+  if (entry.fileKey === "whistle") return "huntinghorn";
+  return entry.fileKey || "";
 }
 
 const WEAPON_TYPE_LABELS = {
@@ -1759,6 +1836,14 @@ copySearchResultsBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", event => {
+  
+  const weaponTypeButton = event.target.closest("[data-weapon-type-filter]");
+if (weaponTypeButton) {
+  activeWeaponTypeFilter = weaponTypeButton.dataset.weaponTypeFilter;
+  renderWeaponCategoryResults();
+  return;
+}
+  
   const categoryButton = event.target.closest("[data-category]");
   if (categoryButton) {
     showCategory(categoryButton.dataset.category);
