@@ -274,9 +274,7 @@ function showMonsterIndex(addToHistory = true) {
     "Aquatic Life"
   ];
 
-  const grouped = new Map(
-    orderedSections.map(name => [name, []])
-  );
+  const grouped = new Map(orderedSections.map(name => [name, []]));
 
   for (const [name, group] of monsterGroups.entries()) {
     let section = "Endemic Life";
@@ -291,21 +289,28 @@ function showMonsterIndex(addToHistory = true) {
     grouped.get(section).push([name, group]);
   }
 
-  monsterList.innerHTML = orderedSections.map(sectionName => {
+  monsterList.innerHTML = orderedSections.map((sectionName, index) => {
     const items = grouped.get(sectionName)
       .sort((a, b) => a[0].localeCompare(b[0]));
 
     if (!items.length) return "";
 
     return `
-      <h3 class="index-section-title">${escapeHtml(sectionName)}</h3>
+      <details class="monster-index-section" ${index === 0 ? "open" : ""}>
+        <summary class="index-section-title monster-index-summary">
+          <span>${escapeHtml(sectionName)}</span>
+          <small>${items.length}</small>
+        </summary>
 
-      ${items.map(([name, group]) => `
-        <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
-          <span>${escapeHtml(name)}</span>
-          <small>${group[0]?.id || ""} · ${group.length} entry</small>
-        </button>
-      `).join("")}
+        <div class="monster-index-section-body">
+          ${items.map(([name, group]) => `
+            <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
+              <span>${escapeHtml(name)}</span>
+              <small>${group[0]?.id || ""} · ${group.length} entry</small>
+            </button>
+          `).join("")}
+        </div>
+      </details>
     `;
   }).join("");
 
