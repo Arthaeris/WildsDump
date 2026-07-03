@@ -868,7 +868,7 @@ function renderHitzoneCell(value, extraClass = "") {
 }
 
 function renderEssenceCell(value) {
-  const essence = String(value || "—").toLowerCase();
+  const essence = value ? String(value).toLowerCase() : "none";
 
   return `
     <td>
