@@ -1332,7 +1332,7 @@ function renderJsonMonsterMeta(entry) {
   const parts = monster.parts || [];
 
   return `
-    <details class="json-panel monster-json-panel" open>
+    <details class="json-panel monster-json-panel">
       <summary>Monster data</summary>
 
       <div class="json-grid">
@@ -1343,20 +1343,6 @@ function renderJsonMonsterMeta(entry) {
           </div>
         `).join("")}
       </div>
-
-      ${monster.features?.en ? `
-        <div class="json-block">
-          <span>Features</span>
-          <p>${formatEntryText(monster.features.en)}</p>
-        </div>
-      ` : ""}
-
-      ${monster.tips?.en ? `
-        <div class="json-block">
-          <span>Hunter Notes</span>
-          <p>${formatEntryText(monster.tips.en)}</p>
-        </div>
-      ` : ""}
 
       ${weaknesses.length ? `
         <div class="json-block">
