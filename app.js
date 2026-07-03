@@ -757,12 +757,12 @@ function renderEntry(entry) {
 
   const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
   const jsonMeta =
+  renderJsonMonsterMeta(entry) ||
   renderJsonItemMeta(entry) ||
   renderJsonAmuletMeta(entry) ||
   renderJsonSkillMeta(entry) ||
   renderJsonArmorMeta(entry) ||
-  renderJsonWeaponMeta(entry) ||
-  renderJsonMonsterMeta(entry);
+  renderJsonWeaponMeta(entry);
 
   return `
     <article
@@ -2002,14 +2002,20 @@ function normalizeSkillCommonEntry(entry) {
 }
 
 function attachJsonMetadata(entry) {
-  const name = String(entry.name || "").toLowerCase();
+  const displayName =
+  entry.name ||
+  getEnemyTextMonsterName(entry) ||
+  "";
+
+const name = String(displayName).toLowerCase();
   const firstId = String(entry.id || "").split("+")[0].trim();
   const numericId = Number(firstId);
 
   const jsonArmorPiece = name ? JSON_INDEX.armorPieceByName.get(name) : null;
   const jsonArmorSet = name ? JSON_INDEX.armorSetByName.get(name) : null;
 
-  const jsonMonster = name ? JSON_INDEX.monsterByName.get(name) : null;
+  const jsonMonster =
+  name ? JSON_INDEX.monsterByName.get(name) : null;
 
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
 
