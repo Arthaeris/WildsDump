@@ -1018,36 +1018,25 @@ function renderJsonWeaponMeta(entry) {
       ` : ""}
 
       ${skills.length ? `
-        <div class="json-block">
-          <span>Skills</span>
-          <p>${escapeHtml(skills.map(skill => `${skill.name} Lv ${skill.level}`).join(" / "))}</p>
-        </div>
-      ` : ""}
+  <div class="json-block">
+    <span>Skills</span>
+    ${renderSkillPills(skills)}
+  </div>
+` : ""}
 
-      ${recipeItems.length || crafting.zenny_cost ? `
-        <div class="json-block">
-          <span>Crafting</span>
-          <p>
-            ${crafting.zenny_cost ? `${escapeHtml(crafting.zenny_cost)}z<br>` : ""}
-            ${recipeItems.map(item => `${escapeHtml(item.amount)}x ${escapeHtml(item.name)}`).join("<br>")}
-          </p>
-        </div>
-      ` : ""}
+${recipeItems.length || crafting.zenny_cost ? `
+  <div class="json-block">
+    <span>Crafting</span>
+    ${renderCraftingBlock(crafting, recipeItems)}
+  </div>
+` : ""}
 
-      ${previousName || branchNames.length ? `
-        <div class="json-block">
-          <span>Upgrade tree</span>
-          <p>
-            ${previousName ? `Previous: ${escapeHtml(previousName)}<br>` : ""}
-            ${branchNames.length ? `Branches: ${escapeHtml(branchNames.join(" / "))}<br>` : ""}
-            ${
-              crafting.column !== undefined || crafting.row !== undefined
-                ? `Position: column ${escapeHtml(crafting.column)}, row ${escapeHtml(crafting.row)}`
-                : ""
-            }
-          </p>
-        </div>
-      ` : ""}
+${previousName || branchNames.length ? `
+  <div class="json-block">
+    <span>Upgrade tree</span>
+    ${renderWeaponTreeFlow(previousName, entry.name, branchNames, crafting)}
+  </div>
+` : ""}
     </details>
   `;
 }
