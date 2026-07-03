@@ -981,7 +981,9 @@ function getJsonWeaponNameById(id, weaponFile = "") {
       ? JSON_INDEX.weaponByTypeAndGameId.get(`${weaponFile}:${id}`)
       : JSON_INDEX.weaponByGameId.get(String(id));
 
-  return getJsonName(weapon, "en") || `weapon ${id}`;
+  return weapon
+    ? getJsonName(weapon, "en")
+    : "";
 }
 
 function getJsonSkillNameById(id) {
