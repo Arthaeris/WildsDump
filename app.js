@@ -986,7 +986,7 @@ function renderJsonWeaponMeta(entry) {
       ${sharpnessText ? `
         <div class="json-block">
           <span>Sharpness</span>
-          <p>${escapeHtml(sharpnessText)}</p>
+          ${renderWeaponSharpnessBar(weapon)}
         </div>
       ` : ""}
 
@@ -1029,6 +1029,36 @@ function renderJsonWeaponMeta(entry) {
         </div>
       ` : ""}
     </details>
+  `;
+}
+
+function renderWeaponSharpnessBar(weapon) {
+  const sharpness = weapon.sharpness;
+  if (!sharpness) return "";
+
+  const colors = ["red", "orange", "yellow", "green", "blue", "white", "purple"];
+
+  const segments = colors
+    .map(color => {
+      const value = Number(sharpness[color] || 0);
+      if (!value) return "";
+
+      return `
+        <span
+          class="sharpness-segment sharpness-${color}"
+          style="--sharpness-width:${value}"
+          title="${escapeAttribute(titleCaseFamily(color))} ${escapeAttribute(value)}"
+        ></span>
+      `;
+    })
+    .join("");
+
+  if (!segments) return "";
+
+  return `
+    <div class="sharpness-bar">
+      ${segments}
+    </div>
   `;
 }
 
