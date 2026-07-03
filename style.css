@@ -809,3 +809,18 @@ footer {
   gap: 0.5rem;
   margin: 0 0 1rem;
 }
+
+
+
+
+
+.sharpness-bar .sharpness-segment {
+  opacity: 1;
+  margin: 0;
+  font-size: inherit;
+}
+
+.sharpness-values span {
+  opacity: 1;
+  margin: 0;
+}
