@@ -894,7 +894,26 @@ footer {
 }
 
 .monster-inline-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
   margin-top: 0.9rem;
+}
+
+.monster-inline-card .entry,
+.monster-inline-card .json-panel,
+.monster-inline-card .monster-json-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.monster-inline-card .monster-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 
