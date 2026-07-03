@@ -824,3 +824,28 @@ footer {
   opacity: 1;
   margin: 0;
 }
+
+
+
+
+
+.monster-index-section {
+  margin: 1.2rem 0;
+}
+
+.monster-index-summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.monster-index-summary small {
+  opacity: 0.65;
+}
+
+.monster-index-section-body {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.8rem;
+}
