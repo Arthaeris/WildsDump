@@ -67,6 +67,7 @@ const JSON_INDEX = {
 
   weaponByName: new Map(),
   weaponByGameId: new Map(),
+  weaponByTypeAndGameId: new Map(),
   weaponSeriesByGameId: new Map(),
 
   hhMelodyByGameId: new Map(),
@@ -102,6 +103,7 @@ function buildJsonIndexes() {
 
   JSON_INDEX.weaponByName.clear();
   JSON_INDEX.weaponByGameId.clear();
+  JSON_INDEX.weaponByTypeAndGameId.clear();
   JSON_INDEX.weaponSeriesByGameId.clear();
   
   JSON_INDEX.hhMelodyByGameId.clear();
@@ -150,8 +152,9 @@ function buildJsonIndexes() {
       addJsonNameIndex(JSON_INDEX.weaponByName, indexedWeapon);
 
       if (weapon.game_id !== undefined) {
-        JSON_INDEX.weaponByGameId.set(String(weapon.game_id), indexedWeapon);
-      }
+  JSON_INDEX.weaponByGameId.set(String(weapon.game_id), indexedWeapon);
+  JSON_INDEX.weaponByTypeAndGameId.set(`${file}:${weapon.game_id}`, indexedWeapon);
+}
     }
   }
 
