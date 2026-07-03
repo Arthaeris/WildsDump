@@ -339,7 +339,6 @@ function titleCaseFamily(value) {
 const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "amulet",
   "armor",
-  "otomoarmor",
   "mealskill",
 
   "whistle",
@@ -357,6 +356,10 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "bow",
   
   "item"
+]);
+
+const REVERSED_NAME_TEXT_PAIR_FILES = new Set([
+  "otomoarmor"
 ]);
 
 function buildWildsEntries(sections, npcMap = {}) {
@@ -379,6 +382,11 @@ if (section.fileKey === "skill") {
 
 if (section.fileKey === "skillcommon") {
   entries.push(...buildSkillCommonEntries(section));
+  continue;
+}
+
+if (REVERSED_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
+  entries.push(...buildReversedNameTextPairEntries(section));
   continue;
 }
 
@@ -585,6 +593,28 @@ function buildAccessoryEntries(section) {
 
 function buildSkillCommonEntries(section) {
   return buildSimpleNameTextPairEntries(section);
+}
+
+function buildReversedNameTextPairEntries(section) {
+  const entries = [];
+  const byNumber = new Map();
+
+  for (const item of section.strings) {
+    byNumber.set(Number(item.id), item);
+  }
+
+  const maxId = Math.max(...byNumber.keys());
+
+  for (let id = 0; id <= maxId; id += 2) {
+    const desc = byNumber.get(id);
+    const name = byNumber.get(id + 1);
+
+    if (!name && !desc) continue;
+
+    entries.push(makeMergedNameTextEntry(section, id, name, desc));
+  }
+
+  return entries;
 }
 
 function buildSimpleNameTextPairEntries(section) {
