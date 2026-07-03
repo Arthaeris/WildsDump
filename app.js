@@ -849,6 +849,36 @@ function getJsonPartName(partKey) {
   return getJsonName(part, "en") || titleCaseFamily(partKey);
 }
 
+function getHitzoneClass(value, extraClass = "") {
+  const classes = [extraClass].filter(Boolean);
+
+  if (Number(value) >= 45) {
+    classes.push("monster-hz-high");
+  }
+
+  return classes.join(" ");
+}
+
+function renderHitzoneCell(value, extraClass = "") {
+  return `
+    <td class="${escapeAttribute(getHitzoneClass(value, extraClass))}">
+      ${formatHitzone(value)}
+    </td>
+  `;
+}
+
+function renderEssenceCell(value) {
+  const essence = String(value || "—").toLowerCase();
+
+  return `
+    <td>
+      <span class="monster-essence monster-essence-${escapeAttribute(essence)}">
+        ${escapeHtml(value || "—")}
+      </span>
+    </td>
+  `;
+}
+
 function formatHitzone(value) {
   if (value === undefined || value === null) return "—";
   return Math.round(Number(value) * 100);
@@ -1404,16 +1434,16 @@ function renderMonsterPartsTable(parts) {
               <tr>
                 <td>${escapeHtml(getJsonPartName(part.part))}</td>
                 <td>${escapeHtml(part.base_health ?? "—")}</td>
-                <td>${escapeHtml(part.kinsect_essence || "—")}</td>
-                <td>${formatHitzone(m.slash)}</td>
-                <td>${formatHitzone(m.blunt)}</td>
-                <td>${formatHitzone(m.pierce)}</td>
-                <td>${formatHitzone(m.fire)}</td>
-                <td>${formatHitzone(m.water)}</td>
-                <td>${formatHitzone(m.thunder)}</td>
-                <td>${formatHitzone(m.ice)}</td>
-                <td>${formatHitzone(m.dragon)}</td>
-                <td>${formatHitzone(m.stun)}</td>
+                ${renderEssenceCell(part.kinsect_essence)}
+                 ${renderHitzoneCell(m.slash)}
+                 ${renderHitzoneCell(m.blunt)}
+                 ${renderHitzoneCell(m.pierce)}
+                 ${renderHitzoneCell(m.fire, "monster-el-fire")}
+                 ${renderHitzoneCell(m.water, "monster-el-water")}
+                 ${renderHitzoneCell(m.thunder, "monster-el-thunder")}
+                 ${renderHitzoneCell(m.ice, "monster-el-ice")}
+                 ${renderHitzoneCell(m.dragon, "monster-el-dragon")}
+                 ${renderHitzoneCell(m.stun)}
               </tr>
             `;
           }).join("")}
