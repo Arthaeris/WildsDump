@@ -955,7 +955,7 @@ function renderJsonWeaponMeta(entry) {
     ["Type", weapon.weapon_file],
     ["Kind", weapon.kind],
     ["Rarity", weapon.rarity],
-    ["Attack", weapon.attack_raw],
+    ["Raw Attack", weapon.attack_raw],
     ["Affinity", weapon.affinity !== undefined ? `${weapon.affinity}%` : ""],
     ["Defense", weapon.defense],
     ["Slots", renderWeaponSlotsText(weapon.slots)],
