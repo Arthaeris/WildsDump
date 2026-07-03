@@ -1038,19 +1038,19 @@ function renderWeaponSlotsText(slots = []) {
 }
 
 function renderWeaponSpecialsText(weapon) {
-  const specials = weapon.specials || {};
+  const specials = weapon.specials || [];
 
-  return Object.entries(specials)
-    .filter(([, value]) => value !== undefined && value !== null && value !== "" && value !== 0)
-    .map(([key, value]) => {
-      if (typeof value === "object") {
-        const amount = value.attack || value.value || value.amount || "";
-        const hidden = value.hidden ? " hidden" : "";
-        return `${titleCaseFamily(key)} ${amount}${hidden}`.trim();
-      }
+  if (!Array.isArray(specials)) return "";
 
-      return `${titleCaseFamily(key)} ${value}`.trim();
+  return specials
+    .map(special => {
+      const type = special.element || special.status || special.kind || "";
+      const amount = special.raw ?? special.value ?? special.amount ?? "";
+      const hidden = special.hidden ? " hidden" : "";
+
+      return `${titleCaseFamily(type)} ${amount}${hidden}`.trim();
     })
+    .filter(Boolean)
     .join(" / ");
 }
 
