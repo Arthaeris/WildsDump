@@ -1650,6 +1650,9 @@ function attachJsonMetadata(entry) {
   const firstId = String(entry.id || "").split("+")[0].trim();
   const numericId = Number(firstId);
 
+  const jsonArmorPiece = name ? JSON_INDEX.armorPieceByName.get(name) : null;
+  const jsonArmorSet = name ? JSON_INDEX.armorSetByName.get(name) : null;
+
   const jsonItem = name ? JSON_INDEX.itemByName.get(name) : null;
 
   let jsonWeapon = name ? JSON_INDEX.weaponByName.get(name) : null;
@@ -1687,6 +1690,8 @@ let jsonSkill =
     jsonItem: jsonItem || null,
     jsonAmulet: jsonAmulet || null,
     jsonSkill: jsonSkill || null,
+    jsonArmorPiece: jsonArmorPiece || null,
+    jsonArmorSet: jsonArmorSet || null,
     jsonWeapon: jsonWeapon || null
   };
 }
