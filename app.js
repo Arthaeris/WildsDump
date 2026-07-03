@@ -42,6 +42,8 @@ const dialogueResults = document.querySelector("#dialogueResults");
 const dialogueModeBtn = document.querySelector("#dialogueModeBtn");
 const wordIndexResults = document.querySelector("#wordIndexResults");
 
+const ARMOR_SERIES_BY_ID = new Map();
+
 const backFromCategoryBtn = document.querySelector("#backFromCategoryBtn");
 const backFromNpcBtn = document.querySelector("#backFromNpcBtn");
 const backFromDialogueBtn = document.querySelector("#backFromDialogueBtn");
@@ -1153,8 +1155,17 @@ function renderJsonArmorMeta(entry) {
   if (!armor) return "";
 
   const set = armor.armor_set || {};
-  const upgrade = JSON_INDEX.armorUpgradeByRarity.get(String(set.rarity));
+
+  const upgrade =
+    JSON_INDEX.armorUpgradeByRarity.get(String(set.rarity));
+
   const maxUpgrade = upgrade?.steps?.at(-1);
+
+  const seriesName =
+    ARMOR_SERIES_BY_ID.get(String(set.game_id)) ||
+    ARMOR_SERIES_BY_ID.get(String(set.id)) ||
+    armor.armor_set_name ||
+    "";
 
   const skillText = Object.entries(armor.skills || {})
     .map(([id, level]) => `${getJsonSkillNameById(id)} Lv ${level}`)
@@ -1165,6 +1176,7 @@ function renderJsonArmorMeta(entry) {
     .join(" / ");
 
   const facts = [
+    seriesName ? ["Series", seriesName] : null,
     ["Set", armor.armor_set_name],
     ["Piece", armor.kind],
     ["Rarity", set.rarity],
@@ -1177,7 +1189,7 @@ function renderJsonArmorMeta(entry) {
     ["Dragon", armor.resistances?.dragon],
     ["Craft", armor.crafting?.price ? `${armor.crafting.price}z` : ""],
     ["Max upgrade", maxUpgrade ? `Lv ${maxUpgrade.level}` : ""]
-  ].filter(([, value]) => value !== undefined && value !== "");
+  ].filter(Boolean).filter(([, value]) => value !== undefined && value !== "");
 
   return `
     <details class="json-panel">
@@ -1479,6 +1491,22 @@ function formatEntryText(value) {
   return escapeHtml(value)
     .replace(/\n---\n/g, "<hr>")
     .replace(/\n/g, "<br>");
+}
+
+function buildArmorSeriesMap(sections) {
+  ARMOR_SERIES_BY_ID.clear();
+
+  const section = sections.find(section => section.fileKey === "armorseries");
+  if (!section) return;
+
+  for (const item of section.strings) {
+    const id = Number(item.id);
+    const name = item.text || "";
+
+    if (!name || name === "-") continue;
+
+    ARMOR_SERIES_BY_ID.set(String(id), name);
+  }
 }
 
 function buildWordFrequencyIndex() {
@@ -1845,6 +1873,8 @@ async function loadDump() {
 
     const enSections = parseWildsDump(enRaw, "en");
     const jpSections = parseWildsDump(jpRaw, "jp");
+    
+    buildArmorSeriesMap(enSections);
 
     const enEntries = buildWildsEntries(enSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
     const jpEntries = buildWildsEntries(jpSections, typeof NPC_MAP !== "undefined" ? NPC_MAP : {});
