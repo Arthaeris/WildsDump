@@ -983,3 +983,86 @@ footer {
 .monster-json-panel[open] {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }
+
+
+
+
+
+.monster-parts-table th:first-child,
+.monster-parts-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--card);
+  box-shadow: 8px 0 10px rgb(0 0 0 / 0.12);
+}
+
+.monster-parts-table th:first-child {
+  z-index: 2;
+}
+
+.monster-essence {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.2em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  font-weight: 900;
+  border: 1px solid var(--border);
+}
+
+.monster-essence-red {
+  color: #fff;
+  background: #a93b36;
+}
+
+.monster-essence-orange {
+  color: #1b1812;
+  background: #d1903c;
+}
+
+.monster-essence-yellow {
+  color: #1b1812;
+  background: #d7bd42;
+}
+
+.monster-essence-green {
+  color: #fff;
+  background: #4d8d55;
+}
+
+.monster-essence-white {
+  color: #1b1812;
+  background: #eee7d8;
+}
+
+.monster-essence-— {
+  color: var(--muted);
+  background: transparent;
+}
+
+.monster-el-fire {
+  color: #ff6b57;
+}
+
+.monster-el-water {
+  color: #5da9ff;
+}
+
+.monster-el-thunder {
+  color: #ffd95a;
+}
+
+.monster-el-ice {
+  color: #9de8ff;
+}
+
+.monster-el-dragon {
+  color: #c792ea;
+}
+
+.monster-hz-high {
+  font-weight: 950;
+  text-shadow: 0 0 0.45px currentColor;
+}
