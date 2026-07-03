@@ -54,6 +54,7 @@ let entries = [];
 let categories = new Map();
 let npcGroups = new Map();
 let monsterGroups = new Map();
+let activeMonsterKey = "";
 let wordFrequency = [];
 
 let activeWeaponTypeFilter = "All";
@@ -267,6 +268,16 @@ function showMonsterIndex(addToHistory = true) {
     if (!wordIndexView.hidden) pushViewHistory({ type: "wordIndex" });
   }
 
+  activeMonsterKey = "";
+
+  renderMonsterIndex();
+
+  showOnly(monsterView);
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderMonsterIndex() {
   const orderedSections = [
     "Large Monsters",
     "Small Monsters",
@@ -274,7 +285,9 @@ function showMonsterIndex(addToHistory = true) {
     "Aquatic Life"
   ];
 
-  const grouped = new Map(orderedSections.map(name => [name, []]));
+  const grouped = new Map(
+    orderedSections.map(name => [name, []])
+  );
 
   for (const [name, group] of monsterGroups.entries()) {
     let section = "Endemic Life";
@@ -289,34 +302,47 @@ function showMonsterIndex(addToHistory = true) {
     grouped.get(section).push([name, group]);
   }
 
-  monsterList.innerHTML = orderedSections.map((sectionName, index) => {
+  monsterList.innerHTML = orderedSections.map(sectionName => {
     const items = grouped.get(sectionName)
       .sort((a, b) => a[0].localeCompare(b[0]));
 
     if (!items.length) return "";
 
-    return `
-      <details class="monster-index-section" ${index === 0 ? "open" : ""}>
-        <summary class="index-section-title monster-index-summary">
-          <span>${escapeHtml(sectionName)}</span>
-          <small>${items.length}</small>
-        </summary>
+    const activeGroup = activeMonsterKey
+      ? monsterGroups.get(activeMonsterKey)
+      : null;
 
-        <div class="monster-index-section-body">
-          ${items.map(([name, group]) => `
-            <button class="npc-item" type="button" data-monster-key="${escapeAttribute(name)}">
-              <span>${escapeHtml(name)}</span>
-              <small>${group[0]?.id || ""} · ${group.length} entry</small>
+    return `
+      <section class="monster-index-section">
+        <div class="monster-section-header">
+          <h3>${escapeHtml(sectionName)}</h3>
+          <span>${items.length}</span>
+        </div>
+
+        <div class="monster-chip-row">
+          ${items.map(([name]) => `
+            <button
+              class="monster-chip ${name === activeMonsterKey ? "active" : ""}"
+              type="button"
+              data-monster-chip="${escapeAttribute(name)}"
+            >
+              ${escapeHtml(name)}
             </button>
           `).join("")}
         </div>
-      </details>
+
+        ${
+          activeGroup && items.some(([name]) => name === activeMonsterKey)
+            ? `
+              <div class="monster-inline-card">
+                ${renderEntry(activeGroup[0])}
+              </div>
+            `
+            : ""
+        }
+      </section>
     `;
   }).join("");
-
-  showOnly(monsterView);
-  closeMenu();
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function isManuallyNamedNpcGroup(group) {
@@ -2122,9 +2148,16 @@ if (langButton) {
   return;
 }
 
-const monsterButton = event.target.closest("[data-monster-key]");
-if (monsterButton) {
-  showDialogue(monsterButton.dataset.monsterKey);
+const monsterChip = event.target.closest("[data-monster-chip]");
+if (monsterChip) {
+  const key = monsterChip.dataset.monsterChip;
+
+  activeMonsterKey =
+    activeMonsterKey === key
+      ? ""
+      : key;
+
+  renderMonsterIndex();
   return;
 }
 
