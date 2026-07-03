@@ -1039,9 +1039,18 @@ function renderWeaponSlotsText(slots = []) {
 
 function renderWeaponSpecialsText(weapon) {
   const specials = weapon.specials || {};
+
   return Object.entries(specials)
     .filter(([, value]) => value !== undefined && value !== null && value !== "" && value !== 0)
-    .map(([key, value]) => `${titleCaseFamily(key)} ${value}`)
+    .map(([key, value]) => {
+      if (typeof value === "object") {
+        const amount = value.attack || value.value || value.amount || "";
+        const hidden = value.hidden ? " hidden" : "";
+        return `${titleCaseFamily(key)} ${amount}${hidden}`.trim();
+      }
+
+      return `${titleCaseFamily(key)} ${value}`.trim();
+    })
     .join(" / ");
 }
 
