@@ -71,8 +71,11 @@ const JSON_INDEX = {
   weaponSeriesByGameId: new Map(),
   
   armorSetByName: new Map(),
-armorPieceByName: new Map(),
-armorUpgradeByRarity: new Map(),
+  armorPieceByName: new Map(),
+  armorUpgradeByRarity: new Map(),
+  
+  speciesByKind: new Map(),
+  partNameByKey: new Map(),
 
   hhMelodyByGameId: new Map(),
   hhEchoWaveByGameId: new Map(),
@@ -109,6 +112,9 @@ function buildJsonIndexes() {
   JSON_INDEX.weaponByGameId.clear();
   JSON_INDEX.weaponByTypeAndGameId.clear();
   JSON_INDEX.weaponSeriesByGameId.clear();
+  
+  JSON_INDEX.speciesByKind.clear();
+  JSON_INDEX.partNameByKey.clear();
   
   JSON_INDEX.hhMelodyByGameId.clear();
   JSON_INDEX.hhEchoWaveByGameId.clear();
@@ -177,6 +183,14 @@ for (const upgrade of JSON_DATA.armorupgrade || []) {
       });
     }
   }
+  
+  for (const species of JSON_DATA.species || []) {
+  JSON_INDEX.speciesByKind.set(species.kind, species);
+}
+
+for (const part of JSON_DATA.partnames || []) {
+  JSON_INDEX.partNameByKey.set(part.part, part);
+}
 
   for (const file of WEAPON_JSON_FILES) {
     for (const weapon of JSON_DATA[file] || []) {
