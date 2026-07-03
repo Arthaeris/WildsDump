@@ -69,6 +69,10 @@ const JSON_INDEX = {
   weaponByGameId: new Map(),
   weaponByTypeAndGameId: new Map(),
   weaponSeriesByGameId: new Map(),
+  
+  armorSetByName: new Map(),
+armorPieceByName: new Map(),
+armorUpgradeByRarity: new Map(),
 
   hhMelodyByGameId: new Map(),
   hhEchoWaveByGameId: new Map(),
@@ -128,7 +132,39 @@ function buildJsonIndexes() {
   }
 
   for (const item of JSON_DATA.largemonsters || []) addJsonNameIndex(JSON_INDEX.monsterByName, item);
-  for (const item of JSON_DATA.armor || []) addJsonNameIndex(JSON_INDEX.armorByName, item);
+  JSON_INDEX.armorSetByName.clear();
+JSON_INDEX.armorPieceByName.clear();
+JSON_INDEX.armorUpgradeByRarity.clear();
+
+for (const set of JSON_DATA.armor || []) {
+  const indexedSet = {
+    ...set,
+    armor_set: set
+  };
+
+  addJsonNameIndex(JSON_INDEX.armorByName, indexedSet);
+  addJsonNameIndex(JSON_INDEX.armorSetByName, indexedSet);
+
+  for (const piece of set.pieces || []) {
+    const indexedPiece = {
+      ...piece,
+      armor_set: set,
+      armor_set_name: getJsonName(set, "en"),
+      armor_set_game_id: set.game_id,
+      armor_set_rarity: set.rarity,
+      armor_set_bonus: set.set_bonus,
+      armor_group_bonus: set.group_bonus
+    };
+
+    addJsonNameIndex(JSON_INDEX.armorPieceByName, indexedPiece);
+  }
+}
+
+for (const upgrade of JSON_DATA.armorupgrade || []) {
+  if (upgrade.rarity !== undefined) {
+    JSON_INDEX.armorUpgradeByRarity.set(String(upgrade.rarity), upgrade);
+  }
+}
   for (const item of JSON_DATA.accessory || []) addJsonNameIndex(JSON_INDEX.accessoryByName, item);
   for (const item of JSON_DATA.charm || []) addJsonNameIndex(JSON_INDEX.charmByName, item);
 
