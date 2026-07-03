@@ -1070,8 +1070,8 @@ function renderJsonWeaponMeta(entry) {
       : "";
 
   const branchNames = (crafting.branches || [])
-    .map(id => getJsonItemNameById(id))
-    .filter(Boolean);
+  .map(id => getJsonWeaponNameById(id, weapon.weapon_file))
+  .filter(Boolean);
 
   const specialsText = renderWeaponSpecialsText(weapon);
   const sharpnessText = renderWeaponSharpnessText(weapon);
