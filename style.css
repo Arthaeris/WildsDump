@@ -551,6 +551,15 @@ footer {
   .entry {
     padding-top: 58px;
   }
+  
+  .entry {
+  contain: layout paint;
+}
+
+.json-panel {
+  max-width: 100%;
+  min-width: 0;
+}
 
   .view-header {
     align-items: stretch;
@@ -894,16 +903,34 @@ footer {
 
 
 
+.monster-json-panel {
+  max-width: 100%;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+
+.monster-json-panel * {
+  min-width: 0;
+}
+
+.monster-json-panel summary {
+  font-size: 1rem;
+}
+
 .monster-table-wrap {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
+  overflow-y: hidden;
   margin-top: 0.5rem;
   -webkit-overflow-scrolling: touch;
 }
 
 .monster-parts-table {
-  width: 100%;
-  min-width: 700px;
+  width: max-content;
+  min-width: 680px;
   border-collapse: collapse;
   font-size: 0.78rem;
 }
@@ -927,19 +954,6 @@ footer {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-}
-
-.monster-json-panel {
-  font-size: 0.9rem;
-}
-
-.monster-json-panel summary {
-  font-size: 1rem;
-}
-
-.monster-json-panel .json-block p {
-  font-size: 0.9rem;
-  line-height: 1.45;
 }
 
 .monster-json-panel .data-pill {
