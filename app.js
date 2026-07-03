@@ -737,7 +737,7 @@ function renderJsonItemMeta(entry) {
   const recipeText = (item.recipes || [])
     .map(recipe => {
       const inputs = (recipe.inputs || [])
-  .map(id => getJsonItemNameById(id))
+  .map(id => getJsonWeaponNameById(id, weapon.weapon_file))
   .join(" + ");
 
 return `${recipe.amount || 1}x from ${inputs}`;
@@ -893,8 +893,12 @@ function renderJsonSkillMeta(entry) {
   `;
 }
 
-function getJsonWeaponNameById(id) {
-  const weapon = JSON_INDEX.weaponByGameId.get(String(id));
+function getJsonWeaponNameById(id, weaponFile = "") {
+  const weapon =
+    weaponFile
+      ? JSON_INDEX.weaponByTypeAndGameId.get(`${weaponFile}:${id}`)
+      : JSON_INDEX.weaponByGameId.get(String(id));
+
   return getJsonName(weapon, "en") || `weapon ${id}`;
 }
 
@@ -936,11 +940,11 @@ function renderJsonWeaponMeta(entry) {
 
   const previousName =
     crafting.previous_id !== undefined && crafting.previous_id !== null
-      ? getJsonWeaponNameById(crafting.previous_id)
+      ? getJsonWeaponNameById(crafting.previous_id, weapon.weapon_file)
       : "";
 
   const branchNames = (crafting.branches || [])
-    .map(id => getJsonWeaponNameById(id))
+    .map(id => getJsonWeaponNameById(id, weapon.weapon_file))
     .filter(Boolean);
 
   const specialsText = renderWeaponSpecialsText(weapon);
