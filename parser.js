@@ -274,6 +274,7 @@ function getWildsCategory(fileKey, family) {
 
   if ([
     "greatsword",
+    "longsword",
     "sword",
     "shortsword",
     "twinsword",
