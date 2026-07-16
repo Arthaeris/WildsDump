@@ -1444,9 +1444,27 @@ main {
 }
 
 @media (max-width: 700px) {
-  /* Filter chips: one horizontally scrollable row instead of tall wrap */
+  /* Filter chips: one horizontally scrollable row instead of tall wrap.
+     The scroll container needs a constrained width, otherwise it grows
+     to its content and the page just clips it (no scrolling possible). */
+  .card-controls,
+  .search-filters {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    justify-items: stretch;
+  }
+
   .filter-row,
   .weapon-type-filter {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
