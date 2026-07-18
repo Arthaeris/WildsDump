@@ -1,8 +1,32 @@
 // app.js
-// WildsDump UI
+// WildsDump / GUDump UI
 
-const EN_SOURCE = "./en_dump.txt";
-const JP_SOURCE = "./jp_dump.txt";
+const GAME_CONFIG = {
+  wilds: {
+    title: "WildsDump",
+    tagline:
+      "Search Monster Hunter Wilds text, dialogue, items, weapons, quests, tutorials, UI text, and NPC-related files.",
+    en: "./en_dump.txt",
+    jp: "./jp_dump.txt",
+    hasJson: true
+  },
+  gu: {
+    title: "GUDump",
+    tagline:
+      "Search Monster Hunter Generations Ultimate text: items, weapons, armor, quests, Palico gear, and NPC dialogue.",
+    en: "./gu_dump.txt",
+    jp: "",
+    hasJson: false
+  }
+};
+
+let ACTIVE_GAME = "wilds";
+
+try {
+  const savedGame = localStorage.getItem("wd_game");
+  if (GAME_CONFIG[savedGame]) ACTIVE_GAME = savedGame;
+} catch {}
+
 const PAGE_SIZE = 80;
 const WORD_PAGE_SIZE = 150;
 
@@ -201,6 +225,13 @@ function showCategory(category, addToHistory = true) {
 function renderWeaponCategoryResults() {
   currentHighlightTerms = [];
 
+  // The upgrade tree is built from the Wilds JSON database.
+  const treeAvailable = GAME_CONFIG[ACTIVE_GAME].hasJson;
+
+  if (!treeAvailable) {
+    activeWeaponDisplay = "cards";
+  }
+
   const filterHtml = `
     <section class="weapon-type-filter">
       <button class="filter-chip" type="button" data-weapon-type-filter="All">
@@ -214,11 +245,13 @@ function renderWeaponCategoryResults() {
       `).join("")}
     </section>
 
-    <section class="weapon-type-filter weapon-display-toggle">
-      <span class="filter-label">View</span>
-      <button class="filter-chip" type="button" data-weapon-display="cards">Cards</button>
-      <button class="filter-chip" type="button" data-weapon-display="tree">Upgrade tree</button>
-    </section>
+    ${treeAvailable ? `
+      <section class="weapon-type-filter weapon-display-toggle">
+        <span class="filter-label">View</span>
+        <button class="filter-chip" type="button" data-weapon-display="cards">Cards</button>
+        <button class="filter-chip" type="button" data-weapon-display="tree">Upgrade tree</button>
+      </section>
+    ` : ""}
   `;
 
   let contentHtml = "";
@@ -2363,28 +2396,35 @@ function nextFrame() {
 }
 
 async function loadDump() {
-  setLoadingStatus("Loading Wilds text dumps…");
+  const cfg = GAME_CONFIG[ACTIVE_GAME];
+
+  setLoadingStatus(`Loading ${cfg.title} text dumps…`);
 
   try {
-    const [enResponse, jpResponse] = await Promise.all([
-      fetch(EN_SOURCE),
-      fetch(JP_SOURCE)
-    ]);
+    const enResponse = await fetch(cfg.en);
+    if (!enResponse.ok) throw new Error(`Could not load ${cfg.en}`);
 
-    if (!enResponse.ok) throw new Error(`Could not load ${EN_SOURCE}`);
-    if (!jpResponse.ok) throw new Error(`Could not load ${JP_SOURCE}`);
+    let jpRaw = "";
 
-    const [enRaw, jpRaw] = await Promise.all([
-      enResponse.text(),
-      jpResponse.text()
-    ]);
+    if (cfg.jp) {
+      const jpResponse = await fetch(cfg.jp);
+      if (!jpResponse.ok) throw new Error(`Could not load ${cfg.jp}`);
+      jpRaw = await jpResponse.text();
+    }
 
-    const cacheKey = makeWildsCacheKey(enRaw, jpRaw);
+    const enRaw = await enResponse.text();
+
+    const checkString = makeWildsCacheKey(enRaw, jpRaw);
 
     setLoadingStatus("Checking cache…");
     await nextFrame();
 
-    let payload = await wildsCacheGet(cacheKey);
+    let payload = await wildsCacheGet(ACTIVE_GAME);
+
+    if (payload && payload.check !== checkString) {
+      payload = null;
+    }
+
     let needsCacheWrite = false;
 
     if (!payload) {
@@ -2396,7 +2436,7 @@ async function loadDump() {
 
       setLoadingStatus("Parsing JP dump…");
       await nextFrame();
-      const jpAllSections = parseWildsDump(jpRaw, "jp");
+      const jpAllSections = jpRaw ? parseWildsDump(jpRaw, "jp") : [];
 
       const enSections = enAllSections.filter(section => !section.isOldVersion);
       const jpSections = jpAllSections.filter(section => !section.isOldVersion);
@@ -2416,6 +2456,7 @@ async function loadDump() {
       await nextFrame();
 
       payload = {
+        check: checkString,
         entries: merged.map(stripEntryForCache),
         armorSeries: [...ARMOR_SERIES_BY_ID.entries()],
         diffData: buildDiffData(enAllSections)
@@ -2432,11 +2473,11 @@ async function loadDump() {
 
     DIFF_DATA = payload.diffData || [];
 
-    setLoadingStatus("Linking JSON metadata…");
+    setLoadingStatus("Preparing entries…");
     await nextFrame();
 
     entries = payload.entries
-      .map(attachJsonMetadata)
+      .map(entry => (cfg.hasJson ? attachJsonMetadata(entry) : entry))
       .map(normalizeSkillCommonEntry)
       .map(addSearchFields);
 
@@ -2447,7 +2488,7 @@ async function loadDump() {
 
     if (needsCacheWrite) {
       // Persist after first paint - the cache is a pure optimization.
-      setTimeout(() => wildsCachePut(cacheKey, payload), 500);
+      setTimeout(() => wildsCachePut(ACTIVE_GAME, payload), 500);
     }
   } catch (error) {
     console.error(error);
@@ -2455,10 +2496,10 @@ async function loadDump() {
     count.textContent = "0 entries";
     results.innerHTML = `
       <div class="empty">
-        Could not load the Wilds text dumps.<br>
+        Could not load the ${escapeHtml(cfg.title)} text dumps.<br>
         Make sure these files exist:<br>
-        <code>en_dump.txt</code><br>
-        <code>jp_dump.txt</code>
+        <code>${escapeHtml(cfg.en.replace("./", ""))}</code>
+        ${cfg.jp ? `<br><code>${escapeHtml(cfg.jp.replace("./", ""))}</code>` : ""}
       </div>
     `;
   }
@@ -2771,6 +2812,42 @@ dialogueModeBtn.addEventListener("click", () => {
 
 window.addEventListener("scroll", handleScroll, { passive: true });
 
+function applyGameChrome() {
+  const cfg = GAME_CONFIG[ACTIVE_GAME];
+  const otherCfg = GAME_CONFIG[ACTIVE_GAME === "wilds" ? "gu" : "wilds"];
+
+  document.title = cfg.title;
+
+  const titleEl = document.querySelector("#gameTitle");
+  if (titleEl) titleEl.textContent = cfg.title;
+
+  const taglineEl = document.querySelector("#appTagline");
+  if (taglineEl) taglineEl.textContent = cfg.tagline;
+
+  const hintEl = document.querySelector("#gameSwitchHint");
+  if (hintEl) hintEl.textContent = `Tap the title to switch to ${otherCfg.title}.`;
+
+  // Features backed by the Wilds JSON database are hidden for other games.
+  if (!cfg.hasJson) {
+    for (const id of ["#sizeCompareBtn", "#compareViewBtn", "#versionDiffBtn", "#monsterIndexBtn"]) {
+      const el = document.querySelector(id);
+      if (el) el.hidden = true;
+    }
+  }
+}
+
+function switchGame() {
+  const next = ACTIVE_GAME === "wilds" ? "gu" : "wilds";
+
+  try {
+    localStorage.setItem("wd_game", next);
+  } catch {}
+
+  location.reload();
+}
+
+document.querySelector("#gameTitle")?.addEventListener("click", switchGame);
+
 function restoreSavedSettings() {
   try {
     const savedCardMode = localStorage.getItem("wd_cardMode");
@@ -2795,11 +2872,14 @@ function restoreSavedSettings() {
   try {
     applyTheme(getSavedTheme());
     restoreSavedSettings();
+    applyGameChrome();
 
-    await loadJsonDatabase();
-    buildJsonIndexes();
-    buildEntityIndexes();
-    renderCompareTray();
+    if (GAME_CONFIG[ACTIVE_GAME].hasJson) {
+      await loadJsonDatabase();
+      buildJsonIndexes();
+      buildEntityIndexes();
+      renderCompareTray();
+    }
 
     await loadDump();
   } catch (error) {
