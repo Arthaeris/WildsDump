@@ -2062,6 +2062,14 @@ function appendNextWords() {
   currentWordCount += next.length;
 }
 
+// Hides type filter chips for categories that have no entries in the
+// currently loaded game (e.g. Monsters/Skills/UI in GUDump).
+function updateTypeFilterAvailability() {
+  searchFilters.querySelectorAll("[data-type-filter]").forEach(button => {
+    button.hidden = !categories.has(button.dataset.typeFilter);
+  });
+}
+
 function updateSearchFilterButtons() {
   searchFilters.querySelectorAll("[data-clear-filters]").forEach(button => {
     button.classList.toggle("active", activeTypeFilter === "All");
@@ -2484,6 +2492,7 @@ async function loadDump() {
     buildIndexes();
     addDumpEntities(monsterGroups);
     renderCategoryMenu();
+    updateTypeFilterAvailability();
     render();
 
     if (needsCacheWrite) {
