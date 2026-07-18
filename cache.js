@@ -3,7 +3,7 @@
 // several seconds; the parsed result is cached keyed by dump sizes so
 // subsequent visits skip parsing entirely.
 
-const WILDS_CACHE_VERSION = "wd3";
+const WILDS_CACHE_VERSION = "wd4";
 const WILDS_CACHE_DB = "wildsdump-cache";
 const WILDS_CACHE_STORE = "parsed";
 
