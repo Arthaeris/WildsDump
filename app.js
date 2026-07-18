@@ -17,8 +17,18 @@ const GAME_CONFIG = {
     en: "./gu_dump.txt",
     jp: "",
     hasJson: false
+  },
+  tri: {
+    title: "TriDump",
+    tagline:
+      "Search Monster Hunter Tri text: item names and descriptions.",
+    en: "./tri_dump.txt",
+    jp: "",
+    hasJson: false
   }
 };
+
+const GAME_ORDER = ["wilds", "gu", "tri"];
 
 let ACTIVE_GAME = "wilds";
 
@@ -2070,6 +2080,15 @@ function updateTypeFilterAvailability() {
   });
 }
 
+// Hides menu entries whose views would be empty for the loaded game.
+function updateMenuAvailability() {
+  if (npcIndexBtn) npcIndexBtn.hidden = npcGroups.size === 0;
+  if (monsterIndexBtn) monsterIndexBtn.hidden = monsterGroups.size === 0;
+
+  const diffBtn = document.querySelector("#versionDiffBtn");
+  if (diffBtn) diffBtn.hidden = !DIFF_DATA.length;
+}
+
 function updateSearchFilterButtons() {
   searchFilters.querySelectorAll("[data-clear-filters]").forEach(button => {
     button.classList.toggle("active", activeTypeFilter === "All");
@@ -2493,6 +2512,7 @@ async function loadDump() {
     addDumpEntities(monsterGroups);
     renderCategoryMenu();
     updateTypeFilterAvailability();
+    updateMenuAvailability();
     render();
 
     if (needsCacheWrite) {
@@ -2821,9 +2841,14 @@ dialogueModeBtn.addEventListener("click", () => {
 
 window.addEventListener("scroll", handleScroll, { passive: true });
 
+function getNextGame() {
+  const index = GAME_ORDER.indexOf(ACTIVE_GAME);
+  return GAME_ORDER[(index + 1) % GAME_ORDER.length];
+}
+
 function applyGameChrome() {
   const cfg = GAME_CONFIG[ACTIVE_GAME];
-  const otherCfg = GAME_CONFIG[ACTIVE_GAME === "wilds" ? "gu" : "wilds"];
+  const otherCfg = GAME_CONFIG[getNextGame()];
 
   document.title = cfg.title;
 
@@ -2846,10 +2871,8 @@ function applyGameChrome() {
 }
 
 function switchGame() {
-  const next = ACTIVE_GAME === "wilds" ? "gu" : "wilds";
-
   try {
-    localStorage.setItem("wd_game", next);
+    localStorage.setItem("wd_game", getNextGame());
   } catch {}
 
   location.reload();
