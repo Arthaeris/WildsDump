@@ -1,0 +1,3053 @@
+
+
+================================================================================
+TITLE: item.txt
+SOURCE PATH: tri/item.txt
+SIZE: 152659 bytes
+MODIFIED: 18/07/2026, 23:10:00
+READABLE AS TEXT: yes
+HASH: 7d92d1b25d229aae3809e0d2b5e1a025b8a09b12c28efa91ac180970906ca46a
+================================================================================
+
+<string>Book of Combos 1
+<string>An introductory text for first-<lf>time combiners. Improves your<lf>combination success rate.
+<string>Book of Combos 2
+<string>An entry-level text. Owning<lf>Book 1 and this improves your<lf>combination success rate.
+<string>Book of Combos 3
+<string>An intermediate text. Owning<lf>Books 1, 2 and this improves<lf>your combination success rate.
+<string>Book of Combos 4
+<string>An advanced text. Owning<lf>Books 1-3 and this improves<lf>your combination success rate.
+<string>Book of Combos 5
+<string>A pro-level text. Owning<lf>Books 1-4 and this improves<lf>your combination success rate.
+<string>Organizer Guide
+<string>An issue of "Hunting Life"<lf>magazine which explains how<lf>to maximize Item Box space.
+<string>Pack Rat Guide
+<string>An issue of "Hunting Life"<lf>magazine containing advanced<lf>item-cramming techniques.
+<string>Potion
+<string>Restores a small amount of<lf>Health. Try to combine these<lf>into something Mega-better!
+<string>Mega Potion
+<string>Restores a moderate amount<lf>of Health. This potion is a<lf>hunter's best friend.
+<string>Nutrients
+<string>Very slightly increase your<lf>maximum Health level.
+<string>Mega Nutrients
+<string>Slightly increase your<lf>maximum Health level.
+<string>Antidote
+<string>Removes all traces of poison<lf>from your system.
+<string>Immunizer
+<string>Boosts your natural ability<lf>to heal.
+<string>Dash Juice
+<string>Lets you run without tiring<lf>for a short period of time.
+<string>Mega Dash Juice
+<string>Lets you run without tiring<lf>for longer than with regular<lf>Dash Juice.
+<string>Demondrug
+<string>Boosts your Attack by filling<lf>you with -- guess what? --<lf>demonic strength.
+<string>Mega Demondrug
+<string>Boosts your Attack even more<lf>than a regular Demondrug.
+<string>Might Pill
+<string>Temporarily endows you with<lf>the strength of a mighty god.<lf>Potent!
+<string>Armorskin
+<string>Boosts your Defense by turning<lf>your skin as hard as rock.
+<string>Mega Armorskin
+<string>Boosts your Defense even more<lf>than a regular Armorskin.
+<string>Adamant Pill
+<string>Temporarily makes your skin<lf>as hard as adamant. Potent!
+<string>Cool Drink
+<string>Provides temporary relief<lf>from extreme heat.
+<string>Hot Drink
+<string>Provides temporary relief<lf>from extreme cold.
+<string>Cleanser
+<string>Immediately removes any ice<lf>or mud on your body. Clean<lf>as a whistle!
+<string>Psychoserum
+<string>Temporarily sharpens your<lf>sixth sense and attunes you<lf>to the ways of monsters.
+<string>Herbal Medicine
+<string>Removes all traces of poison<lf>and restores a slight amount<lf>of Health.
+<string>Max Potion
+<string>Fully restores Health and<lf>maximizes the size of your<lf>Health Gauge.
+<string>Ancient Potion
+<string>Fully restores Health and<lf>maximizes the size of your<lf>Health and Stamina Gauges.
+<string>Catalyst
+<string>Works with other materials<lf>to enhance their effects.<lf>Cannot be used by itself.
+<string>Energy Drink
+<string>A Guild-approved beverage<lf>that boosts your Stamina.<lf>Helps shake off sleep, too!
+<string>Air Philter
+<string>A potion that restores lost<lf>Oxygen and allows you to<lf>stay underwater longer.
+<string>Mega Air Philter
+<string>A potion that restores lost<lf>Oxygen and allows you to<lf>stay underwater much longer.
+<string>Gunpowder
+<string>A dangerous substance that<lf>explodes when struck or heated.
+<string>Lifecrystals
+<string>Mysterious crystals long<lf>worshipped as a source of life.
+<string>Lifepowder
+<string>Medicine made from compounded<lf>Lifecrystals. Heals those within<lf>range with a single touch.
+<string>Mystery Charm
+<string>A modest good-luck charm.<lf>What does it do? Finish the<lf>Quest and you'll find out.
+<string>Shining Charm
+<string>A curious good-luck charm.<lf>What does it do? Finish the<lf>Quest and you'll find out.
+<string>Timeworn Charm
+<string>A powerful good-luck charm.<lf>What does it do? Finish the<lf>Quest and you'll find out.
+<string>Enduring Charm
+<string>A mysterious good-luck charm.<lf>What does it do? Finish the<lf>Quest and you'll find out.
+<string>Powercharm
+<string>An amulet that raises Attack.<lf>Just carrying this gives you<lf>demonic strength.
+<string>Powertalon
+<string>A powerful amulet that<lf>raises Attack. Made with<lf>a Deviljho Talon.
+<string>Armorcharm
+<string>An amulet that raises Defense.<lf>Just carrying this hardens<lf>your skin like stone.
+<string>Armortalon
+<string>A powerful amulet that<lf>raises Defense. Made with<lf>a Deviljho Talon.
+<string>Tranquilizer
+<string>Medicine that works as an<lf>anesthetic when combined.
+<string>Raw Meat
+<string>Meat carved from a monster.<lf>Can be cooked, combined, or<lf>used to set a trap.
+<string>Poisoned Meat
+<string>Raw Meat that poisons<lf>whatever eats it. Makes<lf>great bait for traps.
+<string>Tinged Meat
+<string>Raw Meat that paralyzes<lf>whatever eats it. Makes<lf>great bait for traps.
+<string>Drugged Meat
+<string>Raw Meat that puts whatever<lf>eats it to sleep. Makes<lf>great bait for traps.
+<string>Rare Steak
+<string>Provides a small boost to<lf>your Stamina. This one's<lf>still red in the middle.
+<string>Well-done Steak
+<string>Provides a moderate boost to<lf>your Stamina. Meat done right!
+<string>Burnt Meat
+<string>Meat that has been burnt to<lf>a crisp. It might boost your<lf>Stamina, or it might drain it...
+<string>Hot Meat
+<string>Meat that warms the body,<lf>wards off the cold, and boosts<lf>a moderate amount of Stamina.
+<string>Chilled Meat
+<string>Meat that cools the body,<lf>wards off heat, and boosts<lf>a moderate amount of Stamina.
+<string>Pink Liver
+<string>Pungent liver obtained from<lf>certain large monsters.<lf>Not popular with humans.
+<string>Ethnic Wyvrnmeat
+<string>Rare, stringy meat from a<lf>horned wyvern found abroad.<lf>Not popular with humans.
+<string>Boomerang
+<string>An unusually-shaped weapon<lf>from abroad that returns to<lf>its user when thrown.
+<string>Throwing Knife
+<string>A standard throwing knife.<lf>Flies straight and true.<lf><COLO 05>(Supply Item)
+<string>Poison Knife
+<string>A throwing knife with a venom-<lf>coated blade. Poisons targets.<lf><COLO 05>(Supply Item)
+<string>Sleep Knife
+<string>A throwing knife whose blade has<lf>been dusted with sleeping agents.<lf><COLO 05>(Supply Item)
+<string>Paralysis Knife
+<string>A throwing knife coated with<lf>toxins that paralyze a target.<lf><COLO 05>(Supply Item)
+<string>Tranq Knife
+<string>A throwing knife used to capture<lf>monsters ensnared in traps.<lf><COLO 05>(Supply Item)
+<string>Bomb Casing
+<string>A base material for making<lf>hand-thrown bombs.
+<string>Paintball
+<string>Toss this scented paint at a<lf>monster to mark it, allowing<lf>you to track its position.
+<string>Flash Bomb
+<string>Flashes brightly on impact.<lf>Toss this right under a<lf>monster's nose to blind it.
+<string>Sonic Bomb
+<string>A grenade-like item that<lf>emits a high-frequency blast<lf>of sound on detonation.
+<string>Dung
+<string>That's right: monster poop.<lf>The odor reveals (too) much<lf>about the monster's diet.
+<string>Super-sized Dung
+<string>Fertilizer for the fields.<lf>Aptonoth grow big... and so<lf>did this! Outperforms Dung.
+<string>Fertile Mud
+<string>Mud that Barroth roll around<lf>in. Nutrient-rich and great<lf>for farming.
+<string>Dung Bomb
+<string>When thrown, releases a strong<lf>odor which certain monsters<lf>find repulsive.
+<string>Smoke Bomb
+<string>Creates a large cloud of<lf>smoke wherever it lands.
+<string>Poison Smoke Bmb
+<string>Contains a toxic chemical.<lf>Also popular as a household<lf>bug bomb.
+<string>Farcaster
+<string>Instantly transports you<lf>back to base camp.
+<string>Tranq Bomb
+<string>A hand grenade used to capture<lf>monsters ensnared in traps.
+<string>Oxygen Supply
+<string>A bulb filled with Oxygen.<lf>Nice to have when you're<lf>underwater and out of air.
+<string>Spider Web
+<string>A very sticky web.
+<string>Net
+<string>A sturdy net able to support<lf>a certain amount of weight<lf>without breaking.
+<string>Trap Tool
+<string>A must-have item for putting<lf>together Pitfall Traps and<lf>other kinds of traps.
+<string>Pitfall Trap
+<string>A trap that activates when<lf>something heavy walks across.<lf>Use it to capture monsters.
+<string>Shock Trap
+<string>A trap that immobilizes a target.<lf>Use it to capture monsters.
+<string>Small Barrel
+<string>A small, empty barrel.
+<string>Large Barrel
+<string>A large, empty barrel.
+<string>Barrel Bomb S
+<string>A small time bomb.<lf>You can use it underwater.
+<string>Barrel Bomb S+
+<string>A powered-up Barrel Bomb S.<lf>Small, but it packs a punch.<lf>You can use it underwater.
+<string>Barrel Bomb L
+<string>A potent bomb that detonates<lf>when struck. Waterproofed, so<lf>it still works underwater.
+<string>Barrel Bomb L+
+<string>A powered-up Barrel Bomb L.<lf>Deadly. Waterproofed, so it<lf>still works underwater.
+<string>Bounce Bomb
+<string>Launches into the air when<lf>set. This modified bomb<lf>requires skill to use.
+<string>Bounce Bomb+
+<string>An improved version of the<lf>Bounce Bomb. Requires some<lf>skill to use.
+<string>Felvine Bomb
+<string>A bomb that emits a scent<lf>Felynes love. Try hitting<lf>monsters with it.
+<string>Huskberry
+<string>A berry that is hollow on<lf>the inside.
+<string>Bone Husk S
+<string>Used as a bone ammo casing.<lf>Produces sturdier results<lf>than a Huskberry.
+<string>Bone Husk L
+<string>A large flying wyvern's<lf>vertebra. As ammo casing,<lf>it can withstand heavy blasts.
+<string>Normal S Lv1
+<string>Inexpensive ammo, so don't<lf>expect much. Fire at will!<lf>Unlimited shots.
+<string>Normal S Lv2
+<string>Non-specialized ammo.<lf>More powerful than Lv1.<lf>Capacity: 99
+<string>Normal S Lv3
+<string>Non-specialized ammo that<lf>ricochets, resulting in high<lf>damage. Capacity: 99
+<string>Pierce S Lv1
+<string>Armor-piercing ammo that deals<lf>multiple hits to some monsters.<lf>Capacity: 60
+<string>Pierce S Lv2
+<string>High-grade armor-piercing ammo.<lf>Deals more hits than Lv1.<lf>Capacity: 60
+<string>Pierce S Lv3
+<string>Max-grade armor-piercing ammo.<lf>Deals numerous hits.<lf>Capacity: 60
+<string>Pellet S Lv1
+<string>Ammo that covers a wide area.<lf>Deals multiple hits at close<lf>range. Capacity: 80
+<string>Pellet S Lv2
+<string>High-grade ammo that covers<lf>a wide area. Deals more hits<lf>than Lv1. Capacity: 70
+<string>Pellet S Lv3
+<string>Max-grade ammo that covers<lf>a wide area. Deals numerous<lf>hits. Capacity: 60
+<string>Crag S Lv1
+<string>Powerful ammo that lodges<lf>in a target, then explodes.<lf>Capacity: 9
+<string>Crag S Lv2
+<string>Very powerful ammo that lodges<lf>in a target, then explodes.      <lf>Capacity: 9
+<string>Crag S Lv3
+<string>Extremely powerful ammo that<lf>lodges in a target, then explodes.<lf>Capacity: 9
+<string>Clust S Lv1
+<string>Ammo that fragments into three<lf>shells upon impact. Beware of<lf>friendly fire! Capacity: 3
+<string>Clust S Lv2
+<string>Ammo that fragments into four<lf>shells upon impact. Beware of<lf>friendly fire! Capacity: 3
+<string>Clust S Lv3
+<string>Ammo that fragments into five<lf>shells upon impact. Beware of<lf>friendly fire! Capacity: 3
+<string>Flaming S
+<string>Ammo that packs extra punch<lf>against monsters susceptible<lf>to Fire. Capacity: 60
+<string>Water S
+<string>Ammo that packs extra punch<lf>against monsters susceptible<lf>to Water. Capacity: 60
+<string>Thunder S
+<string>Ammo that packs extra punch<lf>against monsters susceptible<lf>to Thunder. Capacity: 60
+<string>Freeze S
+<string>Ammo that packs extra punch<lf>against monsters susceptible<lf>to Ice. Capacity: 60
+<string>Dragon S
+<string>Mysterious ammo that won't<lf>work in regular Bowguns.<lf>Capacity: 3
+<string>Recov S Lv1
+<string>Ammo that restores a small<lf>amount of Health to an ally<lf>upon impact. Capacity: 12
+<string>Recov S Lv2
+<string>Ammo that restores a moderate<lf>amount of Health to an ally<lf>upon impact. Capacity: 12
+<string>Poison S Lv1
+<string>Ammo that inflicts poison.<lf>Some targets require<lf>multiple shots. Capacity: 12
+<string>Poison S Lv2
+<string>Enhanced ammo that inflicts<lf>poison. Some targets require<lf>multiple shots. Capacity: 12
+<string>Para S Lv1
+<string>Ammo that causes paralysis.<lf>Some targets require<lf>multiple shots. Capacity: 12
+<string>Para S Lv2
+<string>Enhanced ammo that causes<lf>paralysis. Some targets require<lf>multiple shots. Capacity: 8
+<string>Sleep S Lv1
+<string>Ammo that induces sleep.<lf>Some targets require<lf>multiple shots. Capacity: 12
+<string>Sleep S Lv2
+<string>Enhanced ammo that induces<lf>sleep. Some targets require<lf>multiple shots. Capacity: 8
+<string>Tranq S
+<string>Bowgun ammo used to capture<lf>monsters ensnared in traps.<lf>Capacity: 8
+<string>Paint S
+<string>Ammo that marks a monster's<lf>position on your Map for a<lf>limited time. Capacity: 99
+<string>Demon S
+<string>Ammo that fills the target with<lf>savage amounts of strength.<lf>Capacity: 5
+<string>DUMMY 1
+<string>DUMMY 1
+<string>Armor S
+<string>Ammo that makes the target's<lf>skin as hard as stone.<lf>Capacity: 5
+<string>DUMMY 2
+<string>DUMMY 2
+<string>Sub S Lv1
+<string>Ammo that gains power when<lf>used underwater. Capacity: 60
+<string>Sub S Lv2
+<string>Ammo that gains power when<lf>used underwater. Deals more<lf>hits than Lv1. Capacity: 60
+<string>Exhaust S Lv1
+<string>Special ammo that drains<lf>monsters' stamina.<lf>Capacity: 12
+<string>Exhaust S Lv2
+<string>Enhanced special ammo that<lf>drains monsters' stamina.<lf>Capacity: 8
+<string>Slicing S
+<string>Special ammo that ejects<lf>sharp blades on impact.<lf>It can sever tails. Capacity: 30
+<string>DUMMY 3
+<string>DUMMY 3
+<string>DUMMY 4
+<string>DUMMY 4
+<string>WyvernFire
+<string>Ammo patterned after Wyvern's<lf>Fire. Not as potent, but can<lf>be rapid-fired. Capacity: 10
+<string>UW Ballista Ammo
+<string>Ammunition for a mounted<lf>underwater Bowgun.
+<string>(No Coating)
+<string>Dummy data for the software.
+<string>Empty Phial
+<string>A regular old empty phial.<lf>Nothing more, nothing less.
+<string>Power Coating
+<string>An arrow coating that increases<lf>the Attack of arrows fired.<lf>Capacity: 50
+<string>C.Range Coating
+<string>An arrow coating that increases<lf>close-range power and melee<lf>Sharpness. Capacity: 20
+<string>Poison Coating
+<string>An arrow coating that applies<lf>Poison effects to arrows fired.<lf>Capacity: 20
+<string>Para Coating
+<string>An arrow coating that applies<lf>Paralysis effects to arrows fired.<lf>Capacity: 20
+<string>Sleep Coating
+<string>An arrow coating that applies<lf>Sleep effects to arrows fired.<lf>Capacity: 20
+<string>Exhaust Coating
+<string>An arrow coating that causes<lf>arrows fired to drain monsters'<lf>stamina. Capacity: 20
+<string>Paint Coating
+<string>An arrow coating that marks a<lf>monster's position on the map<lf>for a limited time. Capacity: 99
+<string>DUMMY 5
+<string>DUMMY 5
+<string>Worm
+<string>A fishing lure. Wriggles<lf>underwater, enticing those<lf>fishies to bite.
+<string>DUMMY 6
+<string>DUMMY 6
+<string>Mega Fishing Fly
+<string>A fishing lure. Causes a<lf>feeding frenzy. No fish can<lf>resist this one!
+<string>Frog
+<string>A fishing lure. The ideal bait<lf>for certain aquatic monsters.
+<string>Whetfish Bait
+<string>A fishing lure with chum that<lf>makes Whetfish go "mmm."
+<string>Sushifish Bait
+<string>A fishing lure with chum that<lf>makes Sushifish go "mmm."
+<string>Tuna Bait
+<string>A fishing lure with chum that<lf>makes Tuna go "mmm."
+<string>DUMMY 7
+<string>DUMMY 7
+<string>Goldenfish Bait
+<string>A fishing lure with chum that<lf>makes Goldenfish go "mmm."
+<string>Burst Bait
+<string>A fishing lure with chum that<lf>makes fish that rupture upon<lf>death go "mmm."
+<string>DUMMY 8
+<string>DUMMY 8
+<string>Old Pickaxe
+<string>A cheap pickaxe with an<lf>easily nicked blade.
+<string>Iron Pickaxe
+<string>A pickaxe with a reasonably<lf>strong blade.
+<string>Mega Pickaxe
+<string>A pickaxe tempered with steel.<lf>This one won't nick easily.
+<string>Old Bug Net
+<string>A cheap net for catching bugs.<lf>It tears easily.
+<string>Bug Net
+<string>A durable net for catching bugs.
+<string>Mega Bug Net
+<string>An extremely durable net<lf>for catching bugs. This one<lf>is made to last.
+<string>Fishing Harpoon
+<string>A must if you want to gather<lf>materials from fish. Weaken<lf>the fish, then harpoon away.
+<string>Mega Harpoon
+<string>A must if you want to gather<lf>materials from fish. Weaken<lf>the fish, then harpoon away.
+<string>BBQ Spit
+<string>Just what you need to cook<lf>meat. A must-have item for<lf>any hungry hunter.
+<string>Double BBQ Spit
+<string>Cutting edge BBQ technology!<lf>Hold the dash button while<lf>BBQing to keep on cooking!
+<string>Whetstone
+<string>A standard-sized Whetstone.<lf>Use it to restore a weapon's<lf>Sharpness.
+<string>Binoculars
+<string>Allow you to see farther<lf>and observe from a distance.
+<string>Garbage
+<string>Junk created when a<lf>combination attempt fails.
+<string>Field Horn
+<string>Used to attract certain<lf>monsters -- blow at your own<lf>risk. May break when used.
+<string>Health Horn
+<string>Restores Health to those who<lf>hear it. May break when used.
+<string>Antidote Horn
+<string>Eliminates poison in the<lf>blood of those who hear it.<lf>May break when used.
+<string>Demon Horn
+<string>Increases the strength of<lf>those who hear it. May<lf>break when used.
+<string>Armor Horn
+<string>Bolsters the defenses of<lf>those who hear it. May<lf>break when used.
+<string>Honey
+<string>Sweet, golden honey. High in<lf>nutritional value.
+<string>Herb
+<string>Restores a very small amount<lf>of Health. Not very flavorful.
+<string>Antidote Herb
+<string>A plant used in antidotes.<lf>It sometimes cures poison<lf>when eaten by itself.
+<string>Fire Herb
+<string>A wondrous, flammable plant.
+<string>DUMMY 9
+<string>DUMMY 9
+<string>Ivy
+<string>A vine of tough fibers.<lf>Woven, it is sturdy enough<lf>to hold a person's weight.
+<string>Sleep Herb
+<string>A plant containing sleeping<lf>agents.
+<string>Sap Plant
+<string>The sap it secretes acts as a<lf>strong adhesive. Careful you<lf>don't glue your Pouch shut!
+<string>Felvine
+<string>Melynxes' favorite food --<lf>they just have to steal it.
+<string>Cactus Flower
+<string>Possesses antidotal agents,<lf>but it will not work by itself.
+<string>Airweed
+<string>Chewing it releases Oxygen,<lf>but that's easier said than<lf>done -- it's really sticky.
+<string>Hot Pepper
+<string>Blazingly spicy. Sure, it'll<lf>warm you up, but it's too<lf>hot to handle on its own.
+<string>DUMMY 10
+<string>DUMMY 10
+<string>Blue Mushroom
+<string>A well-known Combo material<lf>used to augment power. The<lf>deeper the blue, the better.
+<string>Nitroshroom
+<string>A hard-to-find mushroom<lf>with the power to generate<lf>blazing heat.
+<string>Parashroom
+<string>A mushroom that induces<lf>paralysis.
+<string>Toadstool
+<string>Logic says not to eat this<lf>poisonous fungus, but don't<lf>write it off completely.
+<string>Exciteshroom
+<string>This one has a very strange<lf>aroma... But is it edible?<lf>Only one way to find out.
+<string>DUMMY 11
+<string>DUMMY 11
+<string>Dragon Toadstool
+<string>A dangerous fungus said to<lf>suck the life out of the one<lf>who plucks it. Beware.
+<string>Bindshroom
+<string>A giant paralyzing mushroom.<lf>Just one touch can immobilize<lf>you, so handle with care!
+<string>Paintberry
+<string>A berry with a shocking hue<lf>and an overwhelming scent.<lf>Look out: It WILL stain!
+<string>Might Seed
+<string>Temporarily raises your<lf>Attack when ingested by<lf>improving energy flow.
+<string>Adamant Seed
+<string>Temporarily raises your<lf>Defense when ingested by<lf>hardening tissue.
+<string>Dragonfell Berry
+<string>A mysterious berry, rumored<lf>since ancient times to be<lf>loathed by dragons.
+<string>Scatternut
+<string>A nut that violently ejects<lf>its contents when struck.
+<string>Needleberry
+<string>A berry covered with needle-<lf>like thorns.
+<string>DUMMY 12
+<string>DUMMY 12
+<string>Bomberry
+<string>A berry that explodes when<lf>struck.
+<string>DUMMY 13
+<string>DUMMY 13
+<string>DUMMY 14
+<string>DUMMY 14
+<string>DUMMY 15
+<string>DUMMY 15
+<string>DUMMY 16
+<string>DUMMY 16
+<string>Nulberry
+<string>A mysterious berry that cures<lf>all elemental Blights (Fire, Water,<lf>Ice, Thunder, and Dragon).
+<string>Bumblepumpkin
+<string>A trendy orange pumpkin.<lf>If left undisturbed, it can grow<lf>to gigantic proportions.
+<string>Broken Shell
+<string>A beautiful fragment --<lf>but seeing as it's broken,<lf>it won't fetch much.
+<string>Black Pearl
+<string>The Hunting Fleet sometimes<lf>brings these back. The black<lf>glow fetches a high price.
+<string>Jumbo Pearl
+<string>A huge pearl -- so huge,<lf>unfortunately, that it may<lf>be dismissed as a fake.
+<string>Stone
+<string>A rock with just the right heft<lf>for throwing. Tried and tested!
+<string>Iron Ore
+<string>Ore with high iron content.<lf>Can be smelted and forged<lf>into various equipment.
+<string>Earth Crystal
+<string>Crystallized microbes which<lf>are prized as an abrasive<lf>when forging weapons.
+<string>Machalite Ore
+<string>An ore harder than iron,<lf>but also several times more<lf>difficult to forge with.
+<string>Dragonite Ore
+<string>An ore that yields metal<lf>superior to that of Machalite.<lf>Rare and valuable.
+<string>Pelagicite Ore
+<string>Technically not ore at all,<lf>but rather prehistoric bone.<lf>Found underwater.
+<string>DUMMY 17
+<string>DUMMY 17
+<string>DUMMY 18
+<string>DUMMY 18
+<string>DUMMY 19
+<string>DUMMY 19
+<string>Carbalite Ore
+<string>An ore still being researched.<lf>It yields even better metal<lf>than Dragonite.
+<string>Eltalite Ore
+<string>A promising new ore that<lf>produces higher quality<lf>metal than Carbalite Ore.
+<string>Fucium Ore
+<string>An ore composed of a mysterious<lf>metal, capable of fusing nearly<lf>any two materials together.
+<string>Meldspar Ore
+<string>An ore composed of a durable,<lf>flexible metal that works well<lf>as a combining agent.
+<string>Bathycite Ore
+<string>Formed from prehistoric<lf>bones under high pressure.<lf>Never seen on land.
+<string>Lava Nugget
+<string>Melted rock stripped from the<lf>body of an Uragaan or Agnaktor.<lf>Various ores are mixed within.
+<string>Firestone
+<string>Combusts even at room<lf>temperature. Its high heat can<lf>be used to fuse materials.
+<string>Firecell Stone
+<string>A magma-like deposit that<lf>only trained hands can<lf>properly work with.
+<string>Allfire Stone
+<string>An ore that blazes with an<lf>all-consuming flame. Requires<lf>considerable skill to mine.
+<string>Lightcrystal
+<string>An extremely hard substance<lf>with a faint glow. Sometimes<lf>used for crafting tools.
+<string>Isisium
+<string>A precious metal with<lf>countless uses. Gleams<lf>pure white in the light.
+<string>DUMMY 20
+<string>DUMMY 20
+<string>Gracium
+<string>A precious metal with<lf>countless uses. Gleams pale<lf>blue in the light. Valuable.
+<string>Antiseptic Stone
+<string>Not found in nature; created<lf>by combining an Earth Crystal<lf>with insect nutrients.
+<string>Ice Crystal
+<string>Ice that will not melt at<lf>room temperature. Can be<lf>used to create denser ore.
+<string>Armor Stone
+<string>Reacts uniquely to heat.<lf>Combine with other materials<lf>to create coating for armor.
+<string>Armor Sphere
+<string>Reacts uniquely to heat.<lf>Fuse this to armor to<lf>increase its strength.
+<string>Armor Sphere+
+<string>Fuse this high-quality Armor<lf>Sphere to existing armor to<lf>increase its strength.
+<string>Adv Armor Sphere
+<string>An advanced Armor Sphere.<lf>Rare in Moga Village. Save<lf>it for that special upgrade.
+<string>Hrd Armor Sphere
+<string>A hard, dense Armor Sphere.<lf>Use this rare item for more<lf>advanced armor upgrades.
+<string>Hvy Armor Sphere
+<string>A thick, dense Armor Sphere.<lf>Use this precious rarity to<lf>push armor to the limit.
+<string>DUMMY 21
+<string>DUMMY 21
+<string>Tru Armor Sphere
+<string>An Armor Sphere of near-perfect<lf>purity. Its latent abilities require<lf>advanced techniques to extract.
+<string>Whetfish
+<string>A fish with a dorsal fin hard<lf>enough to sharpen weapons with.
+<string>Sushifish
+<string>A fatty, delicious fish that<lf>restores a small amount<lf>of Health when consumed.
+<string>Sleepyfish
+<string>A fish that contains<lf>sleeping agents.
+<string>Pin Tuna
+<string>A fish with jaws covered in<lf>tiny, needle-like spikes.
+<string>Popfish
+<string>A fish that literally pops<lf>when it dies.
+<string>Scatterfish
+<string>A fish that splits into<lf>little pieces when it dies.
+<string>Burst Arowana
+<string>A fish that bursts open when<lf>it dies.
+<string>Bomb Arowana
+<string>A fish that explodes when it<lf>dies.
+<string>Glutton Tuna
+<string>A fish that eats anything --<lf>allowing you to sometimes<lf>get items from its stomach.
+<string>Small Goldenfish
+<string>A rare fish that commands<lf>a high price, but beware<lf>its ferocity, rookies!
+<string>Wanchovy
+<string>A fish that can induce<lf>exhaustion.
+<string>DUMMY 22
+<string>DUMMY 22
+<string>Blue Cutthroat
+<string>A fish that emits blue light.<lf>Its sharp body will cut you to<lf>pieces if you're not careful.
+<string>Humspun Conch
+<string>A giant, spiked conch shell. If<lf>you listen closely, you can hear<lf>the melody of the tides within.
+<string>DUMMY 23
+<string>DUMMY 23
+<string>Insect Husk
+<string>The remains of an insect.<lf>You must be one hardcore<lf>collector to hang onto this!
+<string>Yambug
+<string>An insect named for its shape.<lf>Make fishing lures with it;<lf>its scent drives Tuna wild.
+<string>Bughopper
+<string>A roundish grasshopper.<lf>Make fishing lures with it;<lf>its scent drives Whetfish wild.
+<string>DUMMY 215
+<string>DUMMY 215
+<string>Stinkhopper
+<string>A grasshopper with a foul odor.<lf>Make fishing lures with it; its<lf>scent drives explosive fish wild.
+<string>Snakebee Larva
+<string>An unusual larva. Make<lf>fishing lures with it; its<lf>scent drives Goldenfish wild.
+<string>Godbug
+<string>An insect said to live 1000<lf>years -- but no one's lived<lf>long enough to prove it.
+<string>Bitterbug
+<string>A sharp-tasting bug with innate<lf>healing abilities. Eat one for a<lf>50% chance of curing poison.
+<string>Flashbug
+<string>A nocturnal insect sometimes<lf>found in daylight. They emit<lf>a bright flash upon death.
+<string>Thunderbug
+<string>Releases an electric shock<lf>when struck. Used to light<lf>rooms and start fires.
+<string>Fulgurbug
+<string>Thunderbugs which have been<lf>stimulated by Zinogre. They<lf>emit a pale blue light.
+<string>Carpenterbug
+<string>Uses viscous fluids and sharp<lf>jaws to construct ant hills<lf>that are a sight to behold.
+<string>Killer Beetle
+<string>An insect with dazzling wings.<lf>Its hard shell is often used<lf>as an abrasive.
+<string>Hercudrome
+<string>Said to be the world's<lf>strongest bug. Used in<lf>forging, cooking, and more.
+<string>DUMMY 24
+<string>DUMMY 24
+<string>King Scarab
+<string>The royal class of the<lf>scarabs, with a hard shell<lf>and lustrous wings.
+<string>Rare Scarab
+<string>A rare and valuable insect<lf>that greatly assists in the<lf>bonding of metals.
+<string>DUMMY 25
+<string>DUMMY 25
+<string>Flutterfly
+<string>A butterfly with shimmering<lf>wings. So rarely seen in the wild,<lf>many believe it to be a myth.
+<string>DUMMY 26
+<string>DUMMY 26
+<string>Bomb Sac
+<string>A base material for making<lf>hand-thrown bombs.
+<string>Screamer
+<string>A monster organ that emits<lf>an earsplitting sonic blast<lf>when ruptured.
+<string>Poison Sac
+<string>A monster organ that<lf>contains a lethal toxin.<lf>Handle with extreme care.
+<string>Toxin Sac
+<string>A monster organ filled with<lf>an extremely potent toxin.<lf>Just touching it is dangerous.
+<string>DUMMY 27
+<string>DUMMY 27
+<string>Paralysis Sac
+<string>A monster organ that contains<lf>paralyzing neurotoxins.
+<string>Omniplegia Sac
+<string>A monster organ filled with<lf>potent neurotoxins. A single<lf>touch can cause paralysis.
+<string>Sleep Sac
+<string>A monster organ that<lf>contains a knockout powder<lf>capable of inducing sleep.
+<string>Coma Sac
+<string>A monster organ that<lf>contains dangerous powder.<lf>One whiff can induce a coma.
+<string>Flame Sac
+<string>A monster organ filled with<lf>flammable powder. Handle<lf>with extreme care.
+<string>Inferno Sac
+<string>A monster organ filled with<lf>powder that ignites if it so<lf>much as touches air. Danger!
+<string>Conflagrant Sac
+<string>A monster organ filled with<lf>a highly explosive powder.<lf>Extremely dangerous!
+<string>Aqua Sac
+<string>A monster organ designed to<lf>hold and preserve water.
+<string>Torrent Sac
+<string>A monster organ designed to<lf>hold and preserve copious<lf>amounts of water.
+<string>DUMMY 217
+<string>DUMMY 217
+<string>Thunder Sac
+<string>A monster organ that can<lf>store up large amounts of<lf>high-voltage electricity.
+<string>Lightning Sac
+<string>A monster organ that can store<lf>electricity as strong as lightning.<lf>It rumbles like thunder.
+<string>Frost Sac
+<string>A monster organ that<lf>contains a sub-zero liquid.<lf>Handle with extreme care.
+<string>Freezer Sac
+<string>A monster organ with<lf>tremendous freezing power.
+<string>Dash Extract
+<string>A mysterious substance that can<lf>be culled from certain monsters.
+<string>Pale Extract
+<string>Has the ability to amplify the<lf>effects of certain medicines.
+<string>Monster Bone S
+<string>A handy material used to<lf>make everything from<lf>equipment to sundries.
+<string>Monster Bone M
+<string>A nicely-sized bone. Strong<lf>yet flexible, it's as reliable<lf>as steel and wood.
+<string>Monster Bone L
+<string>Wyvern bone needed to craft<lf>larger items. The right item<lf>will fuse this to a shell.
+<string>Mystery Bone
+<string>A weathered bone. Not sturdy<lf>enough to use in forging.
+<string>Unknown Skull
+<string>An animal skull, worn and<lf>weathered beyond identification.
+<string>Bone
+<string>A long, thin bone. Junk, no<lf>matter how you slice it, but<lf>not completely worthless.
+<string>Avian Stoutbone
+<string>The robust bone of a bird<lf>wyvern. Durable and easy<lf>to craft with.
+<string>DUMMY 218
+<string>DUMMY 218
+<string>Monster Bone+
+<string>A high quality monster bone.<lf>Hard to find, but vital for<lf>crafting powerful equipment.
+<string>Monster Keenbone
+<string>A rare bone with a razor-<lf>sharp tip that retains its<lf>strength even when crafted.
+<string>Monster Hardbone
+<string>A precious bone rarely yielded<lf>by large wyverns. Difficult to<lf>forge, but prized for its strength.
+<string>Monster Slogbone
+<string>An incredibly strong bone<lf>harvested from a fearsome<lf>wyvern. Its heft is impressive.
+<string>Avian Finebone
+<string>A bone from a Jaggi or other<lf>bird wyvern. Small in size,<lf>but high in quality.
+<string>Jumbo Bone
+<string>A large, thick bone.<lf>Often cut apart in workshops<lf>for use in crafting.
+<string>Stoutbone
+<string>The large, sturdy bone of a<lf>beast. Prized by blacksmiths<lf>as a prime forging material.
+<string>Dragonbone Relic
+<string>A curiously unfossilized<lf>bone from a dragon that once<lf>roamed these lands.
+<string>Wyvern Fang
+<string>Used in Bowgun bullet points.<lf>Gunpowder shatters these,<lf>generating shrapnel.
+<string>Wyvern Claw
+<string>Used in Bowgun bullet points.<lf>Gunpowder triggers a blast<lf>with a wide radius.
+<string>Wyvern Stone
+<string>Throughout a wyvern's life,<lf>impurities gather and form<lf>this peculiar stone.
+<string>Lrg Wyvern Stone
+<string>A Wyvern Stone grown especially<lf>large after years of accumulating<lf>mass. Emits a peculiar glow.
+<string>Bird Wyvern Gem
+<string>A valuable gem that can be<lf>harvested from Jaggi and<lf>other bird wyverns.
+<string>Fey Wyvern Gem
+<string>An exceptionally pure gem taken<lf>from a bird wyvern. Its fragility<lf>makes it difficult to carve.
+<string>ElderDragonBlood
+<string>Contains an unknown<lf>ingredient, the object of<lf>much scholarly research.
+<string>DUMMY 28
+<string>DUMMY 28
+<string>Azure Dragongem
+<string>A legendary jewel said to bring<lf>a swift end to those who come<lf>into possession of it.
+<string>Azure Drgnsphire
+<string>Legend says the discovery of<lf>this brilliant gem heralds<lf>the end of the world.
+<string>Beautiful Scale
+<string>An everyday Commodity.<lf>These amber fish scales must<lf>be traded in bulk.
+<string>Shining Starfish
+<string>An everyday Commodity.<lf>Part of the Hunting Fleet's<lf>catch. Must be traded in bulk.
+<string>Armorfish Morsel
+<string>An everyday Commodity.<lf>These fish breed near Moga's<lf>shores. Must be traded in bulk.
+<string>Fine Pelt
+<string>An everyday Commodity.<lf>These durable Kelbi pelts<lf>must be traded in bulk.
+<string>Power Paddle
+<string>An everyday Commodity.<lf>This Tackle shortens voyages by<lf>one day. Must be traded in bulk.
+<string>Curved Fang
+<string>An everyday Commodity.<lf>These bird wyvern fangs must<lf>be traded in bulk.
+<string>Dragonbone Piece
+<string>An everyday Commodity.<lf>These can be converted to<lf>Resources or traded in bulk.
+<string>Abalone Piece
+<string>An everyday Commodity.<lf>These can be converted to<lf>Resources or traded in bulk.
+<string>Fossil Piece
+<string>An everyday Commodity.<lf>These can be converted to<lf>Resources or traded in bulk.
+<string>Stunning Quill
+<string>A quality Commodity.<lf>Even one of these rainbow<lf>quills makes a good trade.
+<string>Saturnian
+<string>A quality Commodity.<lf>Even one of these soil-dwellers<lf>makes a good trade.
+<string>Mystic Narwhal
+<string>A quality Commodity.<lf>Even one of these revered<lf>fish makes a good trade.
+<string>Perfect Paddle
+<string>A quality Commodity.<lf>This Tackle shortens voyages by<lf>two days. Makes a good trade.
+<string>Moonlight Fang
+<string>A quality Commodity.<lf>Even one of these uncommon<lf>fangs makes a good trade.
+<string>Glittering Scale
+<string>A quality Commodity.<lf>This weathered fang glows<lf>white. Makes a good trade.
+<string>Giant Skull
+<string>A rare Commodity ★.<lf>Use this massive monster<lf>skull for a Rare Trade.
+<string>Atlantis Crab
+<string>A rare Commodity ★.<lf>It houses a precious gem.<lf>Use it for a Rare Trade.
+<string>Queen Needle
+<string>A rare Commodity ★.<lf>Use this Bnahabra queen's<lf>needle for a Rare Trade.
+<string>Ancient Skin Oil
+<string>A rare Commodity ★★.<lf>The Royal Ludroth and Lagiacrus<lf>produce it. For Rare Trades.
+<string>Flamboyant Quill
+<string>A rare Commodity ★★.<lf>Use this shockingly-colored<lf>quill for a Rare Trade.
+<string>Eldest Saturnian
+<string>A rare Commodity ★.<lf>Use this oldest of soil-dwellers<lf>for a Rare Trade.
+<string>Queen's Spirit
+<string>A rare Commodity ★★★.<lf>Use this Rathian bone serum<lf>for a Rare Trade.
+<string>Vermilion Scale
+<string>A rare Commodity ★★★★.<lf>Use this blisteringly hot<lf>scale for a Rare Trade.
+<string>Sea-King's Scale
+<string>A rare Commodity ★★★★.<lf>Strangely, this scale never<lf>dries. For Rare Trades.
+<string>Odd Egg
+<string>A mysterious egg found only<lf>rarely in Moga Woods. Can be<lf>converted to Resources.
+<string>Saturnian Trap
+<string>Fertilizer for the Farm.<lf>Use this to hunt for strange<lf>soil-dwelling creatures.
+<string>BugMaker! Pro
+<string>Fertilizer for the Insect Box.<lf>Its slogan? "10 bugs per<lf>drop, or we'll EAT a bug!"
+<string>Funky Pheromones
+<string>Fertilizer for the Insect Box.<lf>Some monsters emit this scent,<lf>and bugs love it.
+<string>Shroom Germ
+<string>Fertilizer for the Shroom Box.<lf>This bacteria is found within<lf>certain monsters.
+<string>Shroom Germ+
+<string>Fertilizer for the Shroom Box.<lf>This bacteria can't be beat.<lf>It's the Germinator!
+<string>Bizzy Bees
+<string>Fertilizer for the Honey Box.<lf>Bred abroad, these busy bees<lf>never, ever rest.
+<string>Fish Finder
+<string>Improves the Hunting Fleet's<lf>catch when Fishing; less<lf>effective otherwise.
+<string>Treasure Tracker
+<string>Improves the Hunting Fleet's<lf>catch when seeking Treasure;<lf>less effective otherwise.
+<string>Spare Spear
+<string>Improves the Hunting Fleet's<lf>catch when Hunting; less<lf>effective otherwise.
+<string>Pittance Fang
+<string>A wyvern fang from Moga<lf>Woods with little value.<lf>Sell it for pocket change.
+<string>Fortune Fang
+<string>A monster fang from Moga<lf>Woods. Worth a great deal,<lf>sell it for a tidy sum.
+<string>Gold Needle
+<string>A needle obtained from<lf>certain monsters. Sell it<lf>for pocket change.
+<string>Wyverngold
+<string>A gold rock crystallized in<lf>a wyvern's belly over dozens<lf>of years. Worth a fortune.
+<string>Pirate Booty
+<string>The treasure of the Pirate<lf>King, arr! Who knows what<lf>riches it be sellin' for?
+<string>Steel Egg
+<string>An egg of glittering steel.<lf>Very valuable and rare,<lf>but of no use to a hunter.
+<string>Silver Egg
+<string>An egg of glittering silver.<lf>Very valuable and rare,<lf>but of no use to a hunter.
+<string>Golden Egg
+<string>An egg of glittering gold.<lf>Insanely valuable and rare,<lf>but of no use to a hunter.
+<string>Kelbi Horn Objet
+<string>A Furnishing made from a<lf>Kelbi Horn. Charming! Just<lf>don't poke your eye out.
+<string>Twstd Horn Objet
+<string>A classy Furnishing made<lf>from a Diablos Horn. A<lf>striking, valuable piece.
+<string>MohranFang Objet
+<string>A top-class Furnishing, and<lf>a symbol of the city as well<lf>as your hard work.
+<string>Poogie
+<string>A Furnishing fashioned after<lf>a Poogie. Loved by folks of<lf>all ages, far and wide.
+<string>Eggie Poogie
+<string>A classy Furnishing<lf>fashioned after a Poogie.<lf>Takes all your cares away.
+<string>Rath Poogie
+<string>A top-class Furnishing<lf>fashioned after a Poogie.<lf>Charming AND intimidating!
+<string>Sandstone Plant
+<string>A Furnishing. This relaxing,<lf>colorful potted plant is<lf>from the Sandy Plains.
+<string>Marshland Plant
+<string>A classy Furnishing. This<lf>potted plant is a strain<lf>that doesn't usually flower.
+<string>Snowflake Plant
+<string>A top-class Furnishing.<lf>This Tundra plant normally<lf>grows only in eternal cold.
+<string>Prismshroom Lamp
+<string>A Furnishing shaped like a<lf>mushroom. The ladies go gaga<lf>for the adorable design.
+<string>Qurupeco Lamp
+<string>A top-class Furnishing<lf>fashioned after a Qurupeco.<lf>It's impersonating a lamp!
+<string>Sirensea Lamp
+<string>A super-classy Furnishing<lf>fashioned after a Gobul.<lf>It even moves! Incredible.
+<string>Oceanic Fountain
+<string>A Furnishing fashioned after<lf>a Lagiacrus. Its trickling<lf>water calms the soul.
+<string>Bubbly Fountain
+<string>A classy Furnishing fashioned<lf>after a Giggi. Somebody had<lf>fun thinking it up.
+<string>Magma Fountain
+<string>A top-class Furnishing<lf>fashioned after an Agnaktor.<lf>Simply priceless.
+<string>Iron Figure
+<string>A Furnishing carved from<lf>plain iron ore. Crafting it<lf>takes time and effort.
+<string>Machalite Figure
+<string>A classy Furnishing carved<lf>from precious ore. It never<lf>loses its sparkle.
+<string>Dragonite Figure
+<string>A top-class Furnishing<lf>carved from rare ore. Anyone<lf>would kill to own one.
+<string>Model Sandskiff
+<string>A Furnishing. This to-scale<lf>model tickles the childlike<lf>heart in everyone.
+<string>Model Airship
+<string>A classy Furnishing that looks<lf>just like a real airship!<lf>Great for all ages.
+<string>Model Poogieship
+<string>A super-classy Furnishing<lf>with a Poogie on the sail.<lf>Any kid would die for this.
+<string>Guildie (Red)
+<string>A Furnishing -- well, more<lf>like a doll. It's Loc Lac's<lf>Quest Receptionist!
+<string>Guildie (Green)
+<string>A classy Furnishing -- well,<lf>more like a doll. It's Loc Lac's<lf>Guild Store Clerk!
+<string>Guildie (Blue)
+<string>A top-class Furnishing --<lf>well, more like a doll. It's<lf>Loc Lac's Arena Clerk!
+<string>Great Poogi
+<string>A Furnishing fashioned after... <lf>a Poogie? Very curious indeed.
+<string>Incomplete Crown
+<string>A crown of gold. On the brow<lf>is a hole for some sort of<lf>missing gemstone.
+<string>Crown's Gemstone
+<string>A pure, precious stone that<lf>was once set into a crown.<lf>Valuable even on its own.
+<string>Dazzling Crown
+<string>A sophisticated symbol of<lf>wealth that shines like the<lf>sun. Everybody wants one!
+<string>Prize Gold Sword
+<string>A Furnishing said to be a<lf>gift from the gods of war to<lf>whoever rules among mortals.
+<string>Golden Medallion
+<string>A Furnishing said to be a<lf>gift from the benign gods to<lf>seasoned combatants.
+<string>Kelbi Horn
+<string>Infusions of powdered Kelbi<lf>Horn work wonders on tummy-<lf>aches. It's a local secret!
+<string>Blue Kelbi Horn
+<string>An especially rare Kelbi Horn.<lf>Popular among traders.
+<string>Warm Pelt
+<string>A pelt from a small animal.<lf>Used for many things, but<lf>mostly just regular clothes.
+<string>High-qualty Pelt
+<string>A pelt from a small animal.<lf>Used for many things, but<lf>mostly just regular clothes.
+<string>Gargwa Feather
+<string>A big, beautiful feather<lf>plucked from a Gargwa. Often<lf>used as a fashion accessory.
+<string>DUMMY 29
+<string>DUMMY 29
+<string>DUMMY 30
+<string>DUMMY 30
+<string>Anteka Antler
+<string>An antler often used as raw<lf>material for armor. Popular<lf>with interior decorators.
+<string>DUMMY 31
+<string>DUMMY 31
+<string>Bnahabra Shell
+<string>Every bit as sturdy as<lf>wyvern armor in the hands<lf>of a clever craftsman.
+<string>DUMMY 32
+<string>DUMMY 32
+<string>Bnaha Carapace
+<string>The hardest part of the shell.<lf>Reveals curious properties<lf>when forged.
+<string>Bnahabra Wing
+<string>Difficult to forge with --<lf>the results vary depending<lf>on which surface you use.
+<string>DUMMY 33
+<string>DUMMY 33
+<string>Bnahabra Cutwing
+<string>A wing that slices like a<lf>well-honed knife. Difficult<lf>to use in forging.
+<string>Bnahabra Spine
+<string>A spine Bnahabra use to attack<lf>invaders. Secretes a paralytic<lf>fluid from a small tube inside.
+<string>Altaroth Jaw
+<string>These durable mouthparts are<lf>surprisingly difficult to<lf>carve loose.
+<string>DUMMY 34
+<string>DUMMY 34
+<string>Altaroth Stomach
+<string>A transparent sac cut from<lf>an Altaroth's abdomen, used<lf>to store who knows what.
+<string>Prized Stomach
+<string>A premium sac cut from an<lf>Altaroth's abdomen. Easy to miss<lf>due to its size and transparency.
+<string>Quality Sac
+<string>A high-quality sac cut from an<lf>Altaroth's abdomen. Its refined<lf>material is thin but durable.
+<string>Bullfango Pelt
+<string>A pelt from a Bullfango,<lf>covered in bristly fur.
+<string>DUMMY 35
+<string>DUMMY 35
+<string>Bullfango Head
+<string>A Bullfango head, complete<lf>with two splendid tusks.
+<string>Monster Fluid
+<string>A liquid bugs suck from monsters.<lf>Forms an adhesive when mixed<lf>with insect digestive fluids.
+<string>Monster Broth
+<string>A broth made from only the<lf>thickest of a monster's<lf>juices. Quite rich.
+<string>Rhenoplos Shell
+<string>A very strong shell,<lf>considering it comes from<lf>such a small monster.
+<string>Rhenoplos Bone
+<string>As strong as it is heavy, this<lf>Rhenoplos bone is well-suited<lf>for use in crafting armor.
+<string>Rhenoplos Scalp
+<string>A sturdy part of the skull<lf>that yields, shall we say,<lf>dashing results?
+<string>DUMMY 36
+<string>DUMMY 36
+<string>Rheno Carapace
+<string>A carapace grown thick and hard<lf>over many years. Incredibly<lf>strong for such a small monster.
+<string>DUMMY 219
+<string>DUMMY 219
+<string>Slagtoth Hide+
+<string>Firm, lustrous hide often cut<lf>into large slabs. Prized for its<lf>water-resistant properties.
+<string>DUMMY 37
+<string>DUMMY 37
+<string>Big Fin
+<string>Fins come in many shapes and<lf>sizes -- the right fin for<lf>the right job.
+<string>DUMMY 38
+<string>DUMMY 38
+<string>Quality Fin
+<string>Fins come in many shapes and<lf>sizes -- the right fin for<lf>the right job.
+<string>Giant Fin
+<string>A high-quality fin boasting<lf>both beauty and strength.<lf>Excellent for crafting.
+<string>Sharpened Fang
+<string>Fangs come in many shapes<lf>and sizes -- the right fang<lf>for the right job.
+<string>Velvety Hide
+<string>Demand for this soft-bodied<lf>creature's hide is limited,<lf>so the going price is low.
+<string>Sharqskin
+<string>Skin from a carnivorous fish<lf>living along the Moga shore.<lf>Desired for its unique feel.
+<string>Jaggi Scale
+<string>A scale carved from a Jaggi.<lf>Popular among hunters for its<lf>beauty and crafting versatility.
+<string>Jaggi Scale+
+<string>A vividly-colored superior<lf>Jaggi scale that can be used<lf>to produce hardier equipment.
+<string>DUMMY 39
+<string>DUMMY 39
+<string>Jaggi Hide
+<string>Soft hide from beneath a Jaggi's<lf>scales. Cheap and easy to work<lf>with, it has numerous uses.
+<string>DUMMY 40
+<string>DUMMY 40
+<string>DUMMY 41
+<string>DUMMY 41
+<string>Bird Wyvern Fang
+<string>A sharp, durable fang from<lf>a bird wyvern. Used to make<lf>Bowgun ammo.
+<string>G.Jaggi Hide
+<string>Durable, elegantly patterned<lf>hide from a Great Jaggi. Befits<lf>its position as pack leader.
+<string>G.Jaggi Hide+
+<string>The rugged hide of a strong<lf>Great Jaggi. Fewer wounds means<lf>higher quality and value.
+<string>Great Jaggi Piel
+<string>Premium hide from a powerful<lf>Great Jaggi. As durable and<lf>flexible as they come.
+<string>G.Jaggi Claw
+<string>A hook-shaped claw cut from a<lf>Great Jaggi. Just like a Jaggi<lf>claw, only much, much larger.
+<string>G.Jaggi Claw+
+<string>A hook-shaped claw cut from a<lf>Great Jaggi. Well-sharpened from<lf>from countless battles.
+<string>DUMMY 42
+<string>DUMMY 42
+<string>King's Frill
+<string>Proof of who's boss among<lf>Jaggi -- and now proof you<lf>are on your way as a hunter.
+<string>Imperial Frill
+<string>A frill snatched from the most<lf>vicious of Jaggi bosses. Proof<lf>of an accomplished hunter.
+<string>Great Jaggi Head
+<string>The frills would be truly<lf>stunning... if they weren't<lf>attached to a severed head.
+<string>DUMMY 43
+<string>DUMMY 43
+<string>Baggi Hide
+<string>Soft hide from beneath a Baggi's<lf>scales. Suitable for survival in<lf>harsh environments.
+<string>Baggi Scale
+<string>The Baggi's remote habitat<lf>means these are worth a bit<lf>more than Jaggi Scales.
+<string>Baggi Scale+
+<string>A superior scale carved from<lf>a Baggi. Essential for forging<lf>stronger equipment.
+<string>DUMMY 44
+<string>DUMMY 44
+<string>G.Baggi Hide
+<string>Scarred hide from a Great Baggi.<lf>Suitable for survival in harsh<lf>environments.
+<string>G.Baggi Hide+
+<string>Thick, durable hide from a<lf>strong Great Baggi. Its presence<lf>must have been formidable.
+<string>Great Baggi Piel
+<string>Premium hide from a powerful<lf>Great Baggi. As durable and<lf>flexible as they come.
+<string>G.Baggi Claw
+<string>A sturdy claw cut from a<lf>Great Baggi. Just like a Baggi<lf>claw, but with more girth.
+<string>G.Baggi Claw+
+<string>A sturdy claw cut from a<lf>Great Baggi. Well-sharpened<lf>from countless battles.
+<string>DUMMY 45
+<string>DUMMY 45
+<string>King's Crest
+<string>Proof of who's boss among<lf>Baggi -- and now proof you<lf>are a seasoned hunter.
+<string>Imperial Crest
+<string>A crest snatched from the most<lf>vicious of Baggi bosses. Proof<lf>of an accomplished hunter.
+<string>Wroggi Scale
+<string>The unusual hue of this scale<lf>is designed to warn predators<lf>that Wroggi are poisonous.
+<string>Wroggi Scale+
+<string>A superior Wroggi scale. Its<lf>thickness suggests a cunning<lf>beast that lived long.
+<string>DUMMY 46
+<string>DUMMY 46
+<string>Wroggi Hide
+<string>Hide that reveals a bright<lf>orange sheen when tanned.<lf>Suitable for crafting.
+<string>Wroggi Fang
+<string>A fang that releases a potent<lf>venom which can poison even<lf>large monsters.
+<string>G.Wroggi Hide
+<string>The spotted, two-tone orange<lf>hide of a Great Wroggi.<lf>Resembles a tapestry.
+<string>G.Wroggi Piel
+<string>Premium hide from a powerful<lf>Great Wroggi. As durable and<lf>flexible as they come.
+<string>G.Wroggi Hide+
+<string>Vividly-colored hide from a<lf>strong Great Wroggi. Used to<lf>make advanced armor.
+<string>G.Wroggi Brace
+<string>A sturdy brace from a Great<lf>Wroggi's wrist. Jammed with bits<lf>of scales, shells and claws.
+<string>DUMMY 47
+<string>DUMMY 47
+<string>G.Wroggi Brace+
+<string>A superior Great Wroggi brace.<lf>If cut open, high-grade shells and<lf>claws can be extracted from it.
+<string>King's Beak
+<string>The beak of a Great Wroggi,<lf>equipped with a poison-<lf>producing organ. Careful!
+<string>Imperial Beak
+<string>A beak snatched from the most<lf>vicious of Wroggi bosses. Proof<lf>of an accomplished hunter.
+<string>Qurupeco Scale
+<string>A scale concealed by vivid<lf>plumage. Easier to spot if<lf>you look near the legs.
+<string>Qurupeco Scale+
+<string>A superior scale concealed by<lf>vivid plumage. Years of growth<lf>have made it quite sturdy.
+<string>Qurupeco Shard
+<string>A strong scale concealed by<lf>vivid plumage, grown to full<lf>maturity over many years.
+<string>Qurupeco Feather
+<string>A feather with a tropical<lf>flair. Often used to craft<lf>Moga Village souvenirs.
+<string>Lustrous Feather
+<string>A vivid feather with an elegant<lf>luster. Qurupeco with these<lf>only live in certain regions.
+<string>Qurupeco Wing
+<string>A feather with a tropical<lf>flair. Often used to craft<lf>Moga Village souvenirs.
+<string>Peco Fellwing
+<string>A special Qurupeco wing<lf>toughened over many years<lf>to a surprising rigidity.
+<string>Vivid Feather
+<string>A superbly colored Qurupeco <lf>feather. Nothing less than<lf>a natural work of art.
+<string>Strange Beak
+<string>An oddly shaped beak.<lf>It's pleasant enough.
+<string>Wonderful Beak
+<string>An oddly shaped beak.<lf>It's somehow quite lovely.
+<string>Alluring Beak
+<string>An oddly-shaped beak.<lf>It's downright attractive!
+<string>Flintstone
+<string>The body part a Qurupeco<lf>uses to start fires. There<lf>is a trick to working it.
+<string>Quality Flint
+<string>The body part a Qurupeco uses<lf>to start fires. The sparks it<lf>generates are highly damaging.
+<string>C.Peco Scale+
+<string>A superior scale concealed by<lf>crimson plumage. Its multiple<lf>layers provide great strength.
+<string>C.Peco Shard
+<string>A strong scale concealed by<lf>crimson plumage, grown to full<lf>maturity over many years.
+<string>C.Peco Wing
+<string>The large wing of a Crimson<lf>Qurupeco. Noblewomen are drawn<lf>to its eye-popping red color.
+<string>C.Peco Fellwing
+<string>A Crimson Qurupeco wing<lf>toughened over many years<lf>to a surprising rigidity.
+<string>Voltstone
+<string>The organ a Crimson Qurupeco<lf>uses to generate electricity.<lf>Releases a charge when struck.
+<string>High Voltstone
+<string>The organ a Crimson Qurupeco<lf>uses to generate electricity.<lf>Beware its high-voltage output.
+<string>Hydro Hide
+<string>Hide that is highly resistant<lf>to Water. Don't expect it to<lf>sell for much.
+<string>Hydro Hide+
+<string>The durable hide of an aquatic<lf>monster. Highly water-resistant,<lf>and in especially good shape.
+<string>DUMMY 48
+<string>DUMMY 48
+<string>Immature Sponge
+<string>Young spongy material.<lf>Sought after for daily use<lf>more than for equipment.
+<string>Quality Sponge
+<string>Mature spongy material.<lf>Sought after for daily use<lf>more than for equipment.
+<string>Spongy Hide
+<string>Uncannily elastic hide that<lf>retains water quite well.
+<string>Spongy Hide+
+<string>High-grade elastic hide that<lf>boasts a remarkable ability<lf>to retain water.
+<string>Spongy Piel
+<string>Nearly flawless elastic hide<lf>that retains water better<lf>than any comparable item.
+<string>R.Ludroth Scale
+<string>A small scale that enables<lf>graceful movement. Several are<lf>needed to forge equipment.
+<string>R.Ludroth Scale+
+<string>A large, strong scale from a<lf>Royal Ludroth. It reflects light<lf>in every direction.
+<string>R.Ludroth Shard
+<string>The ultimate Royal Ludroth<lf>scale. A rainbow of colors<lf>shimmer on its surface.
+<string>R.Ludroth Claw
+<string>A claw from a Royal Ludroth.<lf>Adapted better to movement<lf>than to attacking.
+<string>R.Ludroth Claw+
+<string>A sharp, pointed Royal Ludroth<lf>claw. It plunges deep into the<lf>earth with each step taken.
+<string>R.Ludroth Talon
+<string>A menacingly powerful Royal<lf>Ludroth claw that enables it<lf>to charge through any terrain.
+<string>R.Ludroth Crest
+<string>These crests become rigid<lf>when the beast is angry;<lf>quantity indicates status.
+<string>R.Ludroth Crest+
+<string>A proud, strong crest befitting<lf>a pack leader. Its sharp horns<lf>shine magnificently.
+<string>Chic Crest
+<string>A proud, strong crest befitting<lf>a pack leader. Sharper than<lf>sharp, and terribly beautiful.
+<string>R.Ludroth Tail
+<string>The whole Royal Ludroth<lf>tail, fin and all. Locals<lf>use them for shipbuilding.
+<string>Plum Spongy Hide
+<string>Uncannily elastic hide. The<lf>purple coloring comes from<lf>the toxins found with.
+<string>Plum Spongy Piel
+<string>Uncannily elastic hide. The<lf>potent toxins inside give it<lf>an ominous appearance.
+<string>P.Ludroth Scale+
+<string>A milk-white scale from a Purple<lf>Ludroth. Those not discolored by<lf>poison are popular accessories.
+<string>P.Ludroth Shard
+<string>A milk-white scale from a Purple<lf>Ludroth. Thick and strong, it can<lf>be forged into beautiful armor.
+<string>P.Ludroth Claw+
+<string>A sharp red claw from a Purple<lf>Ludroth. Adapted better to<lf>movement than to attacking.
+<string>P.Ludroth Talon
+<string>A thick, sharp claw from a<lf>Purple Ludroth. Primarily for<lf>movement, but still deadly.
+<string>Barroth Shell
+<string>A Barroth's shell -- more<lf>often than not covered in<lf>mud, but strong either way.
+<string>Barroth Carapace
+<string>A Barroth's carapace coated<lf>in multiple layers of mud,<lf>making it quite rigid.
+<string>Barroth Cortex
+<string>A Barroth's cortex. Years<lf>worth of mud have hardened<lf>it beyond all measure.
+<string>Barroth Ridge
+<string>Part of the backplate. Less<lf>common than Barroth Shells,<lf>and therefore more valuable.
+<string>Barroth Ridge+
+<string>A thick, sturdy part of a Barroth<lf>backplate. Mud and sunlight have<lf>helped to harden it further.
+<string>Barroth Chine
+<string>The thickest part of a Barroth's<lf>backplate. Mud, sun, and age<lf>have made it rock-hard.
+<string>Barroth Claw
+<string>Not very sharp, but strong<lf>enough to prove quite<lf>versatile when forging.
+<string>Barroth Claw+
+<string>A polished claw sharpened by<lf>sand and dirt. It can dig through<lf>even the toughest earth.
+<string>Barroth Talon
+<string>A strong claw found on only the<lf>most formidable of Barroth. It<lf>can easily dig through solid rock.
+<string>Barroth Scalp
+<string>This durable part of a<lf>Barroth's skull is also the<lf>hardest to remove.
+<string>Barroth Crown
+<string>The heavy scalp of a formidable<lf>Barroth. As hard to remove<lf>as it is durable.
+<string>Barroth Tail
+<string>Barroth tails aren't very<lf>valuable, but the meat is<lf>hailed as a delicacy.
+<string>J.Barr Carapace
+<string>An ice-coated carapace from<lf>a Jade Barroth. The frost only <lf>adds to its strength.
+<string>J.Barroth Cortex
+<string>The solid, ice-covered cortex<lf>of a Jade Barroth. The frosty <lf>coating is surprisingly strong.
+<string>J.Barroth Ridge+
+<string>The ice-coated backplate of<lf>a Jade Barroth. Hard to remove,<lf>but worth it when sold.
+<string>J.Barroth Chine
+<string>A thick, ice-covered portion of<lf>a Jade Barroth's backplate. Hard<lf>to obtain, but highly valuable.
+<string>J.Barroth Claw+
+<string>A Jade Barroth claw, frozen<lf>to the core. Cold enough to<lf>cause frostbite.
+<string>J.Barroth Talon
+<string>The sharp, frozen claw of a<lf>Jade Barroth. So cold, a single<lf>touch causes intense pain.
+<string>J.Barroth Scalp
+<string>A Jade Barroth scalp resembling<lf>a crown of ice. As hard to forge<lf>with as it is to remove.
+<string>J.Barroth Crown
+<string>The heavy scalp of a Jade<lf>Barroth from a frozen land.<lf>It can break through solid ice.
+<string>J.Barroth Tail
+<string>A tail that has frozen solid.<lf>The meat within has fermented,<lf>which might improve its taste.
+<string>J.Barroth Lash
+<string>A strong, frozen tail. The meat<lf>inside is considered a delicacy,<lf>and must be thawed with care.
+<string>Frozen Glob
+<string>A frozen cluster of Jade<lf>Barroth fluids mixed with snow.<lf>So cold it will never melt.
+<string>DUMMY 49
+<string>DUMMY 49
+<string>Gobul Hide
+<string>Slimy Gobul skin -- an<lf>acquired taste, but those in<lf>the know can't get enough.
+<string>Gobul Hide+
+<string>Fine skin from a Gobul. Said to<lf>rejuvenate the skin, and thus<lf>quite popular with the ladies.
+<string>Gobul Piel
+<string>Thick skin from a Gobul.<lf>Too rubbery for eating, but <lf>perfect for crafting equipment.
+<string>Gobul Fin
+<string>This fin isn't as pretty as<lf>other water-ready materials,<lf>but many still swear by it.
+<string>Gobul Fin+
+<string>A quality Gobul fin.<lf>Its high durability makes it<lf>perfect for underwater gear.
+<string>Fine Gobul Fin
+<string>A fine example of a Gobul Fin.<lf>So durable, it can be used for<lf>years without degrading.
+<string>Gobul Spike
+<string>One of the many barbs found<lf>on a Gobul, and one of the<lf>few parts nobody eats.
+<string>Gobul Spike+
+<string>A high-quality barb from a <lf>Gobul. Only stronger monsters<lf>have such well-shaped spikes.
+<string>Gobul Surspike
+<string>An unusual barb from a Gobul.<lf>Only the most formidable of the<lf>breed have such precious spikes.
+<string>Gobul Whisker
+<string>One of many whiskers growing<lf>on a Gobul's chinny-chin-<lf>chin, used for burrowing.
+<string>Gobul Kingwhiskr
+<string>An impressive whisker seen only<lf>on formidable Gobuls. A bit too<lf>impressive to mimic seagrass.
+<string>Gobul Lantern
+<string>The Gobul's most famous<lf>feature, used to lure prey.<lf>This material is a keeper.
+<string>Gobul Lantern+
+<string>A Gobul's high-quality lure. <lf>The light stuns even deep-sea<lf>fish on the edge of blindness.
+<string>Gobul Beacon
+<string>A Gobul lantern of overpowering<lf>brightness. It's like a flash of<lf>lightning beneath the waves.
+<string>Rathian Scale
+<string>A scale from a flying wyvern<lf>native to this area. Rathian<lf>mate with male Rathalos.
+<string>Rathian Scale+
+<string>A fine Rathian scale. It may not<lf>look special, but its hardness<lf>puts other scales to shame.
+<string>Rathian Shard
+<string>A particularly thick Rathian<lf>scale. Its large size proves<lf>its owner's advanced age.
+<string>Rathian Shell
+<string>A shell piece comprised of<lf>layered scales, making it<lf>much harder than just one.
+<string>Rathian Carapace
+<string>A sturdy Rathian carapace.<lf>Even harder than a normal<lf>Rathian Shell.
+<string>Rathian Cortex
+<string>A Rathian shell heavier than a<lf>carapace. Used to reinforce<lf>parts of equipment.
+<string>Rathian Webbing
+<string>Hard to forge with, but its<lf>thermal properties make it<lf>ideal for armor lining.
+<string>Rathian Spike
+<string>Needle-like hair found on<lf>a Rathian's back and wings.<lf>They contain poison.
+<string>Rathian Spike+
+<string>As sharp as the keenest<lf>blade. It is longer and<lf>sturdier than other spikes.
+<string>Rathian Surspike
+<string>Only a few of these superior<lf>spikes grow on a Rathian. It is<lf>both sharp and highly toxic.
+<string>Rathian Plate
+<string>A searing tail scale. Hard<lf>to come by and as fiery as<lf>the wyvern it came from.
+<string>Rathian Mantle
+<string>A legendary Rathian scale.<lf>Those who craft it are said to rule<lf>the earth and seize the sky.
+<string>Rathian Ruby
+<string>A rare gem formed inside a<lf>Rathian. It seems almost too<lf>nice to forge with.
+<string>DUMMY 50
+<string>DUMMY 50
+<string>P.Rathian Scale+
+<string>A high-grade scale from a Pink<lf>Rathian. Chic hunters love the<lf>blend of strength and style.
+<string>P.Rathian Shard
+<string>A thick, shiny scale from a Pink<lf>Rathian. Rare is the artisan who<lf>has ever laid eyes on one.
+<string>P.Rath Carapace
+<string>A vivid Pink Rathian carapace,<lf>even harder than a normal shell.<lf>Used to make various equipment.
+<string>P.Rathian Cortex
+<string>A heavy Pink Rathian cortex made<lf>up of a single beautiful plate.<lf>It commands top zenny when sold.
+<string>G.Rathian Shard
+<string>A thick Gold Rathian scale unlike<lf>anything seen before. Sunlight<lf>gives it an almost sacred glow.
+<string>G.Rathian Cortex
+<string>A cortex carved from a Gold<lf>Rathian. All who see it gasp<lf>at its intense glow.
+<string>G.Rath Surspike
+<string>A poisonous spike found on Gold<lf>Rathians in rare circumstances.<lf>It can pierce through anything.
+<string>Rathalos Scale
+<string>A Rathalos scale. Wyvern scales<lf>and shells such as this are<lf>fundamental forging materials.
+<string>Rathalos Scale+
+<string>An extraordinarily durable<lf>scale carved from the body<lf>of a Rathalos.
+<string>Rathalos Shard
+<string>A Rathalos part made of several<lf>overlapping scales. Its strength<lf>is a natural wonder.
+<string>Rathalos Shell
+<string>A shell piece comprised of<lf>layered scales, making it<lf>much harder than just one.
+<string>Rathlos Carapace
+<string>A rigid Rathalos carapace.<lf>Even harder than a normal<lf>Rathalos Shell.
+<string>Rathalos Cortex
+<string>A robust Rathalos shell that<lf>is harder and sturdier<lf>than a carapace.
+<string>Rathalos Webbing
+<string>Hard to forge with, but its<lf>thermal properties make it<lf>ideal for armor lining.
+<string>Rathlos Fellwing
+<string>A top-grade Rathalos wing, <lf>removed in full. Such majesty<lf>befits the King of the Skies.
+<string>Rathalos Tail
+<string>The severed tail of a Rathalos.<lf>It has any number of uses.
+<string>Rathalos Lash
+<string>A top-grade Rathalos tail. Strong<lf>ones like this are precious, and<lf>only used in select equipment.
+<string>Rathalos Plate
+<string>A searing tail scale. Hard<lf>to come by and as fiery as<lf>the wyvern it came from.
+<string>Rathalos Mantle
+<string>A legendary Rathalos scale.<lf>Those who craft it are said to rule<lf>the earth and seize the sky.
+<string>Rathalos Ruby
+<string>A rare gem formed inside a<lf>Rathalos. It seems almost<lf>too nice to forge with.
+<string>Rath Talon
+<string>A talon that grows on a wyvern's<lf>wing. Break it off in battle and<lf>you may just be rewarded.
+<string>Rath Ripper
+<string>A powerful talon from a wyvern's<lf>wing. Hard and sharp enough to<lf>rend boulders like paper.
+<string>Rath Marrow
+<string>Recent advances allow this<lf>marrow to be extracted. It<lf>ignites on air contact.
+<string>Rath Medulla
+<string>Recent advances allow this<lf>red hot organ to be removed,<lf>but it's hard to forge with.
+<string>Rath Gleem
+<string>A liquid produced only from<lf>rare species of fire wyverns.<lf>It glows faintly in the dark.
+<string>A.Rath Scale+
+<string>A high-grade scale carved from an<lf>Azure Rathalos. Both its beauty<lf>and strength are shocking.
+<string>A.Rathalos Shard
+<string>An Azure Rathalos part made of<lf>several overlapping scales. It<lf>boasts beauty and strength.
+<string>A.Rath Carapace
+<string>A vivid Azure Rathalos carapace,<lf>even harder than a normal shell.<lf>Used to make various equipment.
+<string>A.Rath Cortex
+<string>A heavy Azure Rathalos cortex.<lf>It is extremely rare to find<lf>a shell as strong as this.
+<string>A.Rathalos Tail
+<string>The severed tail of an Azure<lf>Rathalos. It fetches a high<lf>price due to its rarity.
+<string>A.Rathalos Lash
+<string>A top-grade Azure Rathalos tail.<lf>Strong ones like this are prized<lf>by all and sold at high prices.
+<string>A.Rathalos Wing
+<string>A wing that has been removed.<lf>Excellent for forging both<lf>weapons and armor.
+<string>S.Rathalos Shard
+<string>A Silver Rathalos part made of<lf>several overlapping scales.<lf>Makes for a nice silver accessory.
+<string>S.Rath Cortex
+<string>A heavy Silver Rathalos cortex.<lf>This legendary item shines like<lf>moonlight, even in darkness.
+<string>S.Rathalos Lash
+<string>A top-grade Silver Rathalos<lf>tail. Beauty like this is worth<lf>far more than actual silver.
+<string>DUMMY 215
+<string>DUMMY 215
+<string>DUMMY 51
+<string>DUMMY 51
+<string>DUMMY 52
+<string>DUMMY 52
+<string>Gigginox Hide
+<string>Hide from a Gigginox belly. The<lf>fine hairs growing from it make<lf>it well-suited for lining armor.
+<string>Gigginox Hide+
+<string>High-quality hide from a<lf>Gigginox belly. Its incredible<lf>texture is truly unforgettable.
+<string>Gigginox Piel
+<string>Fully developed Gigginox hide.<lf>Dissolves both sweat and odor,<lf>maintaining maximum freshness.
+<string>Uncanny Hide
+<string>Hide that changed color when<lf>its owner was still alive.<lf>Collectors value it.
+<string>Uncanny Hide+
+<string>Hide that changed color when<lf>its owner was still alive.<lf>Collectors value it.
+<string>Gigginox Claw
+<string>A difficult item to obtain;<lf>carving one of these off a<lf>Gigginox is no easy task.
+<string>Gigginox Claw+
+<string>A particularly unnerving claw<lf>from a Gigginox. Rumored to be<lf>used in unsavory rituals.
+<string>Gigginox Talon
+<string>A rare talon found only on<lf>certain Gigginox. Creepy,<lf>yet somehow beautiful.
+<string>DUMMY 53
+<string>DUMMY 53
+<string>DUMMY 54
+<string>DUMMY 54
+<string>Fearsome Maw
+<string>A Gigginox's distinctive yapper.<lf>Short, file-like fangs are used<lf>to grind down its prey.
+<string>Venom Gland
+<string>A poison gland that glistens<lf>in the darkness. It continues to<lf>writhe even after being carved.
+<string>Grim Venom Gland
+<string>A gland that makes an unusually<lf>potent poison. It slithers even<lf>after being removed.
+<string>Foul Venom Gland
+<string>A scary poison gland that won't<lf>stop moving. The toxin inside<lf>has been strengthened by time.
+<string>B.Giggi Hide+
+<string>Quality hide from a Baleful<lf>Gigginox belly. Its texture and<lf>elasticity are top-notch.
+<string>B.Giggi Piel
+<string>Rare hide from the belly of a<lf>Baleful Gigginox. Durable and<lf>elastic almost beyond measure.
+<string>B.Giggi Claw+
+<string>A Baleful Gigginox claw with an<lf>unsettling color. Electricity<lf>still arcs across its surface.
+<string>B.Giggi Talon
+<string>A rare talon from a Baleful<lf>Gigginox. Researchers hope to<lf>harvest it as an energy source.
+<string>Lagiacrus Scale
+<string>A supple scale that turns<lf>myriad shades of blue in the<lf>light. In high demand.
+<string>Lagiacrus Scale+
+<string>A fine example of a supple<lf>Lagiacrus Scale. Its beauty<lf>is truly breathtaking.
+<string>Lagiacrus Shard
+<string>The ultimate specimen of<lf>Lagiacrus Scale. Special skills<lf>are required to craft with it.
+<string>Shell Shocker
+<string>This shell is actually used<lf>to release electricity, not<lf>generate it. Safe to handle.
+<string>Shell Shocker+
+<string>A superior shell found only on<lf>certain Lagiacrus. Its structure<lf>permits greater electric output.
+<string>Deathly Shocker
+<string>A thick shell found on a select<lf>few Lagiacrus. It releases huge<lf>bolts of electricity.
+<string>Lagiacrus Hide
+<string>Not especially durable, but<lf>soft and workable. Use it to<lf>forge valuable leatherware.
+<string>Lagiacrus Hide+
+<string>A fine hide taken from a<lf>Lagiacrus. It's quite strong<lf>and immensely flexible.
+<string>Lagiacrus Claw
+<string>A sharp claw that grows on<lf>the fin. Not pretty enough<lf>to command good money.
+<string>Lagiacrus Claw+
+<string>A very sharp claw found on<lf>certain Lagiacrus. Its mundane<lf>appearance belies its strength.
+<string>Lagiacrus Talon
+<string>A thick talon found on only a<lf>select few Lagiacrus. Adds both<lf>power and dignity to weapons.
+<string>Lagiacrus Tail
+<string>Not only do these serve for<lf>weaponcraft, they also wind<lf>up on Moga dinner plates.
+<string>Lagiacrus Flail
+<string>A tail cut from a Lagiacrus.<lf>Strong and flexible, it makes ideal<lf>material for forging equipment.
+<string>Lagiacrus Horn
+<string>The power of Lagiacrus horns<lf>has been sung of for ages.<lf>In high demand.
+<string>Lagiacrus Horn+
+<string>A fine horn taken from a strong<lf>Lagiacrus. A horn like this is sure<lf>to catch people's attention.
+<string>Lagia Sapphire
+<string>A gem only rarely plucked<lf>from a Lagiacrus. Craft with<lf>it to boost Resistances.
+<string>Lagiacrus Mantle
+<string>A valuable azure scale found on<lf>select Lagiacrus. Said to greatly<lf>boost equipment performance.
+<string>Lagiacrus Plate
+<string>The largest and most prized<lf>of Lagiacrus scales. Boosts<lf>the efficacy of equipment.
+<string>I.Lagi Scale+
+<string>A strong Ivory Lagiacrus scale<lf>that gleams in the light.<lf>Popular and quite valuable.
+<string>I.Lagi Shard
+<string>The ultimate specimen of Ivory<lf>Lagiacrus scale. Special skills<lf>are required to craft with it.
+<string>I.Lagi Shocker+
+<string>The true source of an Ivory<lf>Lagiacrus's electricity, this fine<lf>conductor needs no cooling.
+<string>I.Lagi D-Shocker
+<string>A thick shell seen only rarely on<lf>Ivory Lagiacrus. It can produce a<lf>veritable rain of thunderbolts.
+<string>I.Lagi Hide+
+<string>A hide that lacks durability, but is<lf>often used in leather specialties<lf>due to its flexibility and beauty.
+<string>I.Lagi Piel
+<string>A top-quality hide known for<lf>its strength and beauty. It's<lf>an accessory all on its own.
+<string>DUMMY 55
+<string>DUMMY 55
+<string>DUMMY 56
+<string>DUMMY 56
+<string>DUMMY 57
+<string>DUMMY 57
+<string>DUMMY 58
+<string>DUMMY 58
+<string>I.Lagi Horn+
+<string>A horn from an Ivory Lagiacrus.<lf>In high demand as a symbol of<lf>both strength and beauty.
+<string>I.Lagi Hardhorn
+<string>A fine horn from an Ivory<lf>Lagiacrus. Beloved by the rich<lf>for its flawless elegance.
+<string>DUMMY 59
+<string>DUMMY 59
+<string>DUMMY 60
+<string>DUMMY 60
+<string>DUMMY 61
+<string>DUMMY 61
+<string>A.Lagi Shard
+<string>An eerie, glowing scale found<lf>on certain Abyssal Lagiacrus.<lf>Top skills are required to craft it.
+<string>A.Lagi D-Shocker
+<string>A thick shell from an Abyssal<lf>Lagiacrus's back. Turns the sea<lf>itself into an electrified weapon.
+<string>A.Lagi Piel
+<string>A rare hide from an Abyssal<lf>Lagiacrus. It gives crafted<lf>items an unearthly presence.
+<string>DUMMY 62
+<string>DUMMY 62
+<string>DUMMY 63
+<string>DUMMY 63
+<string>A.Lagi Hardhorn
+<string>A rare horn from an Abyssal<lf>Lagiacrus. Its unearthly presence<lf>is intimidating, to say the least.
+<string>A.Lagi Dynamo
+<string>An unknown Abyssal Lagiacrus<lf>organ. Rumored to be the source<lf>of the monster's electricity.
+<string>Barioth Shell
+<string>A unique white shell. Strong<lf>and durable, yet very light.
+<string>Barioth Carapace
+<string>A Barioth carapace with an<lf>impressive shine. Strongly<lf>resembles an ice floe.
+<string>Barioth Cortex
+<string>A cortex from a formidable<lf>Barioth. Surprisingly strong<lf>and impressively lightweight.
+<string>Barioth Pelt
+<string>A silky-smooth white pelt<lf>with excellent shock<lf>absorption properties.
+<string>Barioth Pelt+
+<string>A high-quality white pelt with<lf>a lovely texture. Nobles use<lf>it as a symbol of authority.
+<string>Barioth Fur
+<string>Top quality white fur from a<lf>Barioth. It feels like being<lf>wrapped in angel wings.
+<string>Barioth Claw
+<string>A sharp, death-dealing claw<lf>used by its former owner to<lf>scale walls of solid ice.
+<string>Barioth Claw+
+<string>A claw honed in the harsh Tundra<lf>environment. It can take down<lf>prey with a single swipe.
+<string>Barioth Talon
+<string>A strong, hard talon found on<lf>select Barioth. It can slice<lf>through hard shells like butter.
+<string>Barioth Spike
+<string>These come in many sizes and<lf>assist the Barioth in<lf>clinging to walls of ice.
+<string>DUMMY 64
+<string>DUMMY 64
+<string>Barioth Tail
+<string>Barioth tails are covered in<lf>hard plate and surprisingly<lf>tough to sever.
+<string>Barioth Lash
+<string>A top-quality Barioth Tail.<lf>Covered in hard plate, it requires<lf>considerable skill to remove.
+<string>Amber Tusks
+<string>Two sharp tusks from a Barioth,<lf>often used as weapon materials<lf>as well as Furnishings.
+<string>Amber Tusks+
+<string>Amber tusks sharpened by<lf>countless kills. They can smash<lf>through gigantic ice blocks.
+<string>Hvy Amber Tusks
+<string>Thick, heavy tusks found on<lf>select Barioth. Strong enough<lf>to shatter almost anything.
+<string>S.Bari Carapace
+<string>A copper-colored carapace from<lf>a Sand Barioth. Sturdy enough<lf>to survive a raging sandstorm.
+<string>S.Barioth Cortex
+<string>A bulky cortex from a Sand<lf>Barioth. Though it looks heavy,<lf>it's actually quite light.
+<string>S.Barioth Pelt+
+<string>A thin, copper-colored pelt.<lf>Highly shock-resistant, it's<lf>well-suited for armor crafting.
+<string>S.Barioth Fur
+<string>Top quality fur from a Sand<lf>Barioth. Often used in equipment,<lf>though some despise the color.
+<string>S.Barioth Claw+
+<string>A sharp claw that provides<lf>traction on sandy terrain. One<lf>slash carries immense power.
+<string>S.Barioth Talon
+<string>A rock-hard talon found on<lf>select Sand Barioth. There may<lf>be nothing it cannot rend.
+<string>S.Barioth Tail
+<string>A tail cut from a Sand Barioth.<lf>Covered in a fine copper shell,<lf>it's both rare and pricey.
+<string>S.Barioth Lash
+<string>A top-quality tail from a<lf>Sand Barioth. Its deep copper<lf>color gives it a classy air.
+<string>Indigo Tusks+
+<string>Two sharp tusks from a Sand<lf>Barioth. They turn a stunning<lf>ultramarine when polished.
+<string>Hvy Indigo Tusks
+<string>Thick tusks found on select Sand<lf>Barioth. Their devastating power<lf>makes them ideal for crafting.
+<string>Rugged Pleura
+<string>An organ that aids in breathing<lf>when Sand Barioth produce<lf>tornadoes. Thin, but tough.
+<string>Rugged Pleura+
+<string>This organ is the secret that<lf>allows Sand Barioth to produce<lf>such powerful tornadoes.
+<string>Diablos Shell
+<string>This shell piece is dense,<lf>as one knock will tell you,<lf>and heavier than it looks.
+<string>Diablos Carapace
+<string>A sturdy Diablos carapace.<lf>Even harder than a normal<lf>Diablos Shell.
+<string>Diablos Cortex
+<string>The rigid cortex of a Diablos,<lf>both harder and sturdier<lf>than its carapace.
+<string>Diablos Ridge
+<string>A rock-hard backplate piece<lf>that can be used to make<lf>equipment if cut properly.
+<string>Diablos Ridge+
+<string>The hardest part of a<lf>Diablos's backplate. Very<lf>difficult to carve off.
+<string>Diablos Chine
+<string>Tough Diablos backplate,<lf>strengthened by burning sands.<lf>An ideal material for armor.
+<string>Diablos Tailcase
+<string>An armored tailcase that<lf>puts iron hammers to shame.<lf>This material is a keeper.
+<string>DUMMY 65
+<string>DUMMY 65
+<string>Diablos Fang
+<string>A large, sturdy fang used in<lf>everything from weapons<lf>to ornaments.
+<string>Twisted Horn
+<string>A twisted Diablos horn.<lf>Used in this region for many<lf>(less twisted) purposes.
+<string>Majestic Horn
+<string>A twisted Diablos horn in<lf>great shape. Use it to make<lf>more powerful weapons.
+<string>Stout Horn
+<string>A long, curled Diablos horn.<lf>Preserving them this well is<lf>not easy. Quite the find!
+<string>Diablos Marrow
+<string>It has recently been discovered <lf>that monster bone marrow<lf>works as an adhesive.
+<string>Diablos Medulla
+<string>A rare Diablos medulla.<lf>Difficult to remove, but of<lf>great interest to researchers.
+<string>B.Diab Carapace
+<string>Composition differences make this<lf>carapace more damage-resistant<lf>than that of a normal Diablos's.
+<string>B.Diablos Cortex
+<string>A heavy Black Diablos cortex. Its<lf>weight reveals its overwhelming<lf>density and strength.
+<string>B.Diablos Ridge+
+<string>A hard Black Diablos backplate<lf>piece. Even hot desert winds<lf>can't erode such sturdiness.
+<string>B.Diablos Chine
+<string>Finely honed Black Diablos<lf>backplate. Best described as<lf>black, hard, and heavy.
+<string>DUMMY 66
+<string>DUMMY 66
+<string>DUMMY 67
+<string>DUMMY 67
+<string>Blackcurl Horn
+<string>The twisted horn of a Black<lf>Diablos. Its blunt, lustrous<lf>form is truly majestic.
+<string>Blackcurl Horn+
+<string>The stout, twisted horn of a Black<lf>Diablos. Though now harmless,<lf>its ferocity is overwhelming.
+<string>Uragaan Scale
+<string>A hard scale that glows<lf>faintly in the light due to<lf>its unique mineral content.
+<string>Uragaan Scale+
+<string>A strong scale formed by<lf>layers and layers of ore. Its<lf>hardness makes forging tricky.
+<string>Uragaan Shard
+<string>An impenetrable scale found on<lf>certain Uragaan. Formed when<lf>layers of hard ore bonded.
+<string>Uragaan Shell
+<string>This strong, sturdy piece of<lf>exoskeleton makes armor that<lf>looks dull but works great.
+<string>Uragaan Carapace
+<string>A hard Uragaan carapace.<lf>Its rigidity makes it quite<lf>a challenge to remove.
+<string>Uragaan Cortex
+<string>An especially hard Uragaan<lf>cortex. Crafting with it can be<lf>a trying task, to say the least.
+<string>Uragaan Jaw
+<string>A jaw of striking shape; the<lf>lumps are ore the Uragaan<lf>melted right onto the bone.
+<string>Uragaan Jaw+
+<string>An exceptionally heavy Uragaan<lf>jaw. Its destructive power comes<lf>from a makeup of dense ore.
+<string>Uragaan Scute
+<string>Even more heat resistant<lf>than the Shell, this is said<lf>to protect sensitive organs.
+<string>Uragaan Scute+
+<string>A highly heat-resistant Uragaan<lf>scute. Its thermal insulation<lf>promises new armor possibilities.
+<string>Uragaan Marrow
+<string>Hard-to-obtain bone marrow<lf>used for special crafts as<lf>well as medicinal purposes.
+<string>Uragaan Ruby
+<string>A valuable gem only rarely<lf>plucked from an Uragaan.<lf>Adds strength when forging.
+<string>Uragaan Pallium
+<string>A legendary Uragaan shell.<lf>Those who craft it are said to rule<lf>the earth and seize the sky.
+<string>S.Uragaan Scale+
+<string>A high-quality Steel Uragaan<lf>scale. A gas inside causes the<lf>ore to oxidize and glow.
+<string>S.Uragaan Shard
+<string>The ultimate Steel Uragaan scale.<lf>Strong and great for crafting,<lf>but it has a horrific odor.
+<string>S.Urag Carapace
+<string>A carapace from a Steel Uragaan.<lf>A unique gas inside causes a<lf>strengthening chemical reaction.
+<string>S.Uragaan Cortex
+<string>A cortex strengthened to the <lf>utmost due to an ongoing<lf>chemical reaction within.
+<string>S.Uragaan Maw
+<string>A giant red jaw from a Steel<lf>Uragaan. Heat produced upon<lf>impact causes it to change color.
+<string>S.Uragaan Jaw+
+<string>A heavy red jaw from a Steel<lf>Uragaan. The weight and heat<lf>ruin anything it clamps onto.
+<string>S.Uragaan Scute
+<string>Even more heat resistant than<lf>a standard shell, this scute can<lf>be submerged in boiling magma.
+<string>S.Uragaan Scute+
+<string>A highly heat-resistant Steel<lf>Uragaan scute. Its rigidity<lf>makes it hard to use in forging.
+<string>Uroktor Scale
+<string>A volcanic monster's scale.<lf>Highly resistant to Fire,<lf>but doesn't sell for much.
+<string>Uroktor Scale+
+<string>A high-quality Uroktor scale.<lf>Heat-resistant, bright crimson,<lf>and popular with the ladies.
+<string>Supple Piel
+<string>A flexible, elastic hide from<lf>a leviathan. A useful material<lf>that requires effort to obtain.
+<string>Agnaktor Scale
+<string>This scale is a blazing hue,<lf>but don't get too fired up;<lf>it's not worth that much.
+<string>DUMMY 68
+<string>DUMMY 68
+<string>Agnaktor Shell
+<string>Turns a vivid red during<lf>forging. Lightweight and<lf>incredibly heat resistant.
+<string>Agnak Carapace
+<string>Sturdier and more heat-resistant<lf>than the Shell. It produces a<lf>vivid red color when crafted.
+<string>Agnaktor Hide
+<string>A curious hide that's both<lf>supple and heat-resistant,<lf>but not particularly strong.
+<string>Agnaktor Hide+
+<string>Precious, high-quality Agnaktor<lf>hide tempered by frequent<lf>exposure to magma.
+<string>Agnaktor Piel
+<string>Top-quality Agnaktor hide<lf>with fantastic heat resistance.<lf>Thick but sufficiently supple.
+<string>Agnaktor Claw
+<string>This claw is powerful, AND<lf>it just came out of scalding<lf>hot magma. Careful!
+<string>Agnaktor Claw+
+<string>A claw sharpened by magma so<lf>hot it can melt rock. Almost as<lf>strong as a volcano itself.
+<string>Agnaktor Talon
+<string>A powerful talon found only on<lf>certain Agnaktor. Even magma<lf>cowers before it.
+<string>Agnaktor Fin
+<string>One of many fin-like pinnae<lf>found on Agnaktor. It works<lf>as a ship part.
+<string>Agnaktor Fin+
+<string>An Agnaktor fin with an elegant<lf>dappled pattern. Apparently a<lf>popular item with collectors.
+<string>Fine Agnak Fin
+<string>A premium fin lovely enough to <lf>have been painted by an artist.<lf>Behold the mystery of nature!
+<string>Agnaktor Beak
+<string>An Agnaktor's distinguishing<lf>beak, which allows it to<lf>tunnel beneath the earth.
+<string>DUMMY 69
+<string>DUMMY 69
+<string>Agnaktor Tail
+<string>A tail carved from an<lf>Agnaktor. The going price is<lf>low due to lack of demand.
+<string>DUMMY 70
+<string>DUMMY 70
+<string>Scalding Pleura+
+<string>A chestplate made from ore fusing<lf>together over a number of years.<lf>Won't melt, despite the heat.
+<string>Scorching Pleura
+<string>A burning chestplate tempered<lf>for ages. The various ores fused<lf>within are the key to its strength.
+<string>G.Agnak Carapace
+<string>The hard carapace of a Glacial<lf>Agnaktor. Its upper layer is<lf>encrusted in thick ice.
+<string>G.Agnak Cortex
+<string>The rigid cortex of a Glacial<lf>Agnaktor. The icy casing's low<lf>temperature makes it stronger.
+<string>G.Agnak Hide+
+<string>A flexible, cold-resistant<lf>hide. Impressively tough due<lf>to its frozen properties.
+<string>G.Agnak Piel
+<string>A thick, flexible hide that <lf>offers unparalleled strength<lf>and resistance to cold.
+<string>G.Agnak Claw+
+<string>A sharp claw that can pierce<lf>frozen ground. Its icy attacks<lf>cause frostbite.
+<string>G.Agnak Talon
+<string>A powerful talon that can rend<lf>frozen earth. So cold, wounds<lf>from it freeze over instantly.
+<string>G.Agnak Fin+
+<string>A quality fin from a Glacial<lf>Agnaktor. Shimmers faintly<lf>when hit by the dim polar sun.
+<string>Fine G.Agnak Fin
+<string>A beautiful and high-quality<lf>Glacial Agnaktor fin. It flashes<lf>like a prism in the sunlight.
+<string>G.Agnak Beak
+<string>An ice-covered beak that can<lf>dig through even land that has<lf>been frozen since ancient times.
+<string>DUMMY 71
+<string>DUMMY 71
+<string>G.Agnak Tail
+<string>The tail of a Glacial Agnaktor.<lf>Though rare, the going price is<lf>low due to lack of demand.
+<string>DUMMY 72
+<string>DUMMY 72
+<string>Dewy Pleura+
+<string>A moist, lustrous pleura from a<lf>Glacial Agnaktor. It's covered<lf>by an extremely cold fluid.
+<string>Drenched Pleura
+<string>A beautiful Glacial Agnaktor<lf>pleura. Its superchilled fluid<lf>is even colder than normal.
+<string>Ceadeus Scale
+<string>Almost too large to be<lf>called a scale. Not as hard<lf>as you might think.
+<string>Ceadeus Hide
+<string>Even for monster skin, this<lf>is remarkably solid. Takes<lf>time and effort to craft.
+<string>Ceadeus Fur
+<string>Strange to think something<lf>hard enough to forge weapons<lf>with could be called "fur."
+<string>Ceadeus Tail
+<string>A massive tail from the<lf>Ceadeus, ex-village nemesis.<lf>It symbolizes peace.
+<string>Crooked Horn
+<string>A giant horn that was formed<lf>over ages. It evinces all<lf>the weight of history.
+<string>Luminous Organ
+<string>Who knows why this organ<lf>glows, but it seems to hold<lf>incredible power.
+<string>Deep Dragongem
+<string>One of the hardest materials<lf>to reap from a Ceadeus. Its<lf>center is a bottomless void.
+<string>G.Ceadeus Shard
+<string>A massive, rigid scale yielded by<lf>a Goldbeard Ceadeus. Befitting<lf>of such a majestic creature.
+<string>G.Ceadeus Coat
+<string>The broad, enduring hide of a<lf>Goldbeard Ceadeus. The rewards<lf>for forging it are worthy indeed.
+<string>G.Ceadeus Fur
+<string>So hard, it's more like spines<lf>than fur, which bodes well for<lf>its crafting potential.
+<string>DUMMY 73
+<string>DUMMY 73
+<string>Crooked Hardhorn
+<string>A Goldbeard Ceadeus horn of<lf>extraordinary power. It may<lf>be older than time itself.
+<string>DUMMY 74
+<string>DUMMY 74
+<string>Dark Dragongem
+<string>A precious and rare gem from a<lf>Goldbeard Ceadeus. Darkness<lf>entraps all who peer inside.
+<string>DUMMY 75
+<string>DUMMY 75
+<string>Mohran Scale+
+<string>A bright blue scale removed<lf>from the Jhen Mohran during<lf>the customary hunt.
+<string>DUMMY 76
+<string>DUMMY 76
+<string>Mohran Carapace
+<string>A rock-hard shell collected<lf>from the Jhen Mohran during<lf>the customary hunt.
+<string>DUMMY 77
+<string>DUMMY 77
+<string>Mohran Brace+
+<string>Armor covering the Jhen<lf>Mohran's foreleg, removed<lf>during the customary hunt.
+<string>DUMMY 209
+<string>DUMMY 209
+<string>Sturdy Fang+
+<string>An ivory Jhen Mohran fang of<lf>total beauty. Rarely ever seen<lf>for sale at the market.
+<string>Earth Dragongem
+<string>One of the tougher materials<lf>to get from a Jhen Mohran,<lf>and that's saying something.
+<string>DUMMY 78
+<string>DUMMY 78
+<string>H.Jhen Shard
+<string>A Hallowed Jhen Mohran scale<lf>symbolizing mystical power.<lf>It brings glory to its bearer.
+<string>DUMMY 79
+<string>DUMMY 79
+<string>H.Jhen Rockskin
+<string>Hallowed Jhen Mohran plate<lf>symbolizing mystical power.<lf>It brings glory to its bearer.
+<string>DUMMY 80
+<string>DUMMY 80
+<string>H.Jhen Allbrace
+<string>A Hallowed Jhen Mohran brace<lf>symbolizing mystical power.<lf>It brings glory to its bearer.
+<string>DUMMY 81
+<string>DUMMY 81
+<string>Deific Fang
+<string>A beautiful fang with a divine<lf>aura. Its shape and color best<lf>other Jhen Mohran fangs.
+<string>Earth Drgnsphire
+<string>A miraculous gem said to be the<lf>source of a Jhen Mohran's power,<lf>reminiscent of nature's wrath.
+<string>Deviljho Scale
+<string>A greenish-black Deviljho scale.<lf>It's not often sold, as rumors<lf>claim it brings misfortune.
+<string>Deviljho Shard
+<string>A heavy, high-quality Deviljho<lf>scale. Rumored to bring bad luck,<lf>but actually an excellent material.
+<string>Deviljho Hide
+<string>Black hide that is oddly<lf>slimy and difficult to<lf>forge with.
+<string>Deviljho Coat
+<string>Thick hide taken from a violent<lf>Deviljho. Especially slimy and<lf>difficult to forge with.
+<string>Deviljho Fang
+<string>A fang of convenient size from<lf>a maw of alarming size. Helps<lf>the vile beast sate its hunger.
+<string>Vile Fang
+<string>A massive, overgrown fang that<lf>can chomp through anything.<lf>Filled with pure evil.
+<string>Deviljho Talon
+<string>A dangerously sharp, hooked<lf>talon. Inexperienced crafters<lf>risk serious injury.
+<string>Deviljho Ripper
+<string>An incredibly sharp, rigid talon.<lf>Even experienced handlers<lf>can be injured if not careful.
+<string>Deviljho Scalp
+<string>Removing this part of a<lf>Deviljho's skull releases an<lf>unimaginably putrid odor.
+<string>DUMMY 82
+<string>DUMMY 82
+<string>Deviljho Tail
+<string>A massive tail resembling a<lf>giant leech. Some folks are out<lf>to collect these exclusively.
+<string>Deviljho Flail
+<string>A large slab of a Deviljho's<lf>leech-like tail. Even so-called<lf>experts are shocked by it.
+<string>Deviljho Saliva
+<string>The symbol of a Deviljho's<lf>insatiable appetite. The strong<lf>acid corrodes all it touches.
+<string>Black Blood
+<string>Dark black blood characteristic<lf>of a Deviljho. It feels like it could<lf>jump up and attack at any time.
+<string>Deviljho Gem
+<string>A precious gem said to<lf>contain a Deviljho's might.<lf>Used in shady rituals.
+<string>Deviljho Crook
+<string>An unsettling scale that became<lf>warped as it absorbed the malice<lf>of the Deviljho's various prey.
+<string>Alatreon Scute
+<string>A unique plate that repels<lf>all attacks, turning some<lf>back upon the assailant.
+<string>Alatreon Pallium
+<string>A miraculous plate impervious to<lf>all attacks. Legend says the<lf>bearer receives heaven's love.
+<string>Alatreon Plate
+<string>This particular Alatreon<lf>scale grows in backwards.<lf>It is as sharp as a blade.
+<string>Alatreon Mantle
+<string>The mantle of an Alatreon is<lf>the stuff of legend, containing<lf>traces of every element within.
+<string>Alatreon Talon
+<string>A talon so sharp one cannot<lf>even predict the strength of<lf>weapons made from it.
+<string>Alatreon Ripper
+<string>The mere sight of this deadly<lf>talon calls forth images of<lf>terrible weapons made from it.
+<string>Alatreon Webbing
+<string>At times this looks like a<lf>dark abyss; at others, like<lf>the coming of first light.
+<string>Alatreo Direwing
+<string>This vile wing can cut through<lf>time and space to destroy the<lf>entire world...say the rumors.
+<string>Alatreon Tail
+<string>Most thought Alatreon only<lf>existed in legend, but you<lf>have another tail to tell.
+<string>Alatreo Diretail
+<string>"Is this a dream?" "Am I alive?"<lf>Those who grasp this tail begin<lf>to harbor such doubts.
+<string>Brkn Skypiercer
+<string>Part of an Alatreon's<lf>convoluted horns. The pieces<lf>break easily when carved.
+<string>DUMMY 83
+<string>DUMMY 83
+<string>Skypiercer
+<string>Part of an Alatreon's<lf>convoluted horns.
+<string>Skyswayer
+<string>Part of an Alatreon's<lf>convoluted horns. The finest<lf>specimen known to exist.
+<string>Arzuros Pelt
+<string>A pelt carved from an Arzuros.<lf>The white portion is soft, while<lf>the blue is short and taut.
+<string>Arzuros Pelt+
+<string>A splendid Arzuros pelt.<lf>Sturdy enough to survive in<lf>harsh mountainous terrain.
+<string>DUMMY 84
+<string>DUMMY 84
+<string>Arzuros Shell
+<string>A shell piece from an Arzuros's<lf>head or back. Bends willingly<lf>and is easy to forge.
+<string>Arzuros Carapace
+<string>A quality Arzuros carapace.<lf>The thick shell can withstand<lf>bites from ordinary fangs.
+<string>Arzuros Cortex
+<string>A superior Arzuros cortex.<lf>This highly-developed shell is a<lf>huge thorn in all hunters' sides.
+<string>Arzuros Brace
+<string>A brace from an Arzuros's<lf>forelegs. Its sharp points give<lf>forged equipment a wild flavor.
+<string>Arzuros Brace+
+<string>A strong Arzuros brace.<lf>Its thornlike protrusions<lf>make paw swipes deadly.
+<string>Arzuros Allbrace
+<string>A supreme brace found only<lf>on certain Arzuros. Its tough,<lf>thornlike protrusions silence foes.
+<string>Lagombi Pelt
+<string>A white pelt carved from a<lf>Lagombi. One touch and you'll be<lf>hooked on its soft, fluffy fur.
+<string>Lagombi Pelt+
+<string>A quality white Lagombi pelt.<lf>Its glossy, frosty shine makes it<lf>a sought-after luxury item.
+<string>Lagombi Fur
+<string>The very finest Lagombi fur,<lf>durable and yet surprisingly<lf>soft. A top-shelf item.
+<string>Lagombi Ear
+<string>The long ear of a Lagombi.<lf>A lifetime in frigid environments<lf>has made it hard as a shell.
+<string>Lagombi Ear+
+<string>An impressive Lagombi ear.<lf>Highly-developed, it can become<lf>sharp as steel if polished.
+<string>Lagombi Auricle
+<string>A superior Lagombi ear with<lf>astonishing hearing capabilities.<lf>An exceptional crafting material.
+<string>Lagom Plastron
+<string>A shell piece from a Lagombi's<lf>belly. Its ridges are what allow<lf>the Lagombi to slide on ice.
+<string>Lagom Plastron+
+<string>A robust Lagombi Plastron.<lf>Strong, sticky and thick, it's used<lf>to make superior equipment.
+<string>DUMMY 85
+<string>DUMMY 85
+<string>Lagombi Claw
+<string>A Lagombi claw that's cold to the<lf>touch. Permanently enveloped<lf>in ice due to frigid climates.
+<string>Lagombi Claw+
+<string>A Lagombi claw surrounded by<lf>cold air. Wounds it causes <lf>freeze over in an instant.
+<string>DUMMY 86
+<string>DUMMY 86
+<string>Volvidon Shell
+<string>The heat-resistant shell of<lf>a Volvidon. Unaffected even<lf>by boiling lava.
+<string>Volvi Carapace
+<string>A thick Volvidon carapace.<lf>Extra elasticity means extreme<lf>pressure is required to forge it.
+<string>Volvidon Cortex
+<string>A heavy Volvidon cortex.<lf>Difficult to forge with, but can<lf>produce genuinely powerful gear.
+<string>Volvidon Claw
+<string>A claw from a Volvidon's<lf>forelegs. Dramatically increases<lf>the power of a wide swing.
+<string>Volvidon Claw+
+<string>A hard, sharp Volvidon claw.<lf>Constant exposure to heat has<lf>tempered it like steel.
+<string>Volvidon Talon
+<string>A punishing Volvidon claw.<lf>Its solidity and sharpness<lf>is almost overwhelming.
+<string>Volvi Rickrack
+<string>The jagged shell of a Volvidon's<lf>back. Its high elasticity makes it<lf>ideal for crafting flexible gear.
+<string>DUMMY 87
+<string>DUMMY 87
+<string>Nibelsnarf Shell
+<string>A shell piece from a Nibelsnarf.<lf>Its great strength and hornlike<lf>bulges produce unique gear.
+<string>Nibel Carapace
+<string>A rigid Nibelsnarf carapace.<lf>Hard to forge, but the resulting<lf>equipment is worth the effort.
+<string>Nibel Cortex
+<string>A heavy Nibelsnarf cortex.<lf>Difficult to forge, but capable<lf>of producing impressive gear.
+<string>Nibelsnarf Hide
+<string>Hide from a Nibelsnarf. Many are<lf>surprised by its bright colors,<lf>in contrast to the outer shell.
+<string>Nibelsnarf Hide+
+<string>Quality Nibelsnarf hide often<lf>used as lining for armor. Strong<lf>enough to withstand the desert.
+<string>Nibelsnarf Piel
+<string>Honed by exposure to sand, this<lf>top-quality Nibelsnarf hide boasts<lf>great strength and elasticity.
+<string>Nibelsnarf Claw
+<string>Nibelsnarf claws have evolved<lf>to be able to quickly and easily<lf>burrow through desert sand.
+<string>Nibelsnarf Claw+
+<string>A bold, firm Nibelsnarf claw.<lf>Ideal as material for crafting<lf>superior equipment parts.
+<string>Nibelsnarf Talon
+<string>The sharp talon of a Nibelsnarf,<lf>perfectly adapted to burrow<lf>through sand. A quality item.
+<string>Nibelsnarf Scalp
+<string>A part of the skull that holds<lf>various organs. The useful bits<lf>must be cut out carefully.
+<string>DUMMY 88
+<string>DUMMY 88
+<string>Vivid Fluid
+<string>A fluid which helps retain water <lf>in a Nibelsnarf and allows the<lf>beast to thrive in the desert.
+<string>Brilliant Fluid
+<string>A fluid with strong water-<lf>retention ability. Improves<lf>equipment performance.
+<string>Dazzling Fluid
+<string>A sparkling fluid with impressive<lf>water-retention ability. Improves<lf>equipment performance and style.
+<string>DUMMY 89
+<string>DUMMY 89
+<string>Zinogre Carapace
+<string>The teal carapace of a Zinogre.<lf>Its magnificence reveals the<lf>futility of facing the monarch.
+<string>Zinogre Cortex
+<string>The teal cortex of a Zinogre.<lf>The monarch's armor crushes<lf>wills with its immense power.
+<string>DUMMY 90
+<string>DUMMY 90
+<string>Zinogre Shocker+
+<string>A Zinogre shell that stores and<lf>releases electricity. Grants a<lf>thunder god's power to gear.
+<string>Zin Electrofur+
+<string>Zinogre fur said to store an<lf>endless amount of electricity.<lf>Shines with intense light.
+<string>DUMMY 91
+<string>DUMMY 91
+<string>Zinogre Horn+
+<string>A pointed Zinogre horn. When<lf>carved, it can be used to grant<lf>equipment incomparable power.
+<string>Zinogre Hardhorn
+<string>A mighty Zinogre horn. None can<lf>stand before its sky-shattering,<lf>awe-inspiring power.
+<string>DUMMY 92
+<string>DUMMY 92
+<string>Zinogre Claw+
+<string>A sharp, high-voltage Zinogre<lf>claw. Its electrified attacks<lf>are truly brutal.
+<string>Zinogre Talon
+<string>A rigid, high-voltage Zinogre<lf>talon. Its electrified attacks<lf>threaten all existence.
+<string>Zinogre Tail
+<string>The plate-covered tail of a<lf>Zinogre. It wields deadly<lf>force when swung.
+<string>Zinogre Lash
+<string>A superior Zinogre tail<lf>that wields incomparable<lf>destructive power.
+<string>DUMMY 94
+<string>DUMMY 94
+<string>Zin Electrofur
+<string>Zinogre fur said to store a<lf>high amount of electricity.<lf>Shines white from the charge.
+<string>Zin D-Shocker
+<string>A shell with electric power that<lf>shames even lightning. Its effect<lf>on forged equipment is vast.
+<string>DUMMY 208
+<string>DUMMY 208
+<string>Zinogre Jasper
+<string>A rare gem occasionally produced<lf>inside a Zinogre's body. The<lf>monarch's power swells within.
+<string>Zin Skymerald
+<string>An extremely rare gem found<lf>only in select Zinogres. Proof<lf>of the overwhelming warrior.
+<string>S.Zin Cortex
+<string>The black cortex of a Stygian<lf>Zinogre. A wicked power hides<lf>within this hellish shell.
+<string>S.Zin Dragonhair
+<string>Brute dragonhair from a Stygian<lf>Zinogre. Dragons fear the built-up<lf>dragon-slaying energy within.
+<string>S.Zin Hardhorn
+<string>A Stygian Zinogre's rigid horn.<lf>Does its awesome power represent<lf>a rebellion against dragons?
+<string>S.Zinogre Talon
+<string>A Stygian Zinogre's thick talon.<lf>Powerful enough to carve a place<lf>for the absolute ruler.
+<string>S.Zinogre Lash
+<string>A Stygian Zinogre's terrifyingly<lf>strong tail. Said to be able to<lf>slice through solid steel.
+<string>S.Zin Dragnshell
+<string>A Stygian Zinogre shell with<lf>potent Dragon energy, likely to<lf>be highly suitable for crafting.
+<string>S.Zin Skymerald
+<string>An extremely rare gem found<lf>only in select Stygian Zinogres. <lf>Proof of the absolute conqueror.
+<string>Nargacuga Scale+
+<string>A black Nargacuga scale.<lf>Despite its hardness, it's<lf>surprisingly light and smooth.
+<string>Nargacuga Shard
+<string>A tough, black Nargacuga scale.<lf>Thicker than standard scales,<lf>but still lightweight.
+<string>Nargacuga Mantle
+<string>A legendary Nargacuga scale.<lf>Those who craft it are said to<lf>rule the earth and seize the sky.
+<string>DUMMY 95
+<string>DUMMY 95
+<string>Nargacuga Fur
+<string>A Nargucaga's highly evolved<lf>black fur. Glossy and resilient,<lf>it fends off claws and fangs.
+<string>Nargacuga Tail
+<string>A Nargucaga's impressive tail.<lf>Might be mistaken for a weapon<lf>if seen out of context.
+<string>Nargacuga Lash
+<string>A top-flight Nargacuga tail.<lf>An ideal crafting material due<lf>to its flexibility and strength.
+<string>Narga Tailspike
+<string>A spiky scale from a Nargacuga<lf>tail. It stands up when the <lf>beast is enraged.
+<string>Narga Tailspear
+<string>A first-class spike from a<lf>Nargacuga tail. Heavy and sharp,<lf>it can be shockingly deadly.
+<string>DUMMY 96
+<string>DUMMY 96
+<string>Narga Razor+
+<string>A stronger Nargacuga bladewing.<lf>Extra-hard, it can cleave foes<lf>in twain with a single swing.
+<string>Nargacuga Fang+
+<string>A Nargacuga's incredibly sharp<lf>fang. Evolved to tear rather<lf>than chew.
+<string>Hvy Narga Fang
+<string>A highly developed Nargacuga<lf>fang. Bold and sharp, it can <lf>easily slice prey to pieces.
+<string>Narga Medulla
+<string>A Nargacuga's medulla. Merely<lf>touching it causes extreme pain,<lf>making crafting quite difficult.
+<string>DUMMY 97
+<string>DUMMY 97
+<string>G.Narga Shard
+<string>A verdant Green Nargacuga scale.<lf>Its color shifts in response to<lf>light, fading into the scenery.
+<string>DUMMY 98
+<string>DUMMY 98
+<string>G.Narga Dapples
+<string>Thick, dappled fur from a Green<lf>Nargacuga's scales. The random<lf>colors act as camouflage.
+<string>DUMMY 99
+<string>DUMMY 99
+<string>G.Narga Razor+
+<string>A sharp, wide bladewing from a<lf>Green Nargacuga. Don't touch it<lf>unless you want to lose a hand!
+<string>DUMMY 100
+<string>DUMMY 100
+<string>Hvy G.Narga Fang
+<string>A sharp Green Nargacuga fang. <lf>More a tooth than a blade, so<lf>handle with caution.
+<string>L.Narga Shard
+<string>A Lucent Nargacuga's massively<lf>strong scale. Light as a feather,<lf>yet hard as diamond.
+<string>L.Narga Dapples
+<string>Thick Lucent Nargacuga fur.<lf>Flexible enough to protect the<lf>body and to pierce enemies.
+<string>L.Narga Razor
+<string>A Lucent Nargacuga bladewing<lf>that shines in moonlight. So<lf>sharp, it seems transparent.
+<string>Hvy L.Narga Fang
+<string>An extra-thick Lucent Nargacuga<lf>fang. Sharp as anything, and<lf>somehow never chips or dulls.
+<string>Duramboros Shell
+<string>Incomparably thick Duramboros<lf>shell. It cannot be damaged by<lf>ordinary monsters.
+<string>Duram Carapace
+<string>A stiff Duramboros carapace.<lf>It can withstand attacks like<lf>an impenetrable aegis.
+<string>Duram Cortex
+<string>A Duramboros cortex. This heavy,<lf>strong armor saps an opponent's<lf>will to fight.
+<string>Duram Mossplate
+<string>A Duramboros shell covered in<lf>moss. The moss continues to<lf>grow even after being crafted.
+<string>Hard Mossplate
+<string>A Duramboros carapace covered<lf>in moss. The thick, strong moss<lf>serves as a shock absorber.
+<string>Heavy Mossplate
+<string>A Duramboros cortex covered in<lf>moss. Its weight and mossy shock<lf>absorber make it impenetrable.
+<string>Duramboros Hump
+<string>The hump of a Duramboros's back.<lf>The fatty skin produces sturdy,<lf>pliable equipment when crafted.
+<string>Marbled Hump
+<string>A quality hump found on select<lf>Duramboros. Currently being<lf>researched as a possible delicacy.
+<string>Duram Tailcase
+<string>A shell from a Duramboros tail.<lf>As it grows, the new shell moves<lf>outward and pushes the old away.
+<string>Duram Tailcase+
+<string>A superior Duramboros tailcase.<lf>Slices and crushes using sharp<lf>shell and heavy bone.
+<string>Duram Hardtail
+<string>A rigid shell from a Duramboros's<lf>tail. Powerful and heavy enough<lf>to smash through mountains.
+<string>Duramboros Horn
+<string>The horn of a Duramboros. Wider<lf>than a man's chest; all who see<lf>it are rendered speechless.
+<string>Duramboros Horn+
+<string>A rigid Duramboros horn.<lf>Nothing in the world can stop<lf>it during a vicious charge.
+<string>Duram Hardhorn
+<string>An incredibly hard Duramboros<lf>horn that somehow manages to<lf>amplify the monster's ferocity.
+<string>Duram Tailbone
+<string>A Duramboros's deadly tailbone.<lf>Constant pounding has worn it<lf>into a spherical shape.
+<string>Duram Sacrum
+<string>A striking Duramboros sacrum.<lf>Such tough, symmetrical bones<lf>are considered rare materials.
+<string>Durambolite
+<string>A legendary gem rarely produced<lf>inside a Duramboros's body.<lf>Elegant, though gloomy.
+<string>R.Duram Shell
+<string>A shell from a Rust Duramboros.<lf>Enveloped by the hatred of prey<lf>hunted down over the years.
+<string>R.Duram Plate
+<string>A Rust Duramboros shell covered<lf>in copper-stained moss that can<lf>weaken an opponent's Attack.
+<string>DUMMY 101
+<string>DUMMY 101
+<string>R.Duram Hardtail
+<string>A rigid shell from a Rust<lf>Duramboros's tail. None can stand<lf>against this veritable axe.
+<string>DUMMY 102
+<string>DUMMY 102
+<string>DUMMY 103
+<string>DUMMY 103
+<string>Lrg Lobstershell
+<string>An impressive shell from a king-<lf>sized lobster. So hard even large<lf>monsters can't bite through it.
+<string>DUMMY 105
+<string>DUMMY 105
+<string>Plesioth Fang+
+<string>A finely honed Plesioth Fang.<lf>Sharp enough to shatter the<lf>shells of small Carapaceons.
+<string>Hvy Plesio Fang
+<string>A powerful, highly-developed<lf>Plesioth Fang. It can crush<lf>large Carapaceons with ease.
+<string>Plesioth Scale+
+<string>A high-grade Plesioth scale<lf>with a lapis lazuli glow.<lf>It shines even when dry.
+<string>Plesioth Shard
+<string>A thick Plesioth scale with<lf>a lapis lazuli glow. It fends<lf>off claw and fang attacks.
+<string>Plesioth Fin+
+<string>A choice Plesioth fin. Quite<lf>striking, considering the horrific<lf>neurotoxin found in its spines.
+<string>Fine Plesio Fin
+<string>The finest and most lovely of<lf>all Plesioth fins. Produces<lf>top-class armor when forged.
+<string>DUMMY 105
+<string>DUMMY 105
+<string>G.Plesio Shard
+<string>A large Green Plesioth scale.<lf>Its thickness is useful for<lf>crafting specialized equipment.
+<string>DUMMY 107
+<string>DUMMY 107
+<string>Fine G.Plesi Fin
+<string>A top-quality Green Plesioth<lf>fin. A fine accessory that<lf>produces flashy equipment.
+<string>Brach Carapace
+<string>A hard Brachydios carapace.<lf>Glossy like obsidian, it adds a<lf>refined beauty to crafted gear.
+<string>Brach Cortex
+<string>The thick cortex of a Brachydios.<lf>Its stoic beauty adds strength<lf>and dignity to equipment.
+<string>Brach Ebonshell
+<string>An obsidian Brachydios brace.<lf>Makes especially strong armor,<lf>perhaps due to the slime mold.
+<string>Brach Ebonshell+
+<string>A premium Brachydios brace.<lf>The slime coating may contain<lf>weird bacteria, so be careful.
+<string>DUMMY 108
+<string>DUMMY 108
+<string>DUMMY 109
+<string>DUMMY 109
+<string>Brach Scalp
+<string>The large, protruding scalp of<lf>a Brachydios, covered in an<lf>explosive green substance.
+<string>Brach Scalp+
+<string>A hard and sharp scalp piece<lf>from a fierce Brachydios. Even<lf>more explosive than usual.
+<string>Mystery Slime
+<string>The explosive green substance<lf>found on Brachydios monsters.<lf>Handle with extreme care.
+<string>Glowing Slime
+<string>Highly explosive green slime<lf>found on a fierce Brachydios.<lf>Handle with extreme care.
+<string>Brach Pounder
+<string>A Brachydios arm that buried<lf>countless foolhardy hunters.<lf>It's covered in green slime.
+<string>Brach Pounder+
+<string>The arm of an especially angry<lf>Brachydios. Strong and heavy,<lf>as if made of iron.
+<string>Brachydios Tail
+<string>While most focus on Brachydios's<lf>arms, its tail is also strong.<lf>Beware the explosive slime!
+<string>DUMMY 110
+<string>DUMMY 110
+<string>Brachydios Gem
+<string>A rare gem from a Brachydios.<lf>Perhaps the secret of its dreadful<lf>slime is hidden inside?
+<string>Brach Pallium
+<string>A legendary Brachydios shell.<lf>Those who craft it are said to rule<lf>the earth and seize the sky.
+<string>Miralis Scale
+<string>A fiery black scale from a Dire<lf>Miralis. Also called the "burning<lf>flower" for its eerie beauty.
+<string>Miralis Fireback
+<string>A fiery shell from a Dire<lf>Miralis. Made of magma-like<lf>fluid that's hot to the touch.
+<string>Miralis Fireclaw
+<string>The merciless claw of a Dire<lf>Miralis. Burns and slices through<lf>its victims like hardened flame.
+<string>DUMMY 111
+<string>DUMMY 111
+<string>DUMMY 112
+<string>DUMMY 112
+<string>Miralis Evil Eye
+<string>The ominous eye of a Dire Miralis.<lf>Often the last thing a foolhardy<lf>hunter will ever witness.
+<string>DUMMY 113
+<string>DUMMY 113
+<string>Miralis Hellwing
+<string>A heavy Dire Miralis wing,<lf>used not for flight but to launch<lf>scorching hellfire upon foes.
+<string>DUMMY 114
+<string>DUMMY 114
+<string>DUMMY 115
+<string>DUMMY 115
+<string>Miralis Smelter
+<string>A burning hot core from a Dire<lf>Miralis's hips. A magma-like<lf>substance swirls inside it.
+<string>Immortal Heart
+<string>The burning heart of a Dire<lf>Miralis. It continues to beat<lf>even after the dragon dies.
+<string>DUMMY 116
+<string>DUMMY 116
+<string>Gushing Magma
+<string>A magma-like substance that<lf>circulates through the body of<lf>a Dire Miralis. Handle with care!
+<string>Dire Dragongem
+<string>A legendary gem expelled from the<lf>body of a Dire Miralis. It formed<lf>from crystallized magma.
+<string>Rustshard
+<string>A hunk of rock? No, it seems<lf>to be metal... With a little<lf>polish, it could be more.
+<string>Ancient Shard
+<string>A fossil? No, it appears to<lf>be metal... With a little<lf>polish, it could be more.
+<string>Rusted Fragment
+<string>A uniquely shaped metal fragment<lf>covered in rust. It looks like it<lf>could be used for something...
+<string>Large Fragment
+<string>A large metal fragment from an<lf>ancient stratum of earth. Perhaps<lf>it could be used for something...
+<string>Slender Fragment
+<string>A thin metal fragment from an<lf>ancient stratum of earth. Perhaps<lf>it could be used for something...
+<string>Long Fragment
+<string>A long metal fragment from an<lf>ancient stratum of earth. Perhaps<lf>it could be used for something...
+<string>Map
+<string>A map of the hunting ground.<lf><COLO 05>(Supply Item)
+<string>First-aid Med
+<string>Restores a tiny bit of Health.<lf>It does a body...sort of good!<lf><COLO 05>(Supply Item)
+<string>Ration
+<string>Slightly boosts current/max<lf>Stamina. Most hunters agree:<lf>it's gross. <COLO 05>(Supply Item)
+<string>Mini Whetstone
+<string>A portable Whetstone you can use<lf>to restore Sharpness to weapons.<lf><COLO 05>(Supply Item)
+<string>EZ Shock Trap
+<string>Immobilizes a target for<lf>easy capture.<lf><COLO 05>(Supply Item)
+<string>EZ Flash Bomb
+<string>A grenade-like bomb that<lf>flashes brightly on impact.<lf><COLO 05>(Supply Item)
+<string>EZ Sonic Bomb
+<string>A grenade-like bomb that emits<lf>a loud, high-frequency sound. <lf><COLO 05>(Supply Item)
+<string>EZ Max Potion
+<string>Fully restores Health and<lf>maximizes your Health Gauge.<lf><COLO 05>(Supply Item)
+<string>EZ Pitfall Trap
+<string>Activates a pitfall to catch<lf>monsters with.<lf><COLO 05>(Supply Item)
+<string>Mini Oxy Supply
+<string>An Oxygen Supply provided by<lf>the Guild. Truly a breath of<lf>fresh air! <COLO 05>(Supply Item)
+<string>EZ Barrel Bomb L
+<string>A powered-up Barrel Bomb L<lf>(as potent as a Barrel Bomb L+).<lf>Works underwater. <COLO 05>(Supply Item)
+<string>Ballista Ammo
+<string>Ammunition for a large<lf>mounted Bowgun. <lf><COLO 05>(Supply Item)
+<string>Ballista Binder
+<string>Ammunition for a large mounted<lf>Bowgun. Keeps giants at bay!<lf><COLO 05>(Supply Item)
+<string>DUMMY 117
+<string>DUMMY 117
+<string>Cannon Ammo
+<string>Special ammunition for an anti-<lf>dragon cannon. Not fun to lug<lf>around. <COLO 05>(Supply Item)
+<string>Anti-dragon Bomb
+<string>A small time bomb that<lf>sticks to targets.<lf><COLO 05>(Supply Item)
+<string>Torch
+<string>Use this to light up dark places<lf>and stave off certain monsters.<lf><COLO 05>(Supply Item)
+<string>Paw Pass Ticket
+<string>Deliver to end the Quest. Maybe<lf>the Felynes will take you home...<lf><COLO 05>(Supply Item)
+<string>Royal Honey
+<string>A supreme taste for the queen<lf>bee. Good for your health, too!<lf><COLO 05>(Account Item)
+<string>Unique Mushroom
+<string>A pinky-sized mushroom valued<lf>for its unusual aroma.<lf><COLO 05>(Account Item)
+<string>Choice Mushroom
+<string>The perfect shape and aroma.<lf>Even better than a Unique<lf>Mushroom. <COLO 05>(Account Item)
+<string>Ripened Mushroom
+<string>A Unique Mushroom made more<lf>unique by maturing its aroma<lf>and flavor. <COLO 05>(Account Item)
+<string>Great Shroom
+<string>A rare mushroom that only grows<lf>near select stream-based plants.<lf><COLO 05>(Account Item)
+<string>Super Sprout
+<string>A bamboo shoot from a mountain<lf>stream. Often used in cooking.<lf><COLO 05>(Account Item)
+<string>DUMMY 118
+<string>DUMMY 118
+<string>DUMMY 119
+<string>DUMMY 119
+<string>Silverfish
+<string>A rare fish made of pure silver.<lf>Sell it for a tidy sum.<lf><COLO 05>(Account Item)
+<string>DUMMY 120
+<string>DUMMY 120
+<string>DUMMY 121
+<string>DUMMY 121
+<string>Goldenfish
+<string>A rare fish made of solid gold.<lf>Sell it for a tidy sum.<lf><COLO 05>(Account Item)
+<string>Royal Rhino
+<string>A beetle with a jewel-like gleam.<lf>Prized by bug fans of all ages.<lf><COLO 05>(Account Item)
+<string>Divine Rhino
+<string>A beetle with a sacred gleam.<lf>Prized by greedy collectors.<lf><COLO 05>(Account Item)
+<string>Silver Cricket
+<string>A cricket with shiny silver wings.<lf>Makes a crisp chirping sound.<lf><COLO 05>(Account Item)
+<string>Gold Cricket
+<string>A cricket with shiny golden wings.<lf>Makes a vibrant chirping sound.<lf><COLO 05>(Account Item)
+<string>Auristone Piece
+<string>A pure shard of Auristone.<lf>Even a tiny bit is pricey.<lf><COLO 05>(Account Item)
+<string>Auristone Chunk
+<string>A precious clump of Auristone.<lf>Its shine is truly captivating.<lf><COLO 05>(Account Item)
+<string>Balmstone Piece
+<string>A small pink shard of ore.<lf>Rubbing it reveals a flowery<lf>scent. <COLO 05>(Account Item)
+<string>Balmstone Chunk
+<string>A crystallized clump of pink<lf>ore. Rubbing it reveals a<lf>flowery scent. <COLO 05>(Account Item)
+<string>Crystal Bone
+<string>A unique bone prized in the<lf>village for reasons unknown.<lf><COLO 05>(Account Item)
+<string>Golden Bone
+<string>A glittering, golden bone.<lf>Popular with collectors.<lf><COLO 05>(Account Item)
+<string>Bloodstone
+<string>Is this crimson stone the<lf>relic of some ancient beast?<lf><COLO 05>(Account Item)
+<string>Deep Bloodstone
+<string>A stone of especially deep<lf>crimson. It almost looks ready<lf>to bleed. <COLO 05>(Account Item)
+<string>Coal
+<string>A combustible rock that<lf>emits a faint warmth.<lf><COLO 05>(Account Item)
+<string>Volatile Coal
+<string>A combustible rock so hot,<lf>it may burst into flame at<lf>any moment. <COLO 05>(Account Item)
+<string>Wyvern Egg
+<string>An egg stolen from a<lf>monster's nest.
+<string>Herbivore Egg
+<string>An egg stolen from an<lf>herbivore's nest. It looks<lf>pretty tasty.
+<string>Gargwa Egg
+<string>An egg laid by a Gargwa. Though<lf>a common ingredient in food,<lf>such eggs are quite expensive.
+<string>Gold Gargwa Egg
+<string>A rare Gargwa egg with a golden<lf>shine. Theories abound as to<lf>reasons for the color.
+<string>DUMMY 206
+<string>DUMMY 206
+<string>Powderstone
+<string>A rock that explodes with even<lf>the slightest jolt. Careful!
+<string>Gargwa Guano
+<string>Gargwa droppings. Can be dried<lf>and powdered for medicinal use.<lf><COLO 05>(Account Item)
+<string>White Liver
+<string>A white-colored liver, popular<lf>for its juicy texture.<lf><COLO 05>(Account Item)
+<string>Slagtoth Oil
+<string>Oil extracted from a Slagtoth's<lf>skin. Can be made into potions<lf>or salves. <COLO 05>(Account Item)
+<string>Popo Tongue
+<string>Popo tongues are popular,<lf>healthy, and fun to eat.<lf><COLO 05>(Account Item)
+<string>Secret Stash
+<string>A pouch carried by a Melynx.<lf>Full of miscellaneous junk.<lf><COLO 05>(Account Item)
+<string>Round Acorn
+<string>A perfectly round acorn. It's a<lf>Felyne's beloved treasure.<lf><COLO 05>(Account Item)
+<string>Fine Stomach
+<string>A pretty Altaroth stomach.<lf>Its contents are delicious.<lf><COLO 05>(Account Item)
+<string>Luminous Stomach
+<string>A shiny Altaroth stomach.<lf>Sold as a choice cooking<lf>ingredient. <COLO 05>(Account Item)
+<string>Giggi Extract
+<string>Bodily fluid from a Giggi.<lf>Breaks down waste and improves<lf>blood flow. <COLO 05>(Account Item)
+<string>Monster Guts
+<string>Monster innards galore.<lf>A prized delicacy.<lf><COLO 05>(Account Item)
+<string>Red Coral Stone
+<string>An item found underwater in<lf>these parts. Easy money!<lf><COLO 05>(Account Item)
+<string>Wyvern Tear
+<string>Bitter tears wept by monsters<lf>on certain occasions.<lf><COLO 05>(Account Item)
+<string>Lrg Wyvern Tear
+<string>Large, bitter tears wept by<lf>wyverns on certain occasions.<lf><COLO 05>(Account Item)
+<string>Beast Tear
+<string>Bitter tears wept by fanged<lf>beasts on certain occasions.<lf><COLO 05>(Account Item)
+<string>Lrg Beast Tear
+<string>Large, bitter tears wept by<lf>fanged beasts on special<lf>occasions. <COLO 05>(Account Item)
+<string>Bird Coin
+<string>An award granted for defeating<lf>a bird wyvern in the Arena.
+<string>DUMMY 122
+<string>DUMMY 122
+<string>DUMMY 123
+<string>DUMMY 123
+<string>DUMMY 124
+<string>DUMMY 124
+<string>DUMMY 125
+<string>DUMMY 125
+<string>DUMMY 126
+<string>DUMMY 126
+<string>DUMMY 127
+<string>DUMMY 127
+<string>Leviathan Coin
+<string>An award granted for defeating<lf>a leviathan in the Arena.
+<string>DUMMY 128
+<string>DUMMY 128
+<string>DUMMY 129
+<string>DUMMY 129
+<string>DUMMY 130
+<string>DUMMY 130
+<string>DUMMY 131
+<string>DUMMY 131
+<string>DUMMY 214
+<string>DUMMY 214
+<string>Pinnacle Coin
+<string>A glorious coin given only<lf>to unquestioned Masters of<lf>Hunting. Beyond priceless.
+<string>Hunter King Coin
+<string>A silver coin given only to<lf>True Hunters. Its gleam is<lf>a symbol of your glory.
+<string>Voucher
+<string>Redeem this for a special<lf>meal with stronger effects<lf>than usual.
+<string>Gourmet Voucher
+<string>Exchange this for a kingly<lf>meal. Both its flavor and<lf>effects are top notch.
+<string>Sharq Ticket
+<string>Trade this in for a rare<lf>stuffed Sharq -- normal<lf>Quests won't get you one.
+<string>DUMMY 132
+<string>DUMMY 132
+<string>DUMMY 133
+<string>DUMMY 133
+<string>DUMMY 134
+<string>DUMMY 134
+<string>Conqueror's Seal
+<string>Proof you have overcome<lf>countless trials, and a true<lf>badge of honor.
+<string>DUMMY 135
+<string>DUMMY 135
+<string>Commendation
+<string>A ticket awarded for a<lf>display of bravery. Collect<lf>enough and it might pay off.
+<string>DUMMY 136
+<string>DUMMY 136
+<string>Pawprint Stamp
+<string>Lynian paper currency, stamped<lf>with a pawprint. The letters<lf>written on it are unfamiliar.
+<string>Aquaglow Jewel
+<string>An indispensible item used<lf>in Decorations.
+<string>Sunspire Jewel
+<string>An indispensible item used<lf>in Decorations.
+<string>Bloodrun Jewel
+<string>An indispensible item used<lf>in Decorations. A shame that<lf>these are so high-end.
+<string>Lazurite Jewel
+<string>An indispensible item used<lf>in Decorations. This one<lf>doesn't come along often.
+<string>Paralysis Jwl 1
+<string>A Decoration that boosts<lf>Paralysis skills.
+<string>Paralysis Jwl 2
+<string>A Decoration that boosts<lf>Paralysis skills.
+<string>Pep Jewel 1
+<string>A Decoration that boosts<lf>Sleep skills.
+<string>Pep Jewel 2
+<string>A Decoration that boosts<lf>Sleep skills.
+<string>Steadfast Jwl 1
+<string>A Decoration that boosts<lf>Stun skills.
+<string>Standfast Jwl 1
+<string>A Decoration that boosts<lf>Stun skills.
+<string>Antidote Jewel 1
+<string>A Decoration that boosts<lf>Poison skills.
+<string>Antidote Jewel 2
+<string>A Decoration that boosts<lf>Poison skills.
+<string>Tracker Jewel 1
+<string>A Decoration that boosts<lf>Mud/Snow skills.
+<string>Trekker Jewel 1
+<string>A Decoration that boosts<lf>Mud/Snow skills.
+<string>Ninja Jewel 1
+<string>A Decoration that boosts<lf>Sense skills.
+<string>Vitality Jewel 1
+<string>A Decoration that boosts<lf>Health skills.
+<string>Recovery Jewel 1
+<string>A Decoration that boosts<lf>Rec Speed skills.
+<string>Recovery Jewel 2
+<string>A Decoration that boosts<lf>Rec Speed skills.
+<string>Razor Jewel 1
+<string>A Decoration that boosts<lf>Sharpness skills.<lf><COLO 05>(Blademaster Only)
+<string>Razor Jewel 3
+<string>A Decoration that boosts<lf>Sharpness skills.<lf><COLO 05>(Blademaster Only)
+<string>Handicraft Jwl 2
+<string>A Decoration that boosts<lf>Handicraft skills.<lf><COLO 05>(Blademaster Only)
+<string>Handicraft Jwl 3
+<string>A Decoration that boosts<lf>Handicraft skills.<lf><COLO 05>(Blademaster Only)
+<string>Fencer Jewel 1
+<string>A Decoration that boosts<lf>Fencing skills.<lf><COLO 05>(Blademaster Only)
+<string>Fencer Jewel 3
+<string>A Decoration that boosts<lf>Fencing skills.<lf><COLO 05>(Blademaster Only)
+<string>Expert Jewel 1
+<string>A Decoration that boosts<lf>Expert skills.
+<string>Expert Jewel 2
+<string>A Decoration that boosts<lf>Expert skills.
+<string>Expert Jewel 3
+<string>A Decoration that boosts<lf>Expert skills.
+<string>Grinder Jewel 1
+<string>A Decoration that boosts<lf>Sharpener skills.<lf><COLO 05>(Blademaster Only)
+<string>Ironwall Jewel 1
+<string>A Decoration that boosts<lf>Guard skills.<lf><COLO 05>(Blademaster Only)
+<string>Ironwall Jewel 2
+<string>A Decoration that boosts<lf>Guard skills.<lf><COLO 05>(Blademaster Only)
+<string>Shield Jewel 1
+<string>A Decoration that boosts<lf>Guard Up skills.<lf><COLO 05>(Blademaster Only)
+<string>Shield Jewel 2
+<string>A Decoration that boosts<lf>Guard Up skills.<lf><COLO 05>(Blademaster Only)
+<string>Quickload Jwl 1
+<string>A Decoration that boosts<lf>Reload Spd skills.<lf><COLO 05>(Gunner Only)
+<string>Quickload Jwl 2
+<string>A Decoration that boosts<lf>Reload Spd skills.<lf><COLO 05>(Gunner Only)
+<string>Absorber Jewel 1
+<string>A Decoration that boosts<lf>Recoil skills.<lf><COLO 05>(Gunner Only)
+<string>Absorber Jewel 3
+<string>A Decoration that boosts<lf>Recoil skills.<lf><COLO 05>(Gunner Only)
+<string>Forceshot Jwl 1
+<string>A Decoration that boosts<lf>Normal Up skills.<lf><COLO 05>(Gunner Only)
+<string>Forceshot Jwl 3
+<string>A Decoration that boosts<lf>Normal Up skills.<lf><COLO 05>(Gunner Only)
+<string>Pierce Jewel 1
+<string>A Decoration that boosts<lf>Pierce Up skills.<lf><COLO 05>(Gunner Only)
+<string>Pierce Jewel 3
+<string>A Decoration that boosts<lf>Pierce Up skills.<lf><COLO 05>(Gunner Only)
+<string>Pellet Jewel 1
+<string>A Decoration that boosts<lf>Pellet Up skills.<lf><COLO 05>(Gunner Only)
+<string>Pellet Jewel 3
+<string>A Decoration that boosts<lf>Pellet Up skills.<lf><COLO 05>(Gunner Only)
+<string>ShotPlus Jewel 1
+<string>A Decoration that boosts<lf>Normal S+ skills.<lf><COLO 05>(Gunner Only)
+<string>ShotPlus Jewel 2
+<string>A Decoration that boosts<lf>Normal S+ skills.<lf><COLO 05>(Gunner Only)
+<string>PiercePlus Jwl 1
+<string>A Decoration that boosts<lf>Pierce S+ skills.<lf><COLO 05>(Gunner Only)
+<string>DUMMY 137
+<string>DUMMY 137
+<string>PelletPlus Jwl 1
+<string>A Decoration that boosts<lf>Pellet S+ skills.<lf><COLO 05>(Gunner Only)
+<string>CragPlus Jewel 1
+<string>A Decoration that boosts<lf>Crag S+ skills.<lf><COLO 05>(Gunner Only)
+<string>ClustPlus Jwl 1
+<string>A Decoration that boosts<lf>Clust S+ skills.<lf><COLO 05>(Gunner Only)
+<string>Disabler Jewel 1
+<string>A Decoration that boosts<lf>Status skills.
+<string>Disabler Jewel 2
+<string>A Decoration that boosts<lf>Status skills.
+<string>Element Jewel 1
+<string>A Decoration that boosts<lf>Elemental skills.
+<string>Element Jewel 3
+<string>A Decoration that boosts<lf>Elemental skills.
+<string>Bombardier Jwl 1
+<string>A Decoration that boosts<lf>Bomb Boost skills.
+<string>DUMMY 138
+<string>DUMMY 138
+<string>Hungerless Jwl 1
+<string>A Decoration that boosts<lf>Hunger skills.
+<string>Metabolism Jwl 1
+<string>A Decoration that boosts<lf>Gluttony skills.
+<string>Attack Jewel 1
+<string>A Decoration that boosts<lf>Attack skills.
+<string>Attack Jewel 2
+<string>A Decoration that boosts<lf>Attack skills.
+<string>Attack Jewel 3
+<string>A Decoration that boosts<lf>Attack skills.
+<string>Defense Jewel 1
+<string>A Decoration that boosts<lf>Defense skills.
+<string>Defense Jewel 2
+<string>A Decoration that boosts<lf>Defense skills.
+<string>Protection Jwl 1
+<string>A Decoration that boosts<lf>Protection skills.
+<string>Asylum Jewel 1
+<string>A Decoration that boosts<lf>Protection skills.
+<string>Earplug Jewel 1
+<string>A Decoration that boosts<lf>Hearing skills.
+<string>Earplug Jewel 3
+<string>A Decoration that boosts<lf>Hearing skills.
+<string>Alarm Jewel 1
+<string>A Decoration that boosts<lf>Anti-Theft skills.
+<string>Friendship Jwl 1
+<string>A Decoration that boosts<lf>Wide-Range skills.
+<string>Friendship Jwl 2
+<string>A Decoration that boosts<lf>Wide-Range skills.
+<string>Transportr Jwl 1
+<string>A Decoration that boosts<lf>Transportr skills.
+<string>Fire Res Jewel 1
+<string>A Decoration that boosts<lf>Fire Res skills.
+<string>Water Res Jwl 1
+<string>A Decoration that boosts<lf>Water Res skills.
+<string>Ice Res Jewel 1
+<string>A Decoration that boosts<lf>Ice Res skills.
+<string>ThunderRes Jwl 1
+<string>A Decoration that boosts<lf>ThunderRes skills.
+<string>Dragon Res Jwl 1
+<string>A Decoration that boosts<lf>Dragon Res skills.
+<string>Heat Res Jewel 1
+<string>A Decoration that boosts<lf>Heat Res skills.
+<string>Cold Res Jewel 1
+<string>A Decoration that boosts<lf>Cold Res skills.
+<string>Wind Res Jewel 1
+<string>A Decoration that boosts<lf>Wind Res skills.
+<string>Wind Res Jewel 2
+<string>A Decoration that boosts<lf>Wind Res skills.
+<string>DUMMY 139
+<string>DUMMY 139
+<string>Gathering Jwl 1
+<string>A Decoration that boosts<lf>Gathering skills.
+<string>Spree Jewel 1
+<string>A Decoration that boosts<lf>Spd Gather skills.
+<string>Blessing Jewel 1
+<string>A Decoration that boosts<lf>Whim skills.
+<string>Fate Jewel 1
+<string>A Decoration that boosts<lf>Fate skills.
+<string>Fate Jewel 3
+<string>A Decoration that boosts<lf>Fate skills.
+<string>DUMMY 140
+<string>DUMMY 140
+<string>Psychic Jewel 1
+<string>A Decoration that boosts<lf>Psychic skills.
+<string>Medicine Jewel 1
+<string>A Decoration that boosts<lf>Rec Level skills.
+<string>Medicine Jewel 2
+<string>A Decoration that boosts<lf>Rec Level skills.
+<string>Professor Jwl 1
+<string>A Decoration that boosts<lf>Combo Rate skills.
+<string>Factory Jewel 1
+<string>A Decoration that boosts<lf>Combo Plus skills.
+<string>Evasion Jewel 1
+<string>A Decoration that boosts<lf>Evasion skills.
+<string>Evasion Jewel 2
+<string>A Decoration that boosts<lf>Evasion skills.
+<string>Potential Jwl 1
+<string>A Decoration that boosts<lf>Potential skills.
+<string>Potential Jwl 2
+<string>A Decoration that boosts<lf>Potential skills.
+<string>Enduring Jewel 1
+<string>A Decoration that boosts<lf>LastingPwr skills.
+<string>Sprinter Jewel 1
+<string>A Decoration that boosts<lf>Stamina skills.
+<string>Sprinter Jewel 3
+<string>A Decoration that boosts<lf>Stamina skills.
+<string>Capacity Jewel 2
+<string>A Decoration that boosts<lf>Loading skills.<lf><COLO 05>(Gunner Only)
+<string>Capacity Jewel 3
+<string>A Decoration that boosts<lf>Loading skills.<lf><COLO 05>(Gunner Only)
+<string>Sniper Jewel 1
+<string>A Decoration that boosts<lf>Precision skills.<lf><COLO 05>(Gunner Only)
+<string>Gobbler Jewel 1
+<string>A Decoration that boosts<lf>Eating skills.
+<string>Gobbler Jewel 3
+<string>A Decoration that boosts<lf>Eating skills.
+<string>Carver Jewel 1
+<string>A Decoration that boosts<lf>Carving skills.
+<string>Carver Jewel 3
+<string>A Decoration that boosts<lf>Carving skills.
+<string>Footing Jewel 1
+<string>A Decoration that boosts<lf>Tremor Res skills.
+<string>Tectonic Jewel 1
+<string>A Decoration that boosts<lf>Tremor Res skills.
+<string>DUMMY 141
+<string>DUMMY 141
+<string>Jumping Jewel 1
+<string>A Decoration that boosts<lf>Evade Dist skills.
+<string>DUMMY 142
+<string>DUMMY 142
+<string>Draw Jewel 1
+<string>A Decoration that boosts<lf>Crit Draw skills.<lf><COLO 05>(Blademaster Only)
+<string>Draw Jewel 2
+<string>A Decoration that boosts<lf>Crit Draw skills.<lf><COLO 05>(Blademaster Only)
+<string>Trapmaster Jwl 1
+<string>A Decoration that boosts<lf>SpeedSetup skills.
+<string>Physique Jewel 1
+<string>A Decoration that boosts<lf>Constitutn skills.
+<string>Physique Jewel 2
+<string>A Decoration that boosts<lf>Constitutn skills.
+<string>Capture Jewel 1
+<string>A Decoration that boosts<lf>Tranquilzr skills.
+<string>Capture Jewel 3
+<string>A Decoration that boosts<lf>Tranquilzr skills.
+<string>Perception Jwl 1
+<string>A Decoration that boosts<lf>Perception skills.
+<string>Charger Jewel 1
+<string>A Decoration that boosts<lf>FastCharge skills.
+<string>Charger Jewel 3
+<string>A Decoration that boosts<lf>FastCharge skills.
+<string>Fresh Air Jwl 1
+<string>A Decoration that boosts<lf>Oxygen skills.
+<string>Stopflow Jewel 1
+<string>A Decoration that boosts<lf>CurrentRes skills.
+<string>Swimmer Jewel 1
+<string>A Decoration that boosts<lf>Swimming skills.
+<string>Diver Jewel 1
+<string>A Decoration that boosts<lf>Swimming skills.
+<string>Gambit Jewel 1
+<string>A Decoration that boosts<lf>PunishDraw skills.<lf><COLO 05>(Blademaster Only)
+<string>Gambit Jewel 3
+<string>A Decoration that boosts<lf>PunishDraw skills.<lf><COLO 05>(Blademaster Only)
+<string>Resistor Jewel 1
+<string>A Decoration that boosts<lf>Blight Res skills.
+<string>Release Jewel 2
+<string>A Decoration that boosts<lf>FreeElemnt skills.
+<string>Catalyst Jewel 3
+<string>A Decoration that boosts<lf>FreeElemnt skills.
+<string>Fortitude Jwl 1
+<string>A Decoration that boosts<lf>Survivor skills.
+<string>Fortitude Jwl 2
+<string>A Decoration that boosts<lf>Survivor skills.
+<string>Salvo Jewel 1
+<string>A Decoration that boosts<lf>Rapid Fire skills.<lf><COLO 05>(Gunner Only)
+<string>Salvo Jewel 3
+<string>A Decoration that boosts<lf>Rapid Fire skills.<lf><COLO 05>(Gunner Only)
+<string>Dungmaster Jwl 1
+<string>A Decoration that boosts<lf>Dungmaster skills.
+<string>Torchlight Jwl 1
+<string>A Decoration that boosts<lf>Flame Aura skills.
+<string>(No Mask)
+<string>(Mask item.)
+<string>BBQ with Mask
+<string>(Mask item.)
+<string>Sharpen w/Mask
+<string>(Mask item.)
+<string>Return via Mask
+<string>(Mask item.)
+<string>Slime S
+<string>Ammo that causes explosive<lf>reactions. Some targets require<lf>multiple shots. Capacity: 12
+<string>DUMMY 143
+<string>DUMMY 143
+<string>Flying Wyverns Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of flying wyverns.
+<string>Flying Wyverns Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of flying wyvern subspecies.
+<string>Flying Wyverns Vol 3
+<string>Monster List reference info<lf>on the habits and ecology<lf>of flying wyvern subspecies.
+<string>Bird Wyverns Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of bird wyverns.
+<string>Bird Wyverns Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of bird wyverns.
+<string>Brute Wyverns Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of brute wyverns.
+<string>Brute Wyverns Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of brute wyvern subspecies.
+<string>Brute Wyverns Vol 3
+<string>Monster List reference info<lf>on the habits and ecology<lf>of brute wyvern subspecies.
+<string>Leviathans Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of leviathans.
+<string>Leviathans Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of leviathan subspecies.
+<string>Leviathans Vol 3
+<string>Monster List reference info<lf>on the habits and ecology<lf>of rare leviathans.
+<string>Fanged Wyverns Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of fanged wyverns.
+<string>Fanged Wyverns Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of fanged wyvern subspecies.
+<string>Fanged Beasts
+<string>Monster List reference info<lf>on the habits and ecology<lf>of fanged beasts.
+<string>Invalid Message
+<string>DUMMY 144
+<string>Piscine Wyverns
+<string>Monster List reference info<lf>on the habits and ecology<lf>of piscine wyverns.
+<string>Elder Dragons Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of elder dragons.
+<string>Elder Dragons Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of elder dragons.
+<string>Elder Dragons Vol 3
+<string>Monster List reference info<lf>on the habits and ecology<lf>of elder dragons.
+<string>Lynians
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Lynians.
+<string>Neopteron
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Neopterons.
+<string>Herbivores Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of herbivores.
+<string>Herbivores Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of herbivores.
+<string>Deviljho
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Deviljho.
+<string>Brachydios
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Brachydios.
+<string>Dire Miralis
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Dire Miralis.
+<string>Plesioth Vol 1
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Plesioth.
+<string>Plesioth Vol 2
+<string>Monster List reference info<lf>on the habits and ecology<lf>of Plesioth subspecies.
+<string>Deodorant
+<string>An item that cures Stench.<lf>Releases a puff of deoderizing<lf>smoke when thrown down.
+<string>Emperor Hopper
+<string>A grasshopper with an<lf>exceptionally strong shell.<lf>Prized as a crafting material.
+<string>Elder Dragonbone
+<string>A rare bone from an elder dragon<lf>that once ruled the land.<lf>A mysterious power lies within.
+<string>DUMMY 145
+<string>DUMMY 145
+<string>Purecrystal
+<string>A crystal that's 100% pure. <lf>Hard enough to be used in<lf>workshop tools.
+<string>Adamant Orb
+<string>An indispensible item used<lf>in Decorations. A rare orb<lf>that houses immense power.
+<string>Lagiacrus Piel
+<string>The strong, flexible hide of<lf>a Lagiacrus. Used in expensive<lf>leatherwear, among other items.
+<string>DUMMY 146
+<string>DUMMY 146
+<string>Nightmarish Maw
+<string>A Gigginox's distinctive yapper.<lf>Just one look is enough to<lf>induce nightmares.
+<string>DUMMY 147
+<string>DUMMY 147
+<string>DUMMY 148
+<string>DUMMY 148
+<string>DUMMY 149
+<string>DUMMY 149
+<string>Slime Coating
+<string>An arrow coating that applies<lf>explosive slime to arrows fired.<lf>Capacity: 20
+<string>DUMMY 150
+<string>DUMMY 150
+<string>Blossom Cricket
+<string>A beautiful bell cricket<lf>resembling a flower. Its sound <lf>opens even the hardest of hearts.
+<string>L.Narg Tailspear
+<string>A deadly sharp spike from a<lf>Lucent Nargacuga's tail. It can fly<lf>long distances when launched.
+<string>DUMMY 151
+<string>DUMMY 151
+<string>G.Narg Tailspear
+<string>A spike from a Green Nargacuga's<lf>tail. So sharp, its victims don't<lf>even notice their mortal wounds.
+<string>DUMMY 152
+<string>DUMMY 152
+<string>Agnaktor Cortex
+<string>The rigid cortex of an Agnaktor.<lf>Highly heat-resistant, it produces<lf>bright red items when forged.
+<string>Revolting Piel
+<string>An unusual hide found rarely on<lf>Gigginox. It's a perfect blend<lf>of beautiful and bizarre.
+<string>Cryo Sac
+<string>A monster organ that has fierce<lf>freezing properties. It can coat<lf>an area in ice in a flash.
+<string>Flood Sac
+<string>A monster organ designed to<lf>hold and preserve tremendous<lf>amounts of water.
+<string>Monster Essence
+<string>A broth made from only the<lf>thickest, choicest parts of<lf>a monster's juices. Gross?
+<string>DUMMY 153
+<string>DUMMY 153
+<string>Massive Bone
+<string>An impossibly hard bone from a<lf>large beast. It exceeds all known<lf>standards for crafting material.
+<string>DUMMY 154
+<string>DUMMY 154
+<string>Prized Pelt
+<string>A pelt from a small animal.<lf>Used for many things, but<lf>mostly just regular clothes.
+<string>DUMMY 155
+<string>DUMMY 155
+<string>DUMMY 156
+<string>DUMMY 156
+<string>Speartuna
+<string>A giant fish that's both rare<lf>and valuable. It looks like it<lf>could be used for something...
+<string>Nargacuga Pelt+
+<string>Pitch-black fur from a<lf>Nargacuga. It absorbs all light<lf>and emits pure darkness.
+<string>Narga Razor
+<string>The large, sharp bladewing<lf>of a Nargacuga. It can slice<lf>through foes in a flash.
+<string>VE Ticket
+<string>A ticket awarded in recognition<lf>of contributions to the Guild.<lf>Trade it with the Veggie Elder.
+<string>VE Deluxe Ticket
+<string>A ticket awarded in recognition<lf>of contributions to the Guild.<lf>Trade it with the Veggie Elder.
+<string>VE Bronze Ticket
+<string>A ticket awarded for hunting<lf>with friends. Trade it with<lf>the Veggie Elder.
+<string>VE Silver Ticket
+<string>A ticket awarded for hunting<lf>with friends. The Veggie Elder<lf>may offer a rare trade...
+<string>VE Golden Ticket
+<string>A ticket awarded for hunting<lf>with friends. The Veggie Elder<lf>may offer a premium trade...
+<string>VE Cosmic Ticket
+<string>A ticket awarded for hunting<lf>with friends. The Veggie Elder<lf>may offer an amazing trade...
+<string>DUMMY 157
+<string>DUMMY 157
+<string>DUMMY 158
+<string>DUMMY 158
+<string>Maiden Butterfly
+<string>A legendary butterfly visible<lf>only to those with pure hearts.<lf>It is extremely rare.
+<string>DUMMY 159
+<string>DUMMY 159
+<string>DUMMY 160
+<string>DUMMY 160
+<string>DUMMY 161
+<string>DUMMY 161
+<string>DUMMY 162
+<string>DUMMY 162
+<string>DUMMY 163
+<string>DUMMY 163
+<string>Chum-Chum Ticket
+<string>A ticket awarded for hunting<lf>with the Shakalaka. Proof of<lf>one's friendship with them.
+<string>DUMMY 164
+<string>DUMMY 164
+<string>Lagia Hardhorn
+<string>A fine horn from an especially<lf>strong Lagiacrus. So unique,<lf>it's almost legendary.
+<string>DUMMY 165
+<string>DUMMY 165
+<string>DUMMY 166
+<string>DUMMY 166
+<string>DUMMY 167
+<string>DUMMY 167
+<string>Heftcorn
+<string>Gigantic corn that's difficult<lf>to cultivate in this region.<lf>It's packed with kernels.
+<string>DUMMY 210
+<string>DUMMY 210
+<string>DUMMY 212
+<string>DUMMY 212
+<string>Bullfango Tusk
+<string>A fine tusk taken from a fierce<lf>Bullfango. The dents tell of the<lf>wild beast's frequent charges.
+<string>DUMMY 168
+<string>DUMMY 168
+<string>DUMMY 169
+<string>DUMMY 169
+<string>DUMMY 170
+<string>DUMMY 170
+<string>Butterfly Beetle
+<string>A strange insect with the large<lf>jaws of a beetle and the<lf>delicate wings of a butterfly.
+<string>DUMMY 171
+<string>DUMMY 171
+<string>DUMMY 172
+<string>DUMMY 172
+<string>Diablos Hardtail
+<string>A tailcage heavy enough<lf>to bend a steel hammer.<lf>Unimaginably powerful.
+<string>Barroth Lash
+<string>A rigid tail carved from a<lf>select few Barroth. Inexpensive,<lf>but surprisingly versatile.
+<string>DUMMY 173
+<string>DUMMY 173
+<string>DUMMY 174
+<string>DUMMY 174
+<string>DUMMY 175
+<string>DUMMY 175
+<string>Scalding Pleura
+<string>The organ and shell from an<lf>Agnaktor's chest, used to fire<lf>its powerful heat rays.
+<string>DUMMY 176
+<string>DUMMY 176
+<string>Crested Crown
+<string>A golden crown with a royal<lf>crest on it. There's an empty<lf>slot in the forehead.
+<string>Royal Crest
+<string>A royal crest from a once-great <lf>country that fell. Twin dragon<lf>heads are drawn upon it.
+<string>Realmless Crown
+<string>A crown from the royal family of<lf>a fallen land. Its sunny shine<lf>hints at former prosperity.
+<string>Giant Fossil
+<string>A quality Commodity.<lf>These can be converted to<lf>Resources or used for a trade.
+<string>DUMMY 177
+<string>DUMMY 177
+<string>R.Ludroth Lash
+<string>A superior tail from a Royal<lf>Ludroth. Its strength shows it<lf>was honed in harsh conditions.
+<string>Mohran Shard
+<string>An especially fine scale from a<lf>Jhen Mohran. Thick and colorful,<lf>it commands a high price.
+<string>Mohran Rockskin
+<string>A heavy shell piece taken from<lf>a Jhen Mohran. It surpasses<lf>even steel in strength.
+<string>Mohran Allbrace
+<string>A thick, high-quality brace from<lf>a Jhen Mohran. Easy craftable<lf>with the right amount of force.
+<string>Rathalos Wing
+<string>A wing that has been removed.<lf>Skilled artisans can craft it<lf>into strong equipment.
+<string>Plesioth Webbing
+<string>Difficult to forge with, but<lf>its water-retention properties<lf>make it popular as armor lining.
+<string>Hrd Ples Webbing
+<string>Stronger than normal webbing, <lf>and just as water-retentive.<lf>Ideal for lining armor.
+<string>Fish
+<string>Monster List reference info<lf>on the habits and ecology<lf>of fish.
+<string>DUMMY 178
+<string>DUMMY 178
+<string>DUMMY 179
+<string>DUMMY 179
+<string>Small Golden Egg
+<string>A sparkling golden egg. Though<lf>small, it fetches a high price.<lf><COLO 05>(Account Item)
+<string>Plesioth Head
+<string>A surprisingly hard head prized<lf>as armor material. Might make<lf>for a great party gag, too.
+<string>Uber Plesio Head
+<string>A frighteningly hard head found<lf>on a select few Plesioth. Among<lf>the very best in armor materials.
+<string>Beast Coin
+<string>An award granted for defeating<lf>a fanged beast in the Arena.<lf>A sharp fang is carved on it.
+<string>Flying Coin
+<string>An award granted for defeating<lf>a flying wyvern in the Arena.<lf>Proof one challenged the skies.
+<string>Piscine Coin
+<string>An award granted for defeating<lf>a piscine wyvern in the Arena.<lf>A regal fin is carved on it.
+<string>Brute Coin
+<string>An award granted for defeating<lf>a brute wyvern in the Arena.<lf>Proof one challenged the land.
+<string>Port Gal (Red)
+<string>A Furnishing -- well, more<lf>like a doll. It's Tanzia's<lf>Arena Clerk!
+<string>Port Gal (Blue)
+<string>A classy Furnishing -- well,<lf>more like a doll. It's Tanzia's<lf>Quest Receptionist!
+<string>Port Gal (Green)
+<string>A top-class Furnishing --<lf>well, more like a doll. It's<lf>Tanzia's Guild Store Clerk!
+<string>Port Gal (White)
+<string>A world-class Furnishing --<lf>well, more like a doll.<lf>It's Tanzia's Gong Girl!
+<string>Slickaxe
+<string>A small pickaxe that looks<lf>useless for mining. It seems<lf>to have a strange power...
+<string>Mooncatcher Fang
+<string>A quality Commodity.<lf>Even one of these shiny rare<lf>fangs makes a good trade.
+<string>Glossy Scale
+<string>A quality Commodity.<lf>Even one of these lavish<lf>scales makes a good trade.
+<string>DUMMY 180
+<string>DUMMY 180
+<string>DUMMY 181
+<string>DUMMY 181
+<string>DUMMY 182
+<string>DUMMY 182
+<string>DUMMY 183
+<string>DUMMY 183
+<string>DUMMY 184
+<string>DUMMY 184
+<string>DUMMY 185
+<string>DUMMY 185
+<string>DUMMY 186
+<string>DUMMY 186
+<string>DUMMY 187
+<string>DUMMY 187
+<string>DUMMY 188
+<string>DUMMY 188
+<string>DUMMY 189
+<string>DUMMY 189
+<string>DUMMY 190
+<string>DUMMY 190
+<string>DUMMY 191
+<string>DUMMY 191
+<string>Thick Skull
+<string>A rare Commodity ★★.<lf>Use this surprisingly solid bird<lf>wyvern skull for a Rare Trade.
+<string>Savory Bear Paw
+<string>A rare Commodity ★★.<lf>The tasty paw of an Arzuros. Use<lf>this delicacy for a Rare Trade.
+<string>Peco Pipes
+<string>A rare Commodity ★★★.<lf>The throat of a Qurupeco. Use this<lf>odd noisemaker for a Rare Trade.
+<string>Billowy Mane
+<string>A rare Commodity ★★★.<lf>The spongy mane of a Royal<lf>Ludroth. Use it for a Rare Trade.
+<string>Volvidon Tongue
+<string>A rare Commodity ★★★.<lf>Use this highly elastic Volvidon<lf>tongue for a Rare Trade.
+<string>Quality Mud Pack
+<string>A rare Commodity ★★★★.<lf>Especially rich taken from a<lf>Barroth. Use it for a Rare Trade.
+<string>DUMMY 192
+<string>DUMMY 192
+<string>DUMMY 193
+<string>DUMMY 193
+<string>Rathian Loin
+<string>A rare Commodity ★★★★.<lf>Premium loin taken from a<lf>Rathian. Use it for a Rare Trade.
+<string>Tender Liver
+<string>A rare Commodity ★★★★.<lf>Exquisite sweetened Gobul<lf>liver. Use it for a Rare Trade.
+<string>P.Rathian Loin
+<string>A rare Commodity ★★★★★.<lf>Premium loin taken from a Pink<lf>Rathian. One bite = heaven.
+<string>Supersized Scale
+<string>A rare Commodity ★★★★★.<lf>Rarely found on a Lagiacrus,<lf>this scale is a true work of art.
+<string>Rathalos Ribs
+<string>A rare Commodity ★★★★★.<lf>Rathalos ribs so rare, only a<lf>few will ever taste them.
+<string>Prime Plesioth
+<string>A rare Commodity ★★★★★.<lf>Fatty Plesioth meat so delicious,<lf>it'll change your outlook on life.
+<string>Diablos Heart
+<string>A rare Commodity ★★★★★.<lf>Researchers are studying these<lf>for possible cure-all elements.
+<string>Bag of Zs
+<string>A rare Commodity ★★★★★.<lf>An organ found inside an Uragaan<lf>that produces sleeping gas.
+<string>Large Obsidian
+<string>A rare Commodity ★★★★★.<lf>Pure obsidian found very rarely<lf>inside the body of a Brachydios.
+<string>Duram Truffle
+<string>A rare Commodity ★★★★★.<lf>This scarce mushroom only grows<lf>beneath a Duramboros' carapace.
+<string>DUMMY 194
+<string>DUMMY 194
+<string>Zinogre Head
+<string>A rare Commodity ★★★★★★.<lf>The head of a Zinogre. Stuff it<lf>and hang it for all to see.
+<string>DUMMY 195
+<string>DUMMY 195
+<string>Nargacuga Eye
+<string>A rare Commodity ★★★★★★.<lf>The glimmer of a Nargacuga's eye<lf>never fades, even in death.
+<string>Celestial Scale
+<string>A rare Commodity ★★★★★★.<lf>An extremely rare Azure Rathalos<lf>scale. Its blue flame consumes all.
+<string>Alabaster Scale
+<string>A rare Commodity ★★★★★★★.<lf>The pure white scale of an Ivory<lf>Lagiacrus. A real attention-getter.
+<string>Worldeater Belly
+<string>A rare Commodity ★★★★★★★.<lf>The belly of a Deviljho is often<lf>filled with glorious treasures.
+<string>DUMMY 196
+<string>DUMMY 196
+<string>DUMMY 197
+<string>DUMMY 197
+<string>DUMMY 198
+<string>DUMMY 198
+<string>DUMMY 199
+<string>DUMMY 199
+<string>DUMMY 200
+<string>DUMMY 200
+<string>DUMMY 201
+<string>DUMMY 201
+<string>DUMMY 202
+<string>DUMMY 202
+<string>DUMMY 203
+<string>DUMMY 203
+<string>DUMMY 204
+<string>DUMMY 204
+<string>DUMMY 205
+<string>DUMMY 205
+<string>DUMMY 207
+<string>DUMMY 207
+<string>DUMMY 220
+<string>DUMMY 220
+<string>Flying Wyverns Vol 4
+<string>Monster List reference info<lf>on the habits and ecology<lf>of rare flying wyverns.
+<string>Flying Wyverns Vol 5
+<string>Monster List reference info<lf>on the habits and ecology<lf>of the Lucent Nargacuga.
+<string>Def Lock Jewel 1
+<string>A Decoration that boosts<lf>Def Lock skills.
+<string>Sterile Jewel 1
+<string>A Decoration that boosts<lf>Antiseptic skills.
+<string>Aseptic Jewel 1
+<string>A Decoration that boosts<lf>Antiseptic skills.
+<string>Blaze Jewel 1
+<string>A Decoration that boosts<lf>Fire Atk skills.
+<string>Blaze Jewel 2
+<string>A Decoration that boosts<lf>Fire Atk skills.
+<string>Stream Jewel 1
+<string>A Decoration that boosts<lf>Water Atk skills.
+<string>Stream Jewel 2
+<string>A Decoration that boosts<lf>Water Atk skills.
+<string>Bolt Jewel 1
+<string>A Decoration that boosts<lf>ThunderAtk skills.
+<string>Bolt Jewel 2
+<string>A Decoration that boosts<lf>ThunderAtk skills.
+<string>Frost Jewel 1
+<string>A Decoration that boosts<lf>Ice Atk skills.
+<string>Frost Jewel 2
+<string>A Decoration that boosts<lf>Ice Atk skills.
+<string>Dragon Jewel 1
+<string>A Decoration that boosts<lf>Dragon Atk skills.
+<string>Dragon Jewel 2
+<string>A Decoration that boosts<lf>Dragon Atk skills.
+<string>Tenderizer Jwl 1
+<string>A Decoration that boosts<lf>Tenderizer skills.
+<string>Tenderizer Jwl 3
+<string>A Decoration that boosts<lf>Tenderizer skills.
+<string>Destroyer Jwl 1
+<string>A Decoration that boosts<lf>Destroyer skills.
+<string>Destroyer Jwl 3
+<string>A Decoration that boosts<lf>Destroyer skills.
+<string>Throttle Jewel 1
+<string>A Decoration that boosts<lf>Gloves Off skills.
+<string>Throttle Jewel 2
+<string>A Decoration that boosts<lf>Gloves Off skills.
+<string>KO Jewel 1
+<string>A Decoration that boosts<lf>KO skills.
+<string>Drain Jewel 1
+<string>A Decoration that boosts<lf>Stam Drain skills.
+<string>Drain Jewel 2
+<string>A Decoration that boosts<lf>Stam Drain skills.
+<string>Sonorous Jewel 1
+<string>A Decoration that boosts<lf>Maestro skills.
+<string>Artillery Jwl 1
+<string>A Decoration that boosts<lf>Artillery skills.
+<string>Resistor Jewel 3
+<string>A Decoration that boosts<lf>Blight Res skills.
+<string>Nul-Fire Jewel 1
+<string>A Decoration that boosts<lf>Fire Res skills.
+<string>Nul-Water Jwl 1
+<string>A Decoration that boosts<lf>Water Res skills.
+<string>Nul-Thundr Jwl 1
+<string>A Decoration that boosts<lf>ThunderRes skills.
+<string>Nul-Ice Jewel 1
+<string>A Decoration that boosts<lf>Ice Res skills.
+<string>Nul-Dragon Jwl 1
+<string>A Decoration that boosts<lf>Dragon Res skills.
+<string>Sheath Jewel 1
+<string>A Decoration that boosts<lf>Sheathing skills.
+<string>Sheath Jewel 2
+<string>A Decoration that boosts<lf>Sheathing skills.
+<string>Refresh Jewel 1
+<string>A Decoration that boosts<lf>Stam Recov skills.
+<string>Refresh Jewel 2
+<string>A Decoration that boosts<lf>Stam Recov skills.
+<string>Ranger Jewel 1
+<string>A Decoration that boosts<lf>Ranger skills.
+<string>SlicePlus Jwl 1
+<string>A Decoration that boosts<lf>Slicing S+ skills.<lf><COLO 05>(Gunner Only)
+<string>Paracoat Jewel 1
+<string>A Decoration that boosts<lf>Para C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Paracoat Jewel 2
+<string>A Decoration that boosts<lf>Para C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Sleepcoat Jwl 1
+<string>A Decoration that boosts<lf>Sleep C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Poisoncoat Jwl 1
+<string>A Decoration that boosts<lf>Poison C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Powercoat Jwl 1
+<string>A Decoration that boosts<lf>Power C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Powercoat Jwl 2
+<string>A Decoration that boosts<lf>Power C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Rangecoat Jwl 1
+<string>A Decoration that boosts<lf>C.Range C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Draincoat Jwl 1
+<string>A Decoration that boosts<lf>Exhaust C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Stopflow Jewel 2
+<string>A Decoration that boosts<lf>CurrentRes skills.
+<string>Guts Jewel 1
+<string>A Decoration that boosts<lf>Guts skills.
+<string>Guts Jewel 2
+<string>A Decoration that boosts<lf>Guts skills.
+<string>Meateater Jwl 1
+<string>A Decoration that boosts<lf>Carnivore skills.
+<string>Meatlover Jwl 1
+<string>A Decoration that boosts<lf>Carnivore skills.
+<string>Slider Jewel 1
+<string>A Decoration that boosts<lf>Dive Dist skills.
+<string>Glider Jewel 1
+<string>A Decoration that boosts<lf>Dive Dist skills.
+<string>Honeybee Jewel 1
+<string>A Decoration that boosts<lf>Honey skills.
+<string>Queenbee Jewel 1
+<string>A Decoration that boosts<lf>Honey skills.
+<string>Biology Jewel 1
+<string>A Decoration that boosts<lf>Biology skills.
+<string>Microbio Jewel 1
+<string>A Decoration that boosts<lf>Biology skills.
+<string>Spirit Jewel 1
+<string>A Decoration that boosts<lf>Spirit skills.
+<string>Spirit Jewel 2
+<string>A Decoration that boosts<lf>Spirit skills.
+<string>Flawless Jewel 1
+<string>A Decoration that boosts<lf>Unscathed skills.
+<string>Flawless Jewel 2
+<string>A Decoration that boosts<lf>Unscathed skills.
+<string>Steady Jewel 1
+<string>A Decoration that boosts<lf>Unshakable skills.
+<string>Steady Jewel 3
+<string>A Decoration that boosts<lf>Unshakable skills.
+<string>Fish Jewel 1
+<string>A Decoration that boosts<lf>Sea Legs skills.
+<string>Fish Jewel 2
+<string>A Decoration that boosts<lf>Sea Legs skills.
+<string>Player Jewel 1
+<string>A Decoration that boosts<lf>TeamPlayer skills.
+<string>Morale Jewel 1
+<string>A Decoration that boosts<lf>TeamPlayer skills.
+<string>Leader Jewel 1
+<string>A Decoration that boosts<lf>TeamLeader skills.
+<string>Leader Jewel 2
+<string>A Decoration that boosts<lf>TeamLeader skills.
+<string>Dust of Life
+<string>A medicine with strong curative<lf>properties. Studied in secret,<lf>it is said to restore youth.
+<string>KO Jewel 2
+<string>A Decoration that boosts<lf>KO skills.
+<string>Diablos Hardhorn
+<string>An especially elegant Diablos<lf>horn with almost perfect shape.<lf>An extremely rare material.
+<string>Ghostly Quartz
+<string>Legendary ore from the head of<lf>a Hallowed Jhen Mohran. Only the<lf>best hunters will ever mine one.
+<string>Crushing Fang
+<string>The strongest fang of a fanged<lf>beast. It can pierce a monster's<lf>shell as if it were paper.
+<string>Cloudy Moonshard
+<string>The moon-like bladewing of a<lf>Lucent Nargacuga. He who<lf>crafts it controls the night.
+<string>Bulky Pelt
+<string>An everyday Commodity.<lf>These thick Bullfango pelts<lf>must be traded in bulk.
+<string>Excellent Fang
+<string>A rare Commodity ★.<lf>A high-quality Bullfango fang.<lf>Use it for a Rare Trade.
+<string>Fish with Mask
+<string>DUMMY
+<string>Gloamgrass Bud
+<string>A night-blooming flower from a<lf>special herb native to Moga.<lf>It may have healing properties.
+<string>Platinum Needle
+<string>A platinum needle taken from a<lf>particular monster. It sells<lf>for a good amount of money.
+<string>Goldmine Fang
+<string>A fang from a monster in Moga<lf>Woods. Worth its weight in gold,<lf>it can be sold for a high price.
+<string>Wyverngold Lode
+<string>A large cluster that crystallized<lf>in a wyvern over a number<lf>of years. Worth a fortune.
+<string>Charmer Jewel 1
+<string>A Decoration that boosts<lf>Charmer skills.
+<string>Dracophage Bug
+<string>Dragonfell Berry-loving bugs<lf>that store up Dragon energy. A<lf>Stygian Zinogre's power source.
+<string>Tanzia Chips
+<string>A nutritious snack made with<lf>ingredients caught in Tanzian<lf>waters. Tastes like seafood.
+<string>SlimePlus Jwl 1
+<string>A Decoration that boosts<lf>Slime S+ skills.<lf><COLO 05>(Gunner Only)
+<string>Slimecoat Jwl 1
+<string>A Decoration that boosts<lf>Slime C+ skills.<lf><COLO 05>(Gunner Only)
+<string>Sparkly Fragment
+<string>Pieces of what appears to<lf>have been a shiny figurine,<lf>collected by a flock of birds.
+<string>Flashbolt Diploma
+<string>Proof of your prowess in battle<lf>against raging lightning.<lf>"Flashbolt" is inscribed on it.
+<string>Captain's IOU
+<string>A special thank you from the<lf>Argosy's captain. Grants you<lf>permission to forge new armor.
+<string>Thunderclap Diploma
+<string>Proof of your prowess in battle<lf>against fierce lightning.<lf>"Thunderclap" is inscribed on it.
+<string>Top Secret Formula
+<string>An odd memo which hints at<lf>how to construction a very<lf>powerful Switch Axe.
+<string>Medal Voucher L
+<string>A note congratulating you on<lf>being able to clear any Quest.<lf>Good work, hunter!
+<string>Exquisite Meat
+<string>A hunk of delicious-looking<lf>meat wrapped in succulent<lf>mystery.
+<string>Lion's Claw
+<string>All that remains of a valiant<lf>lion that tore through creation.<lf>A certain Great Sword's material.
+<string>Shadowed Edge
+<string>A blade wrapped in darkness<lf>that enraptures all who gaze on<lf>it. Tears through all matter.
+<string>Hades's Skull
+<string>A skull that emits a dull light<lf>and looks to absorb life itself.<lf>Ominous in shape and purpose.
+<string>Crown of Glory
+<string>A crown that stands as proof<lf>of your legend. Can be used to<lf>create a certain weapon.
+<string>Medal Voucher G
+<string>A note to remind you that<lf>you're simply the best there<lf>ever will be.
+<string>Far East Sword
+<string>A sword not seen around these<lf>parts. Its blade can be further<lf>refined to a razor-sharp edge.
+<string>Miniature Ticket
+<string>A ticket required to forge a<lf>certain weapon. Its small size<lf>makes the writing hard to read.
+<string>Fierce Soul
+<string>The remains of a brave hunter<lf>who claimed to have felled a<lf>dragon with their bare hands.
+<string>Bronze Coin
+<string>A rare bronze coin that can<lf>only be found using the<lf>Cosmic Mask. No real use.
+<string>Silver Coin
+<string>A rare silver coin that can<lf>only be found using the<lf>Cosmic Mask. No real use.
+<string>Gold Coin
+<string>A rare gold coin that can<lf>only be found using the<lf>Cosmic Mask. No real use.
