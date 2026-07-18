@@ -659,12 +659,9 @@ function buildIndexes() {
 }
 
 function renderCategoryMenu() {
-  const ordered = CATEGORY_ORDER.filter(category => categories.has(category));
-  const extra = [...categories.keys()]
-    .filter(category => !CATEGORY_ORDER.includes(category))
-    .sort((a, b) => a.localeCompare(b));
-
-  const names = [...ordered, ...extra];
+  // Only curated categories from CATEGORY_ORDER - auto-generated leftover
+  // families (title-cased file names) are intentionally not listed.
+  const names = CATEGORY_ORDER.filter(category => categories.has(category));
 
   categoryList.innerHTML = names.map(name => `
     ${CATEGORY_SEPARATOR_BEFORE.has(name) ? '<div class="menu-separator"></div>' : ""}
