@@ -48,9 +48,18 @@ async function wildsCachePut(key, value) {
       const tx = db.transaction(WILDS_CACHE_STORE, "readwrite");
       const store = tx.objectStore(WILDS_CACHE_STORE);
 
-      // Keep only the newest payload - clear old keys first.
-      store.clear();
-      store.put(value, key);
+      // One cache slot per game ("wilds" / "gu") - remove legacy keys only.
+      const keysRequest = store.getAllKeys();
+
+      keysRequest.onsuccess = () => {
+        for (const existing of keysRequest.result || []) {
+          if (existing !== "wilds" && existing !== "gu") {
+            store.delete(existing);
+          }
+        }
+
+        store.put(value, key);
+      };
 
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
