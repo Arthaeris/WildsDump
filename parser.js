@@ -311,6 +311,8 @@ function getWildsCategory(fileKey, family) {
     "otomoequipseries",
     "otomoouterarmor",
     "otomoweapon",
+    "otarmordata",
+    "otweapondata",
     "accessory",
     "accessorydata",
     "amulet",
@@ -348,6 +350,10 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "amulet",
   "armor",
   "mealskill",
+
+  // MHGU (GUDump) Palico equipment
+  "otarmordata",
+  "otweapondata",
 
   "whistle",
   "twinsword",
