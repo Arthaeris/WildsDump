@@ -350,6 +350,8 @@ const SIMPLE_NAME_TEXT_PAIR_FILES = new Set([
   "amulet",
   "armor",
   "mealskill",
+  "facility",
+  "paneltutorial",
 
   // MHGU (GUDump) Palico equipment
   "otarmordata",
