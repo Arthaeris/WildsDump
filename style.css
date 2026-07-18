@@ -90,6 +90,22 @@ h1 {
   letter-spacing: -0.05em;
 }
 
+#gameTitle {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#gameTitle:hover {
+  color: var(--accent);
+}
+
+.game-switch-hint {
+  margin-top: 4px;
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+
 h2,
 h3 {
   margin: 0;
