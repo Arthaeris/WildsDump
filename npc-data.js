@@ -685,3 +685,29 @@ for (const [monster, ids] of Object.entries(ENEMY_TEXT_GROUP_MAP)) {
     ENEMY_TEXT_ID_MAP[id] = monster;
   }
 }
+
+// ---------------------------------------------------------------------------
+// MHGU (GUDump) NPC names.
+// IDs match the dia_npcXXX_00_000_td files in gu_dump.txt - extend this map
+// to name more GU NPCs (npc_XXX file number -> NPCXXX_00_000).
+// ---------------------------------------------------------------------------
+
+Object.assign(NPC_MAP, {
+  "NPC001_00_000": "Bherna Chief",
+  "NPC002_00_000": "Bherna Gal",
+  "NPC008_00_000": "Courier",
+  "NPC009_00_000": "Flight Cattendant",
+  "NPC014_00_000": "Chief Researcher",
+  "NPC015_00_000": "Master of Style",
+  "NPC020_00_000": "Reliable Villager",
+  "NPC021_00_000": "Paranoid Villager",
+  "NPC042_00_000": "Ace Commander & Ace Gunner",
+  "NPC045_00_000": "Ace Cadet",
+  "NPC046_00_000": "Guildmarm",
+  "NPC333_00_000": "Loc Lac Chief",
+  "NPC520_00_000": "Guild Manager - Hunter's Hub",
+  "NPC701_00_000": "Wyventurer",
+  "NPC714_00_000": "Tanzia Arena Gal",
+  "NPC718_00_000": "Redspear Hunter",
+  "NPC719_00_000": "Blackspear Hunter"
+});
