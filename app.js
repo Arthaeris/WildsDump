@@ -2411,6 +2411,93 @@ return {
 };
 }
 
+// --- <REF ...> resolution (Wilds) ---------------------------------------
+// Many strings reference other files via <REF Label> tags. Two label kinds
+// are exactly resolvable from the dump + JSON data:
+//   Item_IT_<gameId> / Item_IT_EXP_<gameId>  -> item name / description
+//   RefButton_11, RefMenu_061, ...           -> string position in ref files
+// Hash-based labels (ActionGuideDataNameText_*) stay untouched.
+
+const REF_POSITIONAL_FILES = {
+  refbutton: "RefButton",
+  refmenu: "RefMenu",
+  refgeneral: "RefGeneral",
+  refenvironment: "RefEnvironment",
+  reflanguage: "RefLanguage"
+};
+
+let REF_TABLES = {};
+
+function buildRefTables(enSections) {
+  const tables = {};
+
+  for (const fileKey of Object.keys(REF_POSITIONAL_FILES)) {
+    const section = enSections.find(s => s.fileKey === fileKey);
+    if (!section) continue;
+
+    // Use the raw body so label-only (rejected) slots keep their position.
+    tables[fileKey] = String(section.rawBody || "")
+      .split("\n")
+      .filter(line => line.startsWith("<string>"))
+      .map(line => cleanWildsText(line.slice("<string>".length)));
+  }
+
+  return tables;
+}
+
+function resolveRefLabel(label) {
+  const itemMatch = label.match(/^Item_IT_(EXP_)?(\d+)$/);
+
+  if (itemMatch) {
+    const item = JSON_INDEX.itemByGameId.get(itemMatch[2]);
+    if (!item) return null;
+
+    return itemMatch[1]
+      ? item.descriptions?.en || null
+      : getJsonName(item, "en") || null;
+  }
+
+  const positionalMatch = label.match(
+    /^(RefButton|RefMenu|RefGeneral|RefEnvironment|RefLanguage)_(\d+)$/
+  );
+
+  if (positionalMatch) {
+    const fileKey = positionalMatch[1].toLowerCase();
+    const table = REF_TABLES[fileKey];
+    const value = table?.[Number(positionalMatch[2])];
+
+    // Label-only slots (removed strings) cannot be shown.
+    if (!value || value.includes("#Rejected#") || value.startsWith(positionalMatch[1] + "_")) {
+      return null;
+    }
+
+    return value;
+  }
+
+  return null;
+}
+
+function resolveRefsInText(value) {
+  return String(value || "").replace(/<REF\s+([A-Za-z0-9_]+)>/g, (tag, label) => {
+    const resolved = resolveRefLabel(label);
+    return resolved !== null ? resolved : tag;
+  });
+}
+
+function resolveWildsRefs(entry) {
+  const hasRefs =
+    (entry.text && entry.text.includes("<REF ")) ||
+    (entry.raw && entry.raw.includes("<REF "));
+
+  if (!hasRefs) return entry;
+
+  return {
+    ...entry,
+    text: resolveRefsInText(entry.text),
+    raw: resolveRefsInText(entry.raw)
+  };
+}
+
 function setLoadingStatus(message) {
   results.innerHTML = `<div class="empty">${escapeHtml(message)}</div>`;
 }
@@ -2483,6 +2570,7 @@ async function loadDump() {
         check: checkString,
         entries: merged.map(stripEntryForCache),
         armorSeries: [...ARMOR_SERIES_BY_ID.entries()],
+        refTables: buildRefTables(enSections),
         diffData: buildDiffData(enAllSections)
       };
 
@@ -2496,11 +2584,13 @@ async function loadDump() {
     }
 
     DIFF_DATA = payload.diffData || [];
+    REF_TABLES = payload.refTables || {};
 
     setLoadingStatus("Preparing entries…");
     await nextFrame();
 
     entries = payload.entries
+      .map(entry => (cfg.hasJson ? resolveWildsRefs(entry) : entry))
       .map(entry => (cfg.hasJson ? attachJsonMetadata(entry) : entry))
       .map(normalizeSkillCommonEntry)
       .map(addSearchFields);
