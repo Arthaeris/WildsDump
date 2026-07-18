@@ -53,7 +53,7 @@ async function wildsCachePut(key, value) {
 
       keysRequest.onsuccess = () => {
         for (const existing of keysRequest.result || []) {
-          if (existing !== "wilds" && existing !== "gu") {
+          if (existing !== "wilds" && existing !== "gu" && existing !== "tri") {
             store.delete(existing);
           }
         }
