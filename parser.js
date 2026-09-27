@@ -62,8 +62,22 @@ function parseWildsSection(block, language = "en") {
 
   const fileKey = normalizeWildsFileKey(title || sourcePath);
   const family = getWildsFileFamily(fileKey);
-  const category = getWildsCategory(fileKey, family);
+  let category = getWildsCategory(fileKey, family);
   const dialogueInfo = getWildsDialogueInfo(fileKey, strings);
+
+  // Files named "NPC### (Name).txt" (currently only in 4u_dump.txt) carry
+  // their display name right in the filename. Surface that name and treat
+  // the file as dialogue, without touching dialogueId/NPC_MAP, which are
+  // Wilds-specific.
+  const npcParenMatch = String(title || "").match(/^NPC\d+\s*\(([^)]+)\)/i);
+  const displayName = npcParenMatch ? npcParenMatch[1].trim() : "";
+
+  let isDialogue = dialogueInfo.isDialogue;
+
+  if (displayName) {
+    category = "Dialogues";
+    isDialogue = true;
+  }
 
   return {
     language,
@@ -81,11 +95,13 @@ function parseWildsSection(block, language = "en") {
     isOldVersion,
     versionNumber,
 
+    displayName,
+
     dialogueId: dialogueInfo.dialogueId,
     dialogueType: dialogueInfo.dialogueType,
     dialogueFamily: dialogueInfo.dialogueFamily,
     rejectedIds: dialogueInfo.rejectedIds,
-    isDialogue: dialogueInfo.isDialogue
+    isDialogue
   };
 }
 
@@ -450,9 +466,10 @@ if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
       if (!item.raw && !item.text) continue;
 
       const name =
-        section.dialogueId && npcMap[section.dialogueId]
+        section.displayName ||
+        (section.dialogueId && npcMap[section.dialogueId]
           ? npcMap[section.dialogueId]
-          : "";
+          : "");
 
       entries.push({
         uid: `${section.fileKey}:${item.id}`,
