@@ -25,17 +25,10 @@ const GAME_CONFIG = {
     en: "./tri_dump.txt",
     jp: "",
     hasJson: false
-  },
-  fu: {
-  title: "4UDump",
-  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text.",
-  en: "./4u_dump.txt",
-  jp: "",
-  hasJson: false
   }
 };
 
-const GAME_ORDER = ["wilds", "gu", "tri", "fu"];
+const GAME_ORDER = ["wilds", "gu", "tri"];
 
 let ACTIVE_GAME = "wilds";
 
@@ -504,6 +497,7 @@ function renderMonsterIndex() {
 
 function isManuallyNamedNpcGroup(group) {
   return group.entries.some(entry => {
+    if (entry.speaker) return true;
     if (entry.dialogueId && NPC_MAP?.[entry.dialogueId]) return true;
     if (entry.fileKey && GOSSIP_MAP?.[entry.fileKey]) return true;
     if (entry.fileKey && DIALOGUE_MAP?.[entry.fileKey]) return true;
