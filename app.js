@@ -25,10 +25,17 @@ const GAME_CONFIG = {
     en: "./tri_dump.txt",
     jp: "",
     hasJson: false
+  },
+  fu: {
+  title: "4UDump",
+  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text.",
+  en: "./4u_dump.txt",
+  jp: "",
+  hasJson: false
   }
 };
 
-const GAME_ORDER = ["wilds", "gu", "tri"];
+const GAME_ORDER = ["wilds", "gu", "tri", "fu"];
 
 let ACTIVE_GAME = "wilds";
 
