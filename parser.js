@@ -99,9 +99,12 @@ function parseWildsStrings(body) {
   const lines = String(body || "").split("\n");
   const entries = [];
   let visibleIndex = 0;
+  let sawTaggedLine = false;
 
   lines.forEach((line, sourceIndex) => {
     if (!line.startsWith("<string>")) return;
+
+    sawTaggedLine = true;
 
     const raw = line.replace(/^<string>/, "");
     const rejectedId = extractRejectedId(raw);
@@ -123,7 +126,34 @@ function parseWildsStrings(body) {
     visibleIndex++;
   });
 
+  // Some dumps (e.g. 4u_dump.txt) don't use the <string>-per-line format at
+  // all -- they're plain paragraph text separated by blank lines. Only kick
+  // in when a section had zero tagged lines, so gu/tri/wilds dumps (which
+  // always use <string> tags) are completely unaffected.
+  if (!sawTaggedLine) {
+    return parseWildsPlainParagraphs(body);
+  }
+
   return entries;
+}
+
+function parseWildsPlainParagraphs(body) {
+  const normalized = String(body || "").trim();
+  if (!normalized) return [];
+
+  const paragraphs = normalized
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean);
+
+  return paragraphs.map((paragraph, index) => ({
+    index,
+    id: String(index).padStart(4, "0"),
+    raw: paragraph,
+    text: paragraph,
+    rejectedId: "",
+    isRejected: false
+  }));
 }
 
 function isInternalDialogueLabel(text, rejectedId) {
