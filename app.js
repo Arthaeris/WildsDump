@@ -44,6 +44,9 @@ try {
   if (GAME_CONFIG[savedGame]) ACTIVE_GAME = savedGame;
 } catch {}
 
+// Lets the stylesheet pick this game's accent color.
+document.documentElement.dataset.game = ACTIVE_GAME;
+
 const PAGE_SIZE = 80;
 const WORD_PAGE_SIZE = 150;
 
@@ -948,14 +951,47 @@ function appendNextEntries() {
   isAppending = false;
 }
 
+// Builds the small line above a card's title: the category as a colored
+// chip, followed by the remaining details in lighter text. Parts that just
+// repeat the start of the filename (e.g. "item" before "item.msg.23.txt")
+// or repeat an earlier part are dropped.
+function renderMetaLine(category, parts) {
+  const cleaned = [];
+  const seen = new Set();
+  const sourceFile = String(parts[parts.length - 1] || "").toLowerCase();
+
+  parts.forEach((part, index) => {
+    const value = String(part || "").trim();
+    if (!value) return;
+
+    const lower = value.toLowerCase();
+    if (seen.has(lower)) return;
+
+    const isLast = index === parts.length - 1;
+    if (!isLast && sourceFile && sourceFile.startsWith(lower)) return;
+
+    seen.add(lower);
+    cleaned.push(value);
+  });
+
+  const chip = category
+    ? `<span class="meta-chip" data-cat="${escapeAttribute(category)}">${escapeHtml(category)}</span>`
+    : "";
+
+  const rest = cleaned.length
+    ? `<span class="meta-rest">${escapeHtml(cleaned.join(" · "))}</span>`
+    : "";
+
+  return `<div class="entry-section">${chip}${rest}</div>`;
+}
+
 function renderEntry(entry) {
-  const meta = [
-    entry.category,
+  const metaHtml = renderMetaLine(entry.category, [
     entry.family,
     entry.dialogueId,
     entry.dialogueType,
     entry.sourceFile
-  ].filter(Boolean);
+  ]);
 
   const en = getEntryPresentation(entry, "en");
   const jp = getEntryPresentation(entry, "jp");
@@ -1006,7 +1042,7 @@ function renderEntry(entry) {
         <button class="copy-btn" type="button">Copy</button>
       </div>
 
-      <div class="entry-section">${escapeHtml(meta.join(" · "))}</div>
+      ${metaHtml}
 
       <div class="entry-header">
         ${
@@ -1993,7 +2029,7 @@ function renderFullDialogue(group) {
           <button class="copy-btn" type="button">Copy</button>
         </div>
 
-        <div class="entry-section">Dialogues · ${escapeHtml(type)} · ${items.length} lines</div>
+        ${renderMetaLine("Dialogues", [type, `${items.length} lines`])}
 
         <div class="entry-header">
           <div class="entry-name">${escapeHtml(title)}</div>
