@@ -2144,8 +2144,7 @@ const FLOATING_SEARCH_SCROLL_THRESHOLD = 320;
 function updateFloatingSearchVisibility() {
   if (!floatingSearch) return;
 
-  const shouldShow =
-    !searchView.hidden && window.scrollY > FLOATING_SEARCH_SCROLL_THRESHOLD;
+  const shouldShow = window.scrollY > FLOATING_SEARCH_SCROLL_THRESHOLD;
 
   if (shouldShow === floatingSearch.classList.contains("is-visible")) return;
 
@@ -2774,6 +2773,18 @@ if (floatingSearch) {
 
   floatingSearchInput.addEventListener("input", () => {
     search.value = floatingSearchInput.value;
+
+    // Typing a new search while reading a dialogue/category/detail view
+    // should jump back to Home so the filtered results are actually
+    // visible. Only do the view-switch once (searchView.hidden guards it)
+    // so it doesn't re-scroll on every subsequent keystroke.
+    if (searchView.hidden) {
+      pushViewHistory(captureCurrentView());
+      showOnly(searchView);
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     search.dispatchEvent(new Event("input"));
   });
 
