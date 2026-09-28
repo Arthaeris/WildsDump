@@ -54,6 +54,10 @@ const searchFilters = document.querySelector("#searchFilters");
 const cardControls = document.querySelector("#cardControls");
 const copySearchResultsBtn = document.querySelector("#copySearchResultsBtn");
 
+const floatingSearch = document.querySelector("#floatingSearch");
+const floatingSearchInput = document.querySelector("#floatingSearchInput");
+const floatingSearchToggle = document.querySelector("#floatingSearchToggle");
+
 const menu = document.querySelector("#menu");
 const menuOverlay = document.querySelector("#menuOverlay");
 const menuBtn = document.querySelector("#menuBtn");
@@ -93,6 +97,13 @@ const backFromWordIndexBtn = document.querySelector("#backFromWordIndexBtn");
 let sections = [];
 let entries = [];
 let categories = new Map();
+
+// Caches the sorted "browse everything, no search query" entry order per
+// category filter, so render() doesn't have to re-sort the entire entry
+// list (up to ~200k for Wilds) on every keystroke/filter click when there's
+// no active search. Cleared whenever `entries` is rebuilt (game switch,
+// initial load).
+let noSearchOrderCache = new Map();
 let npcGroups = new Map();
 let monsterGroups = new Map();
 let activeMonsterKey = "";
@@ -811,30 +822,54 @@ function render() {
   const tokens = tokenizeSearchQuery(search.value.trim());
   currentSearchTokens = tokens;
 
-  const visible = [];
+  let orderedEntries;
 
-  for (const entry of entries) {
-    if (!matchesActiveFilter(entry)) continue;
-    if (!entryMatchesSearch(entry, tokens)) continue;
+  if (!tokens.length) {
+    // No active search: the relevance score is 0 for every entry, so the
+    // full sort below always falls through to the same sourceFile/id
+    // comparator. Cache that result per category filter instead of
+    // re-running a full sort (up to ~200k entries for Wilds) on every
+    // render() call.
+    if (!noSearchOrderCache.has(activeTypeFilter)) {
+      const defaultOrder = entries.filter(matchesActiveFilter);
 
-    visible.push({
-      entry,
-      score: getSearchRelevance(entry, tokens)
-    });
-  }
+      defaultOrder.sort((a, b) =>
+        String(a.sourceFile).localeCompare(String(b.sourceFile)) ||
+        Number(a.id) - Number(b.id)
+      );
 
-  visible.sort((a, b) => {
-    if (a.score !== b.score) {
-      return b.score - a.score;
+      noSearchOrderCache.set(activeTypeFilter, defaultOrder);
     }
 
-    return (
-      String(a.entry.sourceFile).localeCompare(String(b.entry.sourceFile)) ||
-      Number(a.entry.id) - Number(b.entry.id)
-    );
-  });
+    orderedEntries = noSearchOrderCache.get(activeTypeFilter);
+  } else {
+    const visible = [];
 
-  currentSearchResults = visible.map(item => item.entry);
+    for (const entry of entries) {
+      if (!matchesActiveFilter(entry)) continue;
+      if (!entryMatchesSearch(entry, tokens)) continue;
+
+      visible.push({
+        entry,
+        score: getSearchRelevance(entry, tokens)
+      });
+    }
+
+    visible.sort((a, b) => {
+      if (a.score !== b.score) {
+        return b.score - a.score;
+      }
+
+      return (
+        String(a.entry.sourceFile).localeCompare(String(b.entry.sourceFile)) ||
+        Number(a.entry.id) - Number(b.entry.id)
+      );
+    });
+
+    orderedEntries = visible.map(item => item.entry);
+  }
+
+  currentSearchResults = orderedEntries;
 
   count.textContent =
     `${currentSearchResults.length} ${currentSearchResults.length === 1 ? "entry" : "entries"}`;
@@ -2104,7 +2139,42 @@ function updateSearchFilterButtons() {
   });
 }
 
+const FLOATING_SEARCH_SCROLL_THRESHOLD = 320;
+
+function updateFloatingSearchVisibility() {
+  if (!floatingSearch) return;
+
+  const shouldShow =
+    !searchView.hidden && window.scrollY > FLOATING_SEARCH_SCROLL_THRESHOLD;
+
+  if (shouldShow === floatingSearch.classList.contains("is-visible")) return;
+
+  floatingSearch.classList.toggle("is-visible", shouldShow);
+
+  if (!shouldShow) {
+    collapseFloatingSearch();
+  }
+}
+
+function expandFloatingSearch() {
+  if (!floatingSearch) return;
+
+  floatingSearch.classList.add("is-expanded");
+  floatingSearchInput.removeAttribute("tabindex");
+  requestAnimationFrame(() => floatingSearchInput.focus());
+}
+
+function collapseFloatingSearch() {
+  if (!floatingSearch) return;
+
+  floatingSearch.classList.remove("is-expanded");
+  floatingSearchInput.setAttribute("tabindex", "-1");
+  floatingSearchInput.blur();
+}
+
 function handleScroll() {
+  updateFloatingSearchVisibility();
+
   const distance =
     document.documentElement.scrollHeight -
     window.innerHeight -
@@ -2603,6 +2673,8 @@ async function loadDump() {
       .map(normalizeSkillCommonEntry)
       .map(addSearchFields);
 
+    noSearchOrderCache.clear();
+
     buildIndexes();
     addDumpEntities(monsterGroups);
     renderCategoryMenu();
@@ -2685,9 +2757,47 @@ function decodeHtml(value) {
 let searchTimer = null;
 
 search.addEventListener("input", () => {
+  if (floatingSearchInput) floatingSearchInput.value = search.value;
+
   clearTimeout(searchTimer);
   searchTimer = setTimeout(render, 120);
 });
+
+if (floatingSearch) {
+  floatingSearchToggle.addEventListener("click", () => {
+    if (floatingSearch.classList.contains("is-expanded")) {
+      collapseFloatingSearch();
+    } else {
+      expandFloatingSearch();
+    }
+  });
+
+  floatingSearchInput.addEventListener("input", () => {
+    search.value = floatingSearchInput.value;
+    search.dispatchEvent(new Event("input"));
+  });
+
+  floatingSearchInput.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      collapseFloatingSearch();
+    }
+  });
+
+  floatingSearchInput.addEventListener("blur", () => {
+    if (!floatingSearchInput.value.trim()) {
+      floatingSearch.classList.remove("is-expanded");
+      floatingSearchInput.setAttribute("tabindex", "-1");
+    }
+  });
+
+  document.addEventListener("click", event => {
+    if (!floatingSearch.classList.contains("is-expanded")) return;
+    if (floatingSearch.contains(event.target)) return;
+    if (!floatingSearchInput.value.trim()) {
+      collapseFloatingSearch();
+    }
+  });
+}
 
 searchFilters.addEventListener("click", event => {
   const clearButton = event.target.closest("[data-clear-filters]");
