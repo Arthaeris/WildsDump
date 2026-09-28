@@ -8,7 +8,8 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   />
 
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#12130f" media="(prefers-color-scheme: dark)" />
 
   <title>WildsDump</title>
 
@@ -73,61 +74,61 @@
       <h1 id="gameTitle" title="Switch game">WildsDump</h1>
     </div>
 
-    <p id="appTagline">
+    <div class="header-actions">
+      <button id="switchGameBtn" class="header-chip" type="button" aria-label="Switch game">
+        <span aria-hidden="true">⇄</span>
+        <span id="switchGameLabel">GUDump</span>
+      </button>
+
+      <button
+        id="aboutBtn"
+        class="header-chip"
+        type="button"
+        aria-expanded="false"
+        aria-controls="appTagline"
+      >
+        About
+      </button>
+    </div>
+
+    <p id="appTagline" hidden>
       Search Monster Hunter Wilds text, dialogue, items, weapons, quests,
       tutorials, UI text, and NPC-related files.
     </p>
-
-    <p id="gameSwitchHint" class="game-switch-hint"></p>
   </header>
 
   <main>
 
     <section id="searchView">
 
-      <section id="cardControls" class="card-controls">
-        <div class="filter-group">
-          <span class="filter-label">Format</span>
-
-          <div class="filter-row">
-            <button class="filter-chip active" type="button" data-card-mode="ids">
-              IDs
-            </button>
-
-            <button class="filter-chip" type="button" data-card-mode="clean">
-              Clean
-            </button>
-
-            <button class="filter-chip" type="button" data-card-mode="code">
-              Code
-            </button>
-          </div>
-        </div>
-      </section>
-
       <section id="searchFilters" class="search-filters">
-        <div class="filter-group filter-group-all">
-          <button class="filter-chip active" type="button" data-clear-filters>
-            All
-          </button>
-        </div>
-
-        <div class="filter-group">
+        <div class="filter-head">
           <span class="filter-label">Type</span>
 
-          <div class="filter-row">
-            <button class="filter-chip" type="button" data-type-filter="Dialogues">Dialogues</button>
-            <button class="filter-chip" type="button" data-type-filter="NPCs">NPCs</button>
-            <button class="filter-chip" type="button" data-type-filter="Monsters">Monsters</button>
-            <button class="filter-chip" type="button" data-type-filter="Quests">Quests</button>
-            <button class="filter-chip" type="button" data-type-filter="Items">Items</button>
-            <button class="filter-chip" type="button" data-type-filter="Equipment">Equipment</button>
-            <button class="filter-chip" type="button" data-type-filter="Weapons">Weapons</button>
-            <button class="filter-chip" type="button" data-type-filter="Skills">Skills</button>
-            <button class="filter-chip" type="button" data-type-filter="Tutorials">Tutorials</button>
-            <button class="filter-chip" type="button" data-type-filter="UI">UI</button>
-            <button class="filter-chip" type="button" data-type-filter="References">References</button>
+          <div class="format-control">
+            <span class="filter-label">Format</span>
+
+            <div id="cardControls" class="segmented" role="group" aria-label="Text format">
+              <button class="segment active" type="button" data-card-mode="ids">IDs</button>
+              <button class="segment" type="button" data-card-mode="clean">Clean</button>
+              <button class="segment" type="button" data-card-mode="code">Code</button>
+            </div>
           </div>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter-chip active" type="button" data-clear-filters>All</button>
+          <button class="filter-chip" type="button" data-type-filter="Dialogues">Dialogues</button>
+          <button class="filter-chip" type="button" data-type-filter="NPCs">NPCs</button>
+          <button class="filter-chip" type="button" data-type-filter="Monsters">Monsters</button>
+          <button class="filter-chip" type="button" data-type-filter="Quests">Quests</button>
+          <button class="filter-chip" type="button" data-type-filter="Items">Items</button>
+          <button class="filter-chip" type="button" data-type-filter="Equipment">Equipment</button>
+          <button class="filter-chip" type="button" data-type-filter="Weapons">Weapons</button>
+          <button class="filter-chip" type="button" data-type-filter="Skills">Skills</button>
+          <button class="filter-chip" type="button" data-type-filter="Tutorials">Tutorials</button>
+          <button class="filter-chip" type="button" data-type-filter="UI">UI</button>
+          <button class="filter-chip" type="button" data-type-filter="References">References</button>
         </div>
       </section>
 
@@ -138,21 +139,25 @@
           placeholder="Search text, files, IDs, speakers, categories..."
         />
 
-        <span id="count" aria-live="polite">0 entries</span>
+        <div class="toolbar-meta">
+          <span id="count" aria-live="polite">0 entries</span>
 
-        <div class="match-nav" data-match-nav hidden>
-          <span class="match-count" data-match-count aria-live="polite"></span>
-          <button class="match-btn" type="button" data-match-prev aria-label="Previous match">▲</button>
-          <button class="match-btn" type="button" data-match-next aria-label="Next match">▼</button>
+          <button
+            id="copySearchResultsBtn"
+            class="icon-btn"
+            type="button"
+            aria-label="Copy all search results"
+            title="Copy all search results"
+            hidden
+          ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button>
+
+          <div class="match-nav" data-match-nav hidden>
+            <span class="match-count" data-match-count aria-live="polite"></span>
+            <button class="match-btn" type="button" data-match-prev aria-label="Previous match">▲</button>
+            <button class="match-btn" type="button" data-match-next aria-label="Next match">▼</button>
+          </div>
         </div>
       </section>
-
-      <button
-        id="copySearchResultsBtn"
-        class="secondary copy-search-btn"
-        type="button">
-        Copy all Search Results
-      </button>
 
       <section id="results" class="results" aria-live="polite"></section>
 
@@ -295,14 +300,20 @@
           <h3>Other tips</h3>
           <dl class="help-list">
             <dt>Switch game</dt>
-            <dd>Tap the big title at the top to cycle through the games.</dd>
+            <dd>Tap the title at the top, or the ⇄ button below it, to cycle
+              through the games. "About" shows a short description of the
+              current game's data.</dd>
             <dt>Floating search</dt>
             <dd>After scrolling down, tap the round search button at the
-              bottom right to search from anywhere.</dd>
+              bottom right to search from anywhere. The arrow button above it
+              takes you back to the top.</dd>
             <dt>Share a link</dt>
             <dd>The address bar always reflects the current game, search and
               page, so you can copy it to share or bookmark exactly what you
               see. The browser's back gesture moves between pages.</dd>
+            <dt>Copy all</dt>
+            <dd>While searching, the copy icon next to the result count copies
+              every result at once.</dd>
             <dt>Format</dt>
             <dd><strong>IDs</strong> shows entry IDs in the text,
               <strong>Clean</strong> hides them, and <strong>Code</strong>
@@ -346,6 +357,12 @@
       aria-label="Search"
     ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
   </div>
+
+  <button id="backToTopBtn" class="back-to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <div id="compareTray" class="compare-tray" hidden></div>
 
