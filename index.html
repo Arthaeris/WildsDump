@@ -12,13 +12,6 @@
 
   <title>WildsDump</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&display=swap"
-  />
-
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -60,6 +53,16 @@
       <h3>Tools</h3>
       <button id="wordIndexBtn" class="menu-item">Word Index</button>
       <button id="themeToggleBtn" class="menu-item">Theme: System</button>
+    </div>
+
+    <div class="menu-help">
+      <button id="helpBtn" class="menu-help-btn" type="button">
+        <span class="menu-help-icon" aria-hidden="true">?</span>
+        <span>
+          <strong>Help</strong>
+          <small>Search tips &amp; shortcuts</small>
+        </span>
+      </button>
     </div>
   </aside>
 
@@ -136,6 +139,12 @@
         />
 
         <span id="count" aria-live="polite">0 entries</span>
+
+        <div class="match-nav" data-match-nav hidden>
+          <span class="match-count" data-match-count aria-live="polite"></span>
+          <button class="match-btn" type="button" data-match-prev aria-label="Previous match">▲</button>
+          <button class="match-btn" type="button" data-match-next aria-label="Next match">▼</button>
+        </div>
       </section>
 
       <button
@@ -228,6 +237,83 @@
       <section id="diffContent" class="results"></section>
     </section>
 
+    <section id="helpView" hidden>
+      <div class="view-header">
+        <button id="backFromHelpBtn" class="secondary">← Back</button>
+        <h2>Help</h2>
+      </div>
+
+      <div class="help-content">
+        <article class="help-card">
+          <h3>Searching</h3>
+          <p>Search is not case-sensitive, and every word you type must appear
+            somewhere in the entry, in any order.</p>
+          <dl class="help-list">
+            <dt><code>ancient potion</code></dt>
+            <dd>Entries containing both "ancient" and "potion".</dd>
+            <dt><code>"ancient potion"</code></dt>
+            <dd>Quotes search for that exact phrase.</dd>
+          </dl>
+        </article>
+
+        <article class="help-card">
+          <h3>Search operators</h3>
+          <p>Type an operator, a colon, and a value to search one field only.
+            Use quotes for values with spaces, e.g. <code>name:"great sword"</code>.
+            Operators can be combined.</p>
+          <dl class="help-list">
+            <dt><code>name:</code></dt>
+            <dd>Only the entry's name or title.</dd>
+            <dt><code>npc:</code> or <code>speaker:</code></dt>
+            <dd>The NPC who speaks the line (or their dialogue ID).</dd>
+            <dt><code>dialogue:</code></dt>
+            <dd>Text that appears in dialogue entries only.</dd>
+            <dt><code>category:</code></dt>
+            <dd>The category, e.g. <code>category:items</code>.</dd>
+            <dt><code>file:</code></dt>
+            <dd>The source file name, e.g. <code>file:npc001</code>.</dd>
+            <dt><code>family:</code></dt>
+            <dd>The file family, e.g. <code>family:item</code>.</dd>
+            <dt><code>id:</code></dt>
+            <dd>The entry's ID number.</dd>
+          </dl>
+          <p class="help-note">Example: <code>npc:guildmarm quest</code> finds
+            lines spoken by the Guildmarm that mention "quest".</p>
+        </article>
+
+        <article class="help-card">
+          <h3>Jumping between matches</h3>
+          <p>While searching, use the ▲ ▼ buttons next to the result count (or
+            in the floating search button) to jump from one highlighted word to
+            the next. On a keyboard, press <kbd>Enter</kbd> for the next match
+            and <kbd>Shift</kbd> + <kbd>Enter</kbd> for the previous one.</p>
+          <p>The numbers on the Type filters show how many results each
+            category has for your current search.</p>
+        </article>
+
+        <article class="help-card">
+          <h3>Other tips</h3>
+          <dl class="help-list">
+            <dt>Switch game</dt>
+            <dd>Tap the big title at the top to cycle through the games.</dd>
+            <dt>Floating search</dt>
+            <dd>After scrolling down, tap the round search button at the
+              bottom right to search from anywhere.</dd>
+            <dt>Share a link</dt>
+            <dd>The address bar always reflects the current game, search and
+              page, so you can copy it to share or bookmark exactly what you
+              see. The browser's back gesture moves between pages.</dd>
+            <dt>Format</dt>
+            <dd><strong>IDs</strong> shows entry IDs in the text,
+              <strong>Clean</strong> hides them, and <strong>Code</strong>
+              shows it as a code block, ready to paste.</dd>
+            <dt>JP</dt>
+            <dd>Switches a card to the Japanese text, where available.</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
     <section id="sizeView" hidden>
       <div class="view-header">
         <button id="backFromSizeBtn" class="secondary">← Back</button>
@@ -248,6 +334,11 @@
       aria-label="Search"
       tabindex="-1"
     />
+    <div class="match-nav" data-match-nav hidden>
+      <span class="match-count" data-match-count></span>
+      <button class="match-btn" type="button" data-match-prev aria-label="Previous match">▲</button>
+      <button class="match-btn" type="button" data-match-next aria-label="Next match">▼</button>
+    </div>
     <button
       id="floatingSearchToggle"
       class="floating-search-toggle"
