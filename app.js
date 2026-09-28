@@ -44,6 +44,17 @@ try {
   if (GAME_CONFIG[savedGame]) ACTIVE_GAME = savedGame;
 } catch {}
 
+// A shared link (#g=...) decides the game, overriding the saved one.
+const initialRoute = parseRouteHash(location.hash);
+
+if (initialRoute.g && GAME_CONFIG[initialRoute.g]) {
+  ACTIVE_GAME = initialRoute.g;
+
+  try {
+    localStorage.setItem("wd_game", ACTIVE_GAME);
+  } catch {}
+}
+
 // Lets the stylesheet pick this game's accent color.
 document.documentElement.dataset.game = ACTIVE_GAME;
 
@@ -56,6 +67,10 @@ const count = document.querySelector("#count");
 const searchFilters = document.querySelector("#searchFilters");
 const cardControls = document.querySelector("#cardControls");
 const copySearchResultsBtn = document.querySelector("#copySearchResultsBtn");
+
+const helpView = document.querySelector("#helpView");
+const helpBtn = document.querySelector("#helpBtn");
+const backFromHelpBtn = document.querySelector("#backFromHelpBtn");
 
 const floatingSearch = document.querySelector("#floatingSearch");
 const floatingSearchInput = document.querySelector("#floatingSearchInput");
@@ -149,6 +164,7 @@ function getAllViews() {
     monsterView,
     dialogueView,
     wordIndexView,
+    helpView,
     typeof detailView !== "undefined" ? detailView : null,
     typeof compareView !== "undefined" ? compareView : null,
     typeof diffView !== "undefined" ? diffView : null,
@@ -160,11 +176,19 @@ function showOnly(view) {
   for (const candidate of getAllViews()) {
     candidate.hidden = candidate !== view;
   }
+
+  resetMatchNavigation();
+  scheduleUrlSync();
 }
 
 function pushViewHistory(view) {
   if (!view) return;
   viewHistory.push(view);
+
+  // A real navigation: the address bar gets a new history entry, so the
+  // browser's back gesture returns here.
+  pendingUrlPush = true;
+  scheduleUrlSync();
 }
 
 function captureCurrentView() {
@@ -174,6 +198,7 @@ function captureCurrentView() {
   if (!monsterView.hidden) return { type: "monsterIndex" };
   if (!dialogueView.hidden) return { type: "dialogue", key: currentDialogueKey };
   if (!wordIndexView.hidden) return { type: "wordIndex" };
+  if (!helpView.hidden) return { type: "help" };
 
   if (typeof detailView !== "undefined" && !detailView.hidden) {
     return { type: "detail", entityType: currentDetail?.type, key: currentDetail?.key };
@@ -186,33 +211,192 @@ function captureCurrentView() {
   return { type: "home" };
 }
 
-function goBack() {
-  const previous = viewHistory.pop();
-
-  if (!previous) {
+// Shows a previously captured view state (see captureCurrentView) without
+// adding a new history entry.
+function showViewState(state) {
+  if (!state || state.type === "home") {
     showHome(false);
     return;
   }
 
-  if (previous.type === "home") showHome(false);
-  if (previous.type === "category") showCategory(previous.category, false);
-  if (previous.type === "npcIndex") showNpcIndex(false);
-  if (previous.type === "monsterIndex") showMonsterIndex(false);
-  if (previous.type === "wordIndex") showWordIndex(false);
+  if (state.type === "category") showCategory(state.category, false);
+  if (state.type === "npcIndex") showNpcIndex(false);
+  if (state.type === "monsterIndex") showMonsterIndex(false);
+  if (state.type === "wordIndex") showWordIndex(false);
+  if (state.type === "help") showHelp(false);
 
-  if (previous.type === "dialogue") {
-    if (npcGroups.has(previous.key) || monsterGroups.has(previous.key)) {
-      showDialogue(previous.key, false);
+  if (state.type === "dialogue") {
+    if (npcGroups.has(state.key) || monsterGroups.has(state.key)) {
+      showDialogue(state.key, false);
     } else {
-      showDialogueByDisplayName(previous.key, false);
+      showDialogueByDisplayName(state.key, false);
     }
   }
 
-  if (previous.type === "detail") showEntityDetail(previous.entityType, previous.key, false);
-  if (previous.type === "compare") showCompareView(false);
-  if (previous.type === "diff") showVersionDiff(false, previous.file);
-  if (previous.type === "sizeCompare") showSizeComparison(false);
+  if (state.type === "detail") showEntityDetail(state.entityType, state.key, false);
+  if (state.type === "compare") showCompareView(false);
+  if (state.type === "diff") showVersionDiff(false, state.file);
+  if (state.type === "sizeCompare") showSizeComparison(false);
 }
+
+function goBack() {
+  // When the app has added browser history entries, go back through the
+  // browser so the in-app Back button and the back gesture stay in sync.
+  if (routingReady && navDepth > 0) {
+    history.back();
+    return;
+  }
+
+  showViewState(viewHistory.pop());
+}
+
+function showHelp(addToHistory = true) {
+  if (addToHistory && helpView.hidden) {
+    pushViewHistory(captureCurrentView());
+  }
+
+  showOnly(helpView);
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ---------------------------------------------------------
+   Shareable links
+   The address bar mirrors the current game, page, search and
+   type filter, e.g. #g=fu&q=ancient&t=Items or
+   #g=wilds&v=dialogue&k=NPC102_00_001.
+   --------------------------------------------------------- */
+
+let routingReady = false;
+let navDepth = 0;
+let pendingUrlPush = false;
+let urlSyncQueued = false;
+
+function parseRouteHash(hash) {
+  const params = new URLSearchParams(String(hash || "").replace(/^#/, ""));
+
+  return {
+    g: params.get("g") || "",
+    q: params.get("q") || "",
+    t: params.get("t") || "All",
+    view: {
+      type: params.get("v") || "home",
+      category: params.get("c") || "",
+      key: params.get("k") || "",
+      entityType: params.get("et") || "",
+      file: params.get("f") || ""
+    }
+  };
+}
+
+function buildRouteHash() {
+  const view = captureCurrentView();
+  const params = new URLSearchParams();
+
+  params.set("g", ACTIVE_GAME);
+
+  if (view.type === "home") {
+    const q = search.value.trim();
+    if (q) params.set("q", q);
+    if (activeTypeFilter !== "All") params.set("t", activeTypeFilter);
+  } else {
+    params.set("v", view.type);
+    if (view.category) params.set("c", view.category);
+    if (view.key) params.set("k", view.key);
+    if (view.entityType) params.set("et", view.entityType);
+    if (view.file) params.set("f", view.file);
+  }
+
+  return "#" + params.toString();
+}
+
+function scheduleUrlSync() {
+  if (urlSyncQueued) return;
+  urlSyncQueued = true;
+
+  // Runs after the current navigation has finished updating its state.
+  queueMicrotask(flushUrlSync);
+}
+
+function flushUrlSync() {
+  urlSyncQueued = false;
+
+  const push = pendingUrlPush;
+  pendingUrlPush = false;
+
+  if (!routingReady) return;
+
+  const hash = buildRouteHash();
+  if (hash === location.hash) return;
+
+  try {
+    if (push) {
+      history.pushState({ depth: navDepth + 1 }, "", hash);
+      navDepth++;
+    } else {
+      history.replaceState({ depth: navDepth }, "", hash);
+    }
+  } catch {}
+}
+
+function applySearchRoute(route) {
+  const q = route.q || "";
+  const t = route.t && categories.has(route.t) ? route.t : "All";
+
+  search.value = q;
+  if (floatingSearchInput) floatingSearchInput.value = q;
+
+  activeTypeFilter = t;
+  updateSearchFilterButtons();
+}
+
+// Called once after the dump has loaded: opens whatever the link points to.
+function applyInitialRoute() {
+  const route = initialRoute;
+
+  if (route.view.type === "home") {
+    if (route.q || route.t !== "All") {
+      applySearchRoute(route);
+      render();
+    }
+  } else {
+    try {
+      showViewState(route.view);
+    } catch (error) {
+      console.error(error);
+      showHome(false);
+    }
+  }
+
+  routingReady = true;
+  viewHistory = [];
+  navDepth = 0;
+
+  try {
+    history.replaceState({ depth: 0 }, "", buildRouteHash());
+  } catch {}
+}
+
+window.addEventListener("popstate", event => {
+  if (!routingReady) return;
+
+  const route = parseRouteHash(location.hash);
+
+  // A link or history entry for another game needs that game's data.
+  if (route.g && route.g !== ACTIVE_GAME && GAME_CONFIG[route.g]) {
+    location.reload();
+    return;
+  }
+
+  navDepth = event.state?.depth ?? 0;
+  viewHistory = [];
+
+  if (route.view.type === "home") {
+    applySearchRoute(route);
+  }
+
+  showViewState(route.view);
+});
 
 function showHome(addToHistory = true) {
   if (addToHistory && searchView.hidden) {
@@ -845,12 +1029,19 @@ function render() {
     }
 
     orderedEntries = noSearchOrderCache.get(activeTypeFilter);
+    updateFilterChipCounts(null);
   } else {
     const visible = [];
+    const categoryCounts = new Map();
 
     for (const entry of entries) {
-      if (!matchesActiveFilter(entry)) continue;
       if (!entryMatchesSearch(entry, tokens)) continue;
+
+      // Counted before the type filter, so each chip shows how many
+      // results it would give for this search.
+      categoryCounts.set(entry.category, (categoryCounts.get(entry.category) || 0) + 1);
+
+      if (!matchesActiveFilter(entry)) continue;
 
       visible.push({
         entry,
@@ -870,6 +1061,7 @@ function render() {
     });
 
     orderedEntries = visible.map(item => item.entry);
+    updateFilterChipCounts(categoryCounts);
   }
 
   currentSearchResults = orderedEntries;
@@ -884,6 +1076,39 @@ function render() {
     highlightTerms: tokens
       .filter(token => token.operator === "text" || token.operator === "name")
       .map(token => token.value)
+  });
+
+  resetMatchNavigation();
+  scheduleUrlSync();
+}
+
+// Shows how many search results each Type chip has (and the total on
+// "All"), greying out chips with none. Pass null to clear the counts.
+function updateFilterChipCounts(counts) {
+  let total = 0;
+  if (counts) for (const n of counts.values()) total += n;
+
+  searchFilters.querySelectorAll("[data-type-filter], [data-clear-filters]").forEach(button => {
+    let badge = button.querySelector(".chip-count");
+
+    if (!counts) {
+      badge?.remove();
+      button.classList.remove("is-empty");
+      return;
+    }
+
+    const n = button.hasAttribute("data-clear-filters")
+      ? total
+      : counts.get(button.dataset.typeFilter) || 0;
+
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className = "chip-count";
+      button.append(badge);
+    }
+
+    badge.textContent = n.toLocaleString();
+    button.classList.toggle("is-empty", n === 0);
   });
 }
 
@@ -949,6 +1174,8 @@ function appendNextEntries() {
 
   renderedEntryCount += nextItems.length;
   isAppending = false;
+
+  updateMatchNav();
 }
 
 // Builds the small line above a card's title: the category as a colored
@@ -2175,6 +2402,145 @@ function updateSearchFilterButtons() {
   });
 }
 
+/* ---------------------------------------------------------
+   Jumping between search matches
+   Walks the highlighted <mark> elements of the visible page.
+   Results load in pages, so "next" past the last loaded match
+   loads more pages until it finds one.
+   --------------------------------------------------------- */
+
+const MATCH_SCROLL_POSITION = 0.35; // share of the screen height from the top
+const MATCH_MAX_PAGE_LOADS = 50;
+
+let currentMatchEl = null;
+
+function getVisiblePage() {
+  return getAllViews().find(view => !view.hidden) || null;
+}
+
+function getVisibleMarks() {
+  const page = getVisiblePage();
+  if (!page) return [];
+
+  // Only marks that are actually displayed (not in a hidden text format
+  // or a closed section).
+  return [...page.querySelectorAll("mark")]
+    .filter(mark => mark.getClientRects().length > 0);
+}
+
+function hasMoreEntriesToLoad() {
+  const page = getVisiblePage();
+
+  return Boolean(
+    page &&
+    currentRenderTarget &&
+    page.contains(currentRenderTarget) &&
+    renderedEntryCount < currentVisibleEntries.length
+  );
+}
+
+function resetMatchNavigation() {
+  currentMatchEl?.classList.remove("mark-current");
+  currentMatchEl = null;
+  updateMatchNav();
+}
+
+function updateMatchNav() {
+  const marks = getVisibleMarks();
+  const more = hasMoreEntriesToLoad() ? "+" : "";
+
+  if (currentMatchEl && !marks.includes(currentMatchEl)) {
+    currentMatchEl.classList.remove("mark-current");
+    currentMatchEl = null;
+  }
+
+  const index = currentMatchEl ? marks.indexOf(currentMatchEl) + 1 : 0;
+  const label = marks.length ? `${index || "–"} / ${marks.length}${more}` : "";
+
+  document.querySelectorAll("[data-match-nav]").forEach(nav => {
+    nav.hidden = marks.length === 0;
+    const countEl = nav.querySelector("[data-match-count]");
+    if (countEl) countEl.textContent = label;
+  });
+}
+
+function findStartingMatch(marks, direction) {
+  const line = window.innerHeight * MATCH_SCROLL_POSITION;
+
+  if (direction > 0) {
+    const index = marks.findIndex(mark => mark.getBoundingClientRect().top > line - 4);
+    return index === -1 ? marks.length : index;
+  }
+
+  for (let i = marks.length - 1; i >= 0; i--) {
+    if (marks[i].getBoundingClientRect().top < line + 4) return i;
+  }
+
+  return -1;
+}
+
+function jumpToMatch(direction) {
+  // Apply a search that is still waiting on the typing delay first.
+  if (searchTimer) {
+    clearTimeout(searchTimer);
+    searchTimer = null;
+    render();
+  }
+
+  let marks = getVisibleMarks();
+  let target;
+
+  if (currentMatchEl && marks.includes(currentMatchEl)) {
+    target = marks.indexOf(currentMatchEl) + direction;
+  } else {
+    target = findStartingMatch(marks, direction);
+  }
+
+  // Past the last loaded match: load more results until a new one appears.
+  let loads = 0;
+
+  while (target >= marks.length && hasMoreEntriesToLoad() && loads < MATCH_MAX_PAGE_LOADS) {
+    appendNextEntries();
+    marks = getVisibleMarks();
+    loads++;
+  }
+
+  if (!marks.length) return;
+
+  // Wrap around at either end.
+  if (target >= marks.length) target = 0;
+  if (target < 0) target = marks.length - 1;
+
+  currentMatchEl?.classList.remove("mark-current");
+  currentMatchEl = marks[target];
+  currentMatchEl.classList.add("mark-current");
+
+  const rect = currentMatchEl.getBoundingClientRect();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.scrollTo({
+    top: rect.top + window.scrollY - window.innerHeight * MATCH_SCROLL_POSITION,
+    behavior: reduceMotion ? "auto" : "smooth"
+  });
+
+  updateMatchNav();
+}
+
+document.addEventListener("click", event => {
+  if (event.target.closest("[data-match-next]")) {
+    jumpToMatch(1);
+    return;
+  }
+
+  if (event.target.closest("[data-match-prev]")) {
+    jumpToMatch(-1);
+    return;
+  }
+
+  // Format/JP toggles and opening sections change which marks are shown.
+  requestAnimationFrame(updateMatchNav);
+});
+
 const FLOATING_SEARCH_SCROLL_THRESHOLD = 320;
 
 function updateFloatingSearchVisibility() {
@@ -2716,6 +3082,7 @@ async function loadDump() {
     updateTypeFilterAvailability();
     updateMenuAvailability();
     render();
+    applyInitialRoute();
 
     if (needsCacheWrite) {
       // Persist after first paint - the cache is a pure optimization.
@@ -2795,7 +3162,17 @@ search.addEventListener("input", () => {
   if (floatingSearchInput) floatingSearchInput.value = search.value;
 
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(render, 120);
+  searchTimer = setTimeout(() => {
+    searchTimer = null;
+    render();
+  }, 120);
+});
+
+search.addEventListener("keydown", event => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    jumpToMatch(event.shiftKey ? -1 : 1);
+  }
 });
 
 if (floatingSearch) {
@@ -2827,6 +3204,11 @@ if (floatingSearch) {
   floatingSearchInput.addEventListener("keydown", event => {
     if (event.key === "Escape") {
       collapseFloatingSearch();
+    }
+
+    if (event.key === "Enter") {
+      event.preventDefault();
+      jumpToMatch(event.shiftKey ? -1 : 1);
     }
   });
 
@@ -3060,6 +3442,8 @@ backFromNpcBtn.addEventListener("click", goBack);
 backFromMonsterBtn.addEventListener("click", goBack);
 backFromDialogueBtn.addEventListener("click", goBack);
 backFromWordIndexBtn.addEventListener("click", goBack);
+backFromHelpBtn?.addEventListener("click", goBack);
+helpBtn?.addEventListener("click", () => showHelp());
 
 for (const id of [
   "#backFromDetailBtn",
@@ -3125,6 +3509,11 @@ function applyGameChrome() {
 function switchGame() {
   try {
     localStorage.setItem("wd_game", getNextGame());
+  } catch {}
+
+  // Drop the current link, otherwise its #g=... would keep the old game.
+  try {
+    history.replaceState(null, "", location.pathname + location.search);
   } catch {}
 
   location.reload();
