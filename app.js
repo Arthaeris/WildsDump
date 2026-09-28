@@ -28,7 +28,7 @@ const GAME_CONFIG = {
   },
   fu: {
   title: "4UDump",
-  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text. The paragraphs are being manually separated via context, so deviations fron in-game paragraphs are possible and likely.",
+  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text. The paragraphs are being manually separated via context, so deviations from in-game paragraphs are possible and likely.",
   en: "./4u_dump.txt",
   jp: "",
   hasJson: false
@@ -1065,6 +1065,9 @@ function render() {
   }
 
   currentSearchResults = orderedEntries;
+
+  // "Copy all results" only makes sense while actually searching.
+  copySearchResultsBtn.hidden = !(tokens.length && orderedEntries.length);
 
   count.textContent =
     `${currentSearchResults.length} ${currentSearchResults.length === 1 ? "entry" : "entries"}`;
@@ -2390,6 +2393,19 @@ function updateMenuAvailability() {
 
   const diffBtn = document.querySelector("#versionDiffBtn");
   if (diffBtn) diffBtn.hidden = !DIFF_DATA.length;
+
+  updateMenuSectionVisibility();
+}
+
+// Hides menu sections (and their headings) when all of their buttons are
+// hidden, e.g. the "Data" section in games without the Wilds database.
+function updateMenuSectionVisibility() {
+  menu.querySelectorAll(".menu-section").forEach(section => {
+    const buttons = [...section.querySelectorAll("button")];
+    if (!buttons.length) return;
+
+    section.hidden = buttons.every(button => button.hidden);
+  });
 }
 
 function updateSearchFilterButtons() {
@@ -2543,6 +2559,33 @@ document.addEventListener("click", event => {
 
 const FLOATING_SEARCH_SCROLL_THRESHOLD = 320;
 
+const backToTopBtn = document.querySelector("#backToTopBtn");
+
+function updateBackToTopVisibility() {
+  if (!backToTopBtn) return;
+
+  const shouldShow = window.scrollY > Math.max(1200, window.innerHeight * 2);
+  backToTopBtn.classList.toggle("is-visible", shouldShow);
+}
+
+backToTopBtn?.addEventListener("click", () => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+});
+
+const aboutBtn = document.querySelector("#aboutBtn");
+
+aboutBtn?.addEventListener("click", () => {
+  const tagline = document.querySelector("#appTagline");
+  if (!tagline) return;
+
+  tagline.hidden = !tagline.hidden;
+  aboutBtn.setAttribute("aria-expanded", String(!tagline.hidden));
+  aboutBtn.classList.toggle("active", !tagline.hidden);
+});
+
+document.querySelector("#switchGameBtn")?.addEventListener("click", () => switchGame());
+
 function updateFloatingSearchVisibility() {
   if (!floatingSearch) return;
 
@@ -2575,6 +2618,7 @@ function collapseFloatingSearch() {
 
 function handleScroll() {
   updateFloatingSearchVisibility();
+  updateBackToTopVisibility();
 
   const distance =
     document.documentElement.scrollHeight -
@@ -2590,21 +2634,31 @@ function handleScroll() {
   }
 }
 
-async function copyText(text, button) {
+// Short message that slides up from the bottom of the screen.
+const toast = document.querySelector("#toast");
+let toastTimer = null;
+
+function showToast(message) {
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+}
+
+async function copyText(text, button, message = "Copied") {
   try {
     await navigator.clipboard.writeText(text);
+    showToast(message);
 
     if (button) {
-      const old = button.textContent;
-      button.textContent = "Copied";
-      setTimeout(() => button.textContent = old, 900);
+      button.classList.add("is-copied");
+      setTimeout(() => button.classList.remove("is-copied"), 900);
     }
   } catch {
-    if (button) {
-      const old = button.textContent;
-      button.textContent = "Failed";
-      setTimeout(() => button.textContent = old, 900);
-    }
+    showToast("Couldn't copy");
   }
 }
 
@@ -3272,7 +3326,8 @@ copySearchResultsBtn.addEventListener("click", () => {
     .filter(Boolean)
     .join("\n\n");
 
-  copyText(text, copySearchResultsBtn);
+  const n = currentSearchResults.length;
+  copyText(text, copySearchResultsBtn, `Copied ${n.toLocaleString()} ${n === 1 ? "result" : "results"}`);
 });
 
 document.addEventListener("click", event => {
@@ -3494,8 +3549,11 @@ function applyGameChrome() {
   const taglineEl = document.querySelector("#appTagline");
   if (taglineEl) taglineEl.textContent = cfg.tagline;
 
-  const hintEl = document.querySelector("#gameSwitchHint");
-  if (hintEl) hintEl.textContent = `Tap the title to switch to ${otherCfg.title}.`;
+  const switchLabel = document.querySelector("#switchGameLabel");
+  if (switchLabel) switchLabel.textContent = otherCfg.title;
+
+  const switchBtn = document.querySelector("#switchGameBtn");
+  if (switchBtn) switchBtn.setAttribute("aria-label", `Switch to ${otherCfg.title}`);
 
   // Features backed by the Wilds JSON database are hidden for other games.
   if (!cfg.hasJson) {
@@ -3504,6 +3562,8 @@ function applyGameChrome() {
       if (el) el.hidden = true;
     }
   }
+
+  updateMenuSectionVisibility();
 }
 
 function switchGame() {
