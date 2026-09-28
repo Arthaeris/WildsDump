@@ -163,10 +163,10 @@ button.secondary {
   z-index: 18;
 }
 
-/* Floating search: a small pill button that appears once the user has
-   scrolled a bit, and expands in place into a full search bar on tap.
-   Anchored with `right`, so growing its width naturally expands it
-   leftward and keeps the toggle button pinned at the same spot. */
+/* Floating search: a round button (matching the menu button) that appears
+   once the user has scrolled a bit, and expands in place into a search bar
+   on tap. Anchored with `right`, so growing its width expands it leftward
+   and keeps the button pinned at the same spot. */
 .floating-search {
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
@@ -177,12 +177,11 @@ button.secondary {
   align-items: center;
   overflow: hidden;
 
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 0.18);
+  background: transparent;
+  border: 1px solid transparent;
 
   opacity: 0;
   visibility: hidden;
@@ -193,7 +192,10 @@ button.secondary {
     opacity 0.2s ease,
     transform 0.2s ease,
     visibility 0.2s,
-    width 0.28s ease;
+    width 0.28s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .floating-search.is-visible {
@@ -205,34 +207,57 @@ button.secondary {
 
 .floating-search.is-expanded {
   width: min(420px, calc(100vw - 32px));
+  height: 52px;
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
 }
 
-.floating-search-input {
-  flex: 1;
+/* Higher specificity than the global input[type="search"] rule, so its
+   padding/border/flex don't leak into the collapsed button. */
+.floating-search input.floating-search-input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 0 0 0;
+  width: 0;
   min-width: 0;
   height: 100%;
-  border: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
   background: transparent;
   color: var(--text);
   font: inherit;
-  padding: 0;
   opacity: 0;
-  transition: opacity 0.18s ease 0.05s, padding-left 0.28s ease;
+  transition: opacity 0.18s ease 0.05s;
 }
 
-.floating-search.is-expanded .floating-search-input {
+.floating-search.is-expanded input.floating-search-input {
+  flex: 1 1 auto;
+  padding: 0 8px 0 18px;
   opacity: 1;
-  padding-left: 16px;
 }
 
 .floating-search-toggle {
   flex: 0 0 auto;
+  display: grid;
+  place-items: center;
   width: 44px;
   height: 44px;
-  margin: 1px;
+  margin: 0;
   padding: 0;
-  font-size: 18px;
-  line-height: 1;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
+}
+
+.floating-search.is-expanded .floating-search-toggle {
+  margin-right: 3px;
+  box-shadow: none;
+}
+
+.floating-search-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1438,6 +1463,10 @@ mark {
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: 0 14px 40px rgb(0 0 0 / 0.25);
+}
+
+.compare-tray[hidden] {
+  display: none;
 }
 
 .compare-tray-chips {
