@@ -28,7 +28,7 @@ const GAME_CONFIG = {
   },
   fu: {
   title: "4UDump",
-  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text.",
+  tagline: "Search Monster Hunter 4 Ultimate text: NPC dialogue and other in-game text. The paragraphs are being manually separated via context, so deviations fron in-game paragraphs are possible and likely.",
   en: "./4u_dump.txt",
   jp: "",
   hasJson: false
