@@ -128,7 +128,7 @@
           placeholder="Search text, files, IDs, speakers, categories..."
         />
 
-        <span id="count">0 entries</span>
+        <span id="count" aria-live="polite">0 entries</span>
       </section>
 
       <button
@@ -231,6 +231,23 @@
     </section>
 
   </main>
+
+  <div id="floatingSearch" class="floating-search" role="search">
+    <input
+      id="floatingSearchInput"
+      class="floating-search-input"
+      type="search"
+      placeholder="Search anywhere…"
+      aria-label="Search"
+      tabindex="-1"
+    />
+    <button
+      id="floatingSearchToggle"
+      class="floating-search-toggle"
+      type="button"
+      aria-label="Search"
+    >🔍</button>
+  </div>
 
   <div id="compareTray" class="compare-tray" hidden></div>
 
