@@ -7,6 +7,7 @@
   --muted: #746c5f;
   --border: #ddd2c0;
   --accent: #6f5130;
+  --accent-rgb: 111, 81, 48;
   --accent-text: #fff7ec;
 }
 
@@ -18,6 +19,7 @@
     --muted: #b5aa96;
     --border: #3a4033;
     --accent: #b78a4f;
+    --accent-rgb: 183, 138, 79;
     --accent-text: #151009;
   }
 }
@@ -31,6 +33,7 @@
   --muted: #746c5f;
   --border: #ddd2c0;
   --accent: #6f5130;
+  --accent-rgb: 111, 81, 48;
   --accent-text: #fff7ec;
 }
 
@@ -43,11 +46,22 @@
   --muted: #b5aa96;
   --border: #3a4033;
   --accent: #b78a4f;
+  --accent-rgb: 183, 138, 79;
   --accent-text: #151009;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Keyboard-focus glow. Uses :focus-visible so mouse/touch taps don't show
+   it, only actual keyboard (or assistive-tech) focus. */
+button:focus-visible,
+input:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.35);
 }
 
 html,
@@ -147,6 +161,85 @@ button.secondary {
   padding: 0;
   font-size: 22px;
   z-index: 18;
+}
+
+/* Floating search: a small pill button that appears once the user has
+   scrolled a bit, and expands in place into a full search bar on tap.
+   Anchored with `right`, so growing its width naturally expands it
+   leftward and keeps the toggle button pinned at the same spot. */
+.floating-search {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 17;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.18);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.92);
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s,
+    width 0.28s ease;
+}
+
+.floating-search.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+}
+
+.floating-search.is-expanded {
+  width: min(420px, calc(100vw - 32px));
+}
+
+.floating-search-input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.18s ease 0.05s, padding-left 0.28s ease;
+}
+
+.floating-search.is-expanded .floating-search-input {
+  opacity: 1;
+  padding-left: 16px;
+}
+
+.floating-search-toggle {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  margin: 1px;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-search,
+  .floating-search-input {
+    transition: none;
+  }
 }
 
 .menu {
