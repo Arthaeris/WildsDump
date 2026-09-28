@@ -1,14 +1,39 @@
 :root {
   color-scheme: light dark;
 
+  /* Per-game accent colors. Each game has a darker shade for light mode
+     and a lighter one for dark mode; the theme blocks below pick one. */
+  --game-accent-light: #6f5130;
+  --game-accent-dark: #b78a4f;
+
+  --heading-font: "Cinzel", Georgia, "Times New Roman", serif;
+
   --bg: #f3f0e8;
   --card: #fffaf0;
   --text: #1b1812;
   --muted: #746c5f;
   --border: #ddd2c0;
-  --accent: #6f5130;
-  --accent-rgb: 111, 81, 48;
+  --accent: var(--game-accent-light);
   --accent-text: #fff7ec;
+
+  --glass-bg: rgb(255 250 240 / 0.7);
+  --glass-edge: rgb(255 255 255 / 0.7);
+  --glass-shade: rgb(0 0 0 / 0.08);
+}
+
+:root[data-game="gu"] {
+  --game-accent-light: #8a2f2a;
+  --game-accent-dark: #d4695d;
+}
+
+:root[data-game="tri"] {
+  --game-accent-light: #245a78;
+  --game-accent-dark: #62a6ca;
+}
+
+:root[data-game="fu"] {
+  --game-accent-light: #5b3a7a;
+  --game-accent-dark: #a888cc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,9 +43,12 @@
     --text: #f0eadc;
     --muted: #b5aa96;
     --border: #3a4033;
-    --accent: #b78a4f;
-    --accent-rgb: 183, 138, 79;
+    --accent: var(--game-accent-dark);
     --accent-text: #151009;
+
+    --glass-bg: rgb(29 33 25 / 0.66);
+    --glass-edge: rgb(255 255 255 / 0.16);
+    --glass-shade: rgb(0 0 0 / 0.3);
   }
 }
 
@@ -32,9 +60,12 @@
   --text: #1b1812;
   --muted: #746c5f;
   --border: #ddd2c0;
-  --accent: #6f5130;
-  --accent-rgb: 111, 81, 48;
+  --accent: var(--game-accent-light);
   --accent-text: #fff7ec;
+
+  --glass-bg: rgb(255 250 240 / 0.7);
+  --glass-edge: rgb(255 255 255 / 0.7);
+  --glass-shade: rgb(0 0 0 / 0.08);
 }
 
 :root[data-theme="dark"] {
@@ -45,9 +76,12 @@
   --text: #f0eadc;
   --muted: #b5aa96;
   --border: #3a4033;
-  --accent: #b78a4f;
-  --accent-rgb: 183, 138, 79;
+  --accent: var(--game-accent-dark);
   --accent-text: #151009;
+
+  --glass-bg: rgb(29 33 25 / 0.66);
+  --glass-edge: rgb(255 255 255 / 0.16);
+  --glass-shade: rgb(0 0 0 / 0.3);
 }
 
 * {
@@ -61,7 +95,7 @@ input:focus-visible,
 a:focus-visible,
 [tabindex]:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.35);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 html,
@@ -100,8 +134,10 @@ header {
 
 h1 {
   margin: 0 0 6px;
+  font-family: var(--heading-font);
+  font-weight: 800;
   font-size: clamp(34px, 8vw, 56px);
-  letter-spacing: -0.05em;
+  letter-spacing: 0.01em;
 }
 
 #gameTitle {
@@ -150,6 +186,24 @@ button.secondary {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
+}
+
+/* Liquid glass: translucent, blurred surface with a bright top edge and a
+   soft inner shade, so floating controls stay readable over any text
+   without fully hiding it. */
+.glass,
+.menu-toggle,
+.floating-search-toggle,
+.floating-search.is-expanded {
+  background: var(--glass-bg);
+  color: var(--text);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge),
+    inset 0 -1px 0 var(--glass-shade),
+    0 8px 24px rgb(0 0 0 / 0.18);
 }
 
 .menu-toggle {
@@ -208,9 +262,6 @@ button.secondary {
 .floating-search.is-expanded {
   width: min(420px, calc(100vw - 32px));
   height: 52px;
-  background: var(--card);
-  border-color: var(--border);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
 }
 
 /* Higher specificity than the global input[type="search"] rule, so its
@@ -232,6 +283,10 @@ button.secondary {
   transition: opacity 0.18s ease 0.05s;
 }
 
+.floating-search input.floating-search-input:focus-visible {
+  box-shadow: none;
+}
+
 .floating-search.is-expanded input.floating-search-input {
   flex: 1 1 auto;
   padding: 0 8px 0 18px;
@@ -246,12 +301,18 @@ button.secondary {
   height: 44px;
   margin: 0;
   padding: 0;
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.25);
 }
 
+/* Once expanded, the whole pill is the glass surface; the button inside
+   becomes a plain accent-colored icon. */
 .floating-search.is-expanded .floating-search-toggle {
   margin-right: 3px;
+  background: transparent;
+  border-color: transparent;
   box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--accent);
 }
 
 .floating-search-toggle svg {
@@ -441,31 +502,55 @@ input[type="search"] {
 .entry {
   position: relative;
   padding: 16px;
-  padding-top: 54px;
   overflow: hidden;
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
+/* Card buttons float at the top-right, and the meta line / title flow
+   beside them, instead of the card reserving an empty band at the top. */
 .entry-actions {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  float: right;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 6px;
+  margin: -4px -4px 6px 10px;
+  position: relative;
   z-index: 2;
 }
 
 .copy-btn,
 .tag-badge {
-  padding: 7px 11px;
-  font-size: 0.78rem;
+  padding: 6px 10px;
+  font-size: 0.74rem;
   line-height: 1;
   border-radius: 999px;
-  font-weight: 800;
+  font-weight: 700;
   white-space: nowrap;
+}
+
+/* Quiet outline style for per-card buttons, so they don't compete with
+   the text. They light up in the accent color on hover/press. */
+.entry-actions .copy-btn,
+.entry-actions .lang-btn {
+  padding: 6px 10px;
+  font-size: 0.74rem;
+  line-height: 1;
+  font-weight: 700;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.entry-actions .copy-btn:hover,
+.entry-actions .lang-btn:hover,
+.entry-actions .copy-btn:active,
+.entry-actions .lang-btn:active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
 .tag-badge {
@@ -483,6 +568,52 @@ input[type="search"] {
   font-weight: 800;
   letter-spacing: 0.02em;
 }
+
+/* Meta line: category chip + lighter details. */
+.entry-section:has(.meta-chip) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.meta-chip {
+  --chip: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--chip) 75%, var(--text));
+  background: color-mix(in srgb, var(--chip) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--chip) 35%, transparent);
+}
+
+.meta-rest {
+  font-size: 0.78rem;
+  font-weight: 600;
+  opacity: 0.8;
+  overflow-wrap: anywhere;
+}
+
+/* One color per category, so mixed search results are easy to scan. */
+.meta-chip[data-cat="Dialogues"]  { --chip: #c9824a; }
+.meta-chip[data-cat="NPCs"]       { --chip: #d0a23c; }
+.meta-chip[data-cat="Monsters"]   { --chip: #c4574b; }
+.meta-chip[data-cat="Quests"]     { --chip: #5f9e6e; }
+.meta-chip[data-cat="Facilities"] { --chip: #7a9a5a; }
+.meta-chip[data-cat="Items"]      { --chip: #4f9aa8; }
+.meta-chip[data-cat="Equipment"]  { --chip: #6d84c4; }
+.meta-chip[data-cat="Weapons"]    { --chip: #9a78c9; }
+.meta-chip[data-cat="Skills"]     { --chip: #c46fa0; }
+.meta-chip[data-cat="Tutorials"]  { --chip: #8fa84a; }
+.meta-chip[data-cat="UI"]         { --chip: #8a8f98; }
+.meta-chip[data-cat="Social"]     { --chip: #d27b7b; }
+.meta-chip[data-cat="System"]     { --chip: #7d8a86; }
+.meta-chip[data-cat="References"] { --chip: #a88b6a; }
 
 .entry-header {
   display: flex;
@@ -682,10 +813,6 @@ footer {
     align-self: flex-end;
   }
 
-  .entry {
-    padding-top: 58px;
-  }
-  
   .entry {
   contain: layout paint;
 }
@@ -1672,13 +1799,33 @@ main {
 
   .entry {
     padding: 14px;
-    padding-top: 54px;
   }
 }
 
 @media (min-width: 701px) {
   .entry-actions .copy-btn,
   .entry-actions .lang-btn {
-    min-height: 32px;
+    min-height: 28px;
   }
 }
+
+/* =========================================================
+   Heading typeface
+   Placed last so it wins over earlier rules that reset `font`
+   on name buttons. Japanese names fall back to the system font.
+   ========================================================= */
+
+h2,
+h3,
+.entry-name,
+.entry-name-link,
+.entry-name-link .entry-name-content {
+  font-family: var(--heading-font);
+  letter-spacing: 0.01em;
+}
+
+.entry-name,
+.entry-name-link {
+  font-weight: 700;
+}
+
