@@ -104,6 +104,226 @@ function getRiseCategory(fileKey, sourcePath) {
   return "UI";
 }
 
+/* ---------------------------------------------------------
+   Monster Hunter World (world_en_dump.txt / world_jp_dump.txt)
+   World files are recognized by their ".gmd" extension and
+   categorized by file name and by the game folder in their
+   SOURCE PATH.
+   --------------------------------------------------------- */
+
+function isWorldFile(filename) {
+  return /\.gmd\.txt$/i.test(String(filename || "")) || /\.gmd$/i.test(String(filename || ""));
+}
+
+// NPC names from World's chr_names file (N002_NPC_NAME = "The Handler"…),
+// for the NPC dialogue files npc002 etc. Titles shared by several
+// characters get their number added so each keeps their own dialogue.
+const WORLD_NPC_NAMES = {
+  "001": "Commander",
+  "002": "The Handler",
+  "003": "Field Team Leader",
+  "004": "Provisions Manager",
+  "005": "Analytics Director",
+  "006": "Tech Chief",
+  "007": "Provisions Stockpile",
+  "009": "Chief Ecologist",
+  "010": "Chief Botanist",
+  "011": "Elder Melder",
+  "012": "Second Fleet Master",
+  "014": "Armory",
+  "015": "Meowscular Chef",
+  "016": "Housekeeper (016)",
+  "017": "The Huntsman",
+  "018": "The Tracker",
+  "019": "Admiral",
+  "020": "The Seeker",
+  "021": "Third Fleet Master",
+  "022": "Third Fleet Provisions",
+  "023": "Lynian Expert",
+  "024": "First Wyverian (024)",
+  "025": "Excitable A-Lister",
+  "026": "Serious Handler",
+  "032": "Captain",
+  "033": "Housekeeper (033)",
+  "034": "Housekeeper (034)",
+  "035": "Housekeeper (035)",
+  "036": "First Wyverian (036)",
+  "037": "Piscine Researcher",
+  "038": "Endemic Life Researcher",
+  "039": "Lynian Researcher",
+  "040": "First Wyverian (040)",
+  "102": "Feisty Fiver",
+  "103": "Gentle Fourth",
+  "104": "Eager Fourth",
+  "105": "Cool Fiver",
+  "106": "Fun Fourth",
+  "107": "Forceful Fiver",
+  "108": "Timid Fiver",
+  "109": "Sisterly Fourth",
+  "111": "Research Hunter",
+  "112": "Smart Biologist",
+  "113": "Impatient Biologist",
+  "114": "Laid-back Botanist",
+  "116": "Fiver Bro",
+  "117": "Soup Felyne",
+  "118": "Oven Felyne",
+  "121": "Softspoken Fourth",
+  "123": "Hotblooded Fourth",
+  "124": "Easygoing Fiver",
+  "125": "Airship Engineer",
+  "130": "Cheerful Scholar",
+  "131": "Shy Scholar",
+  "134": "Event Manager (134)",
+  "170": "Geralt of Rivia",
+  "251": "Apple Enthusiast",
+  "252": "Engaged Fiver",
+  "253": "Fish Aficionado",
+  "254": "Hide Expert",
+  "255": "Occupied Fiver",
+  "256": "Busy Fiver",
+  "257": "Commission Member (257)",
+  "258": "Commission Member (258)",
+  "259": "Third Fleet Felyne",
+  "301": "Hub Lass",
+  "302": "Arena Lass",
+  "303": "Hub Provisions",
+  "304": "Event Manager (304)",
+  "305": "Hopeful Felyne",
+  "307": "Feeder Felyne",
+  "610": "Smithy Apprentice",
+  "701": "Grammeowster Chef",
+  "702": "Seliana Stockpiler",
+  "703": "Seliana Melder",
+  "704": "Seliana Sailor",
+  "706": "Seliana Armory",
+  "707": "Housekeeper (707)",
+  "708": "Pub Event Manager",
+  "709": "Pub Arena Manager",
+  "710": "Pub Lass",
+  "711": "Pub Stockpiler",
+  "712": "Tundra Wyverian",
+  "713": "Pub Resource Manager",
+  "714": "Pub Sailor",
+  "715": "Housekeeper (715)",
+  "730": "Helpful Felyne",
+  "731": "Busybody Felyne",
+  "732": "Busybody Fiver",
+  "741": "Ambitious Fourth",
+  "743": "Reliable Fiver",
+  "749": "Studious Biologist",
+  "754": "Dual-blading Hunter",
+  "755": "Felyne Server",
+  "756": "Felyne Waiter",
+  "757": "Bowgunner Hunter",
+  "758": "Commission Member (758)",
+  "759": "Foot Soaking Fiver",
+  "760": "Soaker Dude",
+  "761": "Bathing Bambina",
+  "762": "Lone Soaker",
+  "763": "Sauna Dude",
+  "764": "Motivated Fourth",
+  "765": "Curious Fiver",
+  "766": "Fussy Fourth",
+  "767": "Overzealous Fifth",
+  "781": "Young Smithy",
+  "782": "Vice Chief Ecologist",
+  "785": "General",
+  "792": "Smithy Vendor",
+  "793": "Third Fleet Resources"
+};
+
+function getWorldFolder(sourcePath) {
+  // "en/text (common)/steam/item_eng.gmd" -> "text (common)/steam"
+  return String(sourcePath || "")
+    .replace(/^[a-z]{2}\//i, "")
+    .split("/")
+    .slice(0, -1)
+    .join("/")
+    .toLowerCase();
+}
+
+// NPC and cutscene files sit in numbered subfolders ("text (npc)/text (108)").
+function isInWorldFolder(sourcePath, folder) {
+  const path = getWorldFolder(sourcePath);
+  return path === folder || path.startsWith(`${folder}/`);
+}
+
+function getWorldSpeaker(fileKey, sourcePath) {
+  if (!isInWorldFolder(sourcePath, "text (npc)")) return "";
+
+  const npc = String(fileKey || "").toLowerCase().match(/^npc(\d+)$/);
+  if (!npc) return "";
+
+  const id = npc[1].padStart(3, "0");
+  return WORLD_NPC_NAMES[id] || `NPC ${id}`;
+}
+
+const WORLD_CATEGORY_FILES = {
+  Weapons: [
+    "sword", "l_sword", "w_sword", "tachi", "hammer", "whistle", "lance",
+    "g_lance", "s_axe", "c_axe", "rod", "rod_insect", "bow", "lbg", "hbg",
+    "wep_series", "bowgun_parts", "insect_series", "customparts",
+    "limit_break", "new_limit_break", "ew_limit_break"
+  ],
+  Equipment: [
+    "armor", "armor_series", "charm", "deco", "slinger",
+    "ot_armor", "ot_weapon", "ot_series", "ot_tool"
+  ],
+  Items: ["item", "food", "kitchen_menu"],
+  Skills: ["skill", "skill_pt", "a_skill", "catskill", "music_skill"],
+  Monsters: ["em_names", "em_info", "em_parts", "captureem"],
+  NPCs: ["chr_names", "cat_names"],
+  Quests: [
+    "l_quest", "l_mission", "l_delivery", "l_orders", "ot_quest",
+    "bounty_support", "storytarget"
+  ],
+  Tutorials: [
+    "tutorial", "tutorial_button", "tutorial_fsm", "tutorial_que",
+    "panel_tutorial", "panel_tutorial_cat", "panel_tutorial_ex",
+    "loadtips", "loadtipscategory", "loadtipssubcategory", "loadstory",
+    "cm_help_text", "cm_help_text_ara", "cm_facility_tutorial",
+    "weapontutorial", "buttonguide"
+  ],
+  Dialogues: ["photo_npc_talk_text"],
+  References: [
+    "animal_names", "ec_info", "gmk_names", "other_names",
+    "title_news", "topicmessage", "cm_dlc_category", "cm_dlc_product",
+    "dlc_common", "dlc_consume_data", "dlc_package_data", "dlc_package_header"
+  ]
+};
+
+function getWorldCategory(fileKey, sourcePath) {
+  const key = String(fileKey || "").toLowerCase();
+  const folder = getWorldFolder(sourcePath);
+
+  // Dialogue: NPC files, cutscenes and talk boards, and quest conversations.
+  if (isInWorldFolder(sourcePath, "text (npc)")) return "Dialogues";
+  if (isInWorldFolder(sourcePath, "text (event)")) return "Dialogues";
+  if (isInWorldFolder(sourcePath, "text (quest)")) {
+    return /^q\d/.test(key) ? "Quests" : "Dialogues";
+  }
+
+  // Quest names, objectives and descriptions (q00851…).
+  if (folder === "text (common)/quest") return "Quests";
+
+  // Tracks and traces (tr_em… are monster tracks).
+  if (folder === "text (common)/trace") {
+    return key.startsWith("tr_em") ? "Monsters" : "References";
+  }
+
+  for (const [category, keys] of Object.entries(WORLD_CATEGORY_FILES)) {
+    if (keys.includes(key)) return category;
+  }
+
+  if (/^ou_/.test(key)) return "Weapons";             // layered weapon names
+  if (/^ot_s_auto/.test(key)) return "Dialogues";     // Palico chatter
+  if (/^gc_/.test(key)) return "References";          // Guild Card titles, poses
+  if (/^treasure_/.test(key)) return "References";
+
+  // Menus, system messages, chat and other interface text.
+  return "UI";
+}
+
 function isOldVersionFile(filename) {
   return /\s+\(\d+\)\.23\.txt$/i.test(String(filename || ""));
 }
@@ -118,8 +338,17 @@ function parseWildsSection(block, language = "en") {
   if (!title && !sourcePath) return null;
 
   const versionMatch = String(title || sourcePath).match(/\s+\((\d+)\)\.23\.txt$/i);
-  const isOldVersion = Boolean(versionMatch);
-  const versionNumber = versionMatch ? Number(versionMatch[1]) : 0;
+  let isOldVersion = Boolean(versionMatch);
+  let versionNumber = versionMatch ? Number(versionMatch[1]) : 0;
+
+  // Monster Hunter World files ("item.gmd.txt", archived: "item (2).gmd.txt").
+  const isWorld = isWorldFile(title || sourcePath);
+
+  if (isWorld) {
+    const worldVersion = String(title || sourcePath).match(/\s+\((\d+)\)\.gmd\.txt$/i);
+    isOldVersion = Boolean(worldVersion);
+    versionNumber = worldVersion ? Number(worldVersion[1]) : 0;
+  }
 
   let body = "";
 
@@ -156,6 +385,18 @@ function parseWildsSection(block, language = "en") {
     isDialogue = true;
   }
 
+  // Monster Hunter World files get their own categories and speakers.
+  if (isWorld) {
+    category = getWorldCategory(fileKey, sourcePath);
+
+    const speaker = getWorldSpeaker(fileKey, sourcePath);
+
+    if (speaker) {
+      displayName = speaker;
+      isDialogue = true;
+    }
+  }
+
   // Monster Hunter Rise files get their own categories and speakers.
   if (isRiseFile(title || sourcePath)) {
     category = getRiseCategory(fileKey, sourcePath);
@@ -190,7 +431,9 @@ function parseWildsSection(block, language = "en") {
     dialogueType: dialogueInfo.dialogueType,
     dialogueFamily: dialogueInfo.dialogueFamily,
     rejectedIds: dialogueInfo.rejectedIds,
-    isDialogue
+    isDialogue,
+
+    ...(isWorld ? { game: "world" } : {})
   };
 }
 
@@ -295,6 +538,7 @@ function normalizeWildsFileKey(filename) {
     .replace(/\s+\(\d+\)(?=\.23$)/i, "")
     .replace(/\.23$/i, "")
     .replace(/\.539100710$/i, "") // Monster Hunter Rise file version
+    .replace(/\.gmd$/i, "") // Monster Hunter World text file
     .replace(/\.msg$/i, "")
     .replace(/\s+\(\d+\)$/i, "")
     .toLowerCase()
@@ -519,6 +763,13 @@ function buildWildsEntries(sections, npcMap = {}) {
   const entries = [];
 
   for (const section of sections) {
+    // Monster Hunter World files share names like "item", "armor", "skill"
+    // or "bow" with Wilds files but have a different layout, so the
+    // Wilds-specific handling below is skipped for them: each World line
+    // becomes its own entry.
+    const useWildsFileRules = section.game !== "world";
+
+    if (useWildsFileRules) {
     if (section.fileKey === "enemytext") {
   entries.push(...buildEnemyTextEntries(section));
   continue;
@@ -551,6 +802,7 @@ if (SIMPLE_NAME_TEXT_PAIR_FILES.has(section.fileKey)) {
   entries.push(...buildSimpleNameTextPairEntries(section));
   continue;
 }
+    }
 
     for (const item of section.strings) {
       if (!item.raw && !item.text) continue;
