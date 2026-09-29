@@ -27,6 +27,83 @@ function parseWildsDump(rawText, language = "en") {
   return sections;
 }
 
+/* ---------------------------------------------------------
+   Monster Hunter Rise (rise_en_dump.txt / rise_jp_dump.txt)
+   Rise files are recognized by their ".msg.539100710" version
+   and categorized by the game folder in their SOURCE PATH.
+   --------------------------------------------------------- */
+
+function isRiseFile(filename) {
+  return /\.msg\.539100710\.txt$/i.test(String(filename || ""));
+}
+
+// Sunbreak followers, named in ServantProfile_MR (Name_ServantId001_MR…).
+const RISE_FOLLOWER_NAMES = {
+  "001": "Fiorayne",
+  "002": "Galleus",
+  "003": "Luchika",
+  "004": "Arlow",
+  "005": "Jae",
+  "006": "Rondine",
+  "007": "Fugen",
+  "008": "Hinoa",
+  "009": "Minoto",
+  "010": "Utsushi"
+};
+
+// NPC dialogue files are only numbered (nid001, nid001_MR, nid001_chat…),
+// so they're shown as "NPC 001" until real names are mapped.
+function getRiseSpeaker(fileKey) {
+  const key = String(fileKey || "").toLowerCase();
+
+  const npc = key.match(/^nid(\d+)/);
+  if (npc) return `NPC ${npc[1].padStart(3, "0")}`;
+
+  const follower = key.match(/^sid(\d+)_/);
+  if (follower) {
+    const id = follower[1].padStart(3, "0");
+    return RISE_FOLLOWER_NAMES[id] || `Follower ${id}`;
+  }
+
+  return "";
+}
+
+function getRiseCategory(fileKey, sourcePath) {
+  const key = String(fileKey || "").toLowerCase();
+
+  // Folder inside the game's message data, e.g. "Message/Quest".
+  const folder = String(sourcePath || "")
+    .replace(/^[a-z]{2}\//i, "")
+    .split("/")
+    .slice(0, -1)
+    .join("/")
+    .toLowerCase();
+
+  if (folder.startsWith("message npc")) return "Dialogues";
+  if (folder === "message/event") return "Dialogues";
+
+  if (folder === "message/servant") {
+    if (key.startsWith("servantprofile")) return "NPCs";
+    if (key.startsWith("servantstatus")) return "UI";
+    return "Dialogues";
+  }
+
+  if (folder === "message/quest") return "Quests";
+  if (folder.startsWith("message/tag")) return "Monsters";
+
+  if (folder.startsWith("message/hunternote")) {
+    if (key.startsWith("hn_monsterlist")) return "Monsters";
+    if (key.startsWith("environmentcreature")) return "References";
+    return "Tutorials";
+  }
+
+  if (folder === "message/guildcard") return "References";
+  if (folder === "message/dlc") return "References";
+
+  // Facilities, menus, system, network, trial and PC version text.
+  return "UI";
+}
+
 function isOldVersionFile(filename) {
   return /\s+\(\d+\)\.23\.txt$/i.test(String(filename || ""));
 }
@@ -70,13 +147,25 @@ function parseWildsSection(block, language = "en") {
   // the file as dialogue, without touching dialogueId/NPC_MAP, which are
   // Wilds-specific.
   const npcParenMatch = String(title || "").match(/^NPC\d+\s*\(([^)]+)\)/i);
-  const displayName = npcParenMatch ? npcParenMatch[1].trim() : "";
+  let displayName = npcParenMatch ? npcParenMatch[1].trim() : "";
 
   let isDialogue = dialogueInfo.isDialogue;
 
   if (displayName) {
     category = "Dialogues";
     isDialogue = true;
+  }
+
+  // Monster Hunter Rise files get their own categories and speakers.
+  if (isRiseFile(title || sourcePath)) {
+    category = getRiseCategory(fileKey, sourcePath);
+
+    const speaker = getRiseSpeaker(fileKey);
+
+    if (speaker) {
+      displayName = speaker;
+      isDialogue = true;
+    }
   }
 
   return {
@@ -205,6 +294,7 @@ function normalizeWildsFileKey(filename) {
     .replace(/\.txt$/i, "")
     .replace(/\s+\(\d+\)(?=\.23$)/i, "")
     .replace(/\.23$/i, "")
+    .replace(/\.539100710$/i, "") // Monster Hunter Rise file version
     .replace(/\.msg$/i, "")
     .replace(/\s+\(\d+\)$/i, "")
     .toLowerCase()
