@@ -193,7 +193,7 @@ function renderDiffFileDetail(fileKey) {
         </div>
 
         <div class="entry-header">
-          <div class="entry-id">[${escapeHtml(change.id)}]</div>
+          <div class="entry-id">${escapeHtml(change.id)}</div>
         </div>
 
         <div class="entry-text diff-change-text">${formatEntryText(change.text, { linkify: true })}</div>
