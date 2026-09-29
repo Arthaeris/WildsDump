@@ -2622,12 +2622,7 @@ function collapseFloatingSearch() {
   floatingSearchInput.blur();
 }
 
-function updateScrollEdges() {
-  document.documentElement.classList.toggle("is-scrolled", window.scrollY > 8);
-}
-
 function handleScroll() {
-  updateScrollEdges();
   updateFloatingSearchVisibility();
   updateBackToTopVisibility();
 
