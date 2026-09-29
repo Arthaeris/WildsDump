@@ -1215,6 +1215,12 @@ function renderMetaLine(category, parts) {
   return `<div class="entry-section">${chip}${rest}</div>`;
 }
 
+// The ID badge shows "0010 + 0011" instead of "[0010 + 0011]"; copied text
+// still uses the bracketed form.
+function stripIdBrackets(value) {
+  return String(value || "").replace(/^\[|\]$/g, "").trim();
+}
+
 function renderEntry(entry) {
   const metaHtml = renderMetaLine(entry.category, [
     entry.family,
@@ -1291,7 +1297,7 @@ function renderEntry(entry) {
               : ""
         }
 
-        <div class="entry-id">${escapeHtml(en.headerId)}</div>
+        <div class="entry-id">${escapeHtml(stripIdBrackets(en.headerId))}</div>
       </div>
 
       ${
@@ -2616,7 +2622,12 @@ function collapseFloatingSearch() {
   floatingSearchInput.blur();
 }
 
+function updateScrollEdges() {
+  document.documentElement.classList.toggle("is-scrolled", window.scrollY > 8);
+}
+
 function handleScroll() {
+  updateScrollEdges();
   updateFloatingSearchVisibility();
   updateBackToTopVisibility();
 
@@ -3187,7 +3198,16 @@ function cycleTheme() {
         : "system";
 
   localStorage.setItem("wildsDumpTheme", next);
-  applyTheme(next);
+
+  // Crossfade between themes where the browser supports it. The whole page
+  // is captured as one image and faded, so nothing flickers mid-switch.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (document.startViewTransition && !reduceMotion) {
+    document.startViewTransition(() => applyTheme(next));
+  } else {
+    applyTheme(next);
+  }
 }
 
 function escapeHtml(value) {
@@ -3615,6 +3635,12 @@ function restoreSavedSettings() {
     }
 
     await loadDump();
+
+    // Enable UI transitions only after the first paint, so saved settings
+    // (like the Format switch) don't visibly animate into place on load.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.documentElement.classList.add("motion-ready"));
+    });
   } catch (error) {
     console.error(error);
 
