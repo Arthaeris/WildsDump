@@ -318,11 +318,63 @@ function scheduleUrlSync() {
   queueMicrotask(flushUrlSync);
 }
 
+// Highlights the menu entry for the page you're on.
+function updateMenuActive() {
+  const view = captureCurrentView();
+
+  const selectors = {
+    home: "#homeBtn",
+    npcIndex: "#npcIndexBtn",
+    monsterIndex: "#monsterIndexBtn",
+    wordIndex: "#wordIndexBtn",
+    help: "#helpBtn",
+    compare: "#compareViewBtn",
+    diff: "#versionDiffBtn",
+    sizeCompare: "#sizeCompareBtn"
+  };
+
+  let active = selectors[view.type] ? menu.querySelector(selectors[view.type]) : null;
+
+  if (view.type === "category") {
+    active = [...menu.querySelectorAll("[data-category]")]
+      .find(button => button.dataset.category === view.category) || null;
+  }
+
+  menu.querySelectorAll(".is-current").forEach(el => {
+    el.classList.remove("is-current");
+    el.removeAttribute("aria-current");
+  });
+
+  if (active) {
+    active.classList.add("is-current");
+    active.setAttribute("aria-current", "page");
+  }
+}
+
+// Browser tab / bookmark title: "Alma · WildsDump", "“ancient” · WildsDump".
+function updateDocumentTitle() {
+  const game = GAME_CONFIG[ACTIVE_GAME]?.title || "WildsDump";
+  const page = getVisiblePage();
+  let label = "";
+
+  if (page === searchView) {
+    const q = search.value.trim();
+    if (q) label = `“${q}”`;
+  } else {
+    label = page?.querySelector(".view-header h2")?.textContent.trim() || "";
+  }
+
+  document.title = label ? `${label} · ${game}` : game;
+}
+
 function flushUrlSync() {
   urlSyncQueued = false;
 
   const push = pendingUrlPush;
   pendingUrlPush = false;
+
+  updateMenuActive();
+  updateDocumentTitle();
 
   if (!routingReady) return;
 
@@ -606,7 +658,7 @@ function showNpcIndex(addToHistory = true) {
     return `
       <button class="npc-item ${mapped ? "" : "npc-item-unmapped"}" type="button" data-npc-key="${escapeAttribute(group.name)}">
         <span>${escapeHtml(group.name)} ${mapped ? "" : "· ⚠ unmapped"}</span>
-        <small>${group.entries.length} lines · ${group.keys.length} files · ${types.size} types</small>
+        <small>${plural(group.entries.length, "line")} · ${plural(group.keys.length, "file")} · ${plural(types.size, "type")}</small>
       </button>
     `;
   }).join("");
@@ -1185,6 +1237,11 @@ function appendNextEntries() {
 // chip, followed by the remaining details in lighter text. Parts that just
 // repeat the start of the filename (e.g. "item" before "item.msg.23.txt")
 // or repeat an earlier part are dropped.
+// "1 file", "2 files"
+function plural(count, singular, pluralForm = `${singular}s`) {
+  return `${Number(count).toLocaleString()} ${count === 1 ? singular : pluralForm}`;
+}
+
 function renderMetaLine(category, parts) {
   const cleaned = [];
   const seen = new Set();
@@ -1197,6 +1254,11 @@ function renderMetaLine(category, parts) {
     const lower = value.toLowerCase();
     if (seen.has(lower)) return;
 
+    // Skip parts the category already says, e.g. "numeric" after
+    // "Unknown / Numeric", or "dialogue" after "Dialogues".
+    const categoryWords = String(category || "").toLowerCase().split(/[^a-z0-9]+/);
+    if (categoryWords.includes(lower) || categoryWords.includes(`${lower}s`)) return;
+
     const isLast = index === parts.length - 1;
     if (!isLast && sourceFile && sourceFile.startsWith(lower)) return;
 
@@ -1208,8 +1270,10 @@ function renderMetaLine(category, parts) {
     ? `<span class="meta-chip" data-cat="${escapeAttribute(category)}">${escapeHtml(category)}</span>`
     : "";
 
+  // Kept to one line (shortened with "…"); tapping it shows the full text.
+  const restText = cleaned.join(" · ");
   const rest = cleaned.length
-    ? `<span class="meta-rest">${escapeHtml(cleaned.join(" · "))}</span>`
+    ? `<span class="meta-rest" title="${escapeAttribute(restText)}">${escapeHtml(restText)}</span>`
     : "";
 
   return `<div class="entry-section">${chip}${rest}</div>`;
@@ -1219,6 +1283,19 @@ function renderMetaLine(category, parts) {
 // still uses the bracketed form.
 function stripIdBrackets(value) {
   return String(value || "").replace(/^\[|\]$/g, "").trim();
+}
+
+// In the IDs format, the text of untitled entries starts with the same ID
+// the badge already shows ("[0009] An Ancient…"). Drop that repeat from the
+// displayed text only; copied text keeps it.
+function withoutRepeatedId(textIds, headerId) {
+  const text = String(textIds || "");
+  if (!headerId || !text.startsWith(headerId)) return text;
+
+  const rest = text.slice(headerId.length);
+  if (rest && !/^\s/.test(rest)) return text;
+
+  return rest.replace(/^[ \t]+/, "");
 }
 
 function renderEntry(entry) {
@@ -1250,8 +1327,8 @@ function renderEntry(entry) {
       data-name-en="${escapeAttribute(en.name)}"
       data-name-jp="${escapeAttribute(jp.name)}"
 
-      data-text-ids-en="${escapeAttribute(en.textIds)}"
-      data-text-ids-jp="${escapeAttribute(jp.textIds)}"
+      data-text-ids-en="${escapeAttribute(withoutRepeatedId(en.textIds, en.headerId))}"
+      data-text-ids-jp="${escapeAttribute(withoutRepeatedId(jp.textIds, jp.headerId))}"
 
       data-text-clean-en="${escapeAttribute(en.textClean)}"
       data-text-clean-jp="${escapeAttribute(jp.textClean)}"
@@ -1306,7 +1383,7 @@ function renderEntry(entry) {
           : ""
       }
 
-      <div class="entry-text entry-text-ids">${formatEntryText(en.textIds, { linkify: true, highlightTerms: currentHighlightTerms })}</div>
+      <div class="entry-text entry-text-ids">${formatEntryText(withoutRepeatedId(en.textIds, en.headerId), { linkify: true, highlightTerms: currentHighlightTerms })}</div>
       <div class="entry-text entry-text-clean">${formatEntryText(en.textClean, { linkify: true, highlightTerms: currentHighlightTerms })}</div>
       <div class="entry-text entry-text-code">${formatEntryText(en.visualCode, { highlightTerms: currentHighlightTerms })}</div>
       
@@ -2265,7 +2342,7 @@ function renderFullDialogue(group) {
           <button class="copy-btn" type="button">Copy</button>
         </div>
 
-        ${renderMetaLine("Dialogues", [type, `${items.length} lines`])}
+        ${renderMetaLine("Dialogues", [type, plural(items.length, "line")])}
 
         <div class="entry-header">
           <div class="entry-name">${escapeHtml(title)}</div>
@@ -2477,7 +2554,12 @@ function updateMatchNav() {
   }
 
   const index = currentMatchEl ? marks.indexOf(currentMatchEl) + 1 : 0;
-  const label = marks.length ? `${index || "–"} / ${marks.length}${more}` : "";
+  // Before jumping: "79+ matches". While jumping: "3 / 79+".
+  const label = !marks.length
+    ? ""
+    : index
+      ? `${index} / ${marks.length}${more}`
+      : `${marks.length}${more} ${marks.length === 1 && !more ? "match" : "matches"}`;
 
   document.querySelectorAll("[data-match-nav]").forEach(nav => {
     nav.hidden = marks.length === 0;
@@ -2547,6 +2629,13 @@ function jumpToMatch(direction) {
 
   updateMatchNav();
 }
+
+// Tapping a shortened meta line shows it in full (and tapping again
+// shortens it).
+document.addEventListener("click", event => {
+  const metaRest = event.target.closest(".meta-rest");
+  if (metaRest) metaRest.classList.toggle("is-expanded");
+});
 
 document.addEventListener("click", event => {
   if (event.target.closest("[data-match-next]")) {
