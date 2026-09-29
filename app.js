@@ -6,8 +6,10 @@ const GAME_CONFIG = {
     title: "WildsDump",
     tagline:
       "Search Monster Hunter Wilds text, dialogue, items, weapons, quests, tutorials, UI text, and NPC-related files.",
-    en: "./en_dump.txt",
-    jp: "./jp_dump.txt",
+    // Updated dump (converted from the game's text files). To go back to
+    // the previous version, use "./en_dump.txt" and "./jp_dump.txt".
+    en: "./en_dump_new.txt",
+    jp: "./jp_dump_new.txt",
     hasJson: true
   },
   gu: {
