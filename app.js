@@ -42,10 +42,18 @@ const GAME_CONFIG = {
     en: "./rise_en_dump.txt",
     jp: "./rise_jp_dump.txt",
     hasJson: false
+  },
+  world: {
+    title: "WorldDump",
+    tagline:
+      "Search Monster Hunter World and Iceborne text: items, weapons, armor, skills, decorations, monsters, quests, NPC dialogue, cutscenes, tutorials and menus.",
+    en: "./world_en_dump.txt",
+    jp: "./world_jp_dump.txt",
+    hasJson: false
   }
 };
 
-const GAME_ORDER = ["wilds", "gu", "tri", "fu", "rise"];
+const GAME_ORDER = ["wilds", "gu", "tri", "fu", "rise", "world"];
 
 let ACTIVE_GAME = "wilds";
 
@@ -2384,6 +2392,12 @@ function getCleanText(value) {
     text = text.replace(RISE_STAGE_DIRECTION_TAGS, "");
   }
 
+  // World: voice cues (<NSND npc=2 voice=23>) and centering (<CNTR>) are
+  // instructions for the game, hidden in Clean like Rise's stage directions.
+  if (ACTIVE_GAME === "world") {
+    text = text.replace(/<\/?(?:NSND|CNTR)(?:\s[^<>]*)?>/g, "");
+  }
+
   return text
     .replace(/\[(\d{4}(?:\s*\+\s*\d{4})?)\]\s*/g, "")
     .split("\n")
@@ -2786,6 +2800,43 @@ function getCardCopyText(card) {
   if (mode === "code") return decodeHtml(card.dataset.copyCode || "");
 
   return decodeHtml(card.dataset.copyIds || "");
+}
+
+// World keeps unused lines in its files as placeholders: "Invalid Message"
+// in English, and "Invalid Message" or filler words like "dummy", 未使用
+// (unused) or 仮名称 (temporary name) in Japanese. They're removed per
+// language, so real text in the other language stays visible; an entry is
+// only left out when neither language has real text. The dump files keep
+// every line.
+const WORLD_PLACEHOLDERS_EN = new Set(["Invalid Message"]);
+const WORLD_PLACEHOLDERS_JP = new Set([
+  "Invalid Message", "dummy", "Dummy", "未使用", "仮名称", "欠番", "作成中", "―――"
+]);
+
+function removeWorldPlaceholders(entries) {
+  const result = [];
+
+  for (const entry of entries) {
+    const cleaned = { ...entry };
+
+    if (WORLD_PLACEHOLDERS_EN.has(String(entry.text || "").trim())) {
+      cleaned.name = "";
+      cleaned.raw = "";
+      cleaned.text = "";
+    }
+
+    if (WORLD_PLACEHOLDERS_JP.has(String(entry.textJp || "").trim())) {
+      cleaned.nameJp = "";
+      cleaned.rawJp = "";
+      cleaned.textJp = "";
+    }
+
+    if (!cleaned.text.trim() && !cleaned.textJp.trim()) continue;
+
+    result.push(cleaned);
+  }
+
+  return result;
 }
 
 function mergeLocalizedEntries(enEntries, jpEntries) {
@@ -3211,7 +3262,11 @@ async function loadDump() {
       const enEntries = buildWildsEntries(enSections, npcMap);
       const jpEntries = buildWildsEntries(jpSections, npcMap);
 
-      const merged = mergeLocalizedEntries(enEntries, jpEntries);
+      let merged = mergeLocalizedEntries(enEntries, jpEntries);
+
+      if (ACTIVE_GAME === "world") {
+        merged = removeWorldPlaceholders(merged);
+      }
 
       setLoadingStatus("Computing version diff…");
       await nextFrame();
