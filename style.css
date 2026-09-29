@@ -41,6 +41,12 @@
   --game-accent-dark: #a888cc;
 }
 
+/* Rise: Kamura lantern orange (vivid, unlike Wilds' muted tan). */
+:root[data-game="rise"] {
+  --game-accent-light: #b35412;
+  --game-accent-dark: #f0953f;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #12130f;
