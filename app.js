@@ -34,10 +34,18 @@ const GAME_CONFIG = {
   en: "./4u_dump.txt",
   jp: "",
   hasJson: false
+  },
+  rise: {
+    title: "RiseDump",
+    tagline:
+      "Search Monster Hunter Rise and Sunbreak text: NPC and follower dialogue, cutscenes, quests, Hunter's Notes, achievements, DLC and menus. NPCs are numbered (NPC 001…) until their names are mapped.",
+    en: "./rise_en_dump.txt",
+    jp: "./rise_jp_dump.txt",
+    hasJson: false
   }
 };
 
-const GAME_ORDER = ["wilds", "gu", "tri", "fu"];
+const GAME_ORDER = ["wilds", "gu", "tri", "fu", "rise"];
 
 let ACTIVE_GAME = "wilds";
 
@@ -2363,8 +2371,20 @@ function getCopyTextWithIds(entry) {
   return `[${label}] ${entry.text || entry.raw || ""}`.trim();
 }
 
+// Rise dialogue carries stage directions for the game (camera, voice,
+// gaze, facial expression, speaker and tutorial triggers), like <CAM:2>
+// or <VO:SP1>. The Clean format hides them; IDs and Code keep them.
+const RISE_STAGE_DIRECTION_TAGS =
+  /<\/?(?:NPC|VO|LOOK|TURN|NOFAC|FACE|CAM|SCAM|FCAM|RCAM|NOTE|OKAZU|OTTUTO|POSTACT|MR_REL|MR_OPEN|EQUIP|OWL|EMTUTO_DISP|EMTUTO_THINK)(?::[^<>]*)?>/g;
+
 function getCleanText(value) {
-  return String(value || "")
+  let text = String(value || "");
+
+  if (ACTIVE_GAME === "rise") {
+    text = text.replace(RISE_STAGE_DIRECTION_TAGS, "");
+  }
+
+  return text
     .replace(/\[(\d{4}(?:\s*\+\s*\d{4})?)\]\s*/g, "")
     .split("\n")
     .map(line => line.trimEnd())
