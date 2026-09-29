@@ -47,6 +47,12 @@
   --game-accent-dark: #f0953f;
 }
 
+/* World: Iceborne frost cyan. */
+:root[data-game="world"] {
+  --game-accent-light: #0b6f79;
+  --game-accent-dark: #52c2cc;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #12130f;
