@@ -76,10 +76,23 @@
     </div>
 
     <div class="header-actions">
-      <button id="switchGameBtn" class="header-chip" type="button" aria-label="Switch game">
-        <span aria-hidden="true">⇄</span>
-        <span id="switchGameLabel">GUDump</span>
-      </button>
+      <div class="dump-picker">
+        <button
+          id="switchGameBtn"
+          class="header-chip"
+          type="button"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          aria-controls="dumpMenu"
+        >
+          <span aria-hidden="true">⇄</span>
+          <span>Switch dump</span>
+          <svg class="dump-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <!-- Filled from GAME_ORDER in app.js -->
+        <div id="dumpMenu" class="dump-menu" role="menu" aria-label="Text dumps" hidden></div>
+      </div>
 
       <button
         id="aboutBtn"
@@ -301,9 +314,10 @@
           <h3>Other tips</h3>
           <dl class="help-list">
             <dt>Switch game</dt>
-            <dd>Tap the title at the top, or the ⇄ button below it, to cycle
-              through the games. "About" shows a short description of the
-              current game's data.</dd>
+            <dd>Tap "⇄ Switch dump" below the title to pick any game from the
+              list. Tapping the title itself moves on to the next-older game
+              (after TriDump, it starts over at WildsDump). "About" shows a
+              short description of the current game's data.</dd>
             <dt>Floating search</dt>
             <dd>After scrolling down, tap the round search button at the
               bottom right to search from anywhere. The arrow button above it
