@@ -53,7 +53,19 @@ const GAME_CONFIG = {
   }
 };
 
-const GAME_ORDER = ["wilds", "gu", "tri", "fu", "rise", "world"];
+// Newest to oldest. Tapping the title moves to the next (older) game and
+// wraps from the last back to the first; the dropdown lists them in this order.
+const GAME_ORDER = ["wilds", "rise", "world", "gu", "fu", "tri"];
+
+// Full names, shown under each title in the dump dropdown.
+const GAME_FULL_NAMES = {
+  wilds: "Monster Hunter Wilds",
+  rise: "Monster Hunter Rise: Sunbreak",
+  world: "Monster Hunter: World – Iceborne",
+  gu: "Monster Hunter Generations Ultimate",
+  fu: "Monster Hunter 4 Ultimate",
+  tri: "Monster Hunter Tri"
+};
 
 let ACTIVE_GAME = "wilds";
 
@@ -2715,7 +2727,122 @@ aboutBtn?.addEventListener("click", () => {
   aboutBtn.classList.toggle("active", !tagline.hidden);
 });
 
-document.querySelector("#switchGameBtn")?.addEventListener("click", () => switchGame());
+/* ---------------------------------------------------------
+   Dump dropdown ("⇄ Switch dump" under the title)
+   --------------------------------------------------------- */
+
+const dumpPickerBtn = document.querySelector("#switchGameBtn");
+const dumpMenu = document.querySelector("#dumpMenu");
+
+function renderDumpMenu() {
+  if (!dumpMenu) return;
+
+  dumpMenu.innerHTML = GAME_ORDER.map(key => {
+    const cfg = GAME_CONFIG[key];
+    const isCurrent = key === ACTIVE_GAME;
+
+    return `
+      <button
+        class="dump-option${isCurrent ? " is-current" : ""}"
+        type="button"
+        role="menuitemradio"
+        aria-checked="${isCurrent}"
+        data-game="${escapeAttribute(key)}"
+      >
+        <span class="dump-dot" aria-hidden="true"></span>
+        <span class="dump-option-text">
+          <strong>${escapeHtml(cfg.title)}</strong>
+          <small>${escapeHtml(GAME_FULL_NAMES[key] || "")}</small>
+        </span>
+        ${isCurrent ? '<span class="dump-check" aria-hidden="true">✓</span>' : ""}
+      </button>
+    `;
+  }).join("");
+}
+
+function isDumpMenuOpen() {
+  return Boolean(dumpMenu && !dumpMenu.hidden);
+}
+
+function openDumpMenu() {
+  if (!dumpMenu || !dumpPickerBtn) return;
+
+  renderDumpMenu();
+  dumpMenu.hidden = false;
+  dumpPickerBtn.setAttribute("aria-expanded", "true");
+  dumpPickerBtn.classList.add("active");
+
+  requestAnimationFrame(() => {
+    dumpMenu.classList.add("is-open");
+    (dumpMenu.querySelector(".dump-option.is-current") || dumpMenu.querySelector(".dump-option"))?.focus();
+  });
+}
+
+function closeDumpMenu({ restoreFocus = false } = {}) {
+  if (!isDumpMenuOpen()) return;
+
+  dumpMenu.classList.remove("is-open");
+  dumpMenu.hidden = true;
+  dumpPickerBtn.setAttribute("aria-expanded", "false");
+  dumpPickerBtn.classList.remove("active");
+
+  if (restoreFocus) dumpPickerBtn.focus();
+}
+
+dumpPickerBtn?.addEventListener("click", event => {
+  event.stopPropagation();
+
+  if (isDumpMenuOpen()) {
+    closeDumpMenu();
+  } else {
+    openDumpMenu();
+  }
+});
+
+dumpMenu?.addEventListener("click", event => {
+  const option = event.target.closest(".dump-option");
+  if (!option) return;
+
+  const key = option.dataset.game;
+
+  if (key === ACTIVE_GAME) {
+    closeDumpMenu({ restoreFocus: true });
+    return;
+  }
+
+  switchGame(key);
+});
+
+// Arrow keys move between options, Escape closes.
+dumpMenu?.addEventListener("keydown", event => {
+  const options = [...dumpMenu.querySelectorAll(".dump-option")];
+  const index = options.indexOf(document.activeElement);
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    closeDumpMenu({ restoreFocus: true });
+  } else if (event.key === "ArrowDown") {
+    event.preventDefault();
+    options[(index + 1) % options.length]?.focus();
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    options[(index - 1 + options.length) % options.length]?.focus();
+  } else if (event.key === "Home") {
+    event.preventDefault();
+    options[0]?.focus();
+  } else if (event.key === "End") {
+    event.preventDefault();
+    options[options.length - 1]?.focus();
+  }
+});
+
+// Tapping anywhere else closes it.
+document.addEventListener("click", event => {
+  if (!isDumpMenuOpen()) return;
+  if (event.target.closest(".dump-picker")) return;
+
+  closeDumpMenu();
+});
 
 function updateFloatingSearchVisibility() {
   if (!floatingSearch) return;
@@ -3730,11 +3857,9 @@ function applyGameChrome() {
   const taglineEl = document.querySelector("#appTagline");
   if (taglineEl) taglineEl.textContent = cfg.tagline;
 
-  const switchLabel = document.querySelector("#switchGameLabel");
-  if (switchLabel) switchLabel.textContent = otherCfg.title;
+  if (titleEl) titleEl.title = `Tap for ${otherCfg.title}`;
 
-  const switchBtn = document.querySelector("#switchGameBtn");
-  if (switchBtn) switchBtn.setAttribute("aria-label", `Switch to ${otherCfg.title}`);
+  renderDumpMenu();
 
   // Features backed by the Wilds JSON database are hidden for other games.
   if (!cfg.hasJson) {
@@ -3747,9 +3872,12 @@ function applyGameChrome() {
   updateMenuSectionVisibility();
 }
 
-function switchGame() {
+// Switches to the given game (default: the next, older one) and reloads.
+function switchGame(target = getNextGame()) {
+  if (!GAME_CONFIG[target]) return;
+
   try {
-    localStorage.setItem("wd_game", getNextGame());
+    localStorage.setItem("wd_game", target);
   } catch {}
 
   // Drop the current link, otherwise its #g=... would keep the old game.
@@ -3760,7 +3888,8 @@ function switchGame() {
   location.reload();
 }
 
-document.querySelector("#gameTitle")?.addEventListener("click", switchGame);
+// Tapping the title moves on to the next (older) game.
+document.querySelector("#gameTitle")?.addEventListener("click", () => switchGame());
 
 function restoreSavedSettings() {
   try {
