@@ -2392,11 +2392,17 @@ HASH: 55cbba00880c8139b61f03b4d0bd2ea72464adf6cdebf6ae8186eec6a985a682
 ================================================================================
 
 ﻿Ooh!Ooh! Hunter, Hunter!
-Please hire me, meow! Pleeease! Well, this is quite the purrsnickament.
+Please hire me, meow! Pleeease! 
+
+Well, this is quite the purrsnickament.
 ...Purrdrecka...whatever. I can't give you
 anything if your Item Box is full, meow. Come back once you've cleaned house
-a little, meow. My big sis wikes you...so I guess you
-can hire me. How abowt it, nya? A Palico just isn't meant to fly solo...
+a little, meow. 
+
+My big sis wikes you...so I guess you
+can hire me. How abowt it, nya? 
+
+A Palico just isn't meant to fly solo...
  sniff   But everything you've heard about me
 running around the Ancestral Steppe... wiping my purrthetic, tear-soaked face in
 the grass every few, miserable steps...
@@ -2414,7 +2420,9 @@ the  Palico Board   over there!  The Palico Board lets you set up
 which Palicoes you want to   deploy   and
 modify their   equipment , meow. Palicoes won't join you on the hunt unless
 you tell us to deploy, so remember to
-select   Deploy/Train   and set it up, meow. Purrhaps you could help me work towards
+select   Deploy/Train   and set it up, meow. 
+
+Purrhaps you could help me work towards
 my own noble goal. Not that I need help,
 meow.  You see, I am on the lookout for
  Sub Palicoes   who are willing to
@@ -2429,7 +2437,9 @@ DEFINITELY meowster the   Palico Board  ! And while you're at it, meowster touch
 Screen. There's no shame in reading, meow! Got it, kid? Good! Then let's make this
 the start of a beautiful, op-purr-essive
 relationship, meow.  And don't fur-get to  set me up for
-deployment   using the Palico Board, rawr!  Here, this is for you, kid.
+deployment   using the Palico Board, rawr!  
+
+Here, this is for you, kid.
 A Palico has to show his a-purr-eciation
 now and then, meow.  blush
 
@@ -2786,16 +2796,6 @@ necessities for you today.  All right, let us make with the
 transactions! I have some new, rare
 insects for you today.  All right, let us make with the
 transactions! I have some unusual wares
-in stock today. All right, let us make with the
-transactions! I have some strange new
-wares for you today.  All right, let us make with the
-transactions! I have some new items
-today that should liven up the hunt.  All right, let us make with the
-transactions! I have some new hunting
-necessities for you today.  All right, let us make with the
-transactions! I have some new, rare
-insects for you today.  All right, let us make with the
-transactions! I have some unusual wares
 in stock today. So long! May your pouch strings
 never be tight. Fine work, Hunter! Now we can trade with
 the  Moga Bee Yard . Of course, the merchant there also reaps
@@ -2823,16 +2823,10 @@ isle yourself and see. Hmm? Your Item Box is full, Hunter.
 My precious gifts cannot be yours unless
 you make space for them. All right, let us make with the
 transactions! I have some special new
-wares for you today.  All right, let us make with the
-transactions! I have some special new
 wares for you today.  Fine work, Hunter! I hear Sunsnug Isle
 has expanded.  The locals wanted to say, "Zenny thanks
 for the new op-purr-tunities!"  On that note, "purr-haps" you should
 pay Sunsnug Isle a visit.  Fine work, Hunter! The folks at the
-Wyceum were able to advance
-to the next stage of their research.  The Professor wanted to tell you,
-"Zenny thanks in the name of science!"
-Whee hee!  Fine work, Hunter! The folks at the
 Wyceum were able to advance
 to the next stage of their research.  The Professor wanted to tell you,
 "Zenny thanks in the name of science!"
@@ -3062,14 +3056,6 @@ Happy faces all around! Whee hee! Wait until you hear this, Hunter!
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Make
 with the happy faces!  Wait until you hear this, Hunter!
-  Pokke Farm's   Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Make
-with the happy faces!  Wait until you hear this, Hunter!
-  Kokoto Farm's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! You may
-start the dancing in the streets! Wait until you hear this, Hunter!
   Kokoto Farm's  Circulation
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! You may
@@ -3078,14 +3064,6 @@ start the dancing in the streets! Wait until you hear this, Hunter!
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Let
 us celebrate good times -- come on! Wait until you hear this, Hunter!
-  Moga Bee Yard's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Let
-us celebrate good times -- come on! Wait until you hear this, Hunter!
-  Dundorma Market's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Lucky me!
-Lucky all of us! Whee hee!  Wait until you hear this, Hunter!
   Dundorma Market's  Circulation
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Lucky me!
@@ -3212,10 +3190,6 @@ the island  . An even larger Sunsnug Isle means you
 can hire more Palicoes -- up to 50! Check the Villager Requests if you want
 to know all of the hairy details.
 I am counting on you! Ah! Hunter. Your timing is impeccable.  The Professor at the Wyceum just
-contacted me about some  research
-materials   he requires. With said materials, he will be able to
-increase the Wystones' effects! Check the Villager Requests to see
-all of the details. I am counting on you!  Ah! Hunter. Your timing is impeccable.  The Professor at the Wyceum just
 contacted me about some  research
 materials   he requires. With said materials, he will be able to
 increase the Wystones' effects! Check the Villager Requests to see
@@ -3532,28 +3506,50 @@ READABLE AS TEXT: yes
 HASH: dd29c05004202dcba774aaf3207e230ee003ea7e93c93b30851e20cf65cf4ee0
 ================================================================================
 
-﻿Now then, how can I help you, nya?  Remember, I'm only a meow away. Meowster, a certain Palico wished for
+﻿Now then, how can I help you, nya?  
+
+Remember, I'm only a meow away. 
+
+Meowster, a certain Palico wished for
 you to have this. Consider it a token of
-Felyne apurr-eciation, nya.  ...Oh. Many purrdons, but I can't give
+Felyne apurr-eciation, nya.  
+
+...Oh. Many purrdons, but I can't give
 you the gift unless you make space in
-your Item Box first, meow. Meowster, remember to Save by sleeping in
+your Item Box first, meow. 
+
+Meowster, remember to Save by sleeping in
 the bed before you quit the game, nya?
-Otherwise you'll be sorry, meow! If you like, you can use the Item Box
+Otherwise you'll be sorry, meow! 
+
+If you like, you can use the Item Box
 to purrform tweaks to your hairstyle,
-face paint, and so on, nya. Remember, Meowster, there's no shame in
+face paint, and so on, nya. 
+
+Remember, Meowster, there's no shame in
 stowing things in the Item Box if you
-won't be using them on the hunt, nya. Your Pouch can only hold so meowch! To change your equipment, just use the
+won't be using them on the hunt, nya. Your Pouch can only hold so meowch! 
+
+To change your equipment, just use the
 Item Box, nya. You can also easily change your Talismans
-and Decorations, meow.  Meowster, once you start to amass more
+and Decorations, meow.  
+
+Meowster, once you start to amass more
 armor, you may want to start creating
 Equipment Sets, meow.  Equipment Sets keep track of your favorite
 attire, from head to toe, so you can
-easily change back into it later, nya.  They say the world is full of Poogie
+easily change back into it later, nya.  
+
+They say the world is full of Poogie
 costumes, meow.  If you run into a wild Poogie while out
 on the hunt, don't forget to "borrow"
-its clothes, nya? I'm glad you found friends to hunt with,
+its clothes, nya? 
+
+I'm glad you found friends to hunt with,
 meowster! "Teamwork" is one of my favorite
-words. It even has "meow" in it! Um, sort of. Salutations, Meowster. May I call you
+words. It even has "meow" in it! Um, sort of. 
+
+Salutations, Meowster. May I call you
 "Meowster"? I am the  Housekeeper  in your
 Caravan's employ, nya. Just say the word, and I'll be there
 at your beck and call!
@@ -3569,7 +3565,9 @@ wax out of your ears, meow.  One! Before quitting the game, remember
 to use the  bed  to Save, meow. Two! When you return from a hunt, I highly
 recommend you use the  Item Box   to organize
 your items, meow.  Remember these two simple rules of paw,
-and you'll be one happy hunter, nya.  Meowster, the Meownster Hunters have
+and you'll be one happy hunter, nya.  
+
+Meowster, the Meownster Hunters have
 made it to Sunsnug Isle, meow. To commemorate the occasion, I took it
 upon myself to make a little arrangement,
 meow.  From now on, you can collect Meownster
@@ -3577,11 +3575,15 @@ Hunter rewards   directly from me  , nya.  You don't have to go all the way to
 Sunsnug Isle if you don't want to.
 Convenient, nya? If you're curious about the Meownster
 Hunters, please speak with the  Headwhiskress
-at Sunsnug Isle, meow. Meowster, I hear you finished the
+at Sunsnug Isle, meow. 
+
+Meowster, I hear you finished the
 Caravaneer's Challenge. My most
 hearty congratulations, nya!  You are truly most absolutely CERTAINLY
 the most truly great spectacular
-hunter -- if I may skimp on words, meow. Meowster, I hear you finished
+hunter -- if I may skimp on words, meow. 
+
+Meowster, I hear you finished
 The Master's Test! My most
 hearty congratulations, nya!  You are really, most absolutely, DEFINITELY
 the most great magnificent legendary
@@ -5997,53 +5999,83 @@ HASH: 55a6988449b72f9b0ba3621d99cf378e1c9eead220c285ae03d160b699fe0cde
 on the Sands. We get fruits, letters-in-
 bottles, cargo from ship-purr-wrecks... Sometimes we even find hunters on the
 verge of drowning. Those are the best,
-'cause we get to poke them awake.  Each day is filled with happy moments:
+'cause we get to poke them awake.  
+
+Each day is filled with happy moments:
 a meal of fresh fish, a chat with Mother
 Meow, the rippling of the waves, meow.  You and your crew are welcome to settle
-down here, Hunter. We won't object, nya.  Hunter, you can get to Sunsnug Isle from
+down here, Hunter. We won't object, nya.  
+
+Hunter, you can get to Sunsnug Isle from
 the beach over yonder, meow. That place
 is a Felyne paradise!  We're secretly plotting to fill the Isle
 with Wild Palicoes and increase the
-village numbers... Er, secret's out, nya!  For whatever reason, this village doesn't
+village numbers... Er, secret's out, nya!  
+
+For whatever reason, this village doesn't
 get many visitors, meow.  All we get are lost sailors, disheveled
 merchants, and the occasional hunter with
-poor map-reading skills. Weird, nya?  I used to think fish tasted best raw...
+poor map-reading skills. Weird, nya?  
+
+I used to think fish tasted best raw...
 until I got to try the Open-air Kitchen's
 menu. Mind blown, nya!  It turns out fish taste good sautéed,
 stewed, steamed, and fried, meow! Fish are
-purrfect no matter what. Did those four buff-looking hunters
+purrfect no matter what. 
+
+Did those four buff-looking hunters
 already hit the road, meow? We rarely get guests, so I went out to
 find some purr-oper food, but by the time
-I got back, they were gone... Mew... I hope you're not planning on abandoning
+I got back, they were gone... Mew... 
+
+I hope you're not planning on abandoning
 us, Hunter. You can come back and hang
-whenever you want, nya! The other day, the Wycoon was telling me
+whenever you want, nya! 
+
+The other day, the Wycoon was telling me
 all about rare commodities and how he gets
 a leg up on the meowcantile competition.  He and I are friends now, and that's the
-best thing in the whole world. *purr*  Purrk your ears and listen to this,
+best thing in the whole world. 
+
+*purr*  Purrk your ears and listen to this,
 Hunter. The other day I found a bottle
 with a letter inside it! It was signed, uh... Oh yeah!
 "The Hunter with a Sword & Shield
 Looking for Cheeko Sands."  I wonder if the hunter will find
-us, meow. I hope so! Night falls so quickly when I stare at
+us, meow. I hope so! 
+
+Night falls so quickly when I stare at
 the waves. Maybe the sun got pulled into
-the undertow! Nyeh heh. Hunter, did you know that Whitescruff's
+the undertow! Nyeh heh. 
+
+Hunter, did you know that Whitescruff's
 pop was one of the bravest of Palicoes?
 He purrtected the village all by himself. Whitescruff needs to meowster up a little
 more courage if he's going to live up to
-that medal his pop left to him, meow.  Well, Whitescruff said he's finally
+that medal his pop left to him, meow.  
+
+Well, Whitescruff said he's finally
 going to "cat up" and face that meownster.  Look after him, will you, Hunter? What he really needs is someone like his
-father to remind him what courage is, nya. Hunter, thanks for sticking by Whitescruff
+father to remind him what courage is, nya. 
+
+Hunter, thanks for sticking by Whitescruff
 even when he was being a furr-aidy cat.  He wants you to keep raising your HR so he
-can look to you for ins-purr-ation again.  While you're out purrsuing meownsters,
+can look to you for ins-purr-ation again.  
+
+While you're out purrsuing meownsters,
 I sometimes crawl into the Wycoon's
 dresser, nya. Always fixes a dull day! He doesn't mind, beclaws we're
-friends now. Thanks for being there for the
+friends now. 
+
+Thanks for being there for the
 Headwhiskress, nya.  I made a little arrangement with the
 Guildmarm for you as meow way of
 saying thanks.  Now you can go on a   Harvest Tour   in
 this area, meow!  There are two Quests:
   " Harvest Tour: Primal Forest "...  And   " Harvest Tour: Frozen Seaway ."  I hope that helps you out, beclaws
-you really deserve it. *purr*  Mother Meow told me you completed some
+you really deserve it. 
+
+*purr*  Mother Meow told me you completed some
 kind of difficult Quest and got a really
 im-purr-essive medal. Congrats, meow! How'd you like some buried treasure as
 a thank-you gift?  ...Me too! But there isn't any, nya.
@@ -7169,37 +7201,69 @@ HASH: 66a22232daf7c1c66f563a817b828c8eca1202c1d090f6916f41b8a785e9cd86
 
 ﻿*gasp* Stranger! H...hi there... Welcome to C-Cathar.  If you're looking for the Elder, he's
 down that way. He's the grown-up humming
-the happy song.  ...... *gasp* Stranger! H...hi there... Welcome to C-Cathar.  The Grand Guru told me I should always
-greet people when I see them.  You know, you're not supposed to go
+the happy song.  ...... 
+
+*gasp* Stranger! H...hi there... Welcome to C-Cathar.  The Grand Guru told me I should always
+greet people when I see them.  
+
+You know, you're not supposed to go
 to the mountain.  It's a really special place and you're
-NOT allowed to play there. The Grand Guru made me this Windwheel,
+NOT allowed to play there. 
+
+The Grand Guru made me this Windwheel,
 and it's really special. Even a light
-breeze makes it spin.  H-hi there. I think the Elder is looking
+breeze makes it spin.  
+
+H-hi there. I think the Elder is looking
 for you, because he keeps mumbling,
-"Is the hunter back? Is the hunter back?"  The Grand Guru made me this Windwheel,
+"Is the hunter back? Is the hunter back?"  
+
+The Grand Guru made me this Windwheel,
 and it's really special. Even a light
-breeze makes it spin.  Hunter, everybody says you flew here,
-but that's not true, is it? Birds can fly, but not whales!  The Grand Guru knows EVERYTHING.
+breeze makes it spin.  
+
+Hunter, everybody says you flew here,
+but that's not true, is it? Birds can fly, but not whales!  
+
+The Grand Guru knows EVERYTHING.
 You should learn from him, too.  He knows all about the mountain and how
 to predict the weather and he teaches us
 all kinds of amazing things. And he tells the best fairy tales of
-ANYONE I know. The Grand Guru helped me make medicine
+ANYONE I know. 
+
+The Grand Guru helped me make medicine
 out of Mistentoe.  He said mine turned out really good,
-so I gave him a big hug. Did you know that if a Remobra
+so I gave him a big hug. 
+
+Did you know that if a Remobra
 hears a really loud noise it'll
 fall to the ground?  I guess monsters get scared, too.
-Do you get scared?  Ioprey are bright red and jump
+Do you get scared?  
+
+Ioprey are bright red and jump
 around -- boing, boing! And they spit
-poison too, blegh! You should be careful.  The Konchu is a really funny one.
+poison too, blegh! You should be careful.  
+
+The Konchu is a really funny one.
 When you poke it, it curls up into a
 ball and rolls around all over the place.  ...Oh! P-please don't tell anyone that I
-poked a Konchu.  The Grand Guru is in the Shrine.
-He got a really important letter.  Do you ever get letters? ...Oh, wow!  Oh! H-hi there. The Grand Guru wants
+poked a Konchu.  
+
+The Grand Guru is in the Shrine.
+He got a really important letter.  Do you ever get letters? ...Oh, wow!  
+
+Oh! H-hi there. The Grand Guru wants
 to see you. He's in the Shrine.  But he was making a really scary face
-and I'm soooooo worried...  Hunter, where do you train to get
-stronger? The Gathering Hall? Wow! Can I come there next time?  Is it true that strangers aren't
+and I'm soooooo worried...  
+
+Hunter, where do you train to get
+stronger? The Gathering Hall? Wow! Can I come there next time?  
+
+Is it true that strangers aren't
 strangers anymore once you go hunting
-with them? That's really great!  Is it true you finished the hardest
+with them? That's really great!  
+
+Is it true you finished the hardest
 Cara...Carana...Cavanar...the toughest
 hat-guy challenge? That must have been soooooo hard!
 Congratulations!  Now you're almost as nice as the
@@ -8173,34 +8237,56 @@ READABLE AS TEXT: yes
 HASH: a895abe9656e7300125472c8d3382784cf766e01c3b5e1003912325e1a2e7ba9
 ================================================================================
 
-﻿How may I help you? May your every hunt be prosperous.  dmy If you would like to change your
+﻿How may I help you? 
+
+May your every hunt be prosperous.  
+
+dmy If you would like to change your
 Hunters for Hire settings or your
-message, please don't hesitate to ask. The greater your achievements, the more
+message, please don't hesitate to ask. 
+
+The greater your achievements, the more
 options that will be added to your
 Hunters for Hire Preferences.  This is a good reason to actively go
-back and complete any unfinished Quests. Use Hunters for Hire Preferences to
+back and complete any unfinished Quests. 
+
+Use Hunters for Hire Preferences to
 zero in on a specific Quest Rank,
-destination, or target. If you're after specific items or
+destination, or target. 
+
+If you're after specific items or
 materials, then think carefully about
-your Preferences. If you still haven't activated
+your Preferences. 
+
+If you still haven't activated
 StreetPass for this software,
 might I recommend it?  I don't know what "software" means
 exactly, but I think that you can use
 StreetPass to trade Guild Cards. Any hunters you exchange StreetPass data
 with will come visit the Gathering Hall
-and help you as Hunters for Hire.  If you notice a nearby hunter is
+and help you as Hunters for Hire.  
+
+If you notice a nearby hunter is
 looking for Quest members, please do
 consider helping out. The whole world is eager to meet you,
-after all. May your every hunt be
-prosperous. You don't have to actively trade
+after all. 
+
+May your every hunt be
+prosperous. 
+
+You don't have to actively trade
 Guild Cards. You can also receive
 them using StreetPass. Talk to the Courier if you haven't
 set up StreetPass yet. He's the
-dashing Felyne in the red cap. I live for my job, which is to watch
+dashing Felyne in the red cap. 
+
+I live for my job, which is to watch
 hunters gather together and share the
 trials and tribulations of the hunt. Good hunters work together, learn
 together, get hurt together, and go on
-their next hunt stronger than before.  Just working the Gong is its own reward.  Greetings, Hunter. It's a pleasure to
+their next hunt stronger than before.  Just working the Gong is its own reward.  
+
+Greetings, Hunter. It's a pleasure to
 make your acquaintance. I'm the   Gong Lady . The crash of this Gong is a rallying cry
 for hunters around the world. Some even
 say it can be heard a few worlds over. If you ring the Gong while using
@@ -8221,7 +8307,9 @@ you can ONLY get from Hunters for Hire. So if you see a Hunter for Hire, say
 hello and give that hard worker a Quest! If you have any other questions, take
 a look at   Help   in the upper left of
 the Touch Screen. Right then. Have a very pleasant day,
-and may your every hunt be prosperous.  Welcome back, Hunter.
+and may your every hunt be prosperous.  
+
+Welcome back, Hunter.
 My heartfelt congratulations on taking
 down Dalamadur.  ...Oh, gosh. That sounded awfully
 businesslike, didn't it?  Let me try that again with a little
@@ -8242,77 +8330,117 @@ HASH: 47db818b37f6421c32657e6ad667063c128212f5d2d06786c2b38fd8400a587d
 
 ﻿Hi there are you here to make your big
 hunter debut or something? Because I am.
-Gets your chest pumping, doesn't it?  You're going to need to make sure you're
+Gets your chest pumping, doesn't it?  
+
+You're going to need to make sure you're
 prepared for all your hunts from now on
-because that's just common sense.  Oh and you should take my advice which is
+because that's just common sense.  
+
+Oh and you should take my advice which is
 to gather lots of different materials
 while you're out there. That way you'll have them when you need
 them which could be like basically
-anytime really.  Do monsters like the Nerscylla ever
+anytime really.  
+
+Do monsters like the Nerscylla ever
 hit you with abnormal statuses and wreck
-your day because they SO wreck mine. Whenever you hunt a monster for the
+your day because they SO wreck mine. 
+
+Whenever you hunt a monster for the
 first time you should make sure to bring
-lots of different items with you.  Has a Zamite in the Frozen Seaway ever
+lots of different items with you.  
+
+Has a Zamite in the Frozen Seaway ever
 bitten you and wrecked your day because
 it totally wouldn't let go? Yeah.  You should try evading a lot because
 the Zamite hate that and will
-probably let go. I haven't run into them or anything, but
+probably let go. 
+
+I haven't run into them or anything, but
 I hear these like really berserk monsters
-have been sighted or something.  Don't get careless just because a
+have been sighted or something.  
+
+Don't get careless just because a
 monster looks like one you've already
-hunted because it's just not smart. Have you noticed those quests marked
+hunted because it's just not smart. 
+
+Have you noticed those quests marked
 "Advanced"? Because I have.  As you can probably guess those are
 super hard Quests that are too hard for
 average hunters like maybe me.  They only show up if you're lucky so I'd
-sure like to take a crack at one.  Oh are you a High-rank Hunter now?
+sure like to take a crack at one.  
+
+Oh are you a High-rank Hunter now?
 Because congratulations and stuff on
 working your butt off to be awesome.  The monsters that turn up on High-rank
 Quests are like a billion times as
 powerful as the Low-rank ones.  If you go in unprepared then you'll be
 rolling back to base camp in no time flat.
-Think of these Quests as a fresh start. It sounds like a lot of hunters have been
+Think of these Quests as a fresh start. 
+
+It sounds like a lot of hunters have been
 bumping into nasty monsters during their
 Harvest Tours lately.  If you're feeling uneasy about a situation
 then be ready to haul it out of there
 as soon as danger rears its ugly face. Or you can stand and fight if you think
 you've got what it takes which of course
-is totally fine and stuff. If you want to take on two monsters at
+is totally fine and stuff. 
+
+If you want to take on two monsters at
 once then you totally need Dung Bombs
 if you ask me. A monster might run away if you hit it
 with one, which gives you a little extra
-breathing room. Hunting successive monsters can take a
+breathing room. 
+
+Hunting successive monsters can take a
 lot out of a hunter and I'm a hunter so
 yeah I'm pretty tired. How about you?  There's so much to think about like
 whether your weapon is a good fit, what
-items to take, what items to keep...  Have you heard because apparently there
+items to take, what items to keep...  
+
+Have you heard because apparently there
 has been a surge of dangerous-monster-
 subspecies sightings lately. Subspecies usually have different
 weaknesses and move differently than
 their normal counterparts. You should probably watch them calmly
 first because how else are you going to
-learn what they're going to do? Wow you are really amazing and I don't
+learn what they're going to do? 
+
+Wow you are really amazing and I don't
 even know how to keep up with all the
 amazing stuff you do and it's stressful. You should totally keep at it because
 with your skills I bet you could hunt
-pretty much any monster alive.  Regular hunters aren't allowed to even
+pretty much any monster alive.  
+
+Regular hunters aren't allowed to even
 look at the details for Quests ranked
 seven-star and up, let alone try them. I'm guessing that's because the Guild
 doesn't want vicious monsters murdering
-its beginners but maybe that's just me. Hi there and oh hey I hear you took out
+its beginners but maybe that's just me. 
+
+Hi there and oh hey I hear you took out
 Dalamadur which is pretty impressive
 actually isn't it 'cause I'd say so. I didn't think any hunter in the world
 could take down that elder dragon but
 you're a hunter so I was probably wrong. Other hunters should look to you for
 inspiration which probably sounds like
-butt-kissing but come on! Dalamadur?! Hi there, Dalamadur Slayer.
+butt-kissing but come on! 
+
+Dalamadur?! Hi there, Dalamadur Slayer.
 How did it feel to demolish that
 Dalamadur 'cause I bet it was nice.  I hear there are even harder monsters
 out there to hunt but you could probably
-do it because come on! Dalamadur?! If you want to increase your HR you'll
+do it because come on! 
+
+Dalamadur?! 
+
+If you want to increase your HR you'll
 just have to hunt and hunt and when
 you're done with that? Hunt. But raising your HR gives you access
 to new more challenging Quests or at
-least that's what I hear. Have you noticed those quests marked
+least that's what I hear. 
+
+Have you noticed those quests marked
 "Advanced"? Because I have.  As you can probably guess those are
 super hard Quests that are too hard for
 average hunters like maybe me.  They only show up if you're lucky so I'd
@@ -8906,10 +9034,14 @@ behind the ears than that and survived!  The Commander was the one who dove into
 the water to pull you out. Ker-splash!  ...What? You don't remember?
 Omiwrog! That's terrible!  If I were the one who saved you and you
 forgot, I would totally trash your
-Guild Card and unfriend you. Lame. So, what do you think of my weapon?
+Guild Card and unfriend you. Lame. 
+
+So, what do you think of my weapon?
 I'm totally rockin' my technical skills
 with the Insect Glaive now. Only problem is, I hate bugs.
-...Yeah, kind of a deal-breaker, huh? Huh? Wassup? You're going hunting with
+...Yeah, kind of a deal-breaker, huh? 
+
+Huh? Wassup? You're going hunting with
 your friends? Groovios!  Me and the Commander and Lancer and
 Gunner group hunt all the jaggin' time. And if somebody gets hurt, I break out the
 Lifepowders on the quick and juice 'em back
@@ -10705,16 +10837,6 @@ necessities for you today.  All right, let us make with the
 transactions! I have some new, rare
 insects for you today.  All right, let us make with the
 transactions! I have some unusual wares
-in stock today. All right, let us make with the
-transactions! I have some strange new
-wares for you today.  All right, let us make with the
-transactions! I have some new items
-today that should liven up the hunt.  All right, let us make with the
-transactions! I have some new hunting
-necessities for you today.  All right, let us make with the
-transactions! I have some new, rare
-insects for you today.  All right, let us make with the
-transactions! I have some unusual wares
 in stock today. So long! May your pouch strings
 never be tight. Fine work, Hunter! Now we can trade with
 the  Moga Bee Yard . Of course, the merchant there also reaps
@@ -10746,10 +10868,6 @@ wares for you today.  Fine work, Hunter! I hear Sunsnug Isle
 has expanded.  The locals wanted to say, "Zenny thanks
 for the new op-purr-tunities!"  On that note, "purr-haps" you should
 pay Sunsnug Isle a visit.  Fine work, Hunter! The folks at the
-Wyceum were able to advance
-to the next stage of their research.  The Professor wanted to tell you,
-"Zenny thanks in the name of science!"
-Whee hee!  Fine work, Hunter! The folks at the
 Wyceum were able to advance
 to the next stage of their research.  The Professor wanted to tell you,
 "Zenny thanks in the name of science!"
@@ -10992,10 +11110,6 @@ Zenny thanks, zenny thanks. Ah! Hunter. Your timing is impeccable.  The Professo
 contacted me about some  research
 materials   he requires. With said materials, he will be able to
 increase the Wystones' effects! Check the Villager Requests to see
-all of the details. I am counting on you!  Ah! Hunter. Your timing is impeccable.  The Professor at the Wyceum just
-contacted me about some  research
-materials   he requires. With said materials, he will be able to
-increase the Wystones' effects! Check the Villager Requests to see
 all of the details. I am counting on you!  Come, Hunter! Behold the eye-watering
 spectacle that is the NEW Wyporium! Thanks to you, I have more carts with
 which to conduct the wheeling and the
@@ -11009,14 +11123,6 @@ Happy faces all around! Whee hee! Wait until you hear this, Hunter!
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Make
 with the happy faces!  Wait until you hear this, Hunter!
-  Pokke Farm's   Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Make
-with the happy faces!  Wait until you hear this, Hunter!
-  Kokoto Farm's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! You may
-start the dancing in the streets! Wait until you hear this, Hunter!
   Kokoto Farm's  Circulation
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! You may
@@ -11025,14 +11131,6 @@ start the dancing in the streets! Wait until you hear this, Hunter!
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Let
 us celebrate good times -- come on! Wait until you hear this, Hunter!
-  Moga Bee Yard's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Let
-us celebrate good times -- come on! Wait until you hear this, Hunter!
-  Dundorma Market's  Circulation
-has increased! Now I can acquire many more wares with a
-single transaction. Lucky you! Lucky me!
-Lucky all of us! Whee hee!  Wait until you hear this, Hunter!
   Dundorma Market's  Circulation
 has increased! Now I can acquire many more wares with a
 single transaction. Lucky you! Lucky me!
@@ -12758,91 +12856,39 @@ READABLE AS TEXT: yes
 HASH: 0bf6a3493e8a912d486b548f400a9602e4a6424ab6bd7446d17482a31350f069
 ================================================================================
 
-﻿Let's do some deals, Hunter.  Catch you later, Hunter.  Everythin' half-off, Hunter!  Don't forget to invest in some items
+﻿Let's do some deals, Hunter.  
+
+Catch you later, Hunter.  
+
+Everythin' half-off, Hunter!  
+
+Don't forget to invest in some items
 before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
+you, I recommend some Cool Drinks. Ho ho.  
+
+What's goin' on, Hunter? Huntin' with
 your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  Don't forget to invest in some items
-before the hunt. For a cool Hunter like
-you, I recommend some Cool Drinks. Ho ho.  What's goin' on, Hunter? Huntin' with
-your friends? Alright. Why not invest
-in some items before you go?  What's goin' on, Hunter? First time to
+in some items before you go?  
+
+What's goin' on, Hunter? First time to
 my store? This here is the   Market  .
 I got the items you need for huntin' beasts!  Let me know if anything catches your eye.
 And check out my  Monster Info
-books  . Knowledge is a weapon, too! What's goin' on, Hunter? Why do I look
+books  . Knowledge is a weapon, too! 
+
+What's goin' on, Hunter? Why do I look
 so happy? Ho ho. I finally got the
   Monster Info book  I ordered! You like Carapaceons, you'll love this. And
 more deliveries to come! You've got to
-expand your mind AND your muscles, Hunter! What's goin' on, Hunter?
+expand your mind AND your muscles, Hunter! 
+
+What's goin' on, Hunter?
 You stayin' safe out there?  I heard you ran into some trouble, so
 I ordered a little something -- the
 Seregios Monster Info book! Read books, get wisdom, kill monsters,
-you know?  What's goin' on, Hunter?
+you know?  
+
+What's goin' on, Hunter?
 I just wanna say, respect.
 Respect for hunting that Seregios...  ...And respect for helpin' out the town.
 It made me think, I've got to do my part
@@ -12854,12 +12900,16 @@ to the town's restoration fund.
 All I need is someone to do the hunt... Know anyone? ...Ho ho! Just kidding.
 I want YOU, of course! I already spoke to the Guildmarm.
 The Quest is called   " Black Rock Down ."
-Do it for the town, Hunter!  What's goin' on, Hunter?
+Do it for the town, Hunter!  
+
+What's goin' on, Hunter?
 Maximum respect for getting
 those Black Gravios materials. The merchant bought 'em for a high
 price, so I was able to donate a
 lot to the restoration fund.  Now we're both heroes, you know?
-Ho ho ho!  What's goin' on, Hunter?
+Ho ho ho!  
+
+What's goin' on, Hunter?
 You finished The Master's Test?! Hunter, don't surprise me like that!
 You're goin' to make me choke on my apple.
 For real though, respect. Maximum respect.
@@ -12877,78 +12927,6 @@ HASH: 73df262f0c567079e2f4e55c7bb87b70d2413f6ca2fade16df5dd8df54f3d094
 
 ﻿Have a look! I'm sure you'll
 find something you like. Come back soon! How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
-for the hunt with your friends?
-You won't find a better deal!  Hiya, Hunter.
-Welcome to the Dundorma Armory! Have a look around. We're stocked up
-with all kinds of top-of-the-line goods. How about some new equipment
 for the hunt with your friends?
 You won't find a better deal!  Hiya, Hunter.
 Welcome to the Dundorma Armory! Have a look around. We're stocked up
@@ -13425,104 +13403,6 @@ Yes, that's the one. ...No-no, the other one. Why did you
 hand me THIS one? Because I said so?
 ...Ah, so I did. Very good. Hunting with your cartners in prime?
 Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
-name of friendship...and SCIENCE! Would you grab that Herb for me there?
-Yes, that's the one. ...No-no, the other one. Why did you
-hand me THIS one? Because I said so?
-...Ah, so I did. Very good. Hunting with your cartners in prime?
-Don't forget some Dust of Life, in the
 name of friendship...and SCIENCE! Ah, master hunter! There you are!
 Just the person I wanted to see.
 ...Hm? Er, yes.  Behold! The new and spectacular
@@ -13584,63 +13464,6 @@ HASH: 9e3646d6a77da4dd38d6c4b10be6703af5576a8b3a3099d5a4ce562dddd84d3a
 No sign of the blues, and it certainly
 ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
 and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  The greenery looks super today.
-No sign of the blues, and it certainly
-ain't yeller! Ha ha. Color humor.  Anyway, I hope you have a super day, too,
-and don't turn purple or anything.  Oh, look at you! You have friends!
-That's just super. Don't forget to pick up some Dust of
-Life. It's pretty much MADE for group
-hunts, it certainly is!  Oh, look at you! You have friends!
 That's just super. Don't forget to pick up some Dust of
 Life. It's pretty much MADE for group
 hunts, it certainly is!  Oh, well hello! Welcome to the
@@ -13740,36 +13563,22 @@ HASH: 385548022f0ea19e5a6c59ca2273582bdec44736a90dee4f8ce8c60d7b34319c
 
 ﻿Halt! This is the hall of
 His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Halt! This is the hall of
-His Immenseness!  Only those of sufficient rank
-may enter. Turn back around!  Ahead lies the hall of His
+may enter. Turn back around!  
+
+Ahead lies the hall of His
 Immenseness. Do not forget your
-manners while inside!  Ahead lies the hall of His
-Immenseness. Do not forget your
-manners while inside!  Ahead lies the hall of His
-Immenseness. Do not forget your
-manners while inside!  Ahead lies the hall of His
-Immenseness. Do not forget your
-manners while inside!  Ahead lies the hall of His
+manners while inside!  
+
+Ahead lies the hall of His
 Immenseness. I have heard word of
 your good deeds. You may pass. Do not forget to pay
-your respects to His Greatness.  Departing on a Quest with your
+your respects to His Greatness.  
+
+Departing on a Quest with your
 comrades? I bid you all good
-luck in your endeavor.  *Grumble grumble*
+luck in your endeavor.  
+
+*Grumble grumble*
 This could not have come at a worse
 time... Oh! Good day, Hunter. I apologize if
 I seemed withdrawn. I was lost in
@@ -13791,7 +13600,9 @@ magnificence. I trust you will share tales of
 your encounter with the beast
 upon your return. I have filed a request with the
 Guildmarm. It's called
- " Hunting Vicariously ."  I am in your debt, Hunter.  Well? Did you see it?
+ " Hunting Vicariously ."  I am in your debt, Hunter.  
+
+Well? Did you see it?
 The Yian Garuga?  ...You did! Magnificent!
 Please, tell me, what was
 it like? ...Yes...Mmm-hmm...
@@ -13800,7 +13611,9 @@ it like? ...Yes...Mmm-hmm...
 ever imagined! I hope that one day I'm
 lucky enough to see the beast for myself! If you happen to encounter the beast
 again, you will tell me all about it,
-won't you? Magnificent work, Hunter!
+won't you? 
+
+Magnificent work, Hunter!
 No doubt tales of your exploits
 will be told all over the land! I trust you will continue to help
 us protect this city in its time
@@ -13818,36 +13631,6 @@ HASH: f6f08cc5270cad2bddc93c83f83f2659807a6106ef2cdc7abd5f7e301c0c61e0
 ================================================================================
 
 ﻿The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
-from which to govern Dundorma... but also as a hub from which proud
-hunters may embark on Quests.  Are you a proud hunter? If so, then
-you must keep at it day after day.  The Elder Hall serves as a place
 from which to govern Dundorma... but also as a hub from which proud
 hunters may embark on Quests.  Are you a proud hunter? If so, then
 you must keep at it day after day.  The Elder Hall serves as a place
@@ -14237,24 +14020,6 @@ get this Urgent Quest prepared in the
 meantime.  Good day, Hunter.
 This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
 for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
-This is the G-rank Quest Counter. Visit the Gathering Hall in Val Habar
-for High-rank and Low-rank Quests.  Good day, Hunter.
 You must be the one that was recently
 cleared for G-rank Quests, correct? I am the G-rank Questatrix. I will
 provide you with...yes, that's right,
@@ -14443,75 +14208,53 @@ READABLE AS TEXT: yes
 HASH: 6befe9c683738ee77b316b59f7d3f6d239fb1ae6e12090b5f3df9eaac4134aa3
 ================================================================================
 
-﻿Let me know if you need anything. Thank you, Hunter. Come back soon.  As a sign of appreciation to
+﻿Let me know if you need anything. 
+
+Thank you, Hunter. Come back soon.  
+
+As a sign of appreciation to
 hard-working hunters such as yourself,
-all items are half price today. Welcome, Hunter.
+all items are half price today. 
+
+Welcome, Hunter.
 A word of advice: Only bring items that
 are absolutely necessary on a Quest. It would be a shame if you found rare
 materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter.
-A word of advice: Only bring items that
-are absolutely necessary on a Quest. It would be a shame if you found rare
-materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter. Is this your first
+for them in your Item Pouch. 
+
+Welcome, Hunter. Is this your first
 visit to the Elder Hall Guild Store?  Much like other stores, we sell items
 to help hunters.  I also carry rare Monster Info
 books that you might find
 useful.  I get new stock regularly, so stop
-by and have a look from time to time!  Welcome, Hunter.
-A word of advice: Only bring items that
-are absolutely necessary on a Quest. It would be a shame if you found rare
-materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter. Is this your first
-visit to the Elder Hall Guild Store?  Much like other stores, we sell items
-to help hunters.  I also carry rare Monster Info
-books that you might find
-useful.  I get new stock regularly, so stop
-by and have a look from time to time!  Welcome, Hunter.
-A word of advice: Only bring items that
-are absolutely necessary on a Quest. It would be a shame if you found rare
-materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter. Is this your first
-visit to the Elder Hall Guild Store?  Much like other stores, we sell items
-to help hunters.  I also carry rare Monster Info
-books that you might find
-useful.  I get new stock regularly, so stop
-by and have a look from time to time!  Welcome, Hunter.
-A word of advice: Only bring items that
-are absolutely necessary on a Quest. It would be a shame if you found rare
-materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter. Is this your first
-visit to the Elder Hall Guild Store?  Much like other stores, we sell items
-to help hunters.  I also carry rare Monster Info
-books that you might find
-useful.  I get new stock regularly, so stop
-by and have a look from time to time!  Welcome, Hunter.
-A word of advice: Only bring items that
-are absolutely necessary on a Quest. It would be a shame if you found rare
-materials but didn't have any room
-for them in your Item Pouch. Welcome, Hunter. Is this your first
-visit to the Elder Hall Guild Store?  Much like other stores, we sell items
-to help hunters.  I also carry rare Monster Info
-books that you might find
-useful.  I get new stock regularly, so stop
-by and have a look from time to time!  "Welcome, Hunter.
+by and have a look from time to time!  
+
+"Welcome, Hunter.
 We just got some new Monster
 Info books in stock. Personally, I'd recommend ""Neopterons.""
 Vol 2 and Vol 3 are especially popular
-as gifts!" Welcome, Hunter.
+as gifts!" 
+
+Welcome, Hunter.
 We just had a few new Monster
 Info books delivered.  I found "Temnocerans" to be particularly
 interesting. Go ahead and give it
-a flip through!  Welcome, Hunter.
+a flip through!  
+
+Welcome, Hunter.
 We've got a new Monster Info
 book in stock today: "Elder Dragons"! Essential for any hunter who
 hopes to face one of the beasts
-and come back alive. Welcome, Hunter. I've got a very
+and come back alive. 
+
+Welcome, Hunter. I've got a very
 rare Monster Info book in stock
 today. What's it about? Well, let's just say
 that if you're going to face Gogmazios,
 this book is essential. Make sure to study up before you
-put your life on the line out there! There's a book I want to get
+put your life on the line out there! 
+
+There's a book I want to get
 in stock called "Heroes."  It's full of stories about all the
 hunters who encountered Gogmazios.
 Maybe your name is in it, too!
@@ -14531,39 +14274,6 @@ HASH: 27da6c5bbed2749737d382b1ff2154f5b146ac1d5a93d296a1f4717c0074c0ed
 The show will start once you're ready.  Should I tell the Diva to begin?  The Diva's still singing.
 Do you want to stop the performance?  Do you want to change your request? If you leave the Assembly, the performance
 will stop. Do you want to leave? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
-Many come to escape the purressures
-of everyday life. Why not furrget about hunting
-and rest a while? The Assembly is a place for relaxation.
 Many come to escape the purressures
 of everyday life. Why not furrget about hunting
 and rest a while? Nya, nya nyaaaj&
@@ -14766,46 +14476,6 @@ Guild Cards with them. Welcome to the G-rank Arena desk,
 where we serve REAL challenges to
 REAL hunters, 24-7. And once you've hunted yourself silly,
 why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
-voice will melt your pains away.  Welcome to the G-rank Arena desk,
-where we serve REAL challenges to
-REAL hunters, 24-7. And once you've hunted yourself silly,
-why not rest at the Assembly? The Diva's
 voice will melt your pains away.  Congrats! I heard you're the one
 who crushed that Ukanlos Quest.
 You know what that means?  It means the Guild has given you
@@ -14919,100 +14589,13 @@ there's a town somewhere with
 springs of naturally hot water.  They say Dundorma's got it all,
 but it don't got one of them! Yar, what I wouldn't give to take
 a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
+my back off at work all day! 
+
+Arr, headin' off on the hunt?
 Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, ye hear? Rumor has it
-there's a town somewhere with
-springs of naturally hot water.  They say Dundorma's got it all,
-but it don't got one of them! Yar, what I wouldn't give to take
-a dip in a hot spring after sweating
-my back off at work all day! Arr, headin' off on the hunt?
-Well don't forget about yer mates.  Learnin' how to hunt with mates is
-what makes you a REAL hunter, arr! Arr, Hunter! Gerover here.
+what makes you a REAL hunter, arr! 
+
+Arr, Hunter! Gerover here.
 Ye gotta help yer old mate!  I was transporting some foodstuffs --
 fish, meat, fruit, and the like -- on
 me old sandskiff, and holy heaven bread!  The skiff breaks down right in the
@@ -15025,7 +14608,9 @@ around the area! Arr, bloomin' thing must be
 sniffin' out me wares!  So, whatddaya say? Think ye can protect
 me stuff from the Hermitaur while I work
 on getting the sandskiff repaired? I've filed a request with the glasses
-lady called   " Hermit Grab ."  Yar, show me what yer made of, Hunter!  Arr, Hunter! A hearty thanks for
+lady called   " Hermit Grab ."  Yar, show me what yer made of, Hunter!  
+
+Arr, Hunter! A hearty thanks for
 dealin' with that Hermitaur! I'm all through with the sandskiff repairs.
 And thanks to you I still have some wares to
 load onto it! But, arr, would ye believe it! I was just about to dig them up when a
@@ -15033,7 +14618,9 @@ load onto it! But, arr, would ye believe it! I was just about to dig them up whe
 showed up all hungry-lookin'!  Bloomin' monsters. Now I can't dig up
 anything! What do ye think, Hunter?
 Can ye lend yer old mate another hand?  I've filed a request with the glasses
-lady called   " Dinner Guests ."  Yar, show me what yer made of, Hunter!  Yar har har! Good news!
+lady called   " Dinner Guests ."  Yar, show me what yer made of, Hunter!  Yar har har! 
+
+Good news!
 I got my goods delivered safe and sound.
 All thanks to me old mate! A hearty thanks!  Yar, and there's somethin' I've been meaning
 to say... I really admire the way you only
@@ -15042,7 +14629,9 @@ folks from the Val Habar caravans
 say that you... Arr, I thought that was your thing, the whole
 "clad in nothing but yer skivvies" idea.  ...I see. Well...this is awkward. A hearty
 apology! Anyway, underwear or not, yer
-still a hero to me! Hunter! Is it true what they say?
+still a hero to me! 
+
+Hunter! Is it true what they say?
 Did you really finish
 The Master's Test?  Holy heaven bread! Incredible! Look
 at me, I'm getting all teary-eyed.  See that? That ain't my nose runnin',
@@ -15064,116 +14653,36 @@ attacks on this town... Sometimes
 it feels like a real bummer...  But when I think of the countless
 times all the townspeople have
 come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
+That's not weird, right? 
+
+Hey, man!
 Hunting with friends today?
 Awesome!  Make sure you're all prepped
 before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  Hey, man. There are so many monster
-attacks on this town... Sometimes
-it feels like a real bummer...  But when I think of the countless
-times all the townspeople have
-come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
-Hunting with friends today?
-Awesome!  Make sure you're all prepped
-before you head out. I'll be
-rooting for you from here!  You know, man, just being here reminds
+rooting for you from here!  
+
+You know, man, just being here reminds
 me of the times I stayed up night and
 day, working to rebuild the town.  Sometimes I wish I could experience
 times like that again...minus the monster
 attacks, of course. Those times really made me realize how
 important universal cooperation is. Mm, I'm
-going to ponder that thought a bit more. Hey, man. There are so many monster
+going to ponder that thought a bit more. 
+
+Hey, man. There are so many monster
 attacks on this town... Sometimes
 it feels like a real bummer...  But when I think of the countless
 times all the townspeople have
 come together to defend this place...  I get all warm and fuzzy inside.
-That's not weird, right? Hey, man!
+That's not weird, right? 
+
+Hey, man!
 Hunting with friends today?
 Awesome!  Make sure you're all prepped
 before you head out. I'll be
-rooting for you from here!  Hey, man!
+rooting for you from here!  
+
+Hey, man!
 Things have been feelin' kinda heavy
 lately, don't you think? Speaking of which, you know the dude
 transporting his foodstuffs with the
@@ -15187,11 +14696,15 @@ It wasn't long before a swarm of
 the most DANGEROUS monsters out there,
 but they are NOT into universal cooperation.  Maybe you can   teach them a lesson
 for us? I've filed a request called
- " Bnahabra Buffet " with your Guildmarm.  Please! I want to dig in peace! Hey, man. Thanks a lot for handling
+ " Bnahabra Buffet " with your Guildmarm.  Please! I want to dig in peace! 
+
+Hey, man. Thanks a lot for handling
 those pesky Bnahabra. Now we can
 finally dig in peace.  And we're one step closer to making this
 town a better place! ...Is what the Master
-of Defense would probably say, heh heh. Hey, man! Welcome back!
+of Defense would probably say, heh heh. 
+
+Hey, man! Welcome back!
 You really did it!  I bet when the Master of Defense
 hears you cleared his test, he'll
 be ecstatic! He'll probably try to keep his emotions
@@ -15221,55 +14734,6 @@ might! ...To cheer you on from my comfy
 seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
 up to large monsters the way you do.  Makes me wonder where courage comes from.
 Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
 thin air? ...Such a mystery. So much cloud cover...
 ...Too tired...to stand. Whew, I need some sunshine to perk
 me up. Maybe I was a plant in a
@@ -15277,35 +14741,6 @@ past life...?  Do you like your work, Hunter?  It must take a lot of guts to sta
 up to large monsters the way you do.  Makes me wonder where courage comes from.
 Maybe it's inherent? Perhaps it comes from
 thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Do you like your work, Hunter?  It must take a lot of guts to stand
-up to large monsters the way you do.  Makes me wonder where courage comes from.
-Maybe it's inherent? Perhaps it comes from
-thin air? ...Such a mystery. Hello again, Hunter.
-Getting ready for a hunt with some
-of your pals? Let me help out! I'm gonna use all my
-might! ...To cheer you on from my comfy
-seat right here.  Hello again, Hunter.
 Getting ready for a hunt with some
 of your pals? Let me help out! I'm gonna use all my
 might! ...To cheer you on from my comfy
@@ -15360,118 +14795,20 @@ HASH: c4f0e6e5f84484910ed4e30fdc790b775c5975a065abe8206e24aa785b21fb87
 ﻿Did you know that you can fish in the
 river that runs through the town? Do you like fishing?
 What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
+And fish! Tee-hee.  
+
+Hello! How's it going?
 How are you?
 Going out on a Quest? You're a rare one! I can't say I know too
 many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
+questing right after defending the city.  
+
+What's that you say? You want to
 stop for a chat? Oh, you're off to
 hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Did you know that you can fish in the
-river that runs through the town? Do you like fishing?
-What's your favorite fish? Oh, me? I LOOOOVVE fishing!
-And fish! Tee-hee.  Hello! How's it going?
-How are you?
-Going out on a Quest? You're a rare one! I can't say I know too
-many hunters that are all gung-ho about
-questing right after defending the city.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  What's that you say? You want to
-stop for a chat? Oh, you're off to
-hunt with your friends? How wonderful! I bet your friends
-are just the nicest people. Tee-hee.  Ah, Hunter. Can you spare
+are just the nicest people. Tee-hee.  
+
+Ah, Hunter. Can you spare
 a minute? Are you busy? No?
 I have a big favor to ask.  You see, I have this fishing mentor who
 lives in a faraway village. Maybe you've heard of him?
@@ -15488,7 +14825,9 @@ Ahem. I've already filed a request called
   " Hi Ho Silver  "
 with the Guildmarm. I'm counting on you, Hunter!
 You'll help, won't you?
-Pleeease! Tee-hee. Thanks for catching those Silverfish for
+Pleeease! Tee-hee. 
+
+Thanks for catching those Silverfish for
 me, Hunter! My mentor was really happy
 with the care package I sent. He said he'd share it with Mother Meow.
 And guess what! He sent more fish!
@@ -15517,69 +14856,6 @@ HASH: 8855f7cf38669aa9ca88222c49f82f20ef7fb94193427dec088eb033b2f5ec72
 ================================================================================
 
 ﻿Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
-weakness. Be PROactive not REactive! Do
-your research BEFORE the fight.  Heh, no need for thanks.
-Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
-Strength in numbers, Hunter.
-Even pros need a helping hand sometimes.  Hey, kid. Protip: Every monster has an elemental
 weakness. Be PROactive not REactive! Do
 your research BEFORE the fight.  Heh, no need for thanks.
 Just a little tip from a pro.  Off on a Quest? Take a tip from a pro:
@@ -15707,25 +14983,17 @@ HASH: 0817f79ca6859de982353812e66b6b7a81c461dfba40643135a800ce3c6868dc
 
 ﻿Greetings, accomplished hunter.
 Welcome to the Elder Hall.
-His Immenseness was waiting for you. That Wyverian Lady is an enigma.
+His Immenseness was waiting for you. 
+
+That Wyverian Lady is an enigma.
 I hear she likes idle chitchat. We
-seem to have that much in common. Hah!  Greetings, accomplished hunter.
+seem to have that much in common. Hah!  
+
+Greetings, accomplished hunter.
 Welcome to the Elder Hall.
-His Immenseness was waiting for you. That Wyverian Lady is an enigma.
-I hear she likes idle chitchat. We
-seem to have that much in common. Hah!  That Wyverian Lady is an enigma.
-I hear she likes idle chitchat. We
-seem to have that much in common. Hah!  Greetings, accomplished hunter.
-Welcome to the Elder Hall.
-His Immenseness was waiting for you. That Wyverian Lady is an enigma.
-I hear she likes idle chitchat. We
-seem to have that much in common. Hah!  Greetings, accomplished hunter.
-Welcome to the Elder Hall.
-His Immenseness was waiting for you. That Wyverian Lady is an enigma.
-I hear she likes idle chitchat. We
-seem to have that much in common. Hah!  Greetings, accomplished hunter.
-Welcome to the Elder Hall.
-His Immenseness was waiting for you. Congratulations, Hunter.
+His Immenseness was waiting for you. 
+
+Congratulations, Hunter.
 Few can lay claim to the G-rank
 Special Permit that you now carry. You know, I still remember the day you
 first came to the Elder Hall.  In truth, I did not take you for one to
@@ -15744,47 +15012,23 @@ READABLE AS TEXT: yes
 HASH: aef05079a18a71bec0bcc5ea9d22e73989583482354e21465ee19fcdf8b6f6f9
 ================================================================================
 
-﻿How may I help you? See you real soon.  dmy As you know, it is good form to give
+﻿How may I help you? 
+
+See you real soon.  
+
+dmy As you know, it is good form to give
 greetings and thanks to your fellow
 hunters during a Quest.  To do this, use Chat. Once you become
 accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
+will be of great use to you.  
+
+As you know, it is good form to give
 greetings and thanks to your fellow
 hunters during a Quest.  To do this, use Chat. Once you become
 accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  As you know, it is good form to give
-greetings and thanks to your fellow
-hunters during a Quest.  To do this, use Chat. Once you become
-accustomed to this feature, I'm sure it
-will be of great use to you.  I don't believe we've met, good hunter.
+will be of great use to you.  
+
+I don't believe we've met, good hunter.
 How do you do? Ah, I see.
 ...Hm? Me?  Let us say that I am the one who handles
 His Immenseness's political affairs. *Ahem*...
@@ -15793,11 +15037,15 @@ about the Elder Hall.  This is a special place that only those
 with special clearance may enter. As such,  Hunters for Hire  
 are forbidden entry. If you'd like to meet with Hunters for
 Hire, you must visit the   Gathering Hall
-in Val Habar . If you would like to use the  Gong  
+in Val Habar . 
+
+If you would like to use the  Gong  
 here in the Elder Hall, I will gladly
 assist you.  The Gong here works just like the
 one in the Gathering Hall does,
-so I trust you know what to do. Whee-hee!
+so I trust you know what to do. 
+
+Whee-hee!
 A joyous day this is, good hunter!  Gogmazios has been defeated, and His
 Immenseness has bestowed you with an
 Aged Text inscribed with prophecy!  This is just my personal opinion, but I
@@ -15830,87 +15078,47 @@ HASH: caa6753c146063b756bca6f4cf3a7677791e4e410e65ec9ef28135e6ae7c77c1
 I wanted to give you a gift,
 but your Item Box is full. I'll hold on to it for now. Come back
 and see me when you manage to free up
-some space. Hey, Hunter!
+some space. 
+
+Hey, Hunter!
 What's up?
 Care for a beverage?  ...What's that? You don't drink before
 a Quest? Why, that's very responsible
 of you. *giggles*  Hunters before your time always used to
 come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter!
-What's up?
-Care for a beverage?  ...What's that? You don't drink before
-a Quest? Why, that's very responsible
-of you. *giggles*  Hunters before your time always used to
-come here and have a few before a hunt.
-Reminds me of the old days. Hey, Hunter! What's up?
+Reminds me of the old days. 
+
+Hey, Hunter! What's up?
 Wait, you're that hunter that recently
 got clearance for G-rank Quests, right?  I heard all about you from the
 Guildmaster in Val Habar.  Why did he tell me? Well, I do
 the same job he does, but I do it
 here at the Elder Hall.  Come see me whenever you need to pick
 up your VE Tickets. I'll be right here,
-just standing, dishing out the good stuff.  Hey, Hunter! What's up?
+just standing, dishing out the good stuff.  
+
+Hey, Hunter! What's up?
 You went hunting AGAIN?!  Wow, you don't quit...and I respect
 that. Here, a little present for all
-your hard work.  Hey, Hunter! What's up?
+your hard work.  
+
+Hey, Hunter! What's up?
 Off hunting with friends?!  Wow, you are SO popular...and I respect
 that. Here, a little present for the
-coolest hunter out there.  Hey, Hunter! Guess what's up!
+coolest hunter out there.  
+
+Hey, Hunter! Guess what's up!
 A report came in from the Dragonwatch.  It seems an elder dragon has been
 spotted somewhere near Dundorma.  We might need you to  intercept  it
 if it becomes a threat. Just be ready when
-the time comes, okay!  Hey, Hunter! It's happening!
+the time comes, okay!  
+
+Hey, Hunter! It's happening!
 The elder dragon has begun its
 attack on Dundorma! If you're ready, initiate the   interception  
-and help us defend the city. Hey, Hunter! I learned a little
+and help us defend the city. 
+
+Hey, Hunter! I learned a little
 something about Gogmazios.  Do you remember the incident involving
 the missing firepowder from the villages
 and towns?  Turns out, that was all
@@ -15976,12 +15184,6 @@ deciphering the texts.  But remember, knowledge of overly-common
 monsters doesn't contribute much to
 deciphering. Well met, good hunter.
 Welcome to the Elder Hall. His Immenseness was expecting you.
-Please, do not keep him waiting. Well met, good hunter.
-Welcome to the Elder Hall. His Immenseness was expecting you.
-Please, do not keep him waiting. Well met, good hunter.
-Welcome to the Elder Hall. His Immenseness was expecting you.
-Please, do not keep him waiting. Well met, good hunter.
-Welcome to the Elder Hall. His Immenseness was expecting you.
 Please, do not keep him waiting. Do you know of Endurance Quests?  These are Quests that involve hunting
 multiple large monsters in succession.
 Sounds dangerous, does it not? Still, I hear the rewards are great indeed... Greetings, good hunter.
@@ -16043,43 +15245,13 @@ some chill-out music too?  I feel you, friend. Stab, carve,
 stab, carve... The hunting life
 gets stressful, y'know?  That's why it's important to
 come here, kick back, and chillax
-to some awesome tunes now and then.  Off hunting with friends?
+to some awesome tunes now and then.  
+
+Off hunting with friends?
 Alright, I'm gonna chillax here.
-May the power of music be with you!  Ahhhh! So relaxed!
-Did you come to listen to
-some chill-out music too?  I feel you, friend. Stab, carve,
-stab, carve... The hunting life
-gets stressful, y'know?  That's why it's important to
-come here, kick back, and chillax
-to some awesome tunes now and then.  Off hunting with friends?
-Alright, I'm gonna chillax here.
-May the power of music be with you!  Off hunting with friends?
-Alright, I'm gonna chillax here.
-May the power of music be with you!  Ahhhh! So relaxed!
-Did you come to listen to
-some chill-out music too?  I feel you, friend. Stab, carve,
-stab, carve... The hunting life
-gets stressful, y'know?  That's why it's important to
-come here, kick back, and chillax
-to some awesome tunes now and then.  Ahhhh! So relaxed!
-Did you come to listen to
-some chill-out music too?  I feel you, friend. Stab, carve,
-stab, carve... The hunting life
-gets stressful, y'know?  That's why it's important to
-come here, kick back, and chillax
-to some awesome tunes now and then.  Off hunting with friends?
-Alright, I'm gonna chillax here.
-May the power of music be with you!  Ahhhh! So relaxed!
-Did you come to listen to
-some chill-out music too?  I feel you, friend. Stab, carve,
-stab, carve... The hunting life
-gets stressful, y'know?  That's why it's important to
-come here, kick back, and chillax
-to some awesome tunes now and then.  Off hunting with friends?
-Alright, I'm gonna chillax here.
-May the power of music be with you!  Off hunting with friends?
-Alright, I'm gonna chillax here.
-May the power of music be with you!  Ahhhh! That's some sweet, sweet news!
+May the power of music be with you!  
+
+Ahhhh! That's some sweet, sweet news!
 It feels like all my worries have melted
 away and all my old scars have healed. You know, after I heard the news of
 what you'd done, I listened to some
@@ -16104,46 +15276,6 @@ the Diva's voice. I could just drift
 away to the sound of those notes. I mean, this Arena AND the Diva...
 What else could a hunter want?
 You know what, this is the BEST TOWN EVER!  Whoa, quite the crowd today!
-Days like this are perfect for
-selecting "Listen with Others." That way, everyone can listen to
-the Diva's beautiful tones!
-Share the love, Hunter, share the love.  I've gotta admit it...I'm in LOVE with
-the Diva's voice. I could just drift
-away to the sound of those notes. I mean, this Arena AND the Diva...
-What else could a hunter want?
-You know what, this is the BEST TOWN EVER!  Whoa, quite the crowd today!
-Days like this are perfect for
-selecting "Listen with Others." That way, everyone can listen to
-the Diva's beautiful tones!
-Share the love, Hunter, share the love.  I've gotta admit it...I'm in LOVE with
-the Diva's voice. I could just drift
-away to the sound of those notes. I mean, this Arena AND the Diva...
-What else could a hunter want?
-You know what, this is the BEST TOWN EVER!  Whoa, quite the crowd today!
-Days like this are perfect for
-selecting "Listen with Others." That way, everyone can listen to
-the Diva's beautiful tones!
-Share the love, Hunter, share the love.  I've gotta admit it...I'm in LOVE with
-the Diva's voice. I could just drift
-away to the sound of those notes. I mean, this Arena AND the Diva...
-What else could a hunter want?
-You know what, this is the BEST TOWN EVER!  I've gotta admit it...I'm in LOVE with
-the Diva's voice. I could just drift
-away to the sound of those notes. I mean, this Arena AND the Diva...
-What else could a hunter want?
-You know what, this is the BEST TOWN EVER!  Whoa, quite the crowd today!
-Days like this are perfect for
-selecting "Listen with Others." That way, everyone can listen to
-the Diva's beautiful tones!
-Share the love, Hunter, share the love.  I've gotta admit it...I'm in LOVE with
-the Diva's voice. I could just drift
-away to the sound of those notes. I mean, this Arena AND the Diva...
-What else could a hunter want?
-You know what, this is the BEST TOWN EVER!  Whoa, quite the crowd today!
-Days like this are perfect for
-selecting "Listen with Others." That way, everyone can listen to
-the Diva's beautiful tones!
-Share the love, Hunter, share the love.  Whoa, quite the crowd today!
 Days like this are perfect for
 selecting "Listen with Others." That way, everyone can listen to
 the Diva's beautiful tones!
@@ -16206,27 +15338,6 @@ HASH: ddab3c3836f9a54bbffa7753ca74b9585a8bd40b53d5641ec03c05d67b783bda
 ================================================================================
 
 ﻿I want to clean the spots where
-those two hunters are sitting REAL
-BAD! But they're regulars... I can't just ask them to move, can I?
-But I'm a purrfectionist, and it's so dirty!
-Nya! I hope they leave...soon! *Sweep sweep*
-Hunting with friends today, Hunter? Don't worry, I'm gonna clean the place up
-REAL NICE for you! No, don't try to help.
-Just kick back and enjoy the purrformance!  I want to clean the spots where
-those two hunters are sitting REAL
-BAD! But they're regulars... I can't just ask them to move, can I?
-But I'm a purrfectionist, and it's so dirty!
-Nya! I hope they leave...soon! *Sweep sweep*
-Hunting with friends today, Hunter? Don't worry, I'm gonna clean the place up
-REAL NICE for you! No, don't try to help.
-Just kick back and enjoy the purrformance!  I want to clean the spots where
-those two hunters are sitting REAL
-BAD! But they're regulars... I can't just ask them to move, can I?
-But I'm a purrfectionist, and it's so dirty!
-Nya! I hope they leave...soon! *Sweep sweep*
-Hunting with friends today, Hunter? Don't worry, I'm gonna clean the place up
-REAL NICE for you! No, don't try to help.
-Just kick back and enjoy the purrformance!  I want to clean the spots where
 those two hunters are sitting REAL
 BAD! But they're regulars... I can't just ask them to move, can I?
 But I'm a purrfectionist, and it's so dirty!
@@ -16354,16 +15465,6 @@ Oh! Wuddup, baby? This cat is on a mission
 to find the funkiest, freshest 'do out there.  You know any happening styles?
 There's got to be some cat out there with a
 'do so hot it'll set my soul on fire!  Goin' on a hunt with your crew?
-Right on, right on.
-Stay cool out there, baby.  No... No... No...
-Oh! Wuddup, baby? This cat is on a mission
-to find the funkiest, freshest 'do out there.  You know any happening styles?
-There's got to be some cat out there with a
-'do so hot it'll set my soul on fire!  Goin' on a hunt with your crew?
-Right on, right on.
-Stay cool out there, baby.  Goin' on a hunt with your crew?
-Right on, right on.
-Stay cool out there, baby.  Goin' on a hunt with your crew?
 Right on, right on.
 Stay cool out there, baby.  What's shakin', baby?
 I let myself in. That's cool, right?
@@ -16639,13 +15740,18 @@ bigger than I'd imagined. Definitely
 unlike anything back in Port Tanzia.  And the big dude in the back must be
 His Immenseness! I can't
 believe he's right there, in the flesh! ...I imagined him to be smaller for some
-reason, though.  Ready to find that Large Wyvern Tear so
+reason, though.  
+
+Ready to find that Large Wyvern Tear so
 I can get my all-I-can-eat on?  Here's a hint: Large Wyvern Tears are
 usually found around areas where Brachydios
 slime molds have exploded.  Oh, and you didn't forget, did you?
 You can find this request in the
-Event Quests.  I'm dying here, Hunter.
+Event Quests.  
+
+I'm dying here, Hunter.
 You've gotta help me out!
+
 *drools*  Yesss! This Large Wyvern Tear is
 the perfect size for me. Victory
 will soon be mine! Mwahaha! Tanzinya Grill, here I come! I might
@@ -16653,10 +15759,14 @@ as well make it a big celebration. Hmm...who to invite... Well, the girls
 will be there since they'll be paying. Then there's the Guildmaster, Neko, the
 Argosy Captain, and I guess I should
 invite some of the villagers...  And you, of course!
-You HAVE to try the Tanzian Ale!  The Minegarde girl is levelheaded for
+You HAVE to try the Tanzian Ale!  
+
+The Minegarde girl is levelheaded for
 the most part, but every now and then
 something happens and she FLIPS OUT!  Anyway, it was kinda funny this time
-around, so I won't complain. Ahoy, Hunter! No need to introduce
+around, so I won't complain. 
+
+Ahoy, Hunter! No need to introduce
 yourself -- the girl from Jumbo
 Village told me ALL about you. ...Oh! You wanted to know who I am?
 I usually handle all the requests in
@@ -16697,8 +15807,12 @@ and Ash Kecha Wacha ears!  Cha-check Event Quest called
 ears and steal Cha-Cha's mask back!  Oh, and laka-look for Moga Sweetheart too!
 If Hunter cannot find mask and Moga
 Sweetheart, I blame Kayamba. Remember to initiate Quest yourself!
-Best of luck-luck! This mask for Cha-Cha! Not for Kayamba!
-Kayamba find own mask-alaka!  Cha-cha-cha-daaa! Where you been? Cha-Cha waiting
+Best of luck-luck! 
+
+This mask for Cha-Cha! Not for Kayamba!
+Kayamba find own mask-alaka!  Cha-cha-cha-daaa! 
+
+Where you been? Cha-Cha waiting
 laka-long time! Cha-Cha having bad day. Cha-Cha drop
 masks somewhere, and   two monsters
 steal masks  ! ...Plus, fart-fart smell extra bad today.
@@ -16802,32 +15916,26 @@ HASH: 0349e06bd2a888b62f29e29f344617bb8dd54eaed1a316a59b683c7fc885adcb
 ﻿De wa, I trust you with
 Zamtrios hunt.  If you succeed in "Puffer Fish"
 Quest, I can set sail with safety.  Now, good hunting! The sea breeze
-will not wait long! Yoroshiku!  If you plan to hunt with your
+will not wait long! Yoroshiku!  
+
+If you plan to hunt with your
 nakama, your friends, you must
 master Dirty Fencing.  Do so, and you shall be very
 ninki with other hunters! Yes,
-you'll be very popular indeed!  Have you confidence in your kenjutsu?
+you'll be very popular indeed!  
+
+Have you confidence in your kenjutsu?
 "Kenjutsu" means swordsmanship! I, too, know way of sword. Study hard,
 master Dirty Fencing. Was big hit back
-in the day, you know? If you plan to hunt with your
+in the day, you know? 
+
+If you plan to hunt with your
 nakama, your friends, you must
 master Dirty Fencing.  Do so, and you shall be very
 ninki with other hunters! Yes,
-you'll be very popular indeed!  Have you confidence in your kenjutsu?
-"Kenjutsu" means swordsmanship! I, too, know way of sword. Study hard,
-master Dirty Fencing. Was big hit back
-in the day, you know? If you plan to hunt with your
-nakama, your friends, you must
-master Dirty Fencing.  Do so, and you shall be very
-ninki with other hunters! Yes,
-you'll be very popular indeed!  Have you confidence in your kenjutsu?
-"Kenjutsu" means swordsmanship! I, too, know way of sword. Study hard,
-master Dirty Fencing. Was big hit back
-in the day, you know? If you plan to hunt with your
-nakama, your friends, you must
-master Dirty Fencing.  Do so, and you shall be very
-ninki with other hunters! Yes,
-you'll be very popular indeed!  Greetings! You must be rumored hunter!
+you'll be very popular indeed!  
+
+Greetings! You must be rumored hunter!
 Wherever the Arluq ship sails,
 I hear talk of your adventures. I am  Argosy Captain  . I come to
 legendary lost village in search of
@@ -16843,7 +15951,9 @@ persistent! I cannot set sail.  So I need your help. Will you hunt
 Zamtrios so I can set sail again?  I give request to Guildmarm already.
 I name it  " Puffer Fish ."  De wa, please hunt Zamtrios before the
 sea breeze leaves me behind! Yoroshiku!
-That means please! Please! Okaerinasai! Welcome back!
+That means please! Please! 
+
+Okaerinasai! Welcome back!
 You live up to name, Hunter. Well done
 hunting Zamtrios. Thanks to you, I can begin preparation
 to set sail once again. Arigato! But, I forgot about big hole in ship
@@ -16867,40 +15977,14 @@ You stand before Argosy Captain's
 finest crewman.  They call me Tiger of Far East, Neko.
 "Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
 of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Argosy Captain say, "The sea breeze
+Veeery important work. Juyo, juyo!  
+
+Argosy Captain say, "The sea breeze
 beckons!" and meddle in Zamtrios' business. Next thing Neko knows,
 we here in lost village. All Captain's plan! Neko still has much to
-learn from Argosy Captain. Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
-You stand before Argosy Captain's
-finest crewman.  They call me Tiger of Far East, Neko.
-"Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
-of poop deck and lifting of boxes.
-Veeery important work. Juyo, juyo!  Salutations, hunter!
+learn from Argosy Captain. 
+
+Salutations, hunter!
 You stand before Argosy Captain's
 finest crewman.  They call me Tiger of Far East, Neko.
 "Neko" means tiger! Sorta.  Neko perform important tasks like swabbing
@@ -17167,10 +16251,14 @@ HASH: 7cd672e1b12fe598116544da9714f520f21277bc0dd75075826c5ac8e84f135f
 Congalala tail! Event Quest name
 "Bonus: Miracle Mask."
 Make sure you, minion, initiate the Quest!  Kayamba need that mask!
-Oh, and please find Moga lady, too. Not Kayamba's fault! Everything
+Oh, and please find Moga lady, too. 
+
+Not Kayamba's fault! Everything
 happen because Cha-Cha screw up!  If you believe idiot Cha-Cha,
 then you idiot too! Stupid Cha-Cha! Keep dirty hands off
-Kayamba's mask! Yam-ba! Yam-BA!  *Sob*
+Kayamba's mask! Yam-ba! Yam-BA!  
+
+*Sob*
 *Sob* Kayamba lonely...
 Where everyone go?  ...Yam-ba?
 You! Minion! Me  Kayamba ! You minion!
