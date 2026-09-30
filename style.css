@@ -483,6 +483,11 @@ button.secondary {
   margin: 18px 0;
 }
 
+/* Sections whose entries are all hidden (see updateMenuSectionVisibility). */
+.menu-section[hidden] {
+  display: none;
+}
+
 .menu-section h3,
 .filter-label {
   color: var(--muted);
@@ -3096,3 +3101,630 @@ textarea {
   }
 }
 
+
+/* =========================================================
+   Combined mode: MonsterHunterDump
+   ========================================================= */
+
+/* Each game's colors, available on any element marked with its game. */
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="wilds"] {
+  --game-accent-light: #6f5130;
+  --game-accent-dark: #b78a4f;
+}
+
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="rise"] {
+  --game-accent-light: #b35412;
+  --game-accent-dark: #f0953f;
+}
+
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="world"] {
+  --game-accent-light: #0b6f79;
+  --game-accent-dark: #52c2cc;
+}
+
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="gu"] {
+  --game-accent-light: #8a2f2a;
+  --game-accent-dark: #d4695d;
+}
+
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="fu"] {
+  --game-accent-light: #5b3a7a;
+  --game-accent-dark: #a888cc;
+}
+
+:is(.entry, .game-badge, .game-section, .game-chip, .game-tile, .load-row)[data-game="tri"] {
+  --game-accent-light: #245a78;
+  --game-accent-dark: #62a6ca;
+}
+
+/* --gc: the element's game color for the current theme. */
+:is(.entry[data-game], .game-badge, .game-section, .game-chip, .game-tile, .load-row) {
+  --gc: var(--game-accent-light);
+}
+
+:root[data-theme="dark"] :is(.entry[data-game], .game-badge, .game-section, .game-chip, .game-tile, .load-row) {
+  --gc: var(--game-accent-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.entry[data-game], .game-badge, .game-section, .game-chip, .game-tile, .load-row) {
+    --gc: var(--game-accent-dark);
+  }
+}
+
+/* A neutral pearl accent, so the game colors carry the design. */
+:root[data-game="all"] {
+  --game-accent-light: #56596a;
+  --game-accent-dark: #c9ccd8;
+}
+
+/* Title: a gradient through all six game colors. */
+:root[data-game="all"] #gameTitle {
+  /* A longer name: scale down on narrow screens so it clears the menu button. */
+  font-size: clamp(22px, 6.2vw, 56px);
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #6f5130, #b35412, #0b6f79, #8a2f2a, #5b3a7a, #245a78);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root[data-game="all"][data-theme="dark"] #gameTitle {
+  background-image: linear-gradient(90deg, #d9b27a, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-game="all"]:not([data-theme="light"]) #gameTitle {
+    background-image: linear-gradient(90deg, #d9b27a, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca);
+  }
+}
+
+/* Background: a soft aurora of all six colors. */
+:root[data-game="all"] body::before {
+  background:
+    radial-gradient(40% 30% at 8% 0%, rgb(183 138 79 / 0.2), transparent 70%),
+    radial-gradient(35% 28% at 50% -4%, rgb(240 149 63 / 0.16), transparent 70%),
+    radial-gradient(40% 30% at 96% 6%, rgb(82 194 204 / 0.16), transparent 70%),
+    radial-gradient(45% 35% at 0% 70%, rgb(212 105 93 / 0.1), transparent 70%),
+    radial-gradient(45% 35% at 100% 64%, rgb(168 136 204 / 0.12), transparent 70%),
+    radial-gradient(60% 40% at 50% 108%, rgb(98 166 202 / 0.12), transparent 70%);
+}
+
+/* ---------- Game badge and card outline ---------- */
+
+.game-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  padding: 3px 9px 3px 7px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--gc) 78%, var(--text));
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.16), transparent 70%),
+    color-mix(in srgb, var(--gc) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gc) 45%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
+}
+
+.game-badge-dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.45), transparent 60%),
+    var(--gc);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gc) 22%, transparent);
+}
+
+/* Cards get an outline and rim light in their game's color. */
+.entry[data-game] {
+  border-color: color-mix(in srgb, var(--gc) 55%, var(--border));
+  background:
+    linear-gradient(
+      90deg,
+      transparent 12%,
+      color-mix(in srgb, var(--gc) 70%, var(--surface-highlight)) 50%,
+      transparent 88%
+    ) top / 100% 1px no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--gc) 6%, var(--surface-sheen)), transparent 110px),
+    var(--card);
+}
+
+@media (hover: hover) {
+  .entry[data-game]:hover {
+    border-color: color-mix(in srgb, var(--gc) 80%, var(--border));
+  }
+}
+
+/* ---------- Game sections (collapsible) ---------- */
+
+.game-section {
+  margin: 0 0 12px;
+}
+
+.game-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  text-align: left;
+  font-weight: 400;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, var(--surface-sheen), transparent),
+    linear-gradient(90deg, color-mix(in srgb, var(--gc) 16%, transparent), transparent 70%),
+    var(--card);
+  border: 1px solid color-mix(in srgb, var(--gc) 45%, var(--border));
+  box-shadow:
+    inset 0 1px 0 var(--surface-highlight),
+    0 10px 26px -14px rgb(var(--shadow-color) / 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.game-section-header .game-badge-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.game-section-title {
+  display: grid;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.game-section-title strong {
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+
+.game-section-title small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-section-count {
+  flex: 0 0 auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--gc) 75%, var(--text));
+  background: color-mix(in srgb, var(--gc) 14%, transparent);
+}
+
+.game-section-chevron {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+  transition: transform 0.25s ease;
+}
+
+.game-section.is-open .game-section-chevron {
+  transform: rotate(180deg);
+}
+
+.game-section.is-open .game-section-header {
+  border-color: color-mix(in srgb, var(--gc) 70%, var(--border));
+}
+
+.game-section-body {
+  display: grid;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.game-section:not(.is-open) .game-section-body {
+  display: none;
+}
+
+.game-show-more {
+  justify-self: center;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, var(--surface-sheen), transparent),
+    color-mix(in srgb, var(--card) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gc) 50%, var(--border));
+  box-shadow: inset 0 1px 0 var(--surface-highlight);
+}
+
+.game-show-more small {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ---------- Games filter row ---------- */
+
+.game-filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 6px;
+}
+
+.game-filter-row[hidden] {
+  display: none;
+}
+
+.game-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  background:
+    linear-gradient(180deg, var(--surface-sheen), transparent),
+    color-mix(in srgb, var(--card) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gc) 35%, var(--border));
+  box-shadow: inset 0 1px 0 var(--surface-highlight);
+  transition: color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.game-chip.active {
+  color: var(--text);
+  border-color: var(--gc);
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.14), transparent 70%),
+    color-mix(in srgb, var(--gc) 22%, var(--card));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    0 4px 14px -6px color-mix(in srgb, var(--gc) 70%, transparent);
+}
+
+.game-chip.is-empty:not(.active) {
+  opacity: 0.4;
+}
+
+/* ---------- Start screen ---------- */
+
+.combined-start {
+  padding: 22px 18px;
+  border-radius: 24px;
+  text-align: center;
+  background:
+    linear-gradient(180deg, var(--surface-sheen), transparent 120px),
+    var(--card);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 var(--surface-highlight), 0 14px 34px -14px rgb(var(--shadow-color) / 0.3);
+}
+
+.combined-start h3 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+}
+
+.combined-start p {
+  margin: 0 0 16px;
+}
+
+.game-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  text-align: left;
+}
+
+.game-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--gc) 14%, transparent), transparent 70%),
+    color-mix(in srgb, var(--bg) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gc) 40%, var(--border));
+}
+
+.game-tile .game-badge-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.game-tile-text {
+  display: grid;
+  min-width: 0;
+}
+
+.game-tile-text strong {
+  font-size: 0.9rem;
+}
+
+.game-tile-text small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+/* ---------- Loading progress (liquid glass) ---------- */
+
+.load-progress {
+  position: relative;
+  margin: 0 0 14px;
+  padding: 16px;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 70%, var(--glass-lens) 100%),
+    linear-gradient(145deg, var(--glass-sheen) 0%, transparent 40%),
+    color-mix(in srgb, var(--card) 78%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    inset 0 1.5px 1px -0.5px var(--rim-bright),
+    0 14px 34px -14px rgb(var(--shadow-color) / 0.35);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.load-progress[hidden] {
+  display: none;
+}
+
+.load-progress.is-finished {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+}
+
+.load-progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+}
+
+.load-progress-head span {
+  color: var(--muted);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The bar fills with a gradient of all six game colors, with a light
+   sheen gliding across it while loading. */
+.load-progress-bar {
+  position: relative;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  box-shadow: inset 0 1px 2px rgb(var(--shadow-color) / 0.2);
+}
+
+.load-progress-bar span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #b78a4f, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca);
+  background-size: 360px 100%;
+  transition: width 0.5s cubic-bezier(0.3, 1.1, 0.5, 1);
+}
+
+.load-progress-bar span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  transform: translateX(-100%);
+  animation: load-sheen 1.6s ease-in-out infinite;
+}
+
+.load-progress.is-finished .load-progress-bar span::after {
+  animation: none;
+}
+
+@keyframes load-sheen {
+  to { transform: translateX(100%); }
+}
+
+.load-rows {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.load-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gc) 30%, transparent);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.load-row-name {
+  flex: 1 1 auto;
+}
+
+.load-row.is-waiting {
+  opacity: 0.55;
+}
+
+/* Loading: the dot pulses. */
+.load-row.is-loading .game-badge-dot {
+  animation: load-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes load-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px color-mix(in srgb, var(--gc) 22%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--gc) 0%, transparent), 0 0 12px var(--gc); }
+}
+
+.load-row.is-done {
+  border-color: color-mix(in srgb, var(--gc) 60%, transparent);
+  background: color-mix(in srgb, var(--gc) 12%, transparent);
+}
+
+.load-row-state::before {
+  font-weight: 900;
+}
+
+.load-row.is-done .load-row-state::before {
+  content: "✓";
+  color: var(--gc);
+  animation: load-pop 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+  display: inline-block;
+}
+
+.load-row.is-error .load-row-state::before {
+  content: "!";
+  color: #d4695d;
+}
+
+@keyframes load-pop {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.load-progress-note {
+  margin: 10px 0 0;
+  font-size: 0.76rem;
+}
+
+@media (max-width: 380px) {
+  .load-rows {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- Dropdown: the special "all games" entry ---------- */
+
+.dump-menu-divider {
+  height: 1px;
+  margin: 6px 10px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.dump-dot-all {
+  background: conic-gradient(#b78a4f, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca, #b78a4f);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.08), 0 0 10px rgb(183 138 79 / 0.35);
+}
+
+:root[data-theme="dark"] .dump-dot-all,
+:root:not([data-theme="light"]) .dump-dot-all {
+  background: conic-gradient(#b78a4f, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca, #b78a4f);
+}
+
+.dump-option-all {
+  background:
+    linear-gradient(120deg,
+      rgb(183 138 79 / 0.12), rgb(82 194 204 / 0.1), rgb(168 136 204 / 0.12));
+  border: 1px solid transparent;
+}
+
+.dump-option-all strong {
+  background: linear-gradient(90deg, #b78a4f, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dump-option-all.is-current {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+
+/* ---------- Menu switch ---------- */
+
+.all-games-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  text-align: left;
+  font-weight: 400;
+  color: var(--text);
+  background:
+    linear-gradient(120deg, rgb(183 138 79 / 0.1), rgb(82 194 204 / 0.08), rgb(168 136 204 / 0.1)),
+    color-mix(in srgb, var(--card) 45%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 0 var(--surface-highlight);
+}
+
+.all-games-switch-text {
+  display: grid;
+}
+
+.all-games-switch-text strong {
+  font-size: 0.95rem;
+}
+
+.all-games-switch-text small {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.switch-track {
+  position: relative;
+  flex: 0 0 auto;
+  width: 50px;
+  height: 30px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 30%, transparent);
+  box-shadow: inset 0 1px 3px rgb(var(--shadow-color) / 0.25);
+  transition: background 0.25s ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.75));
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.25), inset 0 -1px 1px rgb(0 0 0 / 0.08);
+  transition: transform 0.28s cubic-bezier(0.3, 1.3, 0.5, 1);
+}
+
+.all-games-switch[aria-checked="true"] .switch-track {
+  background: linear-gradient(90deg, #b78a4f, #f0953f, #52c2cc, #d4695d, #a888cc, #62a6ca);
+}
+
+.all-games-switch[aria-checked="true"] .switch-thumb {
+  transform: translateX(20px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .load-progress-bar span::after,
+  .load-row.is-loading .game-badge-dot,
+  .load-row.is-done .load-row-state::before {
+    animation: none;
+  }
+
+  .switch-thumb,
+  .game-section-chevron,
+  .load-progress {
+    transition: none;
+  }
+}
