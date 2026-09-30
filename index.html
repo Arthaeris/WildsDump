@@ -43,6 +43,16 @@
     </div>
 
     <div class="menu-section">
+      <button id="allGamesToggle" class="all-games-switch" type="button" role="switch" aria-checked="false">
+        <span class="all-games-switch-text">
+          <strong>All games</strong>
+          <small>Search every dump at once</small>
+        </span>
+        <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+      </button>
+    </div>
+
+    <div class="menu-section">
   <h3>Dialogues</h3>
   <button id="npcIndexBtn" class="menu-item">NPC Index</button>
   <button id="monsterIndexBtn" class="menu-item">Monster Index</button>
@@ -144,6 +154,9 @@
           <button class="filter-chip" type="button" data-type-filter="UI">UI</button>
           <button class="filter-chip" type="button" data-type-filter="References">References</button>
         </div>
+
+        <!-- Combined mode only: filled by renderGameFilterRow() -->
+        <div id="gameFilters" class="game-filter-row" role="group" aria-label="Games" hidden></div>
       </section>
 
       <section class="toolbar">
@@ -172,6 +185,8 @@
           </div>
         </div>
       </section>
+
+      <div id="loadProgress" class="load-progress" aria-live="polite" hidden></div>
 
       <section id="results" class="results" aria-live="polite"></section>
 
@@ -318,6 +333,12 @@
               list. Tapping the title itself moves on to the next-older game
               (after TriDump, it starts over at WildsDump). "About" shows a
               short description of the current game's data.</dd>
+            <dt>All games</dt>
+            <dd>Turn on "All games" in the menu (or pick MonsterHunterDump at the
+              bottom of the Switch dump list) to search every game at once. Results
+              are grouped by game; tap a game's header to open or close its results,
+              and use the Games chips to narrow them down. Tapping the title, or
+              picking a single game, turns it off again.</dd>
             <dt>Floating search</dt>
             <dd>After scrolling down, tap the round search button at the
               bottom right to search from anywhere. The arrow button above it
