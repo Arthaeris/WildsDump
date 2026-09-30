@@ -50,6 +50,14 @@ const GAME_CONFIG = {
     en: "./world_en_dump.txt",
     jp: "./world_jp_dump.txt",
     hasJson: false
+  },
+  // Combined mode: every game above, loaded together (see loadAllDumps).
+  all: {
+    title: "MonsterHunterDump",
+    tagline:
+      "Search all six games at once: Wilds, Rise, World, Generations Ultimate, 4 Ultimate and Tri. Results are grouped by game, newest first.",
+    combined: true,
+    hasJson: false
   }
 };
 
@@ -64,7 +72,18 @@ const GAME_FULL_NAMES = {
   world: "Monster Hunter: World – Iceborne",
   gu: "Monster Hunter Generations Ultimate",
   fu: "Monster Hunter 4 Ultimate",
-  tri: "Monster Hunter Tri"
+  tri: "Monster Hunter Tri",
+  all: "All games combined"
+};
+
+// Short names for the game badges on cards in the combined mode.
+const GAME_SHORT_NAMES = {
+  wilds: "Wilds",
+  rise: "Rise",
+  world: "World",
+  gu: "GU",
+  fu: "4U",
+  tri: "Tri"
 };
 
 let ACTIVE_GAME = "wilds";
@@ -87,6 +106,24 @@ if (initialRoute.g && GAME_CONFIG[initialRoute.g]) {
 
 // Lets the stylesheet pick this game's accent color.
 document.documentElement.dataset.game = ACTIVE_GAME;
+
+// Combined mode: all games loaded and searched together.
+const IS_COMBINED = Boolean(GAME_CONFIG[ACTIVE_GAME]?.combined);
+
+// The single game to return to when leaving the combined mode.
+function getLastSingleGame() {
+  try {
+    const saved = localStorage.getItem("wd_last_game");
+    if (GAME_ORDER.includes(saved)) return saved;
+  } catch {}
+  return GAME_ORDER[0];
+}
+
+if (!IS_COMBINED) {
+  try {
+    localStorage.setItem("wd_last_game", ACTIVE_GAME);
+  } catch {}
+}
 
 const PAGE_SIZE = 80;
 const WORD_PAGE_SIZE = 150;
@@ -1088,6 +1125,8 @@ function getSearchRelevance(entry, tokens) {
 }
 
 function render() {
+  if (IS_COMBINED) return renderCombined();
+
   const tokens = tokenizeSearchQuery(search.value.trim());
   currentSearchTokens = tokens;
 
@@ -1197,6 +1236,321 @@ function updateFilterChipCounts(counts) {
   });
 }
 
+/* ---------------------------------------------------------
+   Combined mode: rendering
+   --------------------------------------------------------- */
+
+const activeGameFilters = new Set(); // empty = all games
+let combinedExpanded = null;         // null = default (first section open)
+const combinedShown = {};            // game -> number of cards rendered
+
+function getGameFilterRow() {
+  return document.querySelector("#gameFilters");
+}
+
+function matchesGameFilter(entry) {
+  return !activeGameFilters.size || activeGameFilters.has(entry.game);
+}
+
+function renderGameFilterRow(counts) {
+  const row = getGameFilterRow();
+  if (!row) return;
+
+  row.hidden = false;
+  row.innerHTML = GAME_ORDER.map(key => {
+    const n = counts ? counts.get(key) || 0 : null;
+    const active = activeGameFilters.has(key);
+
+    return `
+      <button
+        class="game-chip${active ? " active" : ""}${counts && !n ? " is-empty" : ""}"
+        type="button"
+        data-game="${escapeAttribute(key)}"
+        data-game-filter="${escapeAttribute(key)}"
+        aria-pressed="${active}"
+      >
+        <span class="game-badge-dot" aria-hidden="true"></span>
+        <span>${escapeHtml(GAME_SHORT_NAMES[key])}</span>
+        ${counts ? `<span class="chip-count">${n.toLocaleString()}</span>` : ""}
+      </button>
+    `;
+  }).join("");
+}
+
+function renderCombinedStart() {
+  const tiles = GAME_ORDER.map(key => {
+    const state = combinedLoadState[key];
+    const n = combinedEntryCounts[key];
+    const label =
+      state === "done" ? `${n.toLocaleString()} entries` :
+      state === "error" ? "Could not load" : "Loading…";
+
+    return `
+      <div class="game-tile" data-game="${escapeAttribute(key)}">
+        <span class="game-badge-dot" aria-hidden="true"></span>
+        <span class="game-tile-text">
+          <strong>${escapeHtml(GAME_CONFIG[key].title)}</strong>
+          <small>${escapeHtml(label)}</small>
+        </span>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="combined-start">
+      <h3>Search across all six games</h3>
+      <p>Type a word, name or phrase above. Results are grouped by game, newest first.</p>
+      <div class="game-tiles">${tiles}</div>
+    </div>
+  `;
+}
+
+function renderGameSectionCards(key, list, from, to) {
+  let html = "";
+
+  for (const entry of list.slice(from, to)) {
+    try {
+      html += renderEntry(entry);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return html;
+}
+
+function renderCombined() {
+  const tokens = tokenizeSearchQuery(search.value.trim());
+  currentSearchTokens = tokens;
+
+  // Grouped sections page themselves; the infinite scroll stays idle.
+  currentRenderTarget = null;
+  currentVisibleEntries = [];
+  renderedEntryCount = 0;
+  currentHighlightTerms = tokens
+    .filter(token => token.operator === "text" || token.operator === "name")
+    .map(token => token.value);
+
+  if (!tokens.length) {
+    currentSearchResults = [];
+    copySearchResultsBtn.hidden = true;
+    updateFilterChipCounts(null);
+    renderGameFilterRow(null);
+
+    const loaded = GAME_ORDER.filter(key => combinedLoadState[key] === "done").length;
+    count.textContent = `${loaded} of ${GAME_ORDER.length} games`;
+    results.innerHTML = renderCombinedStart();
+
+    resetMatchNavigation();
+    scheduleUrlSync();
+    return;
+  }
+
+  const groups = new Map(GAME_ORDER.map(key => [key, []]));
+  const categoryCounts = new Map();
+  const gameCounts = new Map();
+
+  for (const entry of entries) {
+    if (!entryMatchesSearch(entry, tokens)) continue;
+
+    // Type chips count within the selected games; game chips within the
+    // selected type, so each shows what selecting it would give.
+    if (matchesGameFilter(entry)) {
+      categoryCounts.set(entry.category, (categoryCounts.get(entry.category) || 0) + 1);
+    }
+
+    if (matchesActiveFilter(entry)) {
+      gameCounts.set(entry.game, (gameCounts.get(entry.game) || 0) + 1);
+    }
+
+    if (!matchesActiveFilter(entry) || !matchesGameFilter(entry)) continue;
+
+    groups.get(entry.game)?.push({ entry, score: getSearchRelevance(entry, tokens) });
+  }
+
+  const ordered = new Map();
+
+  for (const [key, list] of groups) {
+    list.sort((a, b) =>
+      b.score - a.score ||
+      String(a.entry.sourceFile).localeCompare(String(b.entry.sourceFile)) ||
+      Number(a.entry.id) - Number(b.entry.id)
+    );
+    if (list.length) ordered.set(key, list.map(item => item.entry));
+  }
+
+  currentSearchResults = [...ordered.values()].flat();
+  copySearchResultsBtn.hidden = !currentSearchResults.length;
+
+  updateFilterChipCounts(categoryCounts);
+  renderGameFilterRow(gameCounts);
+
+  const total = currentSearchResults.length;
+  count.textContent =
+    `${total.toLocaleString()} ${total === 1 ? "entry" : "entries"} in ${ordered.size} ${ordered.size === 1 ? "game" : "games"}`;
+
+  if (!total) {
+    results.innerHTML = `<div class="empty">No entries found in any game.</div>`;
+    resetMatchNavigation();
+    scheduleUrlSync();
+    return;
+  }
+
+  const firstWithResults = [...ordered.keys()][0];
+
+  // If none of the sections you opened have results for this search,
+  // open the first one that does (your choices stay remembered).
+  const keepChoices = combinedExpanded && [...ordered.keys()].some(key => combinedExpanded.has(key));
+
+  results.innerHTML = [...ordered.entries()].map(([key, list]) => {
+    const open = keepChoices
+      ? combinedExpanded.has(key)
+      : key === firstWithResults;
+    const shown = open ? Math.min(list.length, PAGE_SIZE) : 0;
+    combinedShown[key] = shown;
+
+    return `
+      <section class="game-section${open ? " is-open" : ""}" data-game="${escapeAttribute(key)}">
+        <button class="game-section-header" type="button" data-game-section="${escapeAttribute(key)}" aria-expanded="${open}">
+          <span class="game-badge-dot" aria-hidden="true"></span>
+          <span class="game-section-title">
+            <strong>${escapeHtml(GAME_CONFIG[key].title)}</strong>
+            <small>${escapeHtml(GAME_FULL_NAMES[key] || "")}</small>
+          </span>
+          <span class="game-section-count">${list.length.toLocaleString()}</span>
+          <svg class="game-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="game-section-body">
+          ${open ? renderGameSectionCards(key, list, 0, shown) : ""}
+          ${open && shown < list.length ? renderShowMoreButton(key, list.length - shown) : ""}
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  resetMatchNavigation();
+  scheduleUrlSync();
+}
+
+function renderShowMoreButton(key, left) {
+  return `
+    <button class="game-show-more" type="button" data-game-more="${escapeAttribute(key)}">
+      Show ${Math.min(left, PAGE_SIZE).toLocaleString()} more
+      <small>${left.toLocaleString()} left</small>
+    </button>
+  `;
+}
+
+function getCombinedGroup(key) {
+  return currentSearchResults.filter(entry => entry.game === key);
+}
+
+// Opening/closing sections, "Show more", and the Games filter row.
+document.addEventListener("click", event => {
+  if (!IS_COMBINED) return;
+
+  const header = event.target.closest("[data-game-section]");
+  if (header) {
+    const key = header.dataset.gameSection;
+    const section = header.closest(".game-section");
+    const body = section.querySelector(".game-section-body");
+
+    if (combinedExpanded === null) {
+      combinedExpanded = new Set(
+        [...results.querySelectorAll(".game-section.is-open")].map(el => el.dataset.game)
+      );
+    }
+
+    const open = !section.classList.contains("is-open");
+    section.classList.toggle("is-open", open);
+    header.setAttribute("aria-expanded", String(open));
+
+    if (open) {
+      combinedExpanded.add(key);
+      const list = getCombinedGroup(key);
+      const shown = Math.min(list.length, PAGE_SIZE);
+      combinedShown[key] = shown;
+      body.innerHTML =
+        renderGameSectionCards(key, list, 0, shown) +
+        (shown < list.length ? renderShowMoreButton(key, list.length - shown) : "");
+    } else {
+      combinedExpanded.delete(key);
+      body.innerHTML = "";
+    }
+    return;
+  }
+
+  const more = event.target.closest("[data-game-more]");
+  if (more) {
+    const key = more.dataset.gameMore;
+    const list = getCombinedGroup(key);
+    const from = combinedShown[key] || 0;
+    const to = Math.min(list.length, from + PAGE_SIZE);
+    combinedShown[key] = to;
+    more.insertAdjacentHTML(
+      "beforebegin",
+      renderGameSectionCards(key, list, from, to)
+    );
+    if (to < list.length) {
+      more.outerHTML = renderShowMoreButton(key, list.length - to);
+    } else {
+      more.remove();
+    }
+    return;
+  }
+
+  const chip = event.target.closest("[data-game-filter]");
+  if (chip) {
+    const key = chip.dataset.gameFilter;
+    if (activeGameFilters.has(key)) activeGameFilters.delete(key);
+    else activeGameFilters.add(key);
+    render();
+  }
+});
+
+/* Loading progress panel (combined mode) */
+
+function renderLoadProgress() {
+  const panel = document.querySelector("#loadProgress");
+  if (!panel) return;
+
+  const done = GAME_ORDER.filter(key => ["done", "error"].includes(combinedLoadState[key])).length;
+  const total = GAME_ORDER.length;
+
+  panel.hidden = false;
+  panel.innerHTML = `
+    <div class="load-progress-head">
+      <strong>Loading all games</strong>
+      <span>${done} / ${total}</span>
+    </div>
+    <div class="load-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}">
+      <span style="width: ${(done / total) * 100}%"></span>
+    </div>
+    <div class="load-rows">
+      ${GAME_ORDER.map(key => `
+        <div class="load-row is-${combinedLoadState[key] || "waiting"}" data-game="${escapeAttribute(key)}">
+          <span class="game-badge-dot" aria-hidden="true"></span>
+          <span class="load-row-name">${escapeHtml(GAME_SHORT_NAMES[key])}</span>
+          <span class="load-row-state" aria-hidden="true"></span>
+        </div>
+      `).join("")}
+    </div>
+    <p class="load-progress-note">The first time takes a while; after that, games load from the cache.</p>
+  `;
+}
+
+function finishLoadProgress() {
+  const panel = document.querySelector("#loadProgress");
+  if (!panel) return;
+
+  renderLoadProgress();
+  panel.classList.add("is-finished");
+  setTimeout(() => {
+    panel.hidden = true;
+    panel.classList.remove("is-finished");
+  }, 900);
+}
+
 function renderEntryList({ target, items, emptyText, highlightTerms }) {
   if (highlightTerms !== undefined) {
     currentHighlightTerms = highlightTerms;
@@ -1272,7 +1626,7 @@ function plural(count, singular, pluralForm = `${singular}s`) {
   return `${Number(count).toLocaleString()} ${count === 1 ? singular : pluralForm}`;
 }
 
-function renderMetaLine(category, parts) {
+function renderMetaLine(category, parts, game = "") {
   const cleaned = [];
   const seen = new Set();
   const sourceFile = String(parts[parts.length - 1] || "").toLowerCase();
@@ -1306,7 +1660,12 @@ function renderMetaLine(category, parts) {
     ? `<span class="meta-rest" title="${escapeAttribute(restText)}">${escapeHtml(restText)}</span>`
     : "";
 
-  return `<div class="entry-section">${chip}${rest}</div>`;
+  // Combined mode: which game the card comes from.
+  const gameBadge = IS_COMBINED && GAME_SHORT_NAMES[game]
+    ? `<span class="game-badge" data-game="${escapeAttribute(game)}"><span class="game-badge-dot" aria-hidden="true"></span>${escapeHtml(GAME_SHORT_NAMES[game])}</span>`
+    : "";
+
+  return `<div class="entry-section">${gameBadge}${chip}${rest}</div>`;
 }
 
 // The ID badge shows "0010 + 0011" instead of "[0010 + 0011]"; copied text
@@ -1334,7 +1693,7 @@ function renderEntry(entry) {
     entry.dialogueId,
     entry.dialogueType,
     entry.sourceFile
-  ]);
+  ], entry.game);
 
   const en = getEntryPresentation(entry, "en");
   const jp = getEntryPresentation(entry, "jp");
@@ -1351,6 +1710,7 @@ function renderEntry(entry) {
   return `
     <article
       class="entry"
+      ${IS_COMBINED && entry.game ? `data-game="${escapeAttribute(entry.game)}"` : ""}
       data-mode="${escapeAttribute(defaultCardMode)}"
       data-lang="en"
 
@@ -2357,7 +2717,7 @@ function renderFullDialogue(group) {
 
   return [...byType.entries()].map(([type, items]) => {
     const textWithIds = items.map(getCopyTextWithIds).join("\n");
-    const textClean = getCleanText(textWithIds);
+    const textClean = getCleanText(textWithIds, items[0]?.game || ACTIVE_GAME);
     const textCode = "```\n" + textClean + "\n```";
 
     return `
@@ -2397,16 +2757,16 @@ function getCopyTextWithIds(entry) {
 const RISE_STAGE_DIRECTION_TAGS =
   /<\/?(?:NPC|VO|LOOK|TURN|NOFAC|FACE|CAM|SCAM|FCAM|RCAM|NOTE|OKAZU|OTTUTO|POSTACT|MR_REL|MR_OPEN|EQUIP|OWL|EMTUTO_DISP|EMTUTO_THINK)(?::[^<>]*)?>/g;
 
-function getCleanText(value) {
+function getCleanText(value, game = ACTIVE_GAME) {
   let text = String(value || "");
 
-  if (ACTIVE_GAME === "rise") {
+  if (game === "rise") {
     text = text.replace(RISE_STAGE_DIRECTION_TAGS, "");
   }
 
   // World: voice cues (<NSND npc=2 voice=23>) and centering (<CNTR>) are
   // instructions for the game, hidden in Clean like Rise's stage directions.
-  if (ACTIVE_GAME === "world") {
+  if (game === "world") {
     text = text.replace(/<\/?(?:NSND|CNTR)(?:\s[^<>]*)?>/g, "");
   }
 
@@ -2423,6 +2783,9 @@ function getCleanText(value) {
 //   linkify        - wrap known entity names in clickable links (EN text only)
 //   highlightTerms - array of search terms to <mark>
 function formatEntryText(value, opts = {}) {
+  // Entity links point to Wilds pages, so they are off in the combined mode.
+  if (IS_COMBINED && opts.linkify) opts = { ...opts, linkify: false };
+
   const lines = String(value || "").split("\n");
   const parts = lines.map(line =>
     line === "---"
@@ -2524,6 +2887,13 @@ function updateMenuAvailability() {
 
   const diffBtn = document.querySelector("#versionDiffBtn");
   if (diffBtn) diffBtn.hidden = !DIFF_DATA.length;
+
+  // The NPC and Monster Index belong to a single game.
+  if (IS_COMBINED) {
+    if (npcIndexBtn) npcIndexBtn.hidden = true;
+    const monsterBtn = document.querySelector("#monsterIndexBtn");
+    if (monsterBtn) monsterBtn.hidden = true;
+  }
 
   updateMenuSectionVisibility();
 }
@@ -2757,7 +3127,23 @@ function renderDumpMenu() {
         ${isCurrent ? '<span class="dump-check" aria-hidden="true">✓</span>' : ""}
       </button>
     `;
-  }).join("");
+  }).join("") + `
+    <div class="dump-menu-divider" role="separator"></div>
+    <button
+      class="dump-option dump-option-all${IS_COMBINED ? " is-current" : ""}"
+      type="button"
+      role="menuitemradio"
+      aria-checked="${IS_COMBINED}"
+      data-game="all"
+    >
+      <span class="dump-dot dump-dot-all" aria-hidden="true"></span>
+      <span class="dump-option-text">
+        <strong>MonsterHunterDump</strong>
+        <small>All games combined</small>
+      </span>
+      ${IS_COMBINED ? '<span class="dump-check" aria-hidden="true">✓</span>' : ""}
+    </button>
+  `;
 }
 
 function isDumpMenuOpen() {
@@ -3027,7 +3413,7 @@ function getEntryPresentation(entry, lang = "en") {
       ? baseText
       : `[${entry.rejectedId || entry.id}] ${baseText}`.trim();
 
-  const textClean = getCleanText(baseText);
+  const textClean = getCleanText(baseText, entry.game || ACTIVE_GAME);
 
   const copyClean = hasName
     ? `${name}\n\n${textClean}`.trim()
@@ -3330,11 +3716,146 @@ function setLoadingStatus(message) {
   results.innerHTML = `<div class="empty">${escapeHtml(message)}</div>`;
 }
 
+/* ---------------------------------------------------------
+   Combined mode (MonsterHunterDump): every game loaded together
+   Each game goes through exactly the same steps as in its own
+   mode (and shares its cache); its entries are then tagged with
+   the game. Results appear game by game as each one finishes.
+   --------------------------------------------------------- */
+
+const combinedLoadState = {};   // game -> "waiting" | "loading" | "done" | "error"
+const combinedEntryCounts = {}; // game -> number of entries
+
+// Loads one game's payload (from cache or by parsing), exactly as the
+// single-game loader does.
+async function loadGamePayload(key) {
+  const cfg = GAME_CONFIG[key];
+
+  const enResponse = await fetch(cfg.en);
+  if (!enResponse.ok) throw new Error(`Could not load ${cfg.en}`);
+
+  let jpRaw = "";
+
+  if (cfg.jp) {
+    const jpResponse = await fetch(cfg.jp);
+    if (!jpResponse.ok) throw new Error(`Could not load ${cfg.jp}`);
+    jpRaw = await jpResponse.text();
+  }
+
+  const enRaw = await enResponse.text();
+  const checkString = makeWildsCacheKey(enRaw, jpRaw);
+
+  let payload = await wildsCacheGet(key);
+  if (payload && payload.check !== checkString) payload = null;
+
+  if (payload) return { payload, needsCacheWrite: false };
+
+  await nextFrame();
+  const enAllSections = parseWildsDump(enRaw, "en");
+  await nextFrame();
+  const jpAllSections = jpRaw ? parseWildsDump(jpRaw, "jp") : [];
+
+  const enSections = enAllSections.filter(section => !section.isOldVersion);
+  const jpSections = jpAllSections.filter(section => !section.isOldVersion);
+
+  buildArmorSeriesMap(enSections);
+
+  await nextFrame();
+  const npcMap = typeof NPC_MAP !== "undefined" ? NPC_MAP : {};
+  const enEntries = buildWildsEntries(enSections, npcMap);
+  const jpEntries = buildWildsEntries(jpSections, npcMap);
+
+  let merged = mergeLocalizedEntries(enEntries, jpEntries);
+
+  if (key === "world") {
+    merged = removeWorldPlaceholders(merged);
+  }
+
+  payload = {
+    check: checkString,
+    entries: merged.map(stripEntryForCache),
+    armorSeries: [...ARMOR_SERIES_BY_ID.entries()],
+    refTables: buildRefTables(enSections),
+    diffData: buildDiffData(enAllSections)
+  };
+
+  return { payload, needsCacheWrite: true };
+}
+
+async function loadAllDumps() {
+  for (const key of GAME_ORDER) combinedLoadState[key] = "waiting";
+  updateMenuAvailability();
+
+  entries = [];
+  DIFF_DATA = []; // Version Diff is a single-game page
+  renderLoadProgress();
+  render();
+
+  let wildsArmorSeries = null;
+
+  for (const key of GAME_ORDER) {
+    const cfg = GAME_CONFIG[key];
+    combinedLoadState[key] = "loading";
+    renderLoadProgress();
+    await nextFrame();
+
+    try {
+      const { payload, needsCacheWrite } = await loadGamePayload(key);
+
+      if (cfg.hasJson) {
+        wildsArmorSeries = payload.armorSeries || [];
+        ARMOR_SERIES_BY_ID.clear();
+        for (const [id, name] of wildsArmorSeries) ARMOR_SERIES_BY_ID.set(id, name);
+        REF_TABLES = payload.refTables || {};
+      }
+
+      const gameEntries = payload.entries
+        .map(entry => (cfg.hasJson ? resolveWildsRefs(entry) : entry))
+        .map(entry => (cfg.hasJson ? attachJsonMetadata(entry) : entry))
+        .map(normalizeSkillCommonEntry)
+        .map(addSearchFields)
+        // New objects, so the cached payload keeps its single-game form.
+        .map(entry => ({ ...entry, game: key, uid: `${key}:${entry.uid}` }));
+
+      entries = entries.concat(gameEntries);
+      combinedEntryCounts[key] = gameEntries.length;
+      combinedLoadState[key] = "done";
+
+      if (needsCacheWrite) {
+        setTimeout(() => wildsCachePut(key, payload), 500);
+      }
+    } catch (error) {
+      console.error(error);
+      combinedLoadState[key] = "error";
+    }
+
+    // Other games can overwrite the armor series map while parsing.
+    if (wildsArmorSeries) {
+      ARMOR_SERIES_BY_ID.clear();
+      for (const [id, name] of wildsArmorSeries) ARMOR_SERIES_BY_ID.set(id, name);
+    }
+
+    noSearchOrderCache.clear();
+    buildIndexes();
+    updateTypeFilterAvailability();
+    renderLoadProgress();
+    render();
+  }
+
+  renderCategoryMenu();
+  updateMenuAvailability();
+  render();
+  applyInitialRoute();
+  finishLoadProgress();
+}
+
 function nextFrame() {
   return new Promise(resolve => requestAnimationFrame(() => resolve()));
 }
 
 async function loadDump() {
+  if (IS_COMBINED) return loadAllDumps();
+
   const cfg = GAME_CONFIG[ACTIVE_GAME];
 
   setLoadingStatus(`Loading ${cfg.title} text dumps…`);
@@ -3630,7 +4151,7 @@ cardControls.addEventListener("click", event => {
 
 copySearchResultsBtn.addEventListener("click", () => {
   const text = currentSearchResults
-    .map(entry => "```\n" + getCleanText(entry.text) + "\n```")
+    .map(entry => "```\n" + getCleanText(entry.text, entry.game || ACTIVE_GAME) + "\n```")
     .filter(Boolean)
     .join("\n\n");
 
@@ -3857,7 +4378,14 @@ function applyGameChrome() {
   const taglineEl = document.querySelector("#appTagline");
   if (taglineEl) taglineEl.textContent = cfg.tagline;
 
-  if (titleEl) titleEl.title = `Tap for ${otherCfg.title}`;
+  if (titleEl) {
+    titleEl.title = IS_COMBINED
+      ? `Tap to return to ${GAME_CONFIG[getLastSingleGame()].title}`
+      : `Tap for ${otherCfg.title}`;
+  }
+
+  const allToggle = document.querySelector("#allGamesToggle");
+  if (allToggle) allToggle.setAttribute("aria-checked", String(IS_COMBINED));
 
   renderDumpMenu();
 
@@ -3889,7 +4417,15 @@ function switchGame(target = getNextGame()) {
 }
 
 // Tapping the title moves on to the next (older) game.
-document.querySelector("#gameTitle")?.addEventListener("click", () => switchGame());
+document.querySelector("#gameTitle")?.addEventListener("click", () => {
+  if (IS_COMBINED) switchGame(getLastSingleGame());
+  else switchGame();
+});
+
+// Menu switch: all games on/off.
+document.querySelector("#allGamesToggle")?.addEventListener("click", () => {
+  switchGame(IS_COMBINED ? getLastSingleGame() : "all");
+});
 
 function restoreSavedSettings() {
   try {
@@ -3917,7 +4453,15 @@ function restoreSavedSettings() {
     restoreSavedSettings();
     applyGameChrome();
 
-    if (GAME_CONFIG[ACTIVE_GAME].hasJson) {
+    // Combined mode: show the progress panel right away.
+    if (IS_COMBINED) {
+      for (const key of GAME_ORDER) combinedLoadState[key] = "waiting";
+      renderLoadProgress();
+      updateMenuAvailability();
+      results.innerHTML = "";
+    }
+
+    if (GAME_CONFIG[ACTIVE_GAME].hasJson || IS_COMBINED) {
       await loadJsonDatabase();
       buildJsonIndexes();
       buildEntityIndexes();
