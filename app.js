@@ -136,6 +136,9 @@ const cardControls = document.querySelector("#cardControls");
 const copySearchResultsBtn = document.querySelector("#copySearchResultsBtn");
 
 const helpView = document.querySelector("#helpView");
+const acrossView = document.querySelector("#acrossView");
+const acrossContent = document.querySelector("#acrossContent");
+let currentAcrossName = "";
 const helpBtn = document.querySelector("#helpBtn");
 const backFromHelpBtn = document.querySelector("#backFromHelpBtn");
 
@@ -232,6 +235,7 @@ function getAllViews() {
     dialogueView,
     wordIndexView,
     helpView,
+    acrossView,
     typeof detailView !== "undefined" ? detailView : null,
     typeof compareView !== "undefined" ? compareView : null,
     typeof diffView !== "undefined" ? diffView : null,
@@ -266,6 +270,7 @@ function captureCurrentView() {
   if (!dialogueView.hidden) return { type: "dialogue", key: currentDialogueKey };
   if (!wordIndexView.hidden) return { type: "wordIndex" };
   if (!helpView.hidden) return { type: "help" };
+  if (acrossView && !acrossView.hidden) return { type: "across", key: currentAcrossName };
 
   if (typeof detailView !== "undefined" && !detailView.hidden) {
     return { type: "detail", entityType: currentDetail?.type, key: currentDetail?.key };
@@ -291,6 +296,7 @@ function showViewState(state) {
   if (state.type === "monsterIndex") showMonsterIndex(false);
   if (state.type === "wordIndex") showWordIndex(false);
   if (state.type === "help") showHelp(false);
+  if (state.type === "across") showAcross(state.key, false);
 
   if (state.type === "dialogue") {
     if (npcGroups.has(state.key) || monsterGroups.has(state.key)) {
@@ -316,6 +322,175 @@ function goBack() {
 
   showViewState(viewHistory.pop());
 }
+
+/* ---------------------------------------------------------
+   Across games (combined mode): one name in every game
+   --------------------------------------------------------- */
+
+const ACROSS_CATEGORIES = new Set(["Items", "Equipment", "Weapons", "Skills", "Monsters"]);
+
+// World marks armor variants with icon tags ("Fatalis<ICON ALPHA>+");
+// written out, they match the other games ("Rathalos Helm α").
+function cleanAcrossName(value) {
+  return String(value || "")
+    .replace(/<ICON ALPHA>/gi, " α")
+    .replace(/<ICON BETA>/gi, " β")
+    .replace(/<ICON GAMMA>/gi, " γ")
+    .replace(/<[^<>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const normalizeAcrossName = value => cleanAcrossName(value).toLowerCase();
+
+// The name a card stands for, if it's a name card (item, weapon, skill…):
+// its name, or a short one-line text that is just a name (World).
+function getAcrossName(entry) {
+  if (!ACROSS_CATEGORIES.has(entry.category)) return "";
+
+  if (entry.name) return cleanAcrossName(entry.name);
+
+  const text = cleanAcrossName(entry.text);
+  if (!text || text.includes("\n") || text.length > 48) return "";
+  if (/[.!?…:,;]$/.test(text)) return "";
+  return text;
+}
+
+// A line that reads like a description rather than another name.
+function looksLikeDescription(text) {
+  const t = String(text || "").trim();
+  return Boolean(t) && (t.includes("\n") || /[.!?…]$/.test(t) || t.length > 48);
+}
+
+function findAcrossMatches(name) {
+  const target = normalizeAcrossName(name);
+  const byGame = new Map(GAME_ORDER.map(key => [key, []]));
+  const seen = new Set();
+
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i];
+    const list = byGame.get(entry.game);
+    if (!list) continue;
+
+    let match = null;
+
+    if (entry.name && normalizeAcrossName(entry.name) === target) {
+      match = { entry, name: entry.name, text: entry.text, nameJp: entry.nameJp, textJp: entry.textJp };
+    } else if (!entry.name && !String(entry.text || "").includes("\n") && normalizeAcrossName(entry.text) === target) {
+      // A name line (World): its description is the next line in the same file.
+      const next = entries[i + 1];
+      const hasDescription =
+        next && next.game === entry.game && next.sourceFile === entry.sourceFile && looksLikeDescription(next.text);
+
+      match = {
+        entry,
+        name: entry.text.trim(),
+        text: hasDescription ? next.text : "",
+        nameJp: entry.textJp || "",
+        textJp: hasDescription ? next.textJp || "" : ""
+      };
+    }
+
+    if (!match) continue;
+    list.push(match);
+  }
+
+  // Prefer the real item/equipment/skill/monster files over copies of the
+  // same text elsewhere (like World's help text), then drop duplicates.
+  for (const [key, list] of byGame) {
+    list.sort((a, b) =>
+      Number(!ACROSS_CATEGORIES.has(a.entry.category)) - Number(!ACROSS_CATEGORIES.has(b.entry.category))
+    );
+
+    const unique = [];
+    for (const match of list) {
+      const dedupe = `${normalizeAcrossName(match.name)}|${normalizeAcrossName(match.text)}`;
+      if (seen.has(`${key}|${dedupe}`)) continue;
+      seen.add(`${key}|${dedupe}`);
+      if (unique.length < 8) unique.push(match);
+    }
+
+    byGame.set(key, unique);
+  }
+
+  return byGame;
+}
+
+function renderAcross(name) {
+  const byGame = findAcrossMatches(name);
+  const found = GAME_ORDER.filter(key => byGame.get(key).length);
+  const missing = GAME_ORDER.filter(key => !byGame.get(key).length);
+
+  const cards = found.map(key => {
+    const matches = byGame.get(key).map(match => {
+      const text = getCleanText(match.text, key);
+      const textJp = getCleanText(match.textJp, key);
+      const hasJp = Boolean(match.nameJp || textJp);
+
+      return `
+        <div class="across-match">
+          <div class="across-name">${escapeHtml(cleanAcrossName(match.name))}</div>
+          ${text ? `<div class="across-text">${formatEntryText(text, {})}</div>` : ""}
+          <div class="across-meta">${escapeHtml(match.entry.category || "")} · ${escapeHtml(match.entry.sourceFile || "")}</div>
+          ${hasJp ? `
+            <details class="across-jp">
+              <summary>Japanese</summary>
+              ${match.nameJp ? `<div class="across-name">${escapeHtml(cleanAcrossName(match.nameJp))}</div>` : ""}
+              ${textJp ? `<div class="across-text">${formatEntryText(textJp, {})}</div>` : ""}
+            </details>
+          ` : ""}
+        </div>
+      `;
+    }).join("");
+
+    return `
+      <article class="across-card" data-game="${escapeAttribute(key)}">
+        <header class="across-card-head">
+          <span class="game-badge-dot" aria-hidden="true"></span>
+          <span class="across-card-title">
+            <strong>${escapeHtml(GAME_CONFIG[key].title)}</strong>
+            <small>${escapeHtml(GAME_FULL_NAMES[key] || "")}</small>
+          </span>
+        </header>
+        ${matches}
+      </article>
+    `;
+  }).join("");
+
+  return `
+    <div class="across-hero">
+      <span class="across-eyebrow">Across games</span>
+      <p>Found in ${found.length} of ${GAME_ORDER.length} games</p>
+    </div>
+    <div class="across-list">${cards || '<div class="empty">Not found in any game.</div>'}</div>
+    ${missing.length && found.length ? `
+      <p class="across-missing">Not found in ${missing.map(key => escapeHtml(GAME_SHORT_NAMES[key])).join(", ")}.</p>
+    ` : ""}
+  `;
+}
+
+function showAcross(name, addToHistory = true) {
+  if (!acrossView || !name) return;
+
+  if (addToHistory) {
+    pushViewHistory(captureCurrentView());
+  }
+
+  currentAcrossName = name;
+  document.querySelector("#acrossTitle").textContent = name;
+  acrossContent.innerHTML = renderAcross(name);
+  showOnly(acrossView);
+  closeMenu();
+  window.scrollTo({ top: 0 });
+}
+
+document.querySelector("#backFromAcrossBtn")?.addEventListener("click", () => goBack());
+
+document.addEventListener("click", event => {
+  const button = event.target.closest("[data-across]");
+  if (!button) return;
+  showAcross(button.dataset.across);
+});
 
 function showHelp(addToHistory = true) {
   if (addToHistory && helpView.hidden) {
@@ -1332,6 +1507,7 @@ function renderCombined() {
     .map(token => token.value);
 
   if (!tokens.length) {
+    combinedGroupSizes.clear();
     currentSearchResults = [];
     copySearchResultsBtn.hidden = true;
     updateFilterChipCounts(null);
@@ -1390,11 +1566,15 @@ function renderCombined() {
     `${total.toLocaleString()} ${total === 1 ? "entry" : "entries"} in ${ordered.size} ${ordered.size === 1 ? "game" : "games"}`;
 
   if (!total) {
+    combinedGroupSizes.clear();
     results.innerHTML = `<div class="empty">No entries found in any game.</div>`;
     resetMatchNavigation();
     scheduleUrlSync();
     return;
   }
+
+  combinedGroupSizes.clear();
+  for (const [key, list] of ordered) combinedGroupSizes.set(key, list.length);
 
   const firstWithResults = [...ordered.keys()][0];
 
@@ -1402,7 +1582,18 @@ function renderCombined() {
   // open the first one that does (your choices stay remembered).
   const keepChoices = combinedExpanded && [...ordered.keys()].some(key => combinedExpanded.has(key));
 
-  results.innerHTML = [...ordered.entries()].map(([key, list]) => {
+  const sectionsBar = ordered.size > 1
+    ? `
+      <div class="combined-bar">
+        <button class="sections-toggle" type="button" data-sections-toggle data-action="open">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9l5-5 5 5"/><path d="M7 15l5 5 5-5"/></svg>
+          <span data-sections-label>Open all</span>
+        </button>
+      </div>
+    `
+    : "";
+
+  results.innerHTML = sectionsBar + [...ordered.entries()].map(([key, list]) => {
     const open = keepChoices
       ? combinedExpanded.has(key)
       : key === firstWithResults;
@@ -1428,6 +1619,8 @@ function renderCombined() {
     `;
   }).join("");
 
+  updateSectionsToggle();
+  updateStuckHeaders();
   resetMatchNavigation();
   scheduleUrlSync();
 }
@@ -1445,68 +1638,254 @@ function getCombinedGroup(key) {
   return currentSearchResults.filter(entry => entry.game === key);
 }
 
-// Opening/closing sections, "Show more", and the Games filter row.
+// Sizes of the game groups in the current results (for "more to load").
+const combinedGroupSizes = new Map();
+
+function getGameSection(key) {
+  return results.querySelector(`.game-section[data-game="${CSS.escape(key)}"]`);
+}
+
+function rememberOpenSections() {
+  if (combinedExpanded === null) {
+    combinedExpanded = new Set(
+      [...results.querySelectorAll(".game-section.is-open")].map(el => el.dataset.game)
+    );
+  }
+}
+
+function openGameSection(key) {
+  const section = getGameSection(key);
+  if (!section || section.classList.contains("is-open")) return;
+
+  rememberOpenSections();
+  combinedExpanded.add(key);
+
+  const list = getCombinedGroup(key);
+  const shown = Math.min(list.length, PAGE_SIZE);
+  combinedShown[key] = shown;
+
+  section.classList.add("is-open");
+  section.querySelector(".game-section-header").setAttribute("aria-expanded", "true");
+  section.querySelector(".game-section-body").innerHTML =
+    renderGameSectionCards(key, list, 0, shown) +
+    (shown < list.length ? renderShowMoreButton(key, list.length - shown) : "");
+
+  updateSectionsToggle();
+}
+
+function closeGameSection(key) {
+  const section = getGameSection(key);
+  if (!section || !section.classList.contains("is-open")) return;
+
+  rememberOpenSections();
+  combinedExpanded.delete(key);
+  combinedShown[key] = 0;
+
+  // If its header was pinned, scroll back to where the section starts, so
+  // closing doesn't leave the page somewhere further down.
+  const header = section.querySelector(".game-section-header");
+  const wasStuck = header.classList.contains("is-stuck");
+
+  section.classList.remove("is-open");
+  header.classList.remove("is-stuck");
+  header.setAttribute("aria-expanded", "false");
+  section.querySelector(".game-section-body").innerHTML = "";
+
+  if (wasStuck) {
+    const top = section.getBoundingClientRect().top + window.scrollY - getStickyTop() - 8;
+    window.scrollTo({ top: Math.max(0, top) });
+  }
+
+  updateSectionsToggle();
+}
+
+function showMoreInSection(key) {
+  const section = getGameSection(key);
+  const more = section?.querySelector("[data-game-more]");
+  if (!more) return false;
+
+  const list = getCombinedGroup(key);
+  const from = combinedShown[key] || 0;
+  const to = Math.min(list.length, from + PAGE_SIZE);
+  combinedShown[key] = to;
+
+  more.insertAdjacentHTML("beforebegin", renderGameSectionCards(key, list, from, to));
+
+  if (to < list.length) {
+    more.outerHTML = renderShowMoreButton(key, list.length - to);
+  } else {
+    more.remove();
+  }
+
+  return true;
+}
+
+// Match jumping: is there anything not yet on screen?
+function combinedHasMore() {
+  if (searchView.hidden || !currentSearchTokens.length) return false;
+
+  for (const [key, size] of combinedGroupSizes) {
+    if ((combinedShown[key] || 0) < size) return true;
+  }
+
+  return false;
+}
+
+// Match jumping: continue the open section, or open the next game.
+function combinedLoadNext() {
+  for (const [key, size] of combinedGroupSizes) {
+    if ((combinedShown[key] || 0) >= size) continue;
+
+    const section = getGameSection(key);
+    if (!section) continue;
+
+    if (section.classList.contains("is-open")) {
+      showMoreInSection(key);
+    } else {
+      openGameSection(key);
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+function loadMoreForMatches() {
+  if (IS_COMBINED) combinedLoadNext();
+  else appendNextEntries();
+}
+
+// "Open all" / "Close all"
+function updateSectionsToggle() {
+  const button = results.querySelector("[data-sections-toggle]");
+  if (!button) return;
+
+  const sections = [...results.querySelectorAll(".game-section")];
+  const allOpen = sections.every(section => section.classList.contains("is-open"));
+
+  button.dataset.action = allOpen ? "close" : "open";
+  button.querySelector("[data-sections-label]").textContent = allOpen ? "Close all" : "Open all";
+  button.setAttribute("aria-label", allOpen ? "Close all games" : "Open all games");
+}
+
 document.addEventListener("click", event => {
   if (!IS_COMBINED) return;
 
   const header = event.target.closest("[data-game-section]");
   if (header) {
     const key = header.dataset.gameSection;
-    const section = header.closest(".game-section");
-    const body = section.querySelector(".game-section-body");
-
-    if (combinedExpanded === null) {
-      combinedExpanded = new Set(
-        [...results.querySelectorAll(".game-section.is-open")].map(el => el.dataset.game)
-      );
-    }
-
-    const open = !section.classList.contains("is-open");
-    section.classList.toggle("is-open", open);
-    header.setAttribute("aria-expanded", String(open));
-
-    if (open) {
-      combinedExpanded.add(key);
-      const list = getCombinedGroup(key);
-      const shown = Math.min(list.length, PAGE_SIZE);
-      combinedShown[key] = shown;
-      body.innerHTML =
-        renderGameSectionCards(key, list, 0, shown) +
-        (shown < list.length ? renderShowMoreButton(key, list.length - shown) : "");
-    } else {
-      combinedExpanded.delete(key);
-      body.innerHTML = "";
-    }
+    if (header.closest(".game-section").classList.contains("is-open")) closeGameSection(key);
+    else openGameSection(key);
     return;
   }
 
   const more = event.target.closest("[data-game-more]");
   if (more) {
-    const key = more.dataset.gameMore;
-    const list = getCombinedGroup(key);
-    const from = combinedShown[key] || 0;
-    const to = Math.min(list.length, from + PAGE_SIZE);
-    combinedShown[key] = to;
-    more.insertAdjacentHTML(
-      "beforebegin",
-      renderGameSectionCards(key, list, from, to)
-    );
-    if (to < list.length) {
-      more.outerHTML = renderShowMoreButton(key, list.length - to);
-    } else {
-      more.remove();
-    }
+    showMoreInSection(more.dataset.gameMore);
+    return;
+  }
+
+  const toggle = event.target.closest("[data-sections-toggle]");
+  if (toggle) {
+    const keys = [...results.querySelectorAll(".game-section")].map(el => el.dataset.game);
+    if (toggle.dataset.action === "close") keys.forEach(closeGameSection);
+    else keys.forEach(openGameSection);
+    updateStuckHeaders();
     return;
   }
 
   const chip = event.target.closest("[data-game-filter]");
   if (chip) {
+    // A long press already handled it (see below).
+    if (chipLongPressHandled) {
+      chipLongPressHandled = false;
+      return;
+    }
+
     const key = chip.dataset.gameFilter;
     if (activeGameFilters.has(key)) activeGameFilters.delete(key);
     else activeGameFilters.add(key);
     render();
   }
 });
+
+// Long press on a Games chip: only that game (again: all games).
+let chipPressTimer = null;
+let chipPressStart = null;
+let chipLongPressHandled = false;
+
+document.addEventListener("pointerdown", event => {
+  if (!IS_COMBINED) return;
+  const chip = event.target.closest("[data-game-filter]");
+  if (!chip) return;
+
+  chipLongPressHandled = false;
+  chipPressStart = { x: event.clientX, y: event.clientY };
+  clearTimeout(chipPressTimer);
+  chip.classList.add("is-pressing");
+
+  chipPressTimer = setTimeout(() => {
+    chip.classList.remove("is-pressing");
+    chipLongPressHandled = true;
+
+    const key = chip.dataset.gameFilter;
+    const isSolo = activeGameFilters.size === 1 && activeGameFilters.has(key);
+
+    activeGameFilters.clear();
+    if (!isSolo) activeGameFilters.add(key);
+
+    navigator.vibrate?.(12);
+    showToast(isSolo ? "All games" : `Only ${GAME_SHORT_NAMES[key]}`);
+    render();
+  }, 480);
+});
+
+function cancelChipPress() {
+  clearTimeout(chipPressTimer);
+  chipPressTimer = null;
+  document.querySelectorAll(".game-chip.is-pressing").forEach(chip => chip.classList.remove("is-pressing"));
+}
+
+document.addEventListener("pointerup", cancelChipPress);
+document.addEventListener("pointercancel", cancelChipPress);
+document.addEventListener("pointermove", event => {
+  if (!chipPressTimer || !chipPressStart) return;
+  if (Math.hypot(event.clientX - chipPressStart.x, event.clientY - chipPressStart.y) > 10) cancelChipPress();
+});
+
+// Sticky section headers: compact glass form while pinned.
+function getStickyTop() {
+  const header = results.querySelector(".game-section-header");
+  return header ? parseFloat(getComputedStyle(header).top) || 0 : 0;
+}
+
+let stuckFrame = 0;
+
+function updateStuckHeaders() {
+  if (!IS_COMBINED) return;
+
+  const top = getStickyTop();
+
+  results.querySelectorAll(".game-section").forEach(section => {
+    const header = section.querySelector(".game-section-header");
+    const sectionRect = section.getBoundingClientRect();
+    const stuck =
+      section.classList.contains("is-open") &&
+      sectionRect.top < top - 1 &&
+      sectionRect.bottom > top + header.offsetHeight + 24;
+
+    header.classList.toggle("is-stuck", stuck);
+  });
+}
+
+window.addEventListener("scroll", () => {
+  if (!IS_COMBINED || stuckFrame) return;
+  stuckFrame = requestAnimationFrame(() => {
+    stuckFrame = 0;
+    updateStuckHeaders();
+  });
+}, { passive: true });
 
 /* Loading progress panel (combined mode) */
 
@@ -1778,7 +2157,13 @@ function renderEntry(entry) {
       <div class="entry-text entry-text-code">${formatEntryText(en.visualCode, { highlightTerms: currentHighlightTerms })}</div>
       
       ${jsonMeta}
-      
+      ${IS_COMBINED && getAcrossName(entry) ? `
+        <button class="across-link" type="button" data-across="${escapeAttribute(getAcrossName(entry))}">
+          <span class="across-link-dots" aria-hidden="true"></span>
+          Compare across games
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      ` : ""}
     </article>
   `;
 }
@@ -2946,6 +3331,8 @@ function getVisibleMarks() {
 }
 
 function hasMoreEntriesToLoad() {
+  if (IS_COMBINED) return combinedHasMore();
+
   const page = getVisiblePage();
 
   return Boolean(
@@ -2979,10 +3366,15 @@ function updateMatchNav() {
       ? `${index} / ${marks.length}${more}`
       : `${marks.length}${more} ${marks.length === 1 && !more ? "match" : "matches"}`;
 
+  // Combined mode: matches can sit in closed sections, so the arrows stay
+  // available while there is more to open.
+  const combinedPending = IS_COMBINED && !marks.length && more;
+  const navLabel = combinedPending ? "Matches" : label;
+
   document.querySelectorAll("[data-match-nav]").forEach(nav => {
-    nav.hidden = marks.length === 0;
+    nav.hidden = marks.length === 0 && !combinedPending;
     const countEl = nav.querySelector("[data-match-count]");
-    if (countEl) countEl.textContent = label;
+    if (countEl) countEl.textContent = navLabel;
   });
 }
 
@@ -3022,7 +3414,7 @@ function jumpToMatch(direction) {
   let loads = 0;
 
   while (target >= marks.length && hasMoreEntriesToLoad() && loads < MATCH_MAX_PAGE_LOADS) {
-    appendNextEntries();
+    loadMoreForMatches();
     marks = getVisibleMarks();
     loads++;
   }
@@ -4150,10 +4542,22 @@ cardControls.addEventListener("click", event => {
 });
 
 copySearchResultsBtn.addEventListener("click", () => {
-  const text = currentSearchResults
-    .map(entry => "```\n" + getCleanText(entry.text, entry.game || ACTIVE_GAME) + "\n```")
-    .filter(Boolean)
-    .join("\n\n");
+  const block = entry => "```\n" + getCleanText(entry.text, entry.game || ACTIVE_GAME) + "\n```";
+
+  // Combined mode: grouped under a heading per game.
+  const text = IS_COMBINED
+    ? GAME_ORDER
+        .map(key => {
+          const list = currentSearchResults.filter(entry => entry.game === key);
+          if (!list.length) return "";
+          return `## ${GAME_CONFIG[key].title} (${list.length.toLocaleString()})\n\n` + list.map(block).join("\n\n");
+        })
+        .filter(Boolean)
+        .join("\n\n")
+    : currentSearchResults
+        .map(block)
+        .filter(Boolean)
+        .join("\n\n");
 
   const n = currentSearchResults.length;
   copyText(text, copySearchResultsBtn, `Copied ${n.toLocaleString()} ${n === 1 ? "result" : "results"}`);
