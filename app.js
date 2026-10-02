@@ -416,21 +416,140 @@ function findAcrossMatches(name) {
   return byGame;
 }
 
+/* Differences on the Across page: each game's description compared word by
+   word with the next newer game above it. Line breaks (text box widths)
+   and capitalization are ignored; words that differ are highlighted. */
+const DIFF_TOKEN_PATTERN = /[\p{L}\p{N}'’-]+|[^\s\p{L}\p{N}'’-]+|\s+/gu;
+
+function tokenizeForDiff(text) {
+  return String(text || "").match(DIFF_TOKEN_PATTERN) || [];
+}
+
+// Indices (into tokens) of the words that are not shared with the other text.
+function findChangedTokens(tokens, otherTokens) {
+  const a = [];
+  const b = [];
+
+  tokens.forEach((token, index) => {
+    if (!/^\s+$/.test(token)) a.push({ index, key: token.toLowerCase() });
+  });
+  otherTokens.forEach(token => {
+    if (!/^\s+$/.test(token)) b.push(token.toLowerCase());
+  });
+
+  // Very long texts: skip rather than slow the page down.
+  if (!a.length || !b.length || a.length * b.length > 250000) return null;
+
+  // Longest common subsequence of the words.
+  const rows = a.length + 1;
+  const cols = b.length + 1;
+  const table = new Uint16Array(rows * cols);
+
+  for (let i = a.length - 1; i >= 0; i--) {
+    for (let j = b.length - 1; j >= 0; j--) {
+      table[i * cols + j] = a[i].key === b[j]
+        ? table[(i + 1) * cols + j + 1] + 1
+        : Math.max(table[(i + 1) * cols + j], table[i * cols + j + 1]);
+    }
+  }
+
+  const changed = new Set();
+  let i = 0;
+  let j = 0;
+
+  while (i < a.length) {
+    if (j < b.length && a[i].key === b[j]) {
+      i++;
+      j++;
+    } else if (j < b.length && table[i * cols + j + 1] > table[(i + 1) * cols + j]) {
+      j++;
+    } else {
+      changed.add(a[i].index);
+      i++;
+    }
+  }
+
+  return changed;
+}
+
+// The text with its changed words wrapped in one highlight per run.
+function renderDiffText(text, changed) {
+  const tokens = tokenizeForDiff(text);
+  let html = "";
+  let open = false;
+
+  tokens.forEach((token, index) => {
+    const isSpace = /^\s+$/.test(token);
+    const isChanged = changed.has(index);
+
+    // A space between two changed words stays inside the highlight.
+    const nextChanged = [...tokens.slice(index + 1)].findIndex(t => !/^\s+$/.test(t));
+    const continues = isSpace && open && nextChanged >= 0 && changed.has(index + 1 + nextChanged);
+
+    if (open && !isChanged && !continues) {
+      html += "</mark>";
+      open = false;
+    }
+
+    if (!open && isChanged) {
+      html += '<mark class="diff-mark">';
+      open = true;
+    }
+
+    html += isSpace
+      ? (token.includes("\n") ? "<br>" : " ")
+      : escapeHtml(token);
+  });
+
+  if (open) html += "</mark>";
+  return html;
+}
+
 function renderAcross(name) {
   const byGame = findAcrossMatches(name);
   const found = GAME_ORDER.filter(key => byGame.get(key).length);
   const missing = GAME_ORDER.filter(key => !byGame.get(key).length);
 
+  // Each game compares with the closest newer game above it that has a text.
+  let previousText = "";
+  let previousGame = "";
+
   const cards = found.map(key => {
-    const matches = byGame.get(key).map(match => {
+    const firstText = getCleanText(byGame.get(key)[0]?.text || "", key);
+    const compareText = previousText;
+    const compareGame = previousGame;
+
+    if (firstText) {
+      previousText = firstText;
+      previousGame = key;
+    }
+
+    const matches = byGame.get(key).map((match, matchIndex) => {
       const text = getCleanText(match.text, key);
+
+      let textHtml = text ? formatEntryText(text, {}) : "";
+      let diffNote = "";
+
+      if (text && compareText && matchIndex === 0) {
+        const changed = findChangedTokens(tokenizeForDiff(text), tokenizeForDiff(compareText));
+
+        if (changed) {
+          const compareName = escapeHtml(GAME_CONFIG[compareGame].title);
+          textHtml = renderDiffText(text, changed);
+          diffNote = changed.size
+            ? `<div class="diff-note"><span class="diff-swatch" aria-hidden="true"></span>Differences from ${compareName}</div>`
+            : `<div class="diff-note is-same">Same wording as ${compareName}</div>`;
+        }
+      }
+
       const textJp = getCleanText(match.textJp, key);
       const hasJp = Boolean(match.nameJp || textJp);
 
       return `
         <div class="across-match">
           <div class="across-name">${escapeHtml(cleanAcrossName(match.name))}</div>
-          ${text ? `<div class="across-text">${formatEntryText(text, {})}</div>` : ""}
+          ${text ? `<div class="across-text">${textHtml}</div>` : ""}
+          ${diffNote}
           <div class="across-meta">${escapeHtml(match.entry.category || "")} · ${escapeHtml(match.entry.sourceFile || "")}</div>
           ${hasJp ? `
             <details class="across-jp">
@@ -521,6 +640,7 @@ function parseRouteHash(hash) {
     g: params.get("g") || "",
     q: params.get("q") || "",
     t: params.get("t") || "All",
+    e: params.get("e") || "",
     view: {
       type: params.get("v") || "home",
       category: params.get("c") || "",
@@ -633,6 +753,60 @@ function flushUrlSync() {
   } catch {}
 }
 
+/* Card links: tapping a card's ID badge copies a link that opens exactly
+   that entry (a search for its file and ID) and highlights its card. */
+function getEntryRef(entry) {
+  return `${entry.sourceFile}#${entry.id}`;
+}
+
+function buildEntryLink(entry) {
+  const params = new URLSearchParams();
+  params.set("g", entry.game || ACTIVE_GAME);
+  params.set("q", `file:"${entry.sourceFile}" id:"${entry.id}"`);
+  params.set("e", getEntryRef(entry));
+  return `${location.origin}${location.pathname}#${params.toString()}`;
+}
+
+function highlightLinkedEntry(ref) {
+  const card = [...results.querySelectorAll(".entry[data-card-key]")]
+    .find(candidate => {
+      const entry = getCardEntry(candidate);
+      return entry && getEntryRef(entry) === ref;
+    });
+
+  if (!card) return;
+
+  card.classList.add("is-linked");
+
+  requestAnimationFrame(() => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top > window.innerHeight * 0.6) {
+      window.scrollTo({ top: rect.top + window.scrollY - window.innerHeight * 0.25 });
+    }
+  });
+
+  setTimeout(() => card.classList.remove("is-linked"), 4200);
+}
+
+function copyEntryLink(badge) {
+  const entry = getCardEntry(badge.closest(".entry"));
+  if (!entry) return;
+  copyText(buildEntryLink(entry), badge, "Link copied");
+}
+
+document.addEventListener("click", event => {
+  const badge = event.target.closest("[data-copy-entry-link]");
+  if (badge) copyEntryLink(badge);
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  const badge = event.target.closest?.("[data-copy-entry-link]");
+  if (!badge) return;
+  event.preventDefault();
+  copyEntryLink(badge);
+});
+
 function applySearchRoute(route) {
   const q = route.q || "";
   const t = route.t && categories.has(route.t) ? route.t : "All";
@@ -653,6 +827,8 @@ function applyInitialRoute() {
       applySearchRoute(route);
       render();
     }
+
+    if (route.e) highlightLinkedEntry(route.e);
   } else {
     try {
       showViewState(route.view);
@@ -1216,6 +1392,45 @@ function getSearchBlob(entry) {
   return entry.searchText || "";
 }
 
+/* When a search only adds to the previous one ("rath" -> "rathalos", or an
+   extra word), its matches are a subset of the previous matches, so only
+   those need checking. Each part of the old search must still be there:
+   same operator, and a value that contains the old one. Results are
+   identical to a full search; anything else does a full search. */
+let lastSearchMatch = null; // { tokens, source, matched }
+
+function isSearchRefinement(previousTokens, tokens) {
+  return previousTokens.every(previous => {
+    const oldValue = previous.value.toLowerCase();
+    const oldHasSpace = /\s/.test(oldValue);
+
+    return tokens.some(token =>
+      token.operator === previous.operator &&
+      token.value.toLowerCase().includes(oldValue) &&
+      // A phrase with spaces is only implied by a phrase containing it.
+      (!oldHasSpace || (previous.exact && token.exact))
+    );
+  });
+}
+
+function getSearchMatches(tokens) {
+  const source =
+    lastSearchMatch &&
+    lastSearchMatch.source === entries &&
+    isSearchRefinement(lastSearchMatch.tokens, tokens)
+      ? lastSearchMatch.matched
+      : entries;
+
+  const matched = [];
+
+  for (const entry of source) {
+    if (entryMatchesSearch(entry, tokens)) matched.push(entry);
+  }
+
+  lastSearchMatch = { tokens, source: entries, matched };
+  return matched;
+}
+
 function entryMatchesSearchToken(entry, token) {
   const op = token.operator;
   const value = token.value;
@@ -1330,9 +1545,7 @@ function render() {
     const visible = [];
     const categoryCounts = new Map();
 
-    for (const entry of entries) {
-      if (!entryMatchesSearch(entry, tokens)) continue;
-
+    for (const entry of getSearchMatches(tokens)) {
       // Counted before the type filter, so each chip shows how many
       // results it would give for this search.
       categoryCounts.set(entry.category, (categoryCounts.get(entry.category) || 0) + 1);
@@ -1526,9 +1739,7 @@ function renderCombined() {
   const categoryCounts = new Map();
   const gameCounts = new Map();
 
-  for (const entry of entries) {
-    if (!entryMatchesSearch(entry, tokens)) continue;
-
+  for (const entry of getSearchMatches(tokens)) {
     // Type chips count within the selected games; game chips within the
     // selected type, so each shows what selecting it would give.
     if (matchesGameFilter(entry)) {
@@ -2066,6 +2277,45 @@ function withoutRepeatedId(textIds, headerId) {
   return rest.replace(/^[ \t]+/, "");
 }
 
+/* Cards keep a small key to their entry instead of every text variant as
+   hidden attributes; the language switch and Copy build the same strings
+   from the entry when tapped. */
+const cardKeyByEntry = new WeakMap();
+const entryByCardKey = new Map();
+let cardKeyCounter = 0;
+
+function getCardKey(entry) {
+  let key = cardKeyByEntry.get(entry);
+
+  if (!key) {
+    key = String(++cardKeyCounter);
+    cardKeyByEntry.set(entry, key);
+    entryByCardKey.set(key, entry);
+  }
+
+  return key;
+}
+
+function getCardEntry(card) {
+  const key = card?.dataset?.cardKey;
+  return key ? entryByCardKey.get(key) || null : null;
+}
+
+// Exactly the texts the card's hidden attributes used to hold.
+function getCardLanguageData(entry, lang) {
+  const view = getEntryPresentation(entry, lang);
+
+  return {
+    name: view.name,
+    textIds: withoutRepeatedId(view.textIds, view.headerId),
+    textClean: view.textClean,
+    textCode: view.visualCode,
+    copyIds: view.copyIds,
+    copyClean: view.copyClean,
+    copyCode: view.copyCode
+  };
+}
+
 function renderEntry(entry) {
   const metaHtml = renderMetaLine(entry.category, [
     entry.family,
@@ -2074,8 +2324,9 @@ function renderEntry(entry) {
     entry.sourceFile
   ], entry.game);
 
+  // The Japanese version (and the copy texts) are built when needed, from
+  // the entry itself - see getCardLanguageData.
   const en = getEntryPresentation(entry, "en");
-  const jp = getEntryPresentation(entry, "jp");
 
   const hasJp = Boolean(entry.textJp || entry.rawJp || entry.nameJp);
   const jsonMeta =
@@ -2092,30 +2343,7 @@ function renderEntry(entry) {
       ${IS_COMBINED && entry.game ? `data-game="${escapeAttribute(entry.game)}"` : ""}
       data-mode="${escapeAttribute(defaultCardMode)}"
       data-lang="en"
-
-      data-name-en="${escapeAttribute(en.name)}"
-      data-name-jp="${escapeAttribute(jp.name)}"
-
-      data-text-ids-en="${escapeAttribute(withoutRepeatedId(en.textIds, en.headerId))}"
-      data-text-ids-jp="${escapeAttribute(withoutRepeatedId(jp.textIds, jp.headerId))}"
-
-      data-text-clean-en="${escapeAttribute(en.textClean)}"
-      data-text-clean-jp="${escapeAttribute(jp.textClean)}"
-
-      data-text-code-en="${escapeAttribute(en.visualCode)}"
-      data-text-code-jp="${escapeAttribute(jp.visualCode)}"
-
-      data-copy-ids="${escapeAttribute(en.copyIds)}"
-      data-copy-clean="${escapeAttribute(en.copyClean)}"
-      data-copy-code="${escapeAttribute(en.copyCode)}"
-
-      data-copy-ids-en="${escapeAttribute(en.copyIds)}"
-      data-copy-clean-en="${escapeAttribute(en.copyClean)}"
-      data-copy-code-en="${escapeAttribute(en.copyCode)}"
-
-      data-copy-ids-jp="${escapeAttribute(jp.copyIds)}"
-      data-copy-clean-jp="${escapeAttribute(jp.copyClean)}"
-      data-copy-code-jp="${escapeAttribute(jp.copyCode)}"
+      data-card-key="${getCardKey(entry)}"
     >
       <div class="entry-actions">
         ${entry.isRejected ? '<span class="tag-badge">Rejected ID</span>' : ""}
@@ -2143,7 +2371,7 @@ function renderEntry(entry) {
               : ""
         }
 
-        <div class="entry-id">${escapeHtml(stripIdBrackets(en.headerId))}</div>
+        <div class="entry-id" role="button" tabindex="0" data-copy-entry-link title="Copy link to this entry">${escapeHtml(stripIdBrackets(en.headerId))}</div>
       </div>
 
       ${
@@ -3049,12 +3277,16 @@ function updateEntryLanguage(card, lang) {
   card.dataset.lang = lang;
 
   const suffix = lang === "jp" ? "Jp" : "En";
-  const dataSuffix = lang === "jp" ? "jp" : "en";
 
-  const name = card.dataset[`name${suffix}`] || "";
-  const textIds = card.dataset[`textIds${suffix}`] || "";
-  const textClean = card.dataset[`textClean${suffix}`] || "";
-  const textCode = card.dataset[`textCode${suffix}`] || "";
+  // Entry cards build their texts from the entry; other cards still carry
+  // them as attributes.
+  const entry = getCardEntry(card);
+  const data = entry ? getCardLanguageData(entry, lang) : null;
+
+  const name = data ? data.name : card.dataset[`name${suffix}`] || "";
+  const textIds = data ? data.textIds : card.dataset[`textIds${suffix}`] || "";
+  const textClean = data ? data.textClean : card.dataset[`textClean${suffix}`] || "";
+  const textCode = data ? data.textCode : card.dataset[`textCode${suffix}`] || "";
 
   const nameEl = card.querySelector(".entry-name-content");
   const idsEl = card.querySelector(".entry-text-ids");
@@ -3072,9 +3304,11 @@ function updateEntryLanguage(card, lang) {
   if (cleanEl) cleanEl.innerHTML = formatEntryText(textClean, textOpts);
   if (codeEl) codeEl.innerHTML = formatEntryText(textCode, { highlightTerms: currentHighlightTerms });
 
-  card.dataset.copyIds = card.dataset[`copyIds${suffix}`] || "";
-  card.dataset.copyClean = card.dataset[`copyClean${suffix}`] || "";
-  card.dataset.copyCode = card.dataset[`copyCode${suffix}`] || "";
+  if (!data) {
+    card.dataset.copyIds = card.dataset[`copyIds${suffix}`] || "";
+    card.dataset.copyClean = card.dataset[`copyClean${suffix}`] || "";
+    card.dataset.copyCode = card.dataset[`copyCode${suffix}`] || "";
+  }
 
   if (langBtn) {
     langBtn.textContent = lang === "jp" ? "EN" : "JP";
@@ -3701,6 +3935,15 @@ async function copyText(text, button, message = "Copied") {
 function getCardCopyText(card) {
   const mode = card.dataset.mode || "ids";
 
+  const entry = getCardEntry(card);
+
+  if (entry) {
+    const data = getCardLanguageData(entry, card.dataset.lang === "jp" ? "jp" : "en");
+    if (mode === "clean") return decodeHtml(data.copyClean || "");
+    if (mode === "code") return decodeHtml(data.copyCode || "");
+    return decodeHtml(data.copyIds || "");
+  }
+
   if (mode === "clean") return decodeHtml(card.dataset.copyClean || "");
   if (mode === "code") return decodeHtml(card.dataset.copyCode || "");
 
@@ -4118,10 +4361,139 @@ function setLoadingStatus(message) {
 const combinedLoadState = {};   // game -> "waiting" | "loading" | "done" | "error"
 const combinedEntryCounts = {}; // game -> number of entries
 
-// Loads one game's payload (from cache or by parsing), exactly as the
-// single-game loader does.
-async function loadGamePayload(key) {
+/* ---------------------------------------------------------
+   Loading a game's data (both modes)
+   1. Ask the server whether the dump files changed (a tiny HEAD request
+      for their version tag). Unchanged and cached: no download at all.
+   2. Offline: use the cache.
+   3. Otherwise download; if the text still matches the cache, keep it.
+   4. Otherwise parse - in a background worker, so the page stays smooth
+      (falls back to parsing here if workers aren't available).
+   --------------------------------------------------------- */
+
+// The few parsed sections the page still needs after parsing (Wilds armor
+// series and reference tables).
+function getKeptFileKeys() {
+  return ["armorseries", ...Object.keys(REF_POSITIONAL_FILES)];
+}
+
+// The files' version as the server reports it (ETag, or date + size).
+async function getRemoteVersion(cfg) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) {
+    return { key: "", offline: true };
+  }
+
+  const parts = [];
+
+  for (const url of [cfg.en, cfg.jp].filter(Boolean)) {
+    let response;
+
+    try {
+      response = await fetch(url, { method: "HEAD", cache: "no-cache" });
+    } catch {
+      return { key: "", offline: true };
+    }
+
+    if (!response.ok) return { key: "", offline: false };
+
+    const etag = response.headers.get("etag");
+    const modified = response.headers.get("last-modified");
+    const length = response.headers.get("content-length");
+    const version = etag || (modified ? `${modified}|${length || ""}` : "");
+
+    if (!version) return { key: "", offline: false };
+    parts.push(`${url}=${version}`);
+  }
+
+  return { key: `${WILDS_CACHE_VERSION}|${parts.join("|")}`, offline: false };
+}
+
+let parseWorker = null;
+let parseRequestId = 0;
+
+function parseInWorker(enRaw, jpRaw) {
+  return new Promise((resolve, reject) => {
+    if (typeof Worker === "undefined") {
+      reject(new Error("Workers are not available"));
+      return;
+    }
+
+    if (!parseWorker) parseWorker = new Worker("./parse-worker.js");
+
+    const worker = parseWorker;
+    const id = ++parseRequestId;
+
+    const cleanup = () => {
+      worker.removeEventListener("message", onMessage);
+      worker.removeEventListener("error", onError);
+    };
+
+    const onMessage = event => {
+      if (event.data?.id !== id) return;
+      cleanup();
+      if (event.data.ok) resolve(event.data);
+      else reject(new Error(event.data.error));
+    };
+
+    const onError = event => {
+      cleanup();
+      worker.terminate();
+      if (parseWorker === worker) parseWorker = null;
+      reject(new Error(event.message || "Worker failed"));
+    };
+
+    worker.addEventListener("message", onMessage);
+    worker.addEventListener("error", onError);
+    worker.postMessage({ id, enRaw, jpRaw, keepFileKeys: getKeptFileKeys() });
+  });
+}
+
+// The same steps the worker runs, on the page itself.
+function parseOnMainThread(enRaw, jpRaw) {
+  const enAllSections = parseWildsDump(enRaw, "en");
+  const jpAllSections = jpRaw ? parseWildsDump(jpRaw, "jp") : [];
+
+  const enSections = enAllSections.filter(section => !section.isOldVersion);
+  const jpSections = jpAllSections.filter(section => !section.isOldVersion);
+
+  const npcMap = typeof NPC_MAP !== "undefined" ? NPC_MAP : {};
+  const keep = getKeptFileKeys();
+
+  return {
+    enEntries: buildWildsEntries(enSections, npcMap),
+    jpEntries: buildWildsEntries(jpSections, npcMap),
+    diffData: buildDiffData(enAllSections),
+    keptSections: enSections.filter(section => keep.includes(section.fileKey))
+  };
+}
+
+async function parseDumpText(enRaw, jpRaw) {
+  try {
+    return await parseInWorker(enRaw, jpRaw);
+  } catch (error) {
+    console.warn("Parsing on the page instead of in the background:", error);
+    await nextFrame();
+    return parseOnMainThread(enRaw, jpRaw);
+  }
+}
+
+// Returns { payload, needsCacheWrite, remoteKey } for one game.
+async function loadGamePayload(key, onStatus = () => {}) {
   const cfg = GAME_CONFIG[key];
+
+  onStatus("Checking cache…");
+  const cached = await wildsCacheGet(key);
+  const remote = await getRemoteVersion(cfg);
+
+  if (cached && remote.offline) {
+    return { payload: cached, needsCacheWrite: false, remoteKey: "" };
+  }
+
+  if (cached && remote.key && (await wildsVersionGet(key)) === remote.key) {
+    return { payload: cached, needsCacheWrite: false, remoteKey: "" };
+  }
+
+  onStatus(`Loading ${cfg.title} text dumps…`);
 
   const enResponse = await fetch(cfg.en);
   if (!enResponse.ok) throw new Error(`Could not load ${cfg.en}`);
@@ -4137,41 +4509,44 @@ async function loadGamePayload(key) {
   const enRaw = await enResponse.text();
   const checkString = makeWildsCacheKey(enRaw, jpRaw);
 
-  let payload = await wildsCacheGet(key);
-  if (payload && payload.check !== checkString) payload = null;
+  // Same text as the cache (e.g. a cache from before version tags were
+  // remembered): keep it, and remember the version for next time.
+  if (cached && cached.check === checkString) {
+    wildsVersionPut(key, remote.key);
+    return { payload: cached, needsCacheWrite: false, remoteKey: "" };
+  }
 
-  if (payload) return { payload, needsCacheWrite: false };
-
+  onStatus("Parsing dumps… (first load only, will be cached)");
   await nextFrame();
-  const enAllSections = parseWildsDump(enRaw, "en");
+
+  const parsed = await parseDumpText(enRaw, jpRaw);
+
+  onStatus("Building entries…");
   await nextFrame();
-  const jpAllSections = jpRaw ? parseWildsDump(jpRaw, "jp") : [];
 
-  const enSections = enAllSections.filter(section => !section.isOldVersion);
-  const jpSections = jpAllSections.filter(section => !section.isOldVersion);
+  buildArmorSeriesMap(parsed.keptSections);
 
-  buildArmorSeriesMap(enSections);
-
-  await nextFrame();
-  const npcMap = typeof NPC_MAP !== "undefined" ? NPC_MAP : {};
-  const enEntries = buildWildsEntries(enSections, npcMap);
-  const jpEntries = buildWildsEntries(jpSections, npcMap);
-
-  let merged = mergeLocalizedEntries(enEntries, jpEntries);
+  let merged = mergeLocalizedEntries(parsed.enEntries, parsed.jpEntries);
 
   if (key === "world") {
     merged = removeWorldPlaceholders(merged);
   }
 
-  payload = {
+  const payload = {
     check: checkString,
     entries: merged.map(stripEntryForCache),
     armorSeries: [...ARMOR_SERIES_BY_ID.entries()],
-    refTables: buildRefTables(enSections),
-    diffData: buildDiffData(enAllSections)
+    refTables: buildRefTables(parsed.keptSections),
+    diffData: parsed.diffData
   };
 
-  return { payload, needsCacheWrite: true };
+  return { payload, needsCacheWrite: true, remoteKey: remote.key };
+}
+
+// Writes a freshly parsed game to the cache, then remembers its version.
+async function storeGamePayload(key, payload, remoteKey) {
+  await wildsCachePut(key, payload);
+  await wildsVersionPut(key, remoteKey);
 }
 
 async function loadAllDumps() {
@@ -4192,7 +4567,7 @@ async function loadAllDumps() {
     await nextFrame();
 
     try {
-      const { payload, needsCacheWrite } = await loadGamePayload(key);
+      const { payload, needsCacheWrite, remoteKey } = await loadGamePayload(key);
 
       if (cfg.hasJson) {
         wildsArmorSeries = payload.armorSeries || [];
@@ -4214,7 +4589,7 @@ async function loadAllDumps() {
       combinedLoadState[key] = "done";
 
       if (needsCacheWrite) {
-        setTimeout(() => wildsCachePut(key, payload), 500);
+        setTimeout(() => storeGamePayload(key, payload, remoteKey), 500);
       }
     } catch (error) {
       console.error(error);
@@ -4253,79 +4628,12 @@ async function loadDump() {
   setLoadingStatus(`Loading ${cfg.title} text dumps…`);
 
   try {
-    const enResponse = await fetch(cfg.en);
-    if (!enResponse.ok) throw new Error(`Could not load ${cfg.en}`);
+    const { payload, needsCacheWrite, remoteKey } = await loadGamePayload(ACTIVE_GAME, setLoadingStatus);
 
-    let jpRaw = "";
+    ARMOR_SERIES_BY_ID.clear();
 
-    if (cfg.jp) {
-      const jpResponse = await fetch(cfg.jp);
-      if (!jpResponse.ok) throw new Error(`Could not load ${cfg.jp}`);
-      jpRaw = await jpResponse.text();
-    }
-
-    const enRaw = await enResponse.text();
-
-    const checkString = makeWildsCacheKey(enRaw, jpRaw);
-
-    setLoadingStatus("Checking cache…");
-    await nextFrame();
-
-    let payload = await wildsCacheGet(ACTIVE_GAME);
-
-    if (payload && payload.check !== checkString) {
-      payload = null;
-    }
-
-    let needsCacheWrite = false;
-
-    if (!payload) {
-      needsCacheWrite = true;
-
-      setLoadingStatus("Parsing EN dump… (first load only, will be cached)");
-      await nextFrame();
-      const enAllSections = parseWildsDump(enRaw, "en");
-
-      setLoadingStatus("Parsing JP dump…");
-      await nextFrame();
-      const jpAllSections = jpRaw ? parseWildsDump(jpRaw, "jp") : [];
-
-      const enSections = enAllSections.filter(section => !section.isOldVersion);
-      const jpSections = jpAllSections.filter(section => !section.isOldVersion);
-
-      buildArmorSeriesMap(enSections);
-
-      setLoadingStatus("Building entries…");
-      await nextFrame();
-
-      const npcMap = typeof NPC_MAP !== "undefined" ? NPC_MAP : {};
-      const enEntries = buildWildsEntries(enSections, npcMap);
-      const jpEntries = buildWildsEntries(jpSections, npcMap);
-
-      let merged = mergeLocalizedEntries(enEntries, jpEntries);
-
-      if (ACTIVE_GAME === "world") {
-        merged = removeWorldPlaceholders(merged);
-      }
-
-      setLoadingStatus("Computing version diff…");
-      await nextFrame();
-
-      payload = {
-        check: checkString,
-        entries: merged.map(stripEntryForCache),
-        armorSeries: [...ARMOR_SERIES_BY_ID.entries()],
-        refTables: buildRefTables(enSections),
-        diffData: buildDiffData(enAllSections)
-      };
-
-      sections = enSections;
-    } else {
-      ARMOR_SERIES_BY_ID.clear();
-
-      for (const [id, name] of payload.armorSeries || []) {
-        ARMOR_SERIES_BY_ID.set(id, name);
-      }
+    for (const [id, name] of payload.armorSeries || []) {
+      ARMOR_SERIES_BY_ID.set(id, name);
     }
 
     DIFF_DATA = payload.diffData || [];
@@ -4352,7 +4660,7 @@ async function loadDump() {
 
     if (needsCacheWrite) {
       // Persist after first paint - the cache is a pure optimization.
-      setTimeout(() => wildsCachePut(ACTIVE_GAME, payload), 500);
+      setTimeout(() => storeGamePayload(ACTIVE_GAME, payload, remoteKey), 500);
     }
   } catch (error) {
     console.error(error);
@@ -4849,6 +5157,14 @@ function restoreSavedSettings() {
       dialogueDisplayMode = savedDialogueMode;
     }
   } catch {}
+}
+
+// Offline support (see sw.js). Only on https or localhost, where browsers
+// allow service workers; failures are harmless.
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
 }
 
 (async () => {
