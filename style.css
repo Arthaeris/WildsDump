@@ -3999,3 +3999,92 @@ textarea {
   }
 }
 
+
+/* =========================================================
+   Card links (tap the ID badge) and Across differences
+   ========================================================= */
+
+/* The ID badge copies a link to its card. */
+.entry-id[data-copy-entry-link] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+@media (hover: hover) {
+  .entry-id[data-copy-entry-link]:hover {
+    color: var(--text);
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  }
+}
+
+.entry-id[data-copy-entry-link]:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.entry-id[data-copy-entry-link].is-copied {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* A card opened from a link glows softly, then settles. */
+.entry.is-linked {
+  animation: linked-glow 4.2s ease-out forwards;
+}
+
+@keyframes linked-glow {
+  0%, 55% {
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--gc, var(--accent)) 85%, transparent),
+      0 0 26px 2px color-mix(in srgb, var(--gc, var(--accent)) 45%, transparent);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 transparent,
+      0 0 0 0 transparent;
+  }
+}
+
+/* Words that differ from the newer game above. */
+.diff-mark {
+  color: inherit;
+  font-weight: inherit;
+  padding: 0 2px;
+  margin: 0 -1px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--gc, var(--accent)) 24%, transparent);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--gc, var(--accent)) 70%, transparent);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.diff-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.diff-note.is-same {
+  opacity: 0.8;
+}
+
+.diff-swatch {
+  width: 14px;
+  height: 9px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--gc, var(--accent)) 24%, transparent);
+  box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--gc, var(--accent)) 70%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry.is-linked {
+    animation: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gc, var(--accent)) 85%, transparent);
+  }
+}
